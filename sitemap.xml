@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+     <loc>https://monashdatafluency.github.io/python-web-scraping/</loc>
+     <lastmod>2020-02-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://monashdatafluency.github.io/python-web-scraping/a-brief-python-refresher/</loc>
+     <lastmod>2020-02-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://monashdatafluency.github.io/python-web-scraping/HTML-based-scraping/</loc>
+     <lastmod>2020-02-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://monashdatafluency.github.io/python-web-scraping/API-based-scraping/</loc>
+     <lastmod>2020-02-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://monashdatafluency.github.io/python-web-scraping/wrangling-and-analysis/</loc>
+     <lastmod>2020-02-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://monashdatafluency.github.io/python-web-scraping/sample/</loc>
+     <lastmod>2020-02-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+</urlset>
