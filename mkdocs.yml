@@ -1,0 +1,44 @@
+# Project information
+site_name: Python Web Scraping
+site_description: Companion website to the Python Web Scraping workshop
+site_author: Satya, Naveen and Tarun
+site_url: https://monashdatafluency.github.io/python-web-scraping/
+
+# Repository
+repo_name: python-web-scraping
+repo_url: https://github.com/MonashDataFluency/python-web-scraping
+edit_uri: ""
+
+# Theme
+theme: # refer to https://www.wheelodex.org/entry-points/mkdocs.themes/
+    name: material # refer to https://squidfunk.github.io/mkdocs-material/; others slate cyborg material
+    palette:
+        primary: 'light blue' # indigo
+        accent: 'light blue'
+    logo: 
+        icon: 'school' # refer to https://material.io/resources/icons/
+
+# Page tree
+nav:
+    - Getting started: 'index.md'
+    - A (brief) Python refresher: 'a-brief-python-refresher.md'
+    - HTML based scraping: 'HTML-based-scraping.md'
+    - API based scraping: 'API-based-scraping.md'
+    - Wrangling and Analysis: 'wrangling-and-analysis.md'
+    - Sample: 'sample.md'
+    
+# Extensions
+markdown_extensions:
+    - admonition
+    - codehilite:
+        guess_lang: false
+        linenums: true
+    - toc:
+        permalink: true
+  
+# Extra        
+extra:
+    social:
+        - type: 'github'
+          link: 'https://github.com/MonashDataFluency/python-web-scraping'
+  
