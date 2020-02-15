@@ -22,6 +22,7 @@ theme: # refer to https://www.wheelodex.org/entry-points/mkdocs.themes/
 nav:
     - Getting started: 'index.md'
     - A (brief) Python refresher: 'a-brief-python-refresher.md'
+    - Introduction to Web Scraping: 'section-1-intro-to-web-scraping'
     - HTML based scraping: 'HTML-based-scraping.md'
     - API based scraping: 'API-based-scraping.md'
     - Wrangling and Analysis: 'wrangling-and-analysis.md'
