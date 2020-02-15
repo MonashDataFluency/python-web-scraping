@@ -1,10 +1,42 @@
+
 #### Strings
+
+A string can be defined by enclosing it in a single quote(') or a double quote(")
 
 
 ```python
 my_str = "This is a string"
+```
+
+The characters of a string can be accessed by indices and the indices go from 0 to n-1
+
+
+```python
 my_str[0]
 ```
+
+
+
+
+    'T'
+
+
+
+Slice notation "[a:b:c]" means "count in increments of c starting at a inclusive, up to b exclusive".
+
+
+```python
+my_str[0:4]
+```
+
+
+
+
+    'This'
+
+
+
+A string can be reversed using the following way. The first index corresponds to the start, second to the end and the last one indicates the increment that needs to be done. 
 
 
 ```python
@@ -18,17 +50,7 @@ my_str[::-1]
 
 
 
-
-```python
-my_str[0:4]
-```
-
-
-
-
-    'one,'
-
-
+A string can be splitted as well based on a delimmitter. A list is returned after splitting
 
 
 ```python
@@ -43,6 +65,8 @@ my_str.split(',')
 
 
 
+A string can be stripped as well of extra spaces at the ends. 
+
 
 ```python
 my_str = " hello "
@@ -51,7 +75,7 @@ my_str.strip()
 ```
 
      hello 
-
+    
 
 
 
@@ -116,7 +140,7 @@ for num in num_list:
     7
     8
     9
-
+    
 
 
 ```python
@@ -157,7 +181,7 @@ for country, capital in pairs:
     The country is France and the capital is Paris
     The country is USA and the capital is Washington DC
     The country is Italy and the capital is Rome
-
+    
 
 
 ```python
@@ -188,7 +212,7 @@ for lang in languages:
 
     ['Spanish', 'English', 'French', 'German']
     ['Python', 'Java', 'Javascript', 'C++']
-
+    
 
 
 ```python
@@ -208,7 +232,7 @@ for lang_list in languages:
     Java
     Javascript
     C++
-
+    
 
 
 ```python
@@ -229,7 +253,7 @@ for lang_list in languages:
     Java
     Javascript
     C++
-
+    
 
 
 ```python
@@ -248,7 +272,7 @@ for lang_list in languages:
     German
     --------------
     Python
-
+    
 
 
 ```python
@@ -268,7 +292,7 @@ for i in range(10):
     5 squared is equal to 25
     7 squared is equal to 49
     9 squared is equal to 81
-
+    
 
 #### Sets
 
@@ -279,7 +303,7 @@ print(my_set)
 ```
 
     {1, 2, 3}
-
+    
 
 
 ```python
@@ -288,7 +312,7 @@ print(my_set)
 ```
 
     {1.0, 'Hello', (1, 2, 3)}
-
+    
 
 
 ```python
@@ -297,7 +321,7 @@ print(my_set)
 ```
 
     {1, 2, 3, 4}
-
+    
 
 
 ```python
@@ -310,7 +334,7 @@ print(type(my_set))
 
     <class 'dict'>
     <class 'set'>
-
+    
 
 
 ```python
@@ -322,7 +346,7 @@ my_set
 ```
 
     {1, 2, 3, 4}
-
+    
 
 
 
@@ -439,17 +463,7 @@ dict1_cond
 
 
 
-
-```python
-
-```
-
 #### Data frames
-
-
-```python
-
-```
 
 #### Functions
 
@@ -466,7 +480,7 @@ hello()
 ```
 
     Hello World
-
+    
 
 
 ```python
@@ -510,7 +524,7 @@ print(plus(a=1, b=3))
 
     3
     4
-
+    
 
 
 ```python
@@ -542,7 +556,7 @@ print(concatenate(a="Real", b="Python", c="Is", d="Great", e="!"))
 ```
 
     Real Python Is Great ! 
-
+    
 
 the correct order for your parameters is:
 
@@ -589,7 +603,7 @@ main()
 
     Hello World
     This is a main function
-
+    
 
 
 ```python
@@ -605,7 +619,7 @@ if __name__ == '__main__':
 
     Hello World
     This is a main function
-
+    
 
 #### Global vs local variables
 
@@ -630,7 +644,7 @@ print("this is the sum " + str(total))
 ```
 
     this is the initialized value 1
-
+    
 
 
     ---------------------------------------------------------------------------
@@ -650,15 +664,10 @@ print("this is the sum " + str(total))
 
 
 ```python
-# json, requests, bs
+# json, requests, bs, regex
 ```
 
 
 ```python
 # argparse????
-```
-
-
-```python
-
 ```
