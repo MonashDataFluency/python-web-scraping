@@ -1,3 +1,4 @@
+
 ## What is web scraping?
 
 Web scraping is a technique for extracting information from websites. This can be done manually but it is usually faster, more efficient and less error-prone to automate the task.
@@ -26,6 +27,8 @@ As useful as scraping is, there might be better options for the task. Choose the
 
 When presented with information, human beings are good at quickly categorizing it and extracting the data that they are interested in. For example, when we look at a magazine rack, provided the titles are written in a script that we are able to read, we can rapidly figure out the titles of the magazines, the stories they contain, the language they are written in, etc. and we can probably also easily organize them by topic, recognize those that are aimed at children, or even whether they lean toward a particular end of the political spectrum. Computers have a much harder time making sense of such unstructured data unless we specifically tell them what elements data is made of, for example by adding labels such as this is the title of this magazine or this is a magazine about food. Data in which individual elements are separated and labelled is said to be structured.
 
+Refer to the file 'fortune_500_basic_example.html'.
+
 <!--
 <thead>
     <tr>
@@ -53,34 +56,6 @@ When presented with information, human beings are good at quickly categorizing i
     </tr>
 </tbody>
 -->
-
-```html
-<thead>
-    <tr>
-        <th>Rank</th>
-        <th>Company</th>
-        <th>Website</th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>1</td>
-        <td>Walmart</td>
-        <td><a href="http://www.stock.walmart.com">http://www.stock.walmart.com</a></td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Exxon Mobil</td>
-        <td><a href="http://www.exxonmobil.com">http://www.exxonmobil.com</a></td>
-    (...)
-    </tr>
-    <tr>
-        <td>500</td>
-        <td>Cintas</td>
-        <td><a href="http://www.cintas.com">http://www.cintas.com</a></td>
-    </tr>
-</tbody>
-```
 
 We see that this data has been structured for displaying purposes (it is arranged in rows inside a table) but the different elements of information are not clearly labelled.
 

@@ -88,7 +88,14 @@ my_str.strip()
 
 
 ```python
+# List can be of a mixed type
 my_list = ['item1', 'item2', 100, 3.14]
+
+```
+
+
+```python
+# List elements can be accessed by the indices starting from 0 to n-1
 my_list[2]
 ```
 
@@ -101,6 +108,7 @@ my_list[2]
 
 
 ```python
+# Function to find the length of the list
 len(my_list)
 ```
 
@@ -113,6 +121,7 @@ len(my_list)
 
 
 ```python
+# range function to generate a range object
 num_list = range(0,10)
 num_list
 ```
@@ -126,6 +135,20 @@ num_list
 
 
 ```python
+# use list() to get a list out of the range object
+list(range(0,10))
+```
+
+
+
+
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+
+
+```python
+# Iterate over a list using for loop
 for num in num_list:
     print(num)
 ```
@@ -142,6 +165,10 @@ for num in num_list:
     9
     
 
+#### List comprehension
+
+new_list = [expression(item) for item in old_list]
+
 
 ```python
 num_squares = [num * num for num in num_list]
@@ -157,6 +184,7 @@ num_squares
 
 
 ```python
+# The list can be filtered based on a condition
 num_evens = [num for num in num_list if num %2 == 0]
 num_evens
 ```
@@ -170,6 +198,8 @@ num_evens
 
 
 ```python
+# zip() function to combine 2 lists
+
 country_list = ["Australia", "France", "USA", "Italy"]
 capital_list = ["Canberra", "Paris", "Washington DC", "Rome"]
 pairs = zip(country_list, capital_list)
@@ -185,6 +215,8 @@ for country, capital in pairs:
 
 
 ```python
+# sort() function to sort a list. It stores the sorted list in the original list itself.
+
 my_list = [954, 341, 100, 3.14]
 my_list.sort()
 my_list
@@ -201,6 +233,7 @@ my_list
 
 
 ```python
+# Loops can be run over list of lists as well
 languages = [['Spanish', 'English',  'French', 'German'], ['Python', 'Java', 'Javascript', 'C++']]
 ```
 
@@ -214,6 +247,10 @@ for lang in languages:
     ['Python', 'Java', 'Javascript', 'C++']
     
 
+As we see above, in each iteration, we get one list at a time. 
+
+If each element of the nested list is needed, then a nested loop should be written as below:
+
 
 ```python
 for lang_list in languages:
@@ -234,6 +271,11 @@ for lang_list in languages:
     C++
     
 
+There are various ways to manipulate the functioning of a loop. 
+
+* continue: This will skip the rest of the statements of that iteration and continue with the next iteration.
+* break: This will break the entire loop and go to the next statement after the loop.
+
 
 ```python
 for lang_list in languages:
@@ -242,6 +284,7 @@ for lang_list in languages:
         if lang == "German":
             continue
         print(lang)
+print("End of loops")
 ```
 
     --------------
@@ -253,6 +296,7 @@ for lang_list in languages:
     Java
     Javascript
     C++
+    End of loops
     
 
 
@@ -263,6 +307,7 @@ for lang_list in languages:
         if lang == "Java":
             break
         print(lang)
+print("End of loops")
 ```
 
     --------------
@@ -272,10 +317,12 @@ for lang_list in languages:
     German
     --------------
     Python
+    End of loops
     
 
 
 ```python
+# another example of continue
 from math import sqrt
 number = 0
 
@@ -296,6 +343,11 @@ for i in range(10):
 
 #### Sets
 
+Sets is an unordered collections of unique elements. Common uses include membership testing, removing duplicates from a sequence, and computing standard math operations on sets such as intersection, union, difference, and symmetric difference.
+
+
+A set can be created using the '{}' brackets. 
+
 
 ```python
 my_set = {1, 2, 3}
@@ -307,6 +359,16 @@ print(my_set)
 
 
 ```python
+my_list = [1,2,3,4,2,3]
+print(set(my_list))
+```
+
+    {1, 2, 3, 4}
+    
+
+
+```python
+# A set can be made of mixed types as well. 
 my_set = {1.0, "Hello", (1, 2, 3)}
 print(my_set)
 ```
@@ -316,6 +378,7 @@ print(my_set)
 
 
 ```python
+# Even if duplicate elements are added while initialising, they get remived. 
 my_set = {1,2,3,4,3,2}
 print(my_set)
 ```
@@ -325,7 +388,7 @@ print(my_set)
 
 
 ```python
-#Creating an empty set is a bit tricky
+#Creating an empty set is a bit tricky.
 my_set = {}
 print(type(my_set))
 my_set = set()
@@ -335,6 +398,8 @@ print(type(my_set))
     <class 'dict'>
     <class 'set'>
     
+
+Elements can be added individualy or as a list.
 
 
 ```python
@@ -360,7 +425,7 @@ my_set
 # Union
 A = {1, 2, 3, 4, 5}
 B = {4, 5, 6, 7, 8}
-A|B
+A|B  # or A.union(B)
 ```
 
 
@@ -375,7 +440,7 @@ A|B
 # Intersection
 A = {1, 2, 3, 4, 5}
 B = {4, 5, 6, 7, 8}
-A&B
+A&B # A.intersection(B)
 ```
 
 
@@ -386,6 +451,10 @@ A&B
 
 
 #### Dictionary
+
+Dictionaries are a container that store key-value pairs. They are unordered.
+
+Other programming languages might call this a 'hash', 'hashtable' or 'hashmap'.
 
 
 ```python
@@ -402,6 +471,7 @@ dict1
 
 
 ```python
+# Adding a key to the dictionary
 dict1['e'] = 5
 dict1
 ```
@@ -412,6 +482,8 @@ dict1
     {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
 
 
+
+keys() method returns the keys in the dictionary. 
 
 
 ```python
@@ -427,6 +499,7 @@ dict1.keys()
 
 
 ```python
+# items() method can be used to get all the pairs of the dictionary.
 dict1.items()
 ```
 
@@ -436,6 +509,8 @@ dict1.items()
     dict_items([('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5)])
 
 
+
+Dictionary comprehension can be used to manipulate the elements of a dictionary. 
 
 
 ```python
@@ -467,8 +542,11 @@ dict1_cond
 
 #### Functions
 
+A function is a block of organized, reusable code that is used to perform a single, related action. Functions provide better modularity for your application and a high degree of code reusing.
+
 
 ```python
+# Function definition
 def hello():
     print("Hello World") 
     return
@@ -476,11 +554,15 @@ def hello():
 
 
 ```python
+# Function calling
 hello()
 ```
 
     Hello World
     
+
+Parameters vs arguments: 
+Parameters are a and b. Arguments are 2 and 5.
 
 
 ```python
@@ -488,8 +570,6 @@ def plus(a,b):
     return a + b
 plus(2, 5)
 
-# Parameters vs arguments
-# Parameters are a and b. Arguments are 2 and 5.
 ```
 
 
@@ -499,6 +579,8 @@ plus(2, 5)
 
 
 
+A function can return nothing (null/None) as well. 
+
 
 ```python
 def run():
@@ -507,28 +589,48 @@ def run():
             return
     print("Run!")
     
-run()
 ```
 
 
 ```python
+run()
+```
+
+#### Keyword arguments with default values
+
+
+```python
+# Here the value of parameter `b` is 2 by default if the value is not passed. 
 def plus(a,b = 2):
     return a + b
   
+```
+
+
+```python
 # Call `plus()` with only `a` parameter
 print(plus(a=1))
-
-# Call `plus()` with `a` and `b` parameters
-print(plus(a=1, b=3))
 ```
 
     3
-    4
     
 
 
 ```python
-# Variable arguments
+# Call `plus()` with `a` and `b` parameters
+print(plus(a=1, b=3))
+```
+
+    4
+    
+
+#### Variable arguments:
+
+
+
+
+```python
+
 def plus(*args):
     return sum(args)
 
@@ -591,6 +693,10 @@ sum(4,5)
 
 
 ```python
+def hello():
+    print("Hello World") 
+    return
+
 # Define `main()` function
 def main():
     hello()
@@ -604,6 +710,8 @@ main()
     Hello World
     This is a main function
     
+
+The following code needs a script mode to show the use. 
 
 
 ```python
@@ -651,7 +759,7 @@ print("this is the sum " + str(total))
 
     NameError                                 Traceback (most recent call last)
 
-    <ipython-input-28-136638963fdb> in <module>()
+    <ipython-input-57-136638963fdb> in <module>()
          14 
          15 # (Try to) access the local variable
     ---> 16 print("this is the sum " + str(total))
