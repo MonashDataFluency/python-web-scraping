@@ -27,39 +27,11 @@ As useful as scraping is, there might be better options for the task. Choose the
 
 When presented with information, human beings are good at quickly categorizing it and extracting the data that they are interested in. For example, when we look at a magazine rack, provided the titles are written in a script that we are able to read, we can rapidly figure out the titles of the magazines, the stories they contain, the language they are written in, etc. and we can probably also easily organize them by topic, recognize those that are aimed at children, or even whether they lean toward a particular end of the political spectrum. Computers have a much harder time making sense of such unstructured data unless we specifically tell them what elements data is made of, for example by adding labels such as this is the title of this magazine or this is a magazine about food. Data in which individual elements are separated and labelled is said to be structured.
 
-Refer to the file 'fortune_500_basic_example.html'.
-
-<!--
-<thead>
-    <tr>
-        <th>Rank</th>
-        <th>Company</th>
-        <th>Website</th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>1</td>
-        <td>Walmart</td>
-        <td><a href="http://www.stock.walmart.com">http://www.stock.walmart.com</a></td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Exxon Mobil</td>
-        <td><a href="http://www.exxonmobil.com">http://www.exxonmobil.com</a></td>
-    (...)
-    </tr>
-    <tr>
-        <td>500</td>
-        <td>Cintas</td>
-        <td><a href="http://www.cintas.com">http://www.cintas.com</a></td>
-    </tr>
-</tbody>
--->
+Refer to the file `fortune_500_basic_example.html`.
 
 We see that this data has been structured for displaying purposes (it is arranged in rows inside a table) but the different elements of information are not clearly labelled.
 
-What if we wanted to download this dataset and, for example, compare the revenues of these companies against each other or the industry that they work in? We could try copy-pasting the entire table into a spreadsheet or even manually copy-pasting the names and parties in another document, but this can quickly become impractical when faced with a large set of data. What if we wanted to collect this information for all the companies that are there?
+What if we wanted to download this dataset and, for example, compare the revenues of these companies against each other or the industry that they work in? We could try copy-pasting the entire table into a spreadsheet or even manually copy-pasting the names and websites in another document, but this can quickly become impractical when faced with a large set of data. What if we wanted to collect this information for all the companies that are there?
 
 Fortunately, there are tools to automate at least part of the process. This technique is called web scraping.
 
@@ -69,34 +41,22 @@ Web scraping typically targets one web site at a time to extract unstructured in
 
 In this lesson, we will continue exploring the examples above and try different techniques to extract the information they contain. But before we launch into web scraping proper, we need to look a bit closer at how information is organized within an HTML document and how to build queries to access a specific subset of that information.
 
-Create a basic html:
+Look at a basic html file in `intro_html_example.html`.
+
+![png](wrangling-and-analysis_files/intro_html_structure.png)
+
+#### What is XML?
+- XML stands for eXtensible Markup Language
+- XML is a markup language much like HTML
+- XML was designed to store and transport data
+- XML was designed to be self-descriptive
+
 ```html
-<!DOCTYPE html>
-<html>
-<head>
-<title>Page Title</title>
-</head>
-<body>
-
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
-
-</body>
-</html>
+<note>
+  <date>2015-09-01</date>
+  <hour>08:30</hour>
+  <to>Tove</to>
+  <from>Jani</from>
+  <body>Don't forget me this weekend!</body>
+</note>
 ```
-
-
-```python
-# Select image from https://www.w3schools.com/html/html_intro.asp
-```
-
-
-```python
-!wget "https://www.zyxware.com/articles/5914/list-of-fortune-500-companies-and-their-websites-2018"
-```
-
-    'wget' is not recognized as an internal or external command,
-    operable program or batch file.
-    
-
-xml https://www.w3schools.com/xml/xml_whatis.asp
