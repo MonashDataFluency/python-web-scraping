@@ -768,14 +768,86 @@ print("this is the sum " + str(total))
     NameError: name 'total' is not defined
 
 
-#### Libraries
+#### json
+
+JSON: JavaScript Object Notation.
+
+When exchanging data between a browser and a server, the data can only be text.
+
+Python has a built-in package called json, which can be used to work with JSON data.
 
 
 ```python
-# json, requests, bs, regex
+import json
 ```
 
 
 ```python
-# argparse????
+# Convert from JSON to Python:
+
+# some JSON:
+x =  '{ "name":"John", "age":30, "city":"New York"}'
+
+# parse x:
+y = json.loads(x)
+
+# the result is a Python dictionary:
+print(y["age"])
 ```
+
+    30
+    
+
+
+```python
+y
+```
+
+
+
+
+    {'name': 'John', 'age': 30, 'city': 'New York'}
+
+
+
+
+```python
+# Convert from Python to JSON
+
+# a Python object (dict):
+x = {
+  "name": "John",
+  "age": 30,
+  "city": "New York"
+}
+
+# convert into JSON:
+y = json.dumps(x)
+
+# the result is a JSON string:
+print(y)
+```
+
+    {
+        "name": "John",
+        "age": 30,
+        "city": "New York"
+    }
+    
+
+
+```python
+# Indentation
+y = json.dumps(x, indent=4)
+print(y)
+
+```
+
+    {
+        "name": "John",
+        "age": 30,
+        "city": "New York"
+    }
+    
+
+#### regex
