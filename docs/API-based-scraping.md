@@ -1,3 +1,4 @@
+
 ## API based scraping
 
 * Wikipedia API
@@ -31,12 +32,12 @@ print(wptools.__version__)
 ```
 
     0.4.17
-
+    
 
 
 ```python
 fname = 'fortune_500_companies.csv'
-path = Path('./data/')
+path = Path('../data/')
 ```
 
 
@@ -44,7 +45,7 @@ path = Path('./data/')
 !ls '{path}'
 ```
 
-    fortune_500_companies.csv  infoboxes.json  top_20_companies.csv
+    fortune_500_companies.csv
 
 
 
@@ -446,7 +447,7 @@ print(companies)
 ```
 
     ['Walmart', 'ExxonMobil', 'Berkshire Hathaway', 'Apple Inc.', 'UnitedHealth Group', 'McKesson Corporation', 'CVS Health', 'Amazon (company)', 'AT&T', 'General Motors', 'Ford Motor Company', 'AmerisourceBergen', 'Chevron Corporation', 'Cardinal Health', 'Costco', 'Verizon Communications', 'Kroger', 'General Electric', 'Walgreens Boots Alliance', 'JPMorgan Chase']
-
+    
 
 > Note : Wiki data dump link (last updated 2015) : https://old.datahub.io/dataset/wikidata
 
@@ -503,7 +504,7 @@ page.get_wikidata()
       wikidata_url: https://www.wikidata.org/wiki/Q483551
       wikitext: <str(274081)> {{about|the retail chain|other uses}}{{p...
     }
-
+    
 
 
 
@@ -1013,7 +1014,7 @@ for company in companies:
       wikidata_url: https://www.wikidata.org/wiki/Q192314
       wikitext: <str(112397)> {{About|JPMorgan Chase & Co|its main sub...
     }
-
+    
 
 
 ```python
@@ -1270,7 +1271,7 @@ Export :
 
 
 ```python
-with open('./data/infoboxes.json', 'w') as file:
+with open('../data/infoboxes.json', 'w') as file:
     json.dump(wiki_data, file)
 ```
 
@@ -1278,11 +1279,6 @@ Import :
 
 
 ```python
-with open('./data/infoboxes.json', 'r') as file:
+with open('../data/infoboxes.json', 'r') as file:
     wiki_data = json.load(file)
-```
-
-
-```python
-
 ```
