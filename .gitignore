@@ -1,4 +1,5 @@
 # ignore the following files and folders
-.ipynb_checkpoints
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
 venv/
 site/
