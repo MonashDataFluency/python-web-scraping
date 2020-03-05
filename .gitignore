@@ -1,2 +1,4 @@
+# ignore the following files and folders
 .ipynb_checkpoints
 venv/
+site/
