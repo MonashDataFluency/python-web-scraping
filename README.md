@@ -17,3 +17,42 @@ Note : wptools might throw an error during installtion, in which case install ot
 - sudo apt install libcurl4-openssl-dev libssl-dev  
 
 and then proceed to install wptools (via step 5 above)
+
+
+### TODO: 
+## General:
+- Rename the files
+- Add References
+- Compile and build the website
+- githook for auto compile and build
+
+
+## Section 0
+- Complete the DF and regex section (pythex website)
+- Move the variable argument section to advanced topics
+- Add more text/explanations
+
+
+## Section 1
+ - Add more about html in text and add an image
+ - Give more description in the image
+ - Fix the issue of broken image
+ - Add json section
+ - DOM inspector
+ - Talk a bit about RESTful WS
+ - Long term: Add images/flowchart for better explanation 
+ 
+## Section 2 
+- Shorten/Format the big html chunk
+- Prettify the output of html
+- Put more details on get/put requests (possibly visually)
+
+## Section 3
+- Add more explanations
+
+## Section 4
+
+
+## Section 5
+- Add MCQs - Scenario based legal/grey questions
+ 
