@@ -51,7 +51,9 @@ and then proceed to install wptools (via step 5 above)
 - Add more explanations
 
 ## Section 4
-
+- itertools (show vanilla python way to do it)
+- explain regex in detail (breakdown)
+- matplotlib funcs
 
 ## Section 5
 - Add MCQs - Scenario based legal/grey questions
