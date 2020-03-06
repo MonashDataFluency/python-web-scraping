@@ -26,6 +26,7 @@ and then proceed to install wptools (via step 5 above)
 - Compile and build the website
 - githook for auto compile and build
 - As many images (with brief explantions within) as possible : (LucidChart,  Google draw)
+- Add a Reference section
 
 ## Section 0
 - Complete the DF and regex section (pythex website)
