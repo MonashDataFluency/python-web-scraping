@@ -32,7 +32,7 @@ and then proceed to install wptools (via step 5 above)
 
 ## Section 0
 - ~~Complete the DF and regex section (pythex website)~~
-- Move the variable argument section to advanced topics
+- ~~Move the variable argument section to advanced topics~~
 - Add more text/explanations
 
 
