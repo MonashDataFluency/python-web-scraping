@@ -23,7 +23,7 @@ and then proceed to install wptools (via step 5 above)
 ## General:
 - [x] Rename the files
 - [ ] Add References
-- [ ] Compile and build the website
+- [x] Compile and build the website
 - [ ] githook for auto compile and build
 - [ ] As many images (with brief explantions within) as possible : (LucidChart,  Google draw)
 - [x] Add a Reference section
