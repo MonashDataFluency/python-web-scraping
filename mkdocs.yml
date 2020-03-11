@@ -21,12 +21,14 @@ theme: # refer to https://www.wheelodex.org/entry-points/mkdocs.themes/
 # Page tree
 nav:
     - Getting started: 'index.md'
-    - A (brief) Python refresher: 'a-brief-python-refresher.md'
+    - A (brief) Python refresher: 'section-0-brief-python-refresher.md'
     - Introduction to Web Scraping: 'section-1-intro-to-web-scraping'
-    - HTML based scraping: 'HTML-based-scraping.md'
-    - API based scraping: 'API-based-scraping.md'
-    - Wrangling and Analysis: 'wrangling-and-analysis.md'
-    - Legal and Ethical considerations: 'section-4-legal-and-ethical-considerations.md'
+    - HTML based scraping: 'section-2-HTML-based-scraping.md'
+    - API based scraping: 'section-3-API-based-scraping.md'
+    - Wrangling and Analysis: 'section-4-wrangling-and-analysis.md'
+    - Legal and Ethical considerations: 'section-5-legal-and-ethical-considerations.md'
+    - Advanced topics: 'section-6-advanced-topics.md'
+    - References: 'section-7-references.md'
     - Sample: 'sample.md'
     
 # Extensions
