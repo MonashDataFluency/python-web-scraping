@@ -3,6 +3,8 @@ site_name: Python Web Scraping
 site_description: Companion website to the Python Web Scraping workshop
 site_author: Satya, Naveen and Tarun
 site_url: https://monashdatafluency.github.io/python-web-scraping/
+site_dir: docs
+docs_dir: markdowns
 
 # Repository
 repo_name: python-web-scraping
