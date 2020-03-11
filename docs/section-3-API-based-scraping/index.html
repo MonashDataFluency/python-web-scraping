@@ -1,0 +1,2668 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Companion website to the Python Web Scraping workshop">
+      
+      
+        <link rel="canonical" href="https://monashdatafluency.github.io/python-web-scraping/section-3-API-based-scraping/">
+      
+      
+        <meta name="author" content="Satya, Naveen and Tarun">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.2">
+    
+    
+      
+        <title>API based scraping - Python Web Scraping</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#web-api-based-scraping" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://monashdatafluency.github.io/python-web-scraping/" title="Python Web Scraping" aria-label="Python Web Scraping" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">school</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Python Web Scraping
+            </span>
+            <span class="md-header-nav__topic">
+              
+                API based scraping
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/MonashDataFluency/python-web-scraping" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    python-web-scraping
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://monashdatafluency.github.io/python-web-scraping/" title="Python Web Scraping" class="md-nav__button md-logo">
+      
+        <i class="md-icon">school</i>
+      
+    </a>
+    Python Web Scraping
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/MonashDataFluency/python-web-scraping" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    python-web-scraping
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Getting started" class="md-nav__link">
+      Getting started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../section-0-brief-python-refresher/" title="A (brief) Python refresher" class="md-nav__link">
+      A (brief) Python refresher
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../section-1-intro-to-web-scraping" title="Introduction to Web Scraping" class="md-nav__link">
+      Introduction to Web Scraping
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../section-2-HTML-based-scraping/" title="HTML based scraping" class="md-nav__link">
+      HTML based scraping
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        API based scraping
+      </label>
+    
+    <a href="./" title="API based scraping" class="md-nav__link md-nav__link--active">
+      API based scraping
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#web-api-based-scraping" class="md-nav__link">
+    Web API based scraping
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-brief-introduction-to-apis" class="md-nav__link">
+    A brief introduction to APIs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wikipedia-api" class="md-nav__link">
+    Wikipedia API
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-article-names-from-wiki" class="md-nav__link">
+    Getting article names from wiki
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wptools" class="md-nav__link">
+    wptools
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../section-4-wrangling-and-analysis/" title="Wrangling and Analysis" class="md-nav__link">
+      Wrangling and Analysis
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../section-5-legal-and-ethical-considerations/" title="Legal and Ethical considerations" class="md-nav__link">
+      Legal and Ethical considerations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../section-6-advanced-topics/" title="Advanced topics" class="md-nav__link">
+      Advanced topics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../section-7-references/" title="References" class="md-nav__link">
+      References
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../sample/" title="Sample" class="md-nav__link">
+      Sample
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#web-api-based-scraping" class="md-nav__link">
+    Web API based scraping
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-brief-introduction-to-apis" class="md-nav__link">
+    A brief introduction to APIs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wikipedia-api" class="md-nav__link">
+    Wikipedia API
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-article-names-from-wiki" class="md-nav__link">
+    Getting article names from wiki
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wptools" class="md-nav__link">
+    wptools
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>API based scraping</h1>
+                
+                <h2 id="web-api-based-scraping">Web API based scraping<a class="headerlink" href="#web-api-based-scraping" title="Permanent link">&para;</a></h2>
+<h3 id="a-brief-introduction-to-apis">A brief introduction to APIs<a class="headerlink" href="#a-brief-introduction-to-apis" title="Permanent link">&para;</a></h3>
+<p>In this section, we will take a look at an alternative way to gather data than the previous pattern based, HTML scraping. Sometimes websites offer an API (or Application Programming Interface) as a service which provides a high level interface to directly retrieve data from their repositories or databases at the backend. </p>
+<p>From wikipedia,</p>
+<blockquote>
+<p>An API is typically defined as a set of specifications, such as Hypertext Transfer Protocol (HTTP) request messages, along with a definition of the structure of response messages, usually in an Extensible Markup Language (XML) or JavaScript Object Notation (JSON) format.</p>
+</blockquote>
+<p>They typically tend to be URL endpoints (to be fired as requests) that need to be modified based on our requirements (what we desire in the response body) which then returns some a payload (data) within the response, formatted as either JSON, XML or HTML. </p>
+<p>A popular web architecture style called REST (or representational state transfer) allows users to interact with web services via <code>GET</code> and <code>POST</code> calls (two most commonly used).</p>
+<p>An API in the context of web scraping would be :
+- Requests (through Hypertext Transfer Protocol HTTP
+- Headers</p>
+<p>talk more here!</p>
+<p>E.g.</p>
+<ul>
+<li>For example, Twitter's REST API allows developers to access core Twitter data and the Search API provides methods for developers to interact with Twitter Search and trends data.</li>
+</ul>
+<p>https://en.wikipedia.org/w/api.php</p>
+<p>There are primarily two ways to use APIs :
+- Through the command terminal using URL endpoints, or
+- Through programming language specific <em>wrappers</em></p>
+<p>For e.g. <code>Tweepy</code> is a famous python wrapper for Twitter API whereas <code>twurl</code> is a command line interface (CLI) tool but both can achieve the same outcomes.</p>
+<p>Here we focus on the latter approach and will use a Python library (a wrapper) called <code>wptools</code> based around the MediaWiki API.</p>
+<p>One advantage of using official APIs is that they are usually compliant of the terms of service (ToS) of a particular service that researchers are looking to gather data from. However, third-party libraries or packages which claim to provide more throughput than the official APIs (rate limits, number of requests/sec) generally operate in a gray area as they tend to violate ToS.</p>
+<h3 id="wikipedia-api">Wikipedia API<a class="headerlink" href="#wikipedia-api" title="Permanent link">&para;</a></h3>
+<p>Let's say we want to gather some additional data about the Fortune 500 companies and since wikipedia is a rich source for data we decide to use the MediaWiki API to scrape this data. One very good place to start would be to look at the <strong>infoboxes</strong> (as wikipedia defines them) of articles corresponsing to each company on the list. They essentially contain a wealth of metadata about a particular entity the article belongs to which in our case is a company. </p>
+<p>For e.g. consider the wikipedia article for <strong>walmart</strong> (https://en.wikipedia.org/wiki/Walmart) which includes the following infobox :</p>
+<p><img alt="An infobox" src="infobox.png" /></p>
+<p>As we can see from above, the infoboxes could provide us with a lot of valuable information such as :
+- Year of founding 
+- Industry
+- Founder(s)
+- Products<br />
+- Services<br />
+- Operating income
+- Net income
+- Total assets
+- Total equity
+- Number of employees etc</p>
+<p>Although we expect this data to be fairly organized, it would require some post-processing which we will tackle in our next section. We pick a subset of our data and focus only on the top <strong>20</strong> of the Fortune 500 from the full list. </p>
+<p>Let's begin by installing some of libraries we will use for this excercise as follows,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># sudo apt install libcurl4-openssl-dev libssl-dev</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">wptools</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">wikipedia</span>
+<span class="c1"># pip install pandas</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">wordcloud</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Importing the same,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">wptools</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">wikipedia</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>              <span class="c1"># setting the style to ggplot</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">wptools</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>           <span class="c1"># checking the installed version</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>0.4.17
+</code></pre></div>
+</td></tr></table>
+
+<p>Now let's load the data which we scrapped in the previous section as follows,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;fortune_500_companies.csv&#39;</span> <span class="c1"># filename</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;../data/&#39;</span><span class="p">)</span>             <span class="c1"># path to the csv file</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="n">fname</span><span class="p">)</span>        <span class="c1"># reading the csv file as a pandas df</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>                           <span class="c1"># displaying the first 5 rows</span>
+</code></pre></div>
+</td></tr></table>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rank</th>
+      <th>company_name</th>
+      <th>company_website</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Walmart</td>
+      <td>http://www.stock.walmart.com</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Exxon Mobil</td>
+      <td>http://www.exxonmobil.com</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Berkshire Hathaway</td>
+      <td>http://www.berkshirehathaway.com</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Apple</td>
+      <td>http://www.apple.com</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>UnitedHealth Group</td>
+      <td>http://www.unitedhealthgroup.com</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Let's focus and select only the top 20 companies from the list as follows,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">no_of_companies</span> <span class="o">=</span> <span class="mi">20</span>                         <span class="c1"># no of companies we are interested </span>
+<span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">no_of_companies</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># only selecting the top 20 companies</span>
+<span class="n">companies</span> <span class="o">=</span> <span class="n">df_sub</span><span class="p">[</span><span class="s1">&#39;company_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>  <span class="c1"># converting the column to a list</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Now let's take a brief look as follows,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">companies</span><span class="p">):</span>   <span class="c1"># looping through the list of 20 company </span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>  <span class="c1"># printing out the same</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>1. Walmart
+2. Exxon Mobil
+3. Berkshire Hathaway
+4. Apple
+5. UnitedHealth Group
+6. McKesson
+7. CVS Health
+8. Amazon.com
+9. AT&amp;T
+10. General Motors
+11. Ford Motor
+12. AmerisourceBergen
+13. Chevron
+14. Cardinal Health
+15. Costco
+16. Verizon
+17. Kroger
+18. General Electric
+19. Walgreens Boots Alliance
+20. JPMorgan Chase
+</code></pre></div>
+</td></tr></table>
+
+<h3 id="getting-article-names-from-wiki">Getting article names from wiki<a class="headerlink" href="#getting-article-names-from-wiki" title="Permanent link">&para;</a></h3>
+<p>Right off the bat, as you might have guessed, a tricky issue with matching the top 20 Fortune 500 companies to their wikipedia article names is that both of them would not be exactly the same i.e. they match character for character.</p>
+<p>To overcome this problem and ensure that we have all the company names and its corresponding wikipedia article, we will use (https://wikipedia.readthedocs.io/en/latest/code.html) to get suggestions for the company names and their equivalent in wikipedia.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">wiki_search</span> <span class="o">=</span> <span class="p">[{</span><span class="n">company</span> <span class="p">:</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">company</span><span class="p">)}</span> <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">companies</span><span class="p">]</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">company</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">wiki_search</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">company</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">. </span><span class="si">{}</span><span class="s1"> :</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span> <span class="p">,</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">j</span><span class="p">)))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>1. Walmart :
+Walmart, Criticism of Walmart, History of Walmart, Walmarting, Walmart Canada, Walmart Labs, People of Walmart, List of Walmart brands, Walmart (disambiguation), Walmart Watch
+
+
+2. Exxon Mobil :
+ExxonMobil, Exxon, ExxonMobil climate change controversy, Mobil, ExxonMobil Building, 2020 Qatar ExxonMobil Open, Darren Woods, ExxonMobil Tower, Exxon Valdez oil spill, Exxon Valdez
+
+
+3. Berkshire Hathaway :
+Berkshire Hathaway, List of assets owned by Berkshire Hathaway, Berkshire Hathaway Energy, Berkshire Hathaway Assurance, Berkshire Hathaway GUARD Insurance Companies, List of Berkshire Hathaway publications, Warren Buffett, Ajit Jain, Berkshire Hathaway Travel Protection, The World&#39;s Billionaires
+
+
+4. Apple :
+Apple, Apple Inc., Apple (disambiguation), IPhone, Apple Music, Apple A13, Apple TV, Apple ID, Apple Watch, Apple Records
+
+
+5. UnitedHealth Group :
+UnitedHealth Group, Pharmacy benefit management, Optum, List of largest companies in the United States by revenue, William W. McGuire, Golden Rule Insurance Company, Stephen J. Hemsley, Amelia Warren Tyagi, PacifiCare Health Systems, Gail Koziara Boudreaux
+
+
+6. McKesson :
+McKesson Corporation, DeRay Mckesson, Malcolm McKesson, McKesson &amp; Robbins scandal (1938), Celesio, McKesson Plaza, John Hammergren, McKesson (disambiguation), Rexall Pharmacy Group, Coindre Hall
+
+
+7. CVS Health :
+CVS Health, CVS Pharmacy, CVS Caremark, CVS, Pharmacy benefit management, Larry Merlo, CVS Health Charity Classic, Helena Foulkes, MinuteClinic, List of largest companies by revenue
+
+
+8. Amazon.com :
+Amazon (company), History of Amazon, List of Amazon products and services, Amazon Web Services, List of original programs distributed by Amazon, .amazon, Criticism of Amazon, Amazon.ae, Amazon S3, List of mergers and acquisitions by Amazon
+
+
+9. AT&amp;T :
+AT&amp;T, AT&amp;T Mobility, AT&amp;T Corporation, AT&amp;T TV, T, T &amp; T Supermarket, AT&amp;T Stadium, AT&amp;T Communications, T-54/T-55, AT&amp;T Mexico
+
+
+10. General Motors :
+General Motors, History of General Motors, List of General Motors factories, General Motors India, General Motors EV1, General Motors Canada, General Motors Vortec engine, GMC (automobile), General Motors Chapter 11 reorganization, General Motors Firebird
+
+
+11. Ford Motor :
+Ford Motor Company, History of Ford Motor Company, Henry Ford, Lincoln Motor Company, Ford Trimotor, Edsel Ford, Ford of Britain, Ford Germany, Henry Ford II, Ford Motor Argentina
+
+
+12. AmerisourceBergen :
+AmerisourceBergen, Steven H. Collis, List of largest companies by revenue, List of largest companies in the United States by revenue, Family Pharmacy, Ornella Barra, Good Neighbor Pharmacy, Cardinal Health, Michael DiCandilo, PharMerica
+
+
+13. Chevron :
+Chevron Corporation, Chevron, Chevron (insignia), Chevron Cars, Philip Chevron, Wound Chevron, Chevron (geology), Chevron Engineering, Chevron Cars Ltd, Chevron U.S.A., Inc. v. Natural Resources Defense Council, Inc.
+
+
+14. Cardinal Health :
+Cardinal Health, Cardinal, Catalent, Cordis (medical), Robert D. Walter, List of largest companies by revenue, George S. Barrett, Pyxis Corporation, List of largest Central Ohio employers, List of largest companies in the United States by revenue
+
+
+15. Costco :
+Costco, Costco bear, Warehouse club, Price Club, Coca-Cola, American Express, Rotisserie chicken, James Sinegal, Most-Favoured-Customer Clause, Sol Price
+
+
+16. Verizon :
+Verizon Communications, Verizon Wireless, Verizon Fios, Verizon Media, Verizon Delaware, Verizon Business, Verizon Center, Verizon Building, Verizon Pennsylvania, Verizon Hum
+
+
+17. Kroger :
+Kroger, Murder Kroger, Bernard Kroger, Michael Kroger, John Kroger, Jeffersontown Kroger shooting, Uwe Kröger, Chad Kroeger, Smith&#39;s Food and Drug, Kroger (disambiguation)
+
+
+18. General Electric :
+General Electric, General Electric GEnx, General Electric Building, General Electric CF6, General Electric Theater, General Electric GE9X, General Electric Company, General Electric GE90, General Electric LM6000, General Electric CF34
+
+
+19. Walgreens Boots Alliance :
+Walgreens Boots Alliance, Alliance Boots, Walgreens, Boots (company), Alliance Healthcare, Stefano Pessina, Boots Opticians, Ornella Barra, Gregory Wasson, James A. Skinner
+
+
+20. JPMorgan Chase :
+JPMorgan Chase, Chase Bank, 2012 JPMorgan Chase trading loss, JPMorgan Chase Tower (Houston), 2014 JPMorgan Chase data breach, JPMorgan Chase Building (San Francisco), JPMorgan Corporate Challenge, Chase Tower (Dallas), 270 Park Avenue, Chase Paymentech
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">most_probable</span> <span class="o">=</span> <span class="p">[(</span><span class="n">company</span><span class="p">,</span> <span class="n">wiki_search</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">company</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">company</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">companies</span><span class="p">)]</span>
+<span class="n">most_probable</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>[(&#39;Walmart&#39;, &#39;Walmart&#39;),
+ (&#39;Exxon Mobil&#39;, &#39;ExxonMobil&#39;),
+ (&#39;Berkshire Hathaway&#39;, &#39;Berkshire Hathaway&#39;),
+ (&#39;Apple&#39;, &#39;Apple&#39;),
+ (&#39;UnitedHealth Group&#39;, &#39;UnitedHealth Group&#39;),
+ (&#39;McKesson&#39;, &#39;McKesson Corporation&#39;),
+ (&#39;CVS Health&#39;, &#39;CVS Health&#39;),
+ (&#39;Amazon.com&#39;, &#39;Amazon (company)&#39;),
+ (&#39;AT&amp;T&#39;, &#39;AT&amp;T&#39;),
+ (&#39;General Motors&#39;, &#39;General Motors&#39;),
+ (&#39;Ford Motor&#39;, &#39;Ford Motor Company&#39;),
+ (&#39;AmerisourceBergen&#39;, &#39;AmerisourceBergen&#39;),
+ (&#39;Chevron&#39;, &#39;Chevron Corporation&#39;),
+ (&#39;Cardinal Health&#39;, &#39;Cardinal Health&#39;),
+ (&#39;Costco&#39;, &#39;Costco&#39;),
+ (&#39;Verizon&#39;, &#39;Verizon Communications&#39;),
+ (&#39;Kroger&#39;, &#39;Kroger&#39;),
+ (&#39;General Electric&#39;, &#39;General Electric&#39;),
+ (&#39;Walgreens Boots Alliance&#39;, &#39;Walgreens Boots Alliance&#39;),
+ (&#39;JPMorgan Chase&#39;, &#39;JPMorgan Chase&#39;)]
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">companies</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">most_probable</span><span class="p">]</span>
+<span class="n">companies</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>[&#39;Walmart&#39;,
+ &#39;ExxonMobil&#39;,
+ &#39;Berkshire Hathaway&#39;,
+ &#39;Apple&#39;,
+ &#39;UnitedHealth Group&#39;,
+ &#39;McKesson Corporation&#39;,
+ &#39;CVS Health&#39;,
+ &#39;Amazon (company)&#39;,
+ &#39;AT&amp;T&#39;,
+ &#39;General Motors&#39;,
+ &#39;Ford Motor Company&#39;,
+ &#39;AmerisourceBergen&#39;,
+ &#39;Chevron Corporation&#39;,
+ &#39;Cardinal Health&#39;,
+ &#39;Costco&#39;,
+ &#39;Verizon Communications&#39;,
+ &#39;Kroger&#39;,
+ &#39;General Electric&#39;,
+ &#39;Walgreens Boots Alliance&#39;,
+ &#39;JPMorgan Chase&#39;]
+</code></pre></div>
+</td></tr></table>
+
+<p>For <strong>Apple</strong>, lets manually replace it with <strong>Apple Inc.</strong> as follows,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">companies</span><span class="p">[</span><span class="n">companies</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;Apple&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="s1">&#39;Apple Inc.&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">companies</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>[&#39;Walmart&#39;, &#39;ExxonMobil&#39;, &#39;Berkshire Hathaway&#39;, &#39;Apple Inc.&#39;, &#39;UnitedHealth Group&#39;, &#39;McKesson Corporation&#39;, &#39;CVS Health&#39;, &#39;Amazon (company)&#39;, &#39;AT&amp;T&#39;, &#39;General Motors&#39;, &#39;Ford Motor Company&#39;, &#39;AmerisourceBergen&#39;, &#39;Chevron Corporation&#39;, &#39;Cardinal Health&#39;, &#39;Costco&#39;, &#39;Verizon Communications&#39;, &#39;Kroger&#39;, &#39;General Electric&#39;, &#39;Walgreens Boots Alliance&#39;, &#39;JPMorgan Chase&#39;]
+</code></pre></div>
+</td></tr></table>
+
+<blockquote>
+<p>Note : Wiki data dump link (last updated 2015) : https://old.datahub.io/dataset/wikidata</p>
+</blockquote>
+<h2 id="wptools">wptools<a class="headerlink" href="#wptools" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://github.com/siznax/wptools/wiki/Data-captured</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">page</span> <span class="o">=</span> <span class="n">wptools</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="s1">&#39;Walmart&#39;</span><span class="p">)</span>
+<span class="n">page</span><span class="o">.</span><span class="n">get_parse</span><span class="p">()</span>
+<span class="n">page</span><span class="o">.</span><span class="n">get_wikidata</span><span class="p">()</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>en.wikipedia.org (parse) Walmart
+en.wikipedia.org (imageinfo) File:Walmart store exterior 5266815680.jpg
+Walmart (en) data
+{
+  image: &lt;list(1)&gt; {&#39;kind&#39;: &#39;parse-image&#39;, &#39;file&#39;: &#39;File:Walmart s...
+  infobox: &lt;dict(30)&gt; name, logo, logo_caption, image, image_size,...
+  iwlinks: &lt;list(2)&gt; https://commons.wikimedia.org/wiki/Category:W...
+  pageid: 33589
+  parsetree: &lt;str(346504)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;about&lt;/title&gt;&lt;pa...
+  requests: &lt;list(2)&gt; parse, imageinfo
+  title: Walmart
+  wikibase: Q483551
+  wikidata_url: https://www.wikidata.org/wiki/Q483551
+  wikitext: &lt;str(274081)&gt; {{about|the retail chain|other uses}}{{p...
+}
+www.wikidata.org (wikidata) Q483551
+www.wikidata.org (labels) Q180816|Q219635|P18|Q478758|Q10382887|Q...
+www.wikidata.org (labels) P740|Q54862513|P966|P3500|Q6383259|Q694...
+www.wikidata.org (labels) Q818364|P6160|P1278|P3347|Q17343056|P37...
+en.wikipedia.org (imageinfo) File:Walmart Home Office.jpg
+Walmart (en) data
+{
+  aliases: &lt;list(5)&gt; Wal-Mart, Wal Mart, Wal-Mart Stores, Inc., Wa...
+  claims: &lt;dict(63)&gt; P112, P946, P373, P31, P856, P910, P159, P414...
+  description: U.S. discount retailer based in Arkansas
+  image: &lt;list(2)&gt; {&#39;kind&#39;: &#39;parse-image&#39;, &#39;file&#39;: &#39;File:Walmart s...
+  infobox: &lt;dict(30)&gt; name, logo, logo_caption, image, image_size,...
+  iwlinks: &lt;list(2)&gt; https://commons.wikimedia.org/wiki/Category:W...
+  label: Walmart
+  labels: &lt;dict(116)&gt; Q180816, Q219635, P18, Q478758, Q10382887, Q...
+  modified: &lt;dict(1)&gt; wikidata
+  pageid: 33589
+  parsetree: &lt;str(346504)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;about&lt;/title&gt;&lt;pa...
+  requests: &lt;list(7)&gt; parse, imageinfo, wikidata, labels, labels, ...
+  title: Walmart
+  what: retail chain
+  wikibase: Q483551
+  wikidata: &lt;dict(63)&gt; founded by (P112), ISIN (P946), Commons cat...
+  wikidata_pageid: 455133
+  wikidata_url: https://www.wikidata.org/wiki/Q483551
+  wikitext: &lt;str(274081)&gt; {{about|the retail chain|other uses}}{{p...
+}
+
+
+
+
+
+&lt;wptools.page.WPToolsPage at 0x7f1fc48660f0&gt;
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">page</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>dict_keys([&#39;requests&#39;, &#39;iwlinks&#39;, &#39;pageid&#39;, &#39;wikitext&#39;, &#39;parsetree&#39;, &#39;infobox&#39;, &#39;title&#39;, &#39;wikibase&#39;, &#39;wikidata_url&#39;, &#39;image&#39;, &#39;labels&#39;, &#39;wikidata&#39;, &#39;wikidata_pageid&#39;, &#39;aliases&#39;, &#39;modified&#39;, &#39;description&#39;, &#39;label&#39;, &#39;claims&#39;, &#39;what&#39;])
+</code></pre></div>
+</td></tr></table>
+
+<p>Alternatively,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">page</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;wikidata&#39;</span><span class="p">]</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>{&#39;founded by (P112)&#39;: &#39;Sam Walton (Q497827)&#39;,
+ &#39;ISIN (P946)&#39;: &#39;US9311421039&#39;,
+ &#39;Commons category (P373)&#39;: &#39;Walmart&#39;,
+ &#39;instance of (P31)&#39;: [&#39;retail chain (Q507619)&#39;, &#39;enterprise (Q6881511)&#39;],
+ &#39;official website (P856)&#39;: &#39;https://www.walmart.com&#39;,
+ &quot;topic&#39;s main category (P910)&quot;: &#39;Category:Walmart (Q6383259)&#39;,
+ &#39;headquarters location (P159)&#39;: [&#39;Bentonville (Q818364)&#39;, &#39;Arkansas (Q1612)&#39;],
+ &#39;stock exchange (P414)&#39;: &#39;New York Stock Exchange (Q13677)&#39;,
+ &#39;subsidiary (P355)&#39;: [&quot;Sam&#39;s Club (Q1972120)&quot;,
+  &#39;Massmart (Q3297791)&#39;,
+  &#39;Walmart Canada (Q1645718)&#39;,
+  &#39;Walmart Chile (Q5283104)&#39;,
+  &#39;Walmart de México y Centroamérica (Q1064887)&#39;,
+  &#39;Seiyu Group (Q3108542)&#39;,
+  &#39;Asda (Q297410)&#39;,
+  &#39;Walmart Labs (Q3816562)&#39;,
+  &#39;Walmart (Q30338489)&#39;,
+  &#39;Más Club (Q6949810)&#39;,
+  &#39;Líder (Q6711261)&#39;,
+  &#39;Hypermart USA (Q16845747)&#39;,
+  &#39;Amigo Supermarkets (Q4746234)&#39;,
+  &#39;Walmart Neighborhood Market (Q7963529)&#39;,
+  &#39;Asda Mobile (Q4804093)&#39;,
+  &#39;Marketside (Q6770960)&#39;,
+  &#39;Vudu (Q5371838)&#39;,
+  &#39;Walmart Nicaragua (Q22121904)&#39;],
+ &#39;owned by (P127)&#39;: [&#39;Walton Enterprises (Q17343056)&#39;,
+  &#39;State Street Corporation (Q2037125)&#39;,
+  &#39;The Vanguard Group (Q849363)&#39;,
+  &#39;BlackRock (Q219635)&#39;],
+ &#39;VIAF ID (P214)&#39;: &#39;128951275&#39;,
+ &#39;Freebase ID (P646)&#39;: &#39;/m/0841v&#39;,
+ &#39;inception (P571)&#39;: &#39;+1962-07-02T00:00:00Z&#39;,
+ &#39;industry (P452)&#39;: [&#39;retail (Q126793)&#39;,
+  &#39;retail chain (Q507619)&#39;,
+  &#39;discount store (Q261428)&#39;],
+ &#39;chairperson (P488)&#39;: [&#39;Doug McMillon (Q16196595)&#39;,
+  &#39;Greg Penner (Q20177269)&#39;],
+ &#39;motto text (P1451)&#39;: &#39;Save money. Live better.&#39;,
+ &#39;Facebook ID (P2013)&#39;: &#39;walmart&#39;,
+ &#39;Twitter username (P2002)&#39;: &#39;Walmart&#39;,
+ &#39;part of (P361)&#39;: [&#39;S&amp;P 500 (Q242345)&#39;,
+  &#39;Dow Jones Industrial Average (Q180816)&#39;],
+ &#39;image (P18)&#39;: &#39;Walmart Home Office.jpg&#39;,
+ &#39;location of formation (P740)&#39;: &#39;Rogers (Q79497)&#39;,
+ &#39;country (P17)&#39;: &#39;United States of America (Q30)&#39;,
+ &#39;legal form (P1454)&#39;: &#39;public company (Q891723)&#39;,
+ &#39;named after (P138)&#39;: &#39;Sam Walton (Q497827)&#39;,
+ &#39;total revenue (P2139)&#39;: [{&#39;amount&#39;: &#39;+482130000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;,
+   &#39;upperBound&#39;: &#39;+482130500000&#39;,
+   &#39;lowerBound&#39;: &#39;+482129500000&#39;},
+  {&#39;amount&#39;: &#39;+485651000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;,
+   &#39;upperBound&#39;: &#39;+485651500000&#39;,
+   &#39;lowerBound&#39;: &#39;+485650500000&#39;},
+  {&#39;amount&#39;: &#39;+476294000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;,
+   &#39;upperBound&#39;: &#39;+476294500000&#39;,
+   &#39;lowerBound&#39;: &#39;+476293500000&#39;},
+  {&#39;amount&#39;: &#39;+468651000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;,
+   &#39;upperBound&#39;: &#39;+468651500000&#39;,
+   &#39;lowerBound&#39;: &#39;+468650500000&#39;},
+  {&#39;amount&#39;: &#39;+446509000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;,
+   &#39;upperBound&#39;: &#39;+446509500000&#39;,
+   &#39;lowerBound&#39;: &#39;+446508500000&#39;},
+  {&#39;amount&#39;: &#39;+485873000000&#39;, &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;}],
+ &#39;net profit (P2295)&#39;: [{&#39;amount&#39;: &#39;+14694000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;,
+   &#39;upperBound&#39;: &#39;+14694500000&#39;,
+   &#39;lowerBound&#39;: &#39;+14693500000&#39;},
+  {&#39;amount&#39;: &#39;+16182000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;,
+   &#39;upperBound&#39;: &#39;+16182500000&#39;,
+   &#39;lowerBound&#39;: &#39;+16181500000&#39;},
+  {&#39;amount&#39;: &#39;+15918000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;,
+   &#39;upperBound&#39;: &#39;+15918500000&#39;,
+   &#39;lowerBound&#39;: &#39;+15917500000&#39;},
+  {&#39;amount&#39;: &#39;+16963000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;,
+   &#39;upperBound&#39;: &#39;+16963500000&#39;,
+   &#39;lowerBound&#39;: &#39;+16962500000&#39;},
+  {&#39;amount&#39;: &#39;+15734000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;,
+   &#39;upperBound&#39;: &#39;+15734500000&#39;,
+   &#39;lowerBound&#39;: &#39;+15733500000&#39;},
+  {&#39;amount&#39;: &#39;+13643000000&#39;, &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;}],
+ &#39;total assets (P2403)&#39;: [{&#39;amount&#39;: &#39;+199581000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;,
+   &#39;upperBound&#39;: &#39;+199581500000&#39;,
+   &#39;lowerBound&#39;: &#39;+199580500000&#39;},
+  {&#39;amount&#39;: &#39;+203490000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;,
+   &#39;upperBound&#39;: &#39;+203490500000&#39;,
+   &#39;lowerBound&#39;: &#39;+203489500000&#39;},
+  {&#39;amount&#39;: &#39;+204541000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;,
+   &#39;upperBound&#39;: &#39;+204541500000&#39;,
+   &#39;lowerBound&#39;: &#39;+204540500000&#39;},
+  {&#39;amount&#39;: &#39;+202910000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;,
+   &#39;upperBound&#39;: &#39;+202910500000&#39;,
+   &#39;lowerBound&#39;: &#39;+202909500000&#39;},
+  {&#39;amount&#39;: &#39;+193120000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;,
+   &#39;upperBound&#39;: &#39;+193120500000&#39;,
+   &#39;lowerBound&#39;: &#39;+193119500000&#39;},
+  {&#39;amount&#39;: &#39;+198825000000&#39;, &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;}],
+ &#39;employees (P1128)&#39;: {&#39;amount&#39;: &#39;+2300000&#39;, &#39;unit&#39;: &#39;1&#39;},
+ &#39;Legal Entity Identifier (P1278)&#39;: &#39;Y87794H0US1R65VBXU25&#39;,
+ &#39;Instagram username (P2003)&#39;: &#39;walmart&#39;,
+ &#39;Google+ ID (P2847)&#39;: &#39;111852759168797891317&#39;,
+ &#39;chief executive officer (P169)&#39;: [&#39;Doug McMillon (Q16196595)&#39;,
+  &#39;Mike Duke (Q1933118)&#39;,
+  &#39;Lee Scott (Q478758)&#39;,
+  &#39;David Glass (Q5234167)&#39;,
+  &#39;Sam Walton (Q497827)&#39;],
+ &#39;Quora topic ID (P3417)&#39;: &#39;Walmart-company&#39;,
+ &#39;Justia Patents company ID (P3875)&#39;: &#39;wal-mart&#39;,
+ &#39;logo image (P154)&#39;: &#39;Walmart logo.svg&#39;,
+ &#39;IPv4 routing prefix (P3761)&#39;: &#39;156.94.0.0/16&#39;,
+ &#39;ISNI (P213)&#39;: &#39;0000 0004 0616 1876&#39;,
+ &#39;operating income (P3362)&#39;: [{&#39;amount&#39;: &#39;+22764000000&#39;,
+   &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;},
+  {&#39;amount&#39;: &#39;+24105000000&#39;, &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;},
+  {&#39;amount&#39;: &#39;+27147000000&#39;, &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;}],
+ &#39;website account on (P553)&#39;: &#39;WeChat (Q283233)&#39;,
+ &#39;PermID (P3347)&#39;: &#39;4295905298&#39;,
+ &#39;Encyclopædia Britannica Online ID (P1417)&#39;: &#39;topic/Wal-Mart&#39;,
+ &#39;GRID ID (P2427)&#39;: &#39;grid.480455.8&#39;,
+ &#39;award received (P166)&#39;: &#39;Public Eye Labour Law Award (Q54862513)&#39;,
+ &#39;Central Index Key (P5531)&#39;: &#39;0000104169&#39;,
+ &#39;IdRef ID (P269)&#39;: &#39;050771116&#39;,
+ &#39;owner of (P1830)&#39;: [&#39;Asda (Q297410)&#39;,
+  &quot;Sam&#39;s Club (Q1972120)&quot;,
+  &#39;Seiyu Group (Q3108542)&#39;,
+  &#39;Bodega Aurrerá (Q3365858)&#39;,
+  &#39;Asda Mobile (Q4804093)&#39;,
+  &#39;Bompreço (Q4940907)&#39;,
+  &#39;Hayneedle (Q5687056)&#39;,
+  &#39;Mercadorama (Q10328812)&#39;,
+  None,
+  &#39;Jet.com (Q22079907)&#39;,
+  &#39;.george (Q26911051)&#39;,
+  &#39;.samsclub (Q26972795)&#39;,
+  &#39;Shoes.com (Q46438789)&#39;],
+ &#39;NKCR AUT ID (P691)&#39;: &#39;osa2010597558&#39;,
+ &#39;Microsoft Academic ID (P6366)&#39;: &#39;1330693074&#39;,
+ &#39;market capitalization (P2226)&#39;: {&#39;amount&#39;: &#39;+239000000000&#39;,
+  &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;},
+ &#39;member of (P463)&#39;: &#39;Linux Foundation (Q858851)&#39;,
+ &#39;Library of Congress authority ID (P244)&#39;: &#39;n90648829&#39;,
+ &#39;MusicBrainz label ID (P966)&#39;: &#39;b3a104e8-eed0-4a3e-aae8-676c6e7ab016&#39;,
+ &#39;ROR ID (P6782)&#39;: &#39;04j0gge90&#39;,
+ &#39;Ringgold ID (P3500)&#39;: &#39;48990&#39;,
+ &#39;BoardGameGeek game publisher ID (P6160)&#39;: &#39;29995&#39;,
+ &#39;total equity (P2137)&#39;: {&#39;amount&#39;: &#39;+80535000000&#39;,
+  &#39;unit&#39;: &#39;http://www.wikidata.org/entity/Q4917&#39;},
+ &#39;DR topic ID (P6849)&#39;: &#39;walmart&#39;,
+ &#39;BBC News topic ID (P6200)&#39;: &#39;ce1qrvlex0et&#39;,
+ &#39;Gran Enciclopèdia Catalana ID (P1296)&#39;: &#39;0256072&#39;,
+ &#39;Downdetector ID (P7306)&#39;: &#39;wal-mart&#39;,
+ &#39;LittleSis organisation ID (P3393)&#39;: &#39;1-Walmart&#39;,
+ &#39;WeChat ID (P7650)&#39;: &#39;Walmart_Hyper&#39;,
+ &#39;Pinterest username (P3836)&#39;: &#39;walmart&#39;}
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">wiki_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># attributes of interest contained within the wiki infoboxes</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;founder&#39;</span><span class="p">,</span> <span class="s1">&#39;location_country&#39;</span><span class="p">,</span> <span class="s1">&#39;revenue&#39;</span><span class="p">,</span> <span class="s1">&#39;operating_income&#39;</span><span class="p">,</span> <span class="s1">&#39;net_income&#39;</span><span class="p">,</span> <span class="s1">&#39;assets&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;equity&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;industry&#39;</span><span class="p">,</span> <span class="s1">&#39;products&#39;</span><span class="p">,</span> <span class="s1">&#39;num_employees&#39;</span><span class="p">]</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Now lets fetch results for all the companies as follows,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">companies</span><span class="p">:</span>    
+    <span class="n">page</span> <span class="o">=</span> <span class="n">wptools</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">company</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">page</span><span class="o">.</span><span class="n">get_parse</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">page</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;infobox&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">infobox</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;infobox&#39;</span><span class="p">]</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> <span class="n">feature</span> <span class="p">:</span> <span class="n">infobox</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="k">if</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">infobox</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span> 
+                         <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span> <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> <span class="n">feature</span> <span class="p">:</span> <span class="s1">&#39;&#39;</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span> <span class="p">}</span>
+
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;company_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">company</span>
+        <span class="n">wiki_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="k">pass</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>en.wikipedia.org (parse) Walmart
+en.wikipedia.org (imageinfo) File:Walmart store exterior 5266815680.jpg
+Walmart (en) data
+{
+  image: &lt;list(1)&gt; {&#39;kind&#39;: &#39;parse-image&#39;, &#39;file&#39;: &#39;File:Walmart s...
+  infobox: &lt;dict(30)&gt; name, logo, logo_caption, image, image_size,...
+  iwlinks: &lt;list(2)&gt; https://commons.wikimedia.org/wiki/Category:W...
+  pageid: 33589
+  parsetree: &lt;str(346504)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;about&lt;/title&gt;&lt;pa...
+  requests: &lt;list(2)&gt; parse, imageinfo
+  title: Walmart
+  wikibase: Q483551
+  wikidata_url: https://www.wikidata.org/wiki/Q483551
+  wikitext: &lt;str(274081)&gt; {{about|the retail chain|other uses}}{{p...
+}
+en.wikipedia.org (parse) ExxonMobil
+en.wikipedia.org (imageinfo) File:ExxonMobilBuilding.JPG
+ExxonMobil (en) data
+{
+  image: &lt;list(1)&gt; {&#39;kind&#39;: &#39;parse-image&#39;, &#39;file&#39;: &#39;File:ExxonMobi...
+  infobox: &lt;dict(29)&gt; name, logo, image, image_caption, type, trad...
+  iwlinks: &lt;list(3)&gt; https://commons.wikimedia.org/wiki/Category:E...
+  pageid: 18848197
+  parsetree: &lt;str(187433)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;About&lt;/title&gt;&lt;pa...
+  requests: &lt;list(2)&gt; parse, imageinfo
+  title: ExxonMobil
+  wikibase: Q156238
+  wikidata_url: https://www.wikidata.org/wiki/Q156238
+  wikitext: &lt;str(152792)&gt; {{About|Exxon Mobil Corp|the company&#39;s s...
+}
+en.wikipedia.org (parse) Berkshire Hathaway
+Berkshire Hathaway (en) data
+{
+  image: &lt;list(0)&gt; 
+  infobox: &lt;dict(24)&gt; name, former_name, logo, image, image_captio...
+  iwlinks: &lt;list(1)&gt; https://commons.wikimedia.org/wiki/Category:B...
+  pageid: 314333
+  parsetree: &lt;str(101434)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;short descriptio...
+  requests: &lt;list(1)&gt; parse
+  title: Berkshire Hathaway
+  wikibase: Q217583
+  wikidata_url: https://www.wikidata.org/wiki/Q217583
+  wikitext: &lt;str(86730)&gt; {{short description|American multinationa...
+}
+en.wikipedia.org (parse) Apple Inc.
+en.wikipedia.org (imageinfo) File:Apple park cupertino 2019.jpg
+Apple Inc. (en) data
+{
+  image: &lt;list(1)&gt; {&#39;kind&#39;: &#39;parse-image&#39;, &#39;file&#39;: &#39;File:Apple par...
+  infobox: &lt;dict(36)&gt; name, logo, logo_size, image, image_size, im...
+  iwlinks: &lt;list(8)&gt; https://commons.wikimedia.org/wiki/Special:Se...
+  pageid: 856
+  parsetree: &lt;str(403082)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;Redirect&lt;/title&gt;...
+  requests: &lt;list(2)&gt; parse, imageinfo
+  title: Apple Inc.
+  wikibase: Q312
+  wikidata_url: https://www.wikidata.org/wiki/Q312
+  wikitext: &lt;str(321377)&gt; {{Redirect|Apple (company)|other compani...
+}
+en.wikipedia.org (parse) UnitedHealth Group
+UnitedHealth Group (en) data
+{
+  infobox: &lt;dict(17)&gt; name, logo, type, traded_as, founder, key_pe...
+  pageid: 1845551
+  parsetree: &lt;str(86142)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;Redirect&lt;/title&gt;&lt;...
+  requests: &lt;list(1)&gt; parse
+  title: UnitedHealth Group
+  wikibase: Q2103926
+  wikidata_url: https://www.wikidata.org/wiki/Q2103926
+  wikitext: &lt;str(73971)&gt; {{Redirect|UnitedHealthcare|the cycling t...
+}
+en.wikipedia.org (parse) McKesson Corporation
+McKesson Corporation (en) data
+{
+  infobox: &lt;dict(19)&gt; name, logo, type, traded_as, founder, locati...
+  pageid: 1041603
+  parsetree: &lt;str(38152)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;Redirect&lt;/title&gt;&lt;...
+  requests: &lt;list(1)&gt; parse
+  title: McKesson Corporation
+  wikibase: Q570473
+  wikidata_url: https://www.wikidata.org/wiki/Q570473
+  wikitext: &lt;str(30274)&gt; {{Redirect|McKesson}}{{short description|...
+}
+en.wikipedia.org (parse) CVS Health
+CVS Health (en) data
+{
+  infobox: &lt;dict(28)&gt; name, logo, logo_size, former_name, type, tr...
+  pageid: 10377597
+  parsetree: &lt;str(69373)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;short description...
+  requests: &lt;list(1)&gt; parse
+  title: CVS Health
+  wikibase: Q624375
+  wikidata_url: https://www.wikidata.org/wiki/Q624375
+  wikitext: &lt;str(54045)&gt; {{short description|American healthcare c...
+}
+en.wikipedia.org (parse) Amazon (company)
+en.wikipedia.org (imageinfo) File:Seattle Spheres on May 10, 2018.jpg
+Amazon (company) (en) data
+{
+  image: &lt;list(1)&gt; {&#39;kind&#39;: &#39;parse-image&#39;, &#39;file&#39;: &#39;File:Seattle S...
+  infobox: &lt;dict(33)&gt; name, logo, logo_size, image, image_size, im...
+  iwlinks: &lt;list(2)&gt; https://commons.wikimedia.org/wiki/Category:A...
+  pageid: 90451
+  parsetree: &lt;str(153139)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;pp&lt;/title&gt;&lt;part&gt;...
+  requests: &lt;list(2)&gt; parse, imageinfo
+  title: Amazon (company)
+  wikibase: Q3884
+  wikidata_url: https://www.wikidata.org/wiki/Q3884
+  wikitext: &lt;str(116580)&gt; {{pp|small=yes}}{{short description|Amer...
+}
+en.wikipedia.org (parse) AT&amp;T
+en.wikipedia.org (imageinfo) File:AT&amp;THQDallas.jpg
+AT&amp;T (en) data
+{
+  image: &lt;list(1)&gt; {&#39;kind&#39;: &#39;parse-image&#39;, &#39;file&#39;: &#39;File:AT&amp;THQDal...
+  infobox: &lt;dict(27)&gt; name, logo, logo_size, image, image_size, im...
+  iwlinks: &lt;list(1)&gt; https://commons.wikimedia.org/wiki/Category:AT%26T
+  pageid: 17555269
+  parsetree: &lt;str(130159)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;about&lt;/title&gt;&lt;pa...
+  requests: &lt;list(2)&gt; parse, imageinfo
+  title: AT&amp;T
+  wikibase: Q35476
+  wikidata_url: https://www.wikidata.org/wiki/Q35476
+  wikitext: &lt;str(104995)&gt; {{about|the company known as AT&amp;T since ...
+}
+en.wikipedia.org (parse) General Motors
+en.wikipedia.org (imageinfo) File:RenCen.JPG
+General Motors (en) data
+{
+  image: &lt;list(1)&gt; {&#39;kind&#39;: &#39;parse-image&#39;, &#39;file&#39;: &#39;File:RenCen.JP...
+  infobox: &lt;dict(29)&gt; name, former_name, logo, logo_size, image, i...
+  iwlinks: &lt;list(2)&gt; https://commons.wikimedia.org/wiki/Category:G...
+  pageid: 12102
+  parsetree: &lt;str(190450)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;short descriptio...
+  requests: &lt;list(2)&gt; parse, imageinfo
+  title: General Motors
+  wikibase: Q81965
+  wikidata_url: https://www.wikidata.org/wiki/Q81965
+  wikitext: &lt;str(150285)&gt; {{short description|American automotive ...
+}
+en.wikipedia.org (parse) Ford Motor Company
+en.wikipedia.org (imageinfo) File:FordGlassHouse.jpg
+Ford Motor Company (en) data
+{
+  image: &lt;list(1)&gt; {&#39;kind&#39;: &#39;parse-image&#39;, &#39;file&#39;: &#39;File:FordGlass...
+  infobox: &lt;dict(27)&gt; name, logo, image, image_size, image_caption...
+  iwlinks: &lt;list(8)&gt; https://commons.wikimedia.org/wiki/Category:F...
+  pageid: 30433662
+  parsetree: &lt;str(193764)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;Redirect&lt;/title&gt;...
+  requests: &lt;list(2)&gt; parse, imageinfo
+  title: Ford Motor Company
+  wikibase: Q44294
+  wikidata_url: https://www.wikidata.org/wiki/Q44294
+  wikitext: &lt;str(157653)&gt; {{Redirect|Ford}}{{pp-semi-indef}}{{pp-m...
+}
+en.wikipedia.org (parse) AmerisourceBergen
+AmerisourceBergen (en) data
+{
+  infobox: &lt;dict(17)&gt; name, logo, type, traded_as, foundation, loc...
+  pageid: 1445945
+  parsetree: &lt;str(16501)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;short description...
+  requests: &lt;list(1)&gt; parse
+  title: AmerisourceBergen
+  wikibase: Q470156
+  wikidata_url: https://www.wikidata.org/wiki/Q470156
+  wikitext: &lt;str(11755)&gt; {{short description|American healthcare c...
+}
+en.wikipedia.org (parse) Chevron Corporation
+Chevron Corporation (en) data
+{
+  image: &lt;list(0)&gt; 
+  infobox: &lt;dict(24)&gt; name, logo, logo_size, logo_caption, image, ...
+  iwlinks: &lt;list(2)&gt; https://commons.wikimedia.org/wiki/Category:C...
+  pageid: 284749
+  parsetree: &lt;str(120598)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;short descriptio...
+  requests: &lt;list(1)&gt; parse
+  title: Chevron Corporation
+  wikibase: Q319642
+  wikidata_url: https://www.wikidata.org/wiki/Q319642
+  wikitext: &lt;str(97793)&gt; {{short description|American multinationa...
+}
+en.wikipedia.org (parse) Cardinal Health
+Cardinal Health (en) data
+{
+  infobox: &lt;dict(17)&gt; name, logo, type, traded_as, industry, found...
+  pageid: 1041632
+  parsetree: &lt;str(32814)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;Infobox company&lt;/...
+  requests: &lt;list(1)&gt; parse
+  title: Cardinal Health
+  wikibase: Q902397
+  wikidata_url: https://www.wikidata.org/wiki/Q902397
+  wikitext: &lt;str(25715)&gt; {{Infobox company| name = Cardinal Health...
+}
+en.wikipedia.org (parse) Costco
+en.wikipedia.org (imageinfo) File:Costcoheadquarters.jpg
+Costco (en) data
+{
+  image: &lt;list(1)&gt; {&#39;kind&#39;: &#39;parse-image&#39;, &#39;file&#39;: &#39;File:Costcohea...
+  infobox: &lt;dict(35)&gt; name, logo, logo_caption, image, image_size,...
+  iwlinks: &lt;list(1)&gt; https://commons.wikimedia.org/wiki/Category:Costco
+  pageid: 446056
+  parsetree: &lt;str(97750)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;Distinguish&lt;/titl...
+  requests: &lt;list(2)&gt; parse, imageinfo
+  title: Costco
+  wikibase: Q715583
+  wikidata_url: https://www.wikidata.org/wiki/Q715583
+  wikitext: &lt;str(71853)&gt; {{Distinguish|COSCO|Cosco (India) Limited...
+}
+en.wikipedia.org (parse) Verizon Communications
+en.wikipedia.org (imageinfo) File:Verizon Building (8156005279).jpg
+Verizon Communications (en) data
+{
+  image: &lt;list(1)&gt; {&#39;kind&#39;: &#39;parse-image&#39;, &#39;file&#39;: &#39;File:Verizon B...
+  infobox: &lt;dict(30)&gt; name, logo, image, image_caption, former_nam...
+  iwlinks: &lt;list(3)&gt; https://commons.wikimedia.org/wiki/Category:T...
+  pageid: 18619278
+  parsetree: &lt;str(147152)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;short descriptio...
+  requests: &lt;list(2)&gt; parse, imageinfo
+  title: Verizon Communications
+  wikibase: Q467752
+  wikidata_url: https://www.wikidata.org/wiki/Q467752
+  wikitext: &lt;str(124812)&gt; {{short description|American communicati...
+}
+en.wikipedia.org (parse) Kroger
+en.wikipedia.org (imageinfo) File:Cincinnati-kroger-building.jpg
+Kroger (en) data
+{
+  image: &lt;list(1)&gt; {&#39;kind&#39;: &#39;parse-image&#39;, &#39;file&#39;: &#39;File:Cincinnat...
+  infobox: &lt;dict(24)&gt; name, logo, image, image_caption, type, trad...
+  iwlinks: &lt;list(1)&gt; https://commons.wikimedia.org/wiki/Category:Kroger
+  pageid: 367762
+  parsetree: &lt;str(121519)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;Use American Eng...
+  requests: &lt;list(2)&gt; parse, imageinfo
+  title: Kroger
+  wikibase: Q153417
+  wikidata_url: https://www.wikidata.org/wiki/Q153417
+  wikitext: &lt;str(102176)&gt; {{Use American English|date = August 201...
+}
+en.wikipedia.org (parse) General Electric
+General Electric (en) data
+{
+  infobox: &lt;dict(20)&gt; name, logo, type, traded_as, ISIN, industry,...
+  iwlinks: &lt;list(1)&gt; https://commons.wikimedia.org/wiki/Category:G...
+  pageid: 12730
+  parsetree: &lt;str(162543)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;redirect&lt;/title&gt;...
+  requests: &lt;list(1)&gt; parse
+  title: General Electric
+  wikibase: Q54173
+  wikidata_url: https://www.wikidata.org/wiki/Q54173
+  wikitext: &lt;str(137546)&gt; {{redirect|GE}}{{distinguish|text=the fo...
+}
+en.wikipedia.org (parse) Walgreens Boots Alliance
+Walgreens Boots Alliance (en) data
+{
+  infobox: &lt;dict(29)&gt; name, logo, logo_size, type, traded_as, pred...
+  pageid: 44732533
+  parsetree: &lt;str(32631)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;Use mdy dates&lt;/ti...
+  requests: &lt;list(1)&gt; parse
+  title: Walgreens Boots Alliance
+  wikibase: Q18712620
+  wikidata_url: https://www.wikidata.org/wiki/Q18712620
+  wikitext: &lt;str(25099)&gt; {{Use mdy dates|date=October 2019}}{{shor...
+}
+en.wikipedia.org (parse) JPMorgan Chase
+en.wikipedia.org (imageinfo) File:383 Madison Ave Bear Stearns C ...
+JPMorgan Chase (en) data
+{
+  image: &lt;list(1)&gt; {&#39;kind&#39;: &#39;parse-image&#39;, &#39;file&#39;: &#39;File:383 Madis...
+  infobox: &lt;dict(31)&gt; name, logo, image, image_caption, type, trad...
+  iwlinks: &lt;list(2)&gt; https://commons.wikimedia.org/wiki/Category:J...
+  pageid: 231001
+  parsetree: &lt;str(137921)&gt; &lt;root&gt;&lt;template&gt;&lt;title&gt;About&lt;/title&gt;&lt;pa...
+  requests: &lt;list(2)&gt; parse, imageinfo
+  title: JPMorgan Chase
+  wikibase: Q192314
+  wikidata_url: https://www.wikidata.org/wiki/Q192314
+  wikitext: &lt;str(112397)&gt; {{About|JPMorgan Chase &amp; Co|its main sub...
+}
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">wiki_data</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>[{&#39;founder&#39;: &#39;[[Sam Walton]]&#39;,
+  &#39;location_country&#39;: &#39;U.S.&#39;,
+  &#39;revenue&#39;: &#39;{{increase}} {{US$|514.405 billion|link|=|yes}} (2019)&#39;,
+  &#39;operating_income&#39;: &#39;{{increase}} {{US$|21.957 billion}} (2019)&#39;,
+  &#39;net_income&#39;: &#39;{{decrease}} {{US$|6.67 billion}} (2019)&#39;,
+  &#39;assets&#39;: &#39;{{increase}} {{US$|219.295 billion}} (2019)&#39;,
+  &#39;equity&#39;: &#39;{{decrease}} {{US$|79.634 billion}} (2019)&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;[[Retail]]&#39;,
+  &#39;products&#39;: &#39;{{hlist|Electronics|Movies and music|Home and furniture|Home improvement|Clothing|Footwear|Jewelry|Toys|Health and beauty|Pet supplies|Sporting goods and fitness|Auto|Photo finishing|Craft supplies|Party supplies|Grocery}}&#39;,
+  &#39;num_employees&#39;: &#39;{{plainlist|\n* 2.2|nbsp|million, Worldwide (2018)|ref| name=&quot;xbrlus_1&quot; |\n* 1.5|nbsp|million, U.S. (2017)|ref| name=&quot;Walmart&quot;|{{cite web |url = http://corporate.walmart.com/our-story/locations/united-states |title = Walmart Locations Around the World – United States |publisher = |url-status=live |archiveurl = https://web.archive.org/web/20150926012456/http://corporate.walmart.com/our-story/locations/united-states |archivedate = September 26, 2015 |df = mdy-all }}|&lt;/ref&gt;|\n* 700,000, International}} {{nbsp}} million, Worldwide (2018) * 1.5 {{nbsp}} million, U.S. (2017) * 700,000, International&#39;,
+  &#39;company_name&#39;: &#39;Walmart&#39;},
+ {&#39;founder&#39;: &#39;&#39;,
+  &#39;location_country&#39;: &#39;&#39;,
+  &#39;revenue&#39;: &#39;{{Nowrap|Increase| |US$|279.3 billion|link|=|yes|ref| name=&quot;201310K&quot;|[https://corporate.exxonmobil.com/-/media/global/files/annual-report/2018-financial-and-operating-review.pdf EXXON MOBIL CORPORATION Form 10-K] {{Webarchive|url=https://web.archive.org/web/20190404044022/https://corporate.exxonmobil.com/-/media/global/files/annual-report/2018-financial-and-operating-review.pdf |date=April 4, 2019 }}, \&#39;\&#39;Google Finance\&#39;\&#39;, March 21, 2019|&lt;/ref&gt;}} {{Increase}} {{US$|279.3 billion|link|=|yes}}&#39;,
+  &#39;operating_income&#39;: &#39;{{Nowrap|Increase| |US$|21.53 billion|ref| name=&quot;201310K&quot;}} {{Increase}} {{US$|21.53 billion}}&#39;,
+  &#39;net_income&#39;: &#39;{{Nowrap|Increase| |US$|20.84 billion|ref| name=&quot;201310K&quot;}} {{Increase}} {{US$|20.84 billion}}&#39;,
+  &#39;assets&#39;: &#39;{{Nowrap|Decrease| |US$|346.2 billion|ref| name=&quot;201310K&quot;}} {{Decrease}} {{US$|346.2 billion}}&#39;,
+  &#39;equity&#39;: &#39;{{Nowrap|Increase| |US$|191.8 billion|ref| name=&quot;201310K&quot;}} {{Increase}} {{US$|191.8 billion}}&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;[[Energy industry|Energy]]: [[Oil and gas industry|Oil and gas]]&#39;,
+  &#39;products&#39;: &#39;{{Unbulleted list\n  | [[Crude oil]]\n  | [[Oil products]]\n  | [[Natural gas]]\n  | [[Petrochemical]]s\n  | [[Power generation]]}}&#39;,
+  &#39;num_employees&#39;: &#39;71,000&#39;,
+  &#39;company_name&#39;: &#39;ExxonMobil&#39;},
+ {&#39;founder&#39;: &#39;[[Oliver Chace]]&lt;br&gt;[[Warren Buffett]] (Modern era)&#39;,
+  &#39;location_country&#39;: &#39;&#39;,
+  &#39;revenue&#39;: &#39;{{increase}} US$247.5 billion (2018)&#39;,
+  &#39;operating_income&#39;: &#39;{{Decrease}} US$10.02 billion (2018)&#39;,
+  &#39;net_income&#39;: &#39;{{Decrease}} US$4.02 billion (2018)&#39;,
+  &#39;assets&#39;: &#39;{{increase}} US$707.8 billion (2018)&#39;,
+  &#39;equity&#39;: &#39;{{increase}} US$348.7 billion (2018)&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;[[Conglomerate (company)|Conglomerate]]&#39;,
+  &#39;products&#39;: &#39;[[Investment|Diversified investments]], [[Insurance#Types|Property &amp; casualty insurance]], [[Public utility|Utilities]], [[Restaurants]], [[Food processing]], [[Aerospace]], [[Toys]], [[Mass media|Media]], [[Automotive industry|Automotive]], [[Sports equipment|Sporting goods]], [[Final good|Consumer products]], [[Internet]], [[Real estate]]&#39;,
+  &#39;num_employees&#39;: &#39;{{nowrap|389,373 (2018)}}&#39;,
+  &#39;company_name&#39;: &#39;Berkshire Hathaway&#39;},
+ {&#39;founder&#39;: &#39;&#39;,
+  &#39;location_country&#39;: &#39;&#39;,
+  &#39;revenue&#39;: &#39;{{Decrease}} {{US$|260.174&amp;nbsp;billion|link|=|yes}}&#39;,
+  &#39;operating_income&#39;: &#39;{{Decrease}} {{US$|63.930&amp;nbsp;billion}}&#39;,
+  &#39;net_income&#39;: &#39;{{Decrease}} {{US$|55.256&amp;nbsp;billion}}&#39;,
+  &#39;assets&#39;: &#39;{{Decrease}} {{US$|338.516&amp;nbsp;billion}}&#39;,
+  &#39;equity&#39;: &#39;{{Decrease}} {{US$|90.488&amp;nbsp;billion}}&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;{{Unbulleted list | [[Computer hardware]] | [[Computer software]] | [[Consumer electronics]] | [[Cloud computing]] | [[Digital distribution]] | [[Fabless manufacturing|Fabless silicon design]] | [[Semiconductors]] | [[Financial technology]] | [[Artificial intelligence]]}}&#39;,
+  &#39;products&#39;: &#39;{{Flatlist|\n* [[Macintosh]]\n* [[iPod]]\n* [[iPhone]]\n* [[iPad]]\n* [[Apple Watch]]\n* [[Apple TV]]\n* [[HomePod]]\n* [[macOS]]\n* [[iOS]]\n* [[iPadOS]]\n* [[watchOS]]\n* [[tvOS]]\n* [[iLife]]\n* [[iWork]]\n* [[Final Cut Pro]]\n* [[Logic Pro]]\n* [[GarageBand]]\n* [[Shazam (application)|Shazam]]\n* [[Siri]]}}&#39;,
+  &#39;num_employees&#39;: &#39;137,000&#39;,
+  &#39;company_name&#39;: &#39;Apple Inc.&#39;},
+ {&#39;founder&#39;: &#39;Richard T. Burke&#39;,
+  &#39;location_country&#39;: &#39;&#39;,
+  &#39;revenue&#39;: &#39;{{increase}} $242.155 billion (2019)&#39;,
+  &#39;operating_income&#39;: &#39;{{increase}} $17.981 billion (2019)&#39;,
+  &#39;net_income&#39;: &#39;{{increase}} $14.239 billion (2019)&#39;,
+  &#39;assets&#39;: &#39;{{increase}} $173.889 billion (2019)&#39;,
+  &#39;equity&#39;: &#39;{{increase}} $60.436 billion (2019)&#39;,
+  &#39;type&#39;: &#39;[[Public company]]&#39;,
+  &#39;industry&#39;: &#39;[[Managed health care]]&#39;,
+  &#39;products&#39;: &#39;[[Uniprise]], [[Health Care]] [[Service (economics)|Services]], Specialized Care Services, and [[Ingenix]]&#39;,
+  &#39;num_employees&#39;: &#39;300,000 (2019)&#39;,
+  &#39;company_name&#39;: &#39;UnitedHealth Group&#39;},
+ {&#39;founder&#39;: &#39;John McKesson&lt;br&gt;Charles Olcott&#39;,
+  &#39;location_country&#39;: &#39;&#39;,
+  &#39;revenue&#39;: &#39;{{increase}} {{US$|208.4 billion}} {{small|(2018)}}&#39;,
+  &#39;operating_income&#39;: &#39;{{increase}} {{US$|2.921 billion}} {{small|(2018)}}&#39;,
+  &#39;net_income&#39;: &#39;{{increase}} {{US$|67 million}} {{small|(2018)}}&#39;,
+  &#39;assets&#39;: &#39;{{nowrap|increase| |US$|60.381 billion| |small|(2018)|ref| name=FY}} {{increase}} {{US$|60.381 billion}} {{small|(2018)}}&#39;,
+  &#39;equity&#39;: &#39;{{decrease}} {{US$|10.057 billion}} {{small|(2018)}}&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;[[Healthcare]]&#39;,
+  &#39;products&#39;: &#39;[[Pharmaceuticals]]&lt;br&gt;[[Medical technology]]&lt;br&gt;[[Health care services]]&#39;,
+  &#39;num_employees&#39;: &#39;~78,000 {{small|(2018)}}&#39;,
+  &#39;company_name&#39;: &#39;McKesson Corporation&#39;},
+ {&#39;founder&#39;: &#39;&#39;,
+  &#39;location_country&#39;: &#39;&#39;,
+  &#39;revenue&#39;: &#39;{{ublist|class|=|nowrap|increase| |US$|194.579 billion| (2018)|US$|184.786 billion| (2017)}} {{increase}} {{US$|194.579 billion}} (2018) {{US$|184.786 billion}} (2017)&#39;,
+  &#39;operating_income&#39;: &#39;{{ublist|class|=|nowrap|decrease| |US$|4.021 billion| (2018)|US$|9.538 billion| (2017)}} {{decrease}} {{US$|4.021 billion}} (2018) {{US$|9.538 billion}} (2017)&#39;,
+  &#39;net_income&#39;: &#39;{{ublist|class|=|nowrap|decrease| |US$|-596 million| (2018)|US$|6.623 billion| (2017)}} {{decrease}} {{US$|-596 million}} (2018) {{US$|6.623 billion}} (2017)&#39;,
+  &#39;assets&#39;: &#39;{{increase}} {{US$|196.456 billion}}&#39;,
+  &#39;equity&#39;: &#39;{{increase}} {{US$|58.225 billion}}&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;{{flat list|\n* [[Retail]]\n* [[health care]]}}&#39;,
+  &#39;products&#39;: &#39;&#39;,
+  &#39;num_employees&#39;: &#39;295,000&#39;,
+  &#39;company_name&#39;: &#39;CVS Health&#39;},
+ {&#39;founder&#39;: &#39;[[Jeff Bezos]]&#39;,
+  &#39;location_country&#39;: &#39;&#39;,
+  &#39;revenue&#39;: &#39;{{increase}} {{US$|232.887 billion|link|=|yes}}&#39;,
+  &#39;operating_income&#39;: &#39;{{increase}} {{US$|12.421 billion}}&#39;,
+  &#39;net_income&#39;: &#39;{{increase}} {{US$|10.073 billion}}&#39;,
+  &#39;assets&#39;: &#39;{{decrease}} {{US$|162.648 billion}}&#39;,
+  &#39;equity&#39;: &#39;{{decrease}} {{US$|43.549 billion}}&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;{{plainlist|\n* [[Cloud computing]]\n* [[E-commerce]]\n* [[Artificial intelligence]]\n* [[Consumer electronics]]\n* [[Digital distribution]]\n* [[Grocery stores]]}}&#39;,
+  &#39;products&#39;: &#39;{{Hlist|[[Amazon Echo]]|[[Amazon Fire tablet|Amazon Fire]]|[[Amazon Fire TV]]|[[Fire OS|Amazon Fire OS]]|[[Amazon Kindle]]}}&#39;,
+  &#39;num_employees&#39;: &#39;{{increase}} 750,000 (2019)&#39;,
+  &#39;company_name&#39;: &#39;Amazon (company)&#39;},
+ {&#39;founder&#39;: &#39;&#39;,
+  &#39;location_country&#39;: &#39;&#39;,
+  &#39;revenue&#39;: &#39;{{increase}} {{US$|link|=|yes}} 170.756 billion (2018)&#39;,
+  &#39;operating_income&#39;: &#39;{{increase}} {{US$|link|=|yes}} 26.096 billion  (2018)&#39;,
+  &#39;net_income&#39;: &#39;{{increase}} {{US$|link|=|yes}} 19.953 billion  (2018)&#39;,
+  &#39;assets&#39;: &#39;{{increase}} {{US$|link|=|yes}} 531 billion     (2018)&#39;,
+  &#39;equity&#39;: &#39;{{increase}} {{US$|link|=|yes}} 193.884 billion (2018)&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;{{Unbulleted list|[[Telecommunications industry|Telecommunications]]|[[Technology company|Technology]]|[[Mass media]]|[[Entertainment]]}}&#39;,
+  &#39;products&#39;: &#39;{{Hlist|[[Satellite television]]|[[Landline|Fixed-line telephones]]|[[Mobile phone|Mobile telephones]]|[[Internet service provider|Internet services]]|[[Broadband]]|[[Digital television]]|[[Home security]]|[[IPTV]]|[[Over-the-top media services|OTT services]]|[[Network security]]|[[Filmmaking|Film production]]|[[Television production]]|[[Cable television]]|[[Pay television]]|[[Publishing]]|[[Podcast]]s|[[Sports management]]|[[News agency]]|[[Video game]]s}}&#39;,
+  &#39;num_employees&#39;: &#39;251,840 (2019)&#39;,
+  &#39;company_name&#39;: &#39;AT&amp;T&#39;},
+ {&#39;founder&#39;: &#39;[[William C. Durant]]&#39;,
+  &#39;location_country&#39;: &#39;US&#39;,
+  &#39;revenue&#39;: &#39;{{decrease}} [[United States dollar|US$]]147.049 billion {{small|(2018)}}&#39;,
+  &#39;operating_income&#39;: &#39;{{decrease}} US$11.783 billion {{small|(2018)}}&#39;,
+  &#39;net_income&#39;: &#39;{{increase}} US$8.014 billion {{small|(2018)}}&#39;,
+  &#39;assets&#39;: &#39;{{increase}} US$227.339 billion {{small|(2018)}}&#39;,
+  &#39;equity&#39;: &#39;{{increase}} US$42.777 billion {{small|(2018)}}&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;[[Automotive industry|Automotive]]&#39;,
+  &#39;products&#39;: &#39;[[Car|Automobiles]]&lt;br /&gt;Automobile parts&lt;br /&gt;[[Commercial vehicle]]s&#39;,
+  &#39;num_employees&#39;: &#39;170,483 {{small|(December 2018)}}&#39;,
+  &#39;company_name&#39;: &#39;General Motors&#39;},
+ {&#39;founder&#39;: &#39;[[Henry Ford]]&#39;,
+  &#39;location_country&#39;: &#39;U.S.&#39;,
+  &#39;revenue&#39;: &#39;{{increase}} {{US$|160.33 billion|link|=|yes}} {{small|(2018)}}&#39;,
+  &#39;operating_income&#39;: &#39;{{decrease}} {{US$|3.27 billion}} {{small|(2018)}}&#39;,
+  &#39;net_income&#39;: &#39;{{decrease}} {{US$|3.67 billion}} {{small|(2018)}}&#39;,
+  &#39;assets&#39;: &#39;{{decrease}} {{US$|256.54 billion}} {{small|(2018)}}&#39;,
+  &#39;equity&#39;: &#39;{{decrease}} {{US$|35.93 billion}} {{small|(2018)}}&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;[[Automotive industry|Automotive]]&#39;,
+  &#39;products&#39;: &#39;{{unbulleted list\n  | [[Car|Automobiles]]\n  | [[Luxury Car|Luxury Vehicles]]\n  | [[Commercial vehicle|Commercial Vehicles]]\n  | [[List of auto parts|Automotive parts]]\n  | [[Pickup trucks]]\n  | [[SUVs]]}}&#39;,
+  &#39;num_employees&#39;: &#39;199,000 {{small|(December 2018)}}&#39;,
+  &#39;company_name&#39;: &#39;Ford Motor Company&#39;},
+ {&#39;founder&#39;: &#39;&#39;,
+  &#39;location_country&#39;: &#39;&#39;,
+  &#39;revenue&#39;: &#39;{{increase}} {{US$|167.93 billion|link|=|yes}} (2018)&#39;,
+  &#39;operating_income&#39;: &#39;{{increase}} {{US$|1.44 billion}} (2018)&#39;,
+  &#39;net_income&#39;: &#39;{{increase}} {{US$|1.65 billion}} (2018)&#39;,
+  &#39;assets&#39;: &#39;{{increase}} {{US$|37.66 billion}} (2018)&#39;,
+  &#39;equity&#39;: &#39;{{increase}} {{US$|2.93 billion}} (2018)&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;[[Pharmaceutical]]&#39;,
+  &#39;products&#39;: &#39;[[Pharmaceutical]]s and [[pharmacy]] services&#39;,
+  &#39;num_employees&#39;: &#39;20,000 (2018)&#39;,
+  &#39;company_name&#39;: &#39;AmerisourceBergen&#39;},
+ {&#39;founder&#39;: &#39;&#39;,
+  &#39;location_country&#39;: &#39;&#39;,
+  &#39;revenue&#39;: &#39;{{increase}} {{US$|158.9 billion|link|=|yes}} {{small|(2018)}}&#39;,
+  &#39;operating_income&#39;: &#39;{{increase}} {{US$|15.45 billion}} {{small|(2018)}}&#39;,
+  &#39;net_income&#39;: &#39;{{increase}} {{US$|14.82 billion}} {{small|(2018)}}&#39;,
+  &#39;assets&#39;: &#39;{{decrease}} {{US$|253.9 billion}} {{small|(2018)}}&#39;,
+  &#39;equity&#39;: &#39;{{increase}} {{US$|154.5 billion}} {{small|(2018)}}&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;[[Oil and gas industry|Oil and gas]]&#39;,
+  &#39;products&#39;: &quot;[[Petroleum]], [[natural gas]] and other [[petrochemical]]s, &#39;&#39;[[#Marketing brands|See Chevron products]]&#39;&#39;&quot;,
+  &#39;num_employees&#39;: &#39;~51,900 {{small|(December 2018)}}&#39;,
+  &#39;company_name&#39;: &#39;Chevron Corporation&#39;},
+ {&#39;founder&#39;: &#39;&#39;,
+  &#39;location_country&#39;: &#39;&#39;,
+  &#39;revenue&#39;: &#39;{{increase}} [[US$]]136.80 billion {{small|(2018)}}&#39;,
+  &#39;operating_income&#39;: &#39;{{decrease}} US$126 million {{small|(2018)}}&#39;,
+  &#39;net_income&#39;: &#39;{{decrease}} US$256 million {{small|(2018)}}&#39;,
+  &#39;assets&#39;: &#39;{{increase}} US$39.95 billion {{small|(2018)}}&#39;,
+  &#39;equity&#39;: &#39;{{increase}} US$6.05 billion {{small|(2018)}}&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;[[Pharmaceuticals]]&#39;,
+  &#39;products&#39;: &#39;Medical and pharmaceutical products and services&#39;,
+  &#39;num_employees&#39;: &#39;~50,000 {{small|(2018)}}&#39;,
+  &#39;company_name&#39;: &#39;Cardinal Health&#39;},
+ {&#39;founder&#39;: &#39;&#39;,
+  &#39;location_country&#39;: &#39;United States&#39;,
+  &#39;revenue&#39;: &#39;{{increase}} {{US$|152.7 billion}}&#39;,
+  &#39;operating_income&#39;: &#39;{{increase}} US$4.74 billion (2018)&#39;,
+  &#39;net_income&#39;: &#39;{{increase}} US$3.66 billion&#39;,
+  &#39;assets&#39;: &#39;{{increase}} US$45.40 billion&#39;,
+  &#39;equity&#39;: &#39;{{increase}} US$15.24 billion&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;[[Retail]]&#39;,
+  &#39;products&#39;: &#39;&#39;,
+  &#39;num_employees&#39;: &#39;{{increase}} 254,000&#39;,
+  &#39;company_name&#39;: &#39;Costco&#39;},
+ {&#39;founder&#39;: &#39;&#39;,
+  &#39;location_country&#39;: &#39;&#39;,
+  &#39;revenue&#39;: &#39;{{increase}} {{US$|130.86 [[1,000,000,000|billion]]|link|=|yes}}&#39;,
+  &#39;operating_income&#39;: &#39;{{decrease}} {{US$|22.27 billion}}&#39;,
+  &#39;net_income&#39;: &#39;{{decrease}} {{US$|15.52 billion}}&#39;,
+  &#39;assets&#39;: &#39;{{increase}} {{US$|264.82 billion}}&#39;,
+  &#39;equity&#39;: &#39;{{increase}} {{US$|53.14 billion}}&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;{{Plainlist|\n*[[Telecommunications industry|Telecommunications]]\n*[[Mass media]]}}&#39;,
+  &#39;products&#39;: &#39;{{Plainlist|\n*[[Cable television]]\n*[[Landline]]\n*[[Mobile phone]]\n*[[Broadband]]\n*[[Digital television]]\n*[[IPTV]]\n*[[Digital Media]]\n*[[Internet of things|Internet]]\n*[[Telematics]]}}&#39;,
+  &#39;num_employees&#39;: &#39;135,400 (2020)&#39;,
+  &#39;company_name&#39;: &#39;Verizon Communications&#39;},
+ {&#39;founder&#39;: &#39;[[Bernard Kroger]]&#39;,
+  &#39;location_country&#39;: &#39;U.S.&#39;,
+  &#39;revenue&#39;: &#39;{{increase}} {{US$|121.16 billion|link|=|yes}} (2019)&#39;,
+  &#39;operating_income&#39;: &#39;{{increase}} {{US$|2.67 billion}} (2019)&#39;,
+  &#39;net_income&#39;: &#39;{{increase}} {{US$|3.11 billion}} (2019)&#39;,
+  &#39;assets&#39;: &#39;{{increase}} {{US$|38.11 billion}} (2019)&#39;,
+  &#39;equity&#39;: &#39;{{increase}} {{US$|7.88 billion}} (2019)&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;[[Retail]]&#39;,
+  &#39;products&#39;: &#39;[[Supercenter]]/[[superstore]],&lt;br&gt;Other specialty, [[supermarket]]&#39;,
+  &#39;num_employees&#39;: &#39;453,000 (2019)&#39;,
+  &#39;company_name&#39;: &#39;Kroger&#39;},
+ {&#39;founder&#39;: &#39;&#39;,
+  &#39;location_country&#39;: &#39;&#39;,
+  &#39;revenue&#39;: &#39;{{nowrap|Increase| [[US$]] 121.615 billion |small|(2018)}} {{Increase}} [[US$]] 121.615 billion {{small|(2018)}}&#39;,
+  &#39;operating_income&#39;: &#39;{{nowrap|Decrease| US$ |color|red|&amp;minus;20.717| billion |small|(2018)}} {{Decrease}} US$ {{color|red|&amp;minus;20.717}} billion {{small|(2018)}}&#39;,
+  &#39;net_income&#39;: &#39;{{nowrap|Decrease| US$ |color|red|&amp;minus;22.355| billion |small|(2018)}} {{Decrease}} US$ {{color|red|&amp;minus;22.355}} billion {{small|(2018)}}&#39;,
+  &#39;assets&#39;: &#39;{{nowrap|Decrease| US$ 309.129 billion |small|(2018)}} {{Decrease}} US$ 309.129 billion {{small|(2018)}}&#39;,
+  &#39;equity&#39;: &#39;{{nowrap|Decrease| US$ 30.981 billion |small|(2018)}} {{Decrease}} US$ 30.981 billion {{small|(2018)}}&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;[[Conglomerate (company)|Conglomerate]]&#39;,
+  &#39;products&#39;: &#39;{{hlist|[[Aircraft engine]]s|[[Electric power distribution|Electrical distribution]]|[[Electric motor]]s|[[Energy]]|[[Finance]]|[[Health care]]|[[Lighting]]|[[Software]]|[[Wind turbine]]s}}&#39;,
+  &#39;num_employees&#39;: &#39;283,000 {{small|(2018)}}&#39;,
+  &#39;company_name&#39;: &#39;General Electric&#39;},
+ {&#39;founder&#39;: &#39;&#39;,
+  &#39;location_country&#39;: &#39;&#39;,
+  &#39;revenue&#39;: &quot;{{nowrap|increase| |US$|136.9 billion|link|=|yes|ref| name=&#39;10-K&#39;|{{cite web|url=https://sec.report/Document/0001618921-19-000069/ |title=Walgreens Boots Alliance Annual Report (Form 10-K) |publisher=[[U.S. Securities and Exchange Commission]]}}|&lt;/ref&gt;}} {{increase}} {{US$|136.9 billion|link|=|yes}}&quot;,
+  &#39;operating_income&#39;: &#39;{{decrease}} {{US$|4.9 billion}}&#39;,
+  &#39;net_income&#39;: &#39;{{decrease}} {{US$|3.9 billion}}&#39;,
+  &#39;assets&#39;: &#39;{{decrease}} {{US$|67.59 billion}}&#39;,
+  &#39;equity&#39;: &#39;{{decrease}} {{US$|24.15 billion}}&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;[[Pharmaceutical]]&lt;br&gt;[[Retail]]&#39;,
+  &#39;products&#39;: &#39;[[Drug store]]&lt;br&gt;[[Pharmacy]]&#39;,
+  &#39;num_employees&#39;: &#39;440,000&#39;,
+  &#39;company_name&#39;: &#39;Walgreens Boots Alliance&#39;},
+ {&#39;founder&#39;: &#39;[[Aaron Burr]] (Bank of the Manhattan Company)&lt;br&gt;[[J. P. Morgan|John Pierpont Morgan]]&#39;,
+  &#39;location_country&#39;: &#39;&#39;,
+  &#39;revenue&#39;: &#39;{{increase}} [[United States dollar|US$]]115.627 [[Billion (short scale)|billion]]&#39;,
+  &#39;operating_income&#39;: &#39;{{increase}} [[United States dollar|US$]]44.545 billion&#39;,
+  &#39;net_income&#39;: &#39;{{increase}} [[United States dollar|US$]]36.431 billion&#39;,
+  &#39;assets&#39;: &#39;{{increase}} [[United States dollar|US$]]2.687 [[trillion]]&#39;,
+  &#39;equity&#39;: &#39;{{increase}} [[United States dollar|US$]]261.330 billion&#39;,
+  &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+  &#39;industry&#39;: &#39;[[Bank]]ing&lt;br&gt;[[Financial services]]&#39;,
+  &#39;products&#39;: &#39;[[Alternative financial service]]s, [[American depositary receipt]]s, [[asset allocation]], [[asset management]], [[Bond (finance)|bond]] trading, [[broker]] services, [[capital market]] services, [[collateralized debt obligation]]s, [[commercial banking]], [[commodity market|commodities]] trading, [[commercial bank]]ing, [[credit card]]s, [[credit default swap]], [[credit derivative]] trading, [[currency exchange]], [[custodian bank]]ing, [[debt settlement]], [[digital banking]], [[estate planning]], [[exchange-traded fund]]s, [[financial analysis]], [[financial market]]s, [[foreign exchange market]], [[futures exchange]], [[hedge fund]]s, [[index fund]]s, [[information processing]], [[institutional investor|institutional investing]], [[insurance]], [[investment bank]]ing, [[Financial capital|investment capital]], [[investment management]], investment [[Portfolio (finance)|portfolios]], [[loan servicing]], [[merchant services]], [[mobile banking]], [[money market]] trading,  [[mortgage brokers|mortgage broker]]ing, [[mortgage loan]]s, [[Mortgage-backed security|mortgage–backed securities]], [[mutual fund]]s, [[pension fund]]s, [[prime brokerage]], [[private banking]], [[private equity]], [[remittance]], [[retail banking]], retail [[broker]]age, [[risk management]], [[securities lending]], [[Security (finance)|security]] services, [[stock trader|stock trading]], [[subprime lending]], [[treasury services]], [[trustee]] services, [[underwriting]], [[venture capital]], [[wealth management]], [[wholesale funding]], [[Wholesale mortgage lenders|wholesale mortgage lending]], [[wire transfer]]s&#39;,
+  &#39;num_employees&#39;: &#39;{{increase}} 256,981&#39;,
+  &#39;company_name&#39;: &#39;JPMorgan Chase&#39;}]
+</code></pre></div>
+</td></tr></table>
+
+<p>Finally, let's export all the scapped infoboxes as a single JSON file to a convenient location as follows,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/infoboxes.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">wiki_data</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Import :</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/infoboxes.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">wiki_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<h3 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h3>
+<ul>
+<li>https://phpenthusiast.com/blog/what-is-rest-api</li>
+</ul>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../section-2-HTML-based-scraping/" title="HTML based scraping" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                HTML based scraping
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../section-4-wrangling-and-analysis/" title="Wrangling and Analysis" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Wrangling and Analysis
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/MonashDataFluency/python-web-scraping" target="_blank" rel="noopener" title="github" class="md-footer-social__link fa fa-github"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>
