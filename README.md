@@ -46,8 +46,8 @@ and then proceed to install wptools (via step 5 above)
 - [ ] Long term: Add images/flowchart for better explanation 
  
 ## Section 2 
-- [ ] Shorten/Format the big html chunk
-- [ ] Prettify the output of html
+- [x] Shorten/Format the big html chunk
+- [x] Prettify the output of html
 - [ ] Put more details on get/put requests (possibly visually)
 
 ## Section 3
