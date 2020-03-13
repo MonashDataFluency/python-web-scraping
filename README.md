@@ -37,7 +37,7 @@ and then proceed to install wptools (via step 5 above)
 
 
 ## Section 1
-- [ ] Add more about html in text and add an image
+- [x] Add more about html in text and add an image
 - [ ] Give more description in the image
 - [ ] Fix the issue of broken image
 - [ ] Add json section
@@ -46,8 +46,8 @@ and then proceed to install wptools (via step 5 above)
 - [ ] Long term: Add images/flowchart for better explanation 
  
 ## Section 2 
-- [ ] Shorten/Format the big html chunk
-- [ ] Prettify the output of html
+- [x] Shorten/Format the big html chunk
+- [x] Prettify the output of html
 - [ ] Put more details on get/put requests (possibly visually)
 
 ## Section 3
