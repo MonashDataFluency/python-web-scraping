@@ -37,7 +37,7 @@ and then proceed to install wptools (via step 5 above)
 
 
 ## Section 1
-- [ ] Add more about html in text and add an image
+- [x] Add more about html in text and add an image
 - [ ] Give more description in the image
 - [ ] Fix the issue of broken image
 - [ ] Add json section
