@@ -41,7 +41,7 @@ Note: run `jupyter nbconvert --output-dir='markdowns/' --to markdown notebooks/*
 - [x] Add more about html in text and add an image
 - [ ] Give more description in the image
 - [ ] Fix the issue of broken image
-- [ ] Add json section
+- [x] Add json section -- added in section 0
 - [ ] DOM inspector
 - [ ] Talk a bit about RESTful WS
 - [ ] Long term: Add images/flowchart for better explanation 
