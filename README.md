@@ -18,6 +18,7 @@ Note : wptools might throw an error during installtion, in which case install ot
 
 and then proceed to install wptools (via step 5 above)
 
+Note: run `jupyter nbconvert --output-dir='docs/' --to markdown notebooks/*.ipynb` from the root directory to generate the markdowns from notebooks.
 
 ### TODO: 
 ## General:
