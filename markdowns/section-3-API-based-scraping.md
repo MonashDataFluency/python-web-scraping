@@ -1,4 +1,3 @@
-
 ## Web API based scraping
 
 ### A brief introduction to APIs
@@ -1216,3 +1215,8 @@ with open('../data/infoboxes.json', 'r') as file:
 ### References
 
 - https://phpenthusiast.com/blog/what-is-rest-api
+
+
+```python
+
+```

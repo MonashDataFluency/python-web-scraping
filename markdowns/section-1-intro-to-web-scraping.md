@@ -1,4 +1,3 @@
-
 ## What is web scraping?
 
 Web scraping is a technique for extracting information from websites. This can be done manually but it is usually faster, more efficient and less error-prone to automate the task.
@@ -45,6 +44,17 @@ Look at a basic html file in `intro_html_example.html`.
 
 ![png](wrangling-and-analysis_files/intro_html_structure.png)
 
+#### What is HTML?
+HTML - HyperText Markup Language
+
+HTML is the standard markup language for the webpages which make up the internet. HTML contains a series of elements which make up a webpage which can connect with other webpages altogether forming a website. The HTML elements are represented in tags which tell the web browser how to display the web content.
+
+Every HTML element corresponds to a display content on the web browser. The following image shows the HTML code and the webpage generated.
+
+![image.png](attachment:image.png)
+
+This image has been taken from https://www.w3schools.com/html/
+
 #### What is XML?
 - XML stands for eXtensible Markup Language
 - XML is a markup language much like HTML
@@ -59,4 +69,9 @@ Look at a basic html file in `intro_html_example.html`.
   <from>Jani</from>
   <body>Don't forget me this weekend!</body>
 </note>
+```
+
+
+```python
+
 ```
