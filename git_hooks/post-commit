@@ -1,3 +1,5 @@
 #!/bin/sh
+dir=`pwd`
+echo $dir
 jupyter nbconvert --output-dir='../docs/' --to markdown ../notebooks/*.ipynb
 mkdocs build
