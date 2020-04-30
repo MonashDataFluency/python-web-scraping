@@ -1,5 +1,7 @@
 # A (very) brief Python refresher
 
+In this section we will take a quick tour of Python basics and some of the concepts that will be used for the rest of our web scraping workshop.
+
 ### Strings
 
 A string can be defined by enclosing it in a single quote(') or a double quote(")
@@ -9,11 +11,11 @@ A string can be defined by enclosing it in a single quote(') or a double quote("
 my_str = "This is a string"
 ```
 
-The characters of a string can be accessed by indices and the indices go from 0 to n-1
+The characters of a string can be accessed by indices and the indices go from `0` to `n-1`
 
 
 ```python
-my_str[0]
+my_str[0] # [i] where i is the index of element we want access
 ```
 
 
@@ -23,7 +25,7 @@ my_str[0]
 
 
 
-Slice notation "[a:b:c]" means "count in increments of c starting at a inclusive, up to b exclusive".
+Slice notation `[a:b:c]` means "count in increments of c starting at a inclusive, up to b exclusive".
 
 
 ```python
@@ -76,7 +78,7 @@ my_str.strip()
 ```
 
      hello 
-    
+
 
 
 
@@ -85,13 +87,14 @@ my_str.strip()
 
 
 
-#### Lists
+### Lists
+
+Lists are one of the most useful data structure in Python. They are comparable to *arrays* from other programming languages such as Java and JavaScript.
 
 
 ```python
 # List can be of a mixed type
 my_list = ['item1', 'item2', 100, 3.14]
-
 ```
 
 
@@ -164,7 +167,7 @@ for num in num_list:
     7
     8
     9
-    
+
 
 #### List comprehension
 
@@ -212,7 +215,7 @@ for country, capital in pairs:
     The country is France and the capital is Paris
     The country is USA and the capital is Washington DC
     The country is Italy and the capital is Rome
-    
+
 
 
 ```python
@@ -246,7 +249,7 @@ for lang in languages:
 
     ['Spanish', 'English', 'French', 'German']
     ['Python', 'Java', 'Javascript', 'C++']
-    
+
 
 As we see above, in each iteration, we get one list at a time. 
 
@@ -270,7 +273,7 @@ for lang_list in languages:
     Java
     Javascript
     C++
-    
+
 
 There are various ways to manipulate the functioning of a loop. 
 
@@ -298,7 +301,7 @@ print("End of loops")
     Javascript
     C++
     End of loops
-    
+
 
 
 ```python
@@ -319,7 +322,7 @@ print("End of loops")
     --------------
     Python
     End of loops
-    
+
 
 
 ```python
@@ -340,7 +343,7 @@ for i in range(10):
     5 squared is equal to 25
     7 squared is equal to 49
     9 squared is equal to 81
-    
+
 
 #### Sets
 
@@ -356,7 +359,7 @@ print(my_set)
 ```
 
     {1, 2, 3}
-    
+
 
 
 ```python
@@ -365,7 +368,7 @@ print(set(my_list))
 ```
 
     {1, 2, 3, 4}
-    
+
 
 
 ```python
@@ -375,7 +378,7 @@ print(my_set)
 ```
 
     {1.0, 'Hello', (1, 2, 3)}
-    
+
 
 
 ```python
@@ -385,7 +388,7 @@ print(my_set)
 ```
 
     {1, 2, 3, 4}
-    
+
 
 
 ```python
@@ -398,7 +401,7 @@ print(type(my_set))
 
     <class 'dict'>
     <class 'set'>
-    
+
 
 Elements can be added individualy or as a list.
 
@@ -412,7 +415,7 @@ my_set
 ```
 
     {1, 2, 3, 4}
-    
+
 
 
 
@@ -563,7 +566,7 @@ hello()
 ```
 
     Hello World
-    
+
 
 Parameters vs arguments: 
 Parameters are a and b. Arguments are 2 and 5.
@@ -617,7 +620,7 @@ print(plus(a=1))
 ```
 
     3
-    
+
 
 
 ```python
@@ -626,7 +629,7 @@ print(plus(a=1, b=3))
 ```
 
     4
-    
+
 
 #### Anonymous functions: lambda
 
@@ -672,7 +675,7 @@ main()
 
     Hello World
     This is a main function
-    
+
 
 The following code needs a script mode to show the use. 
 
@@ -690,7 +693,7 @@ if __name__ == '__main__':
 
     Hello World
     This is a main function
-    
+
 
 #### Global vs local variables
 
@@ -715,14 +718,14 @@ print("this is the sum " + str(total))
 ```
 
     this is the initialized value 1
-    
+
 
 
     ---------------------------------------------------------------------------
 
     NameError                                 Traceback (most recent call last)
 
-    <ipython-input-57-136638963fdb> in <module>()
+    <ipython-input-67-136638963fdb> in <module>
          14 
          15 # (Try to) access the local variable
     ---> 16 print("this is the sum " + str(total))
@@ -731,7 +734,7 @@ print("this is the sum " + str(total))
     NameError: name 'total' is not defined
 
 
-#### json
+### JSON
 
 JSON: JavaScript Object Notation.
 
@@ -759,7 +762,7 @@ print(y["age"])
 ```
 
     30
-    
+
 
 
 ```python
@@ -791,12 +794,8 @@ y = json.dumps(x)
 print(y)
 ```
 
-    {
-        "name": "John",
-        "age": 30,
-        "city": "New York"
-    }
-    
+    {"name": "John", "age": 30, "city": "New York"}
+
 
 
 ```python
@@ -811,18 +810,22 @@ print(y)
         "age": 30,
         "city": "New York"
     }
-    
+
 
 ### Dataframes
 
-One of the most powerful data structures in Python is the Pandas `dataframe`. It allows tabular data, including `csv` (comma seperated values) and `tsv` (tab seperated values), to be processed and manipulated. People familiar with Excel will no doubt find it intuitive and easy to grasp. Since most `csv` (or `tsv`) has become the de facto standard for sharing datasets both large and small, Pandas dataframe is the way to go.
+One of the most powerful data structures in Python is the Pandas `DataFrame`. It allows tabular data, including `csv` (comma seperated values) and `tsv` (tab seperated values), to be processed and manipulated. People familiar with Excel will no doubt find it intuitive and easy to grasp. Since most `csv` (or `tsv`) has become the de facto standard for sharing datasets both large and small, Pandas dataframe is the way to go.
 
 For Pandas documentation : https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html
 
 
 ```python
 import pandas as pd # importing the package and using `pd` as the alias 
+print('Pandas version : {}'.format(pd.__version__))
 ```
+
+    Pandas version : 1.0.1
+
 
 Suppose we wanted to create a dataframe as follows,
 
@@ -843,50 +846,17 @@ Converting the same to a dataframe,
 
 ```python
 df = pd.DataFrame(data)
-df
+print(df.to_markdown()) # converting to markdown for ease of display
 ```
 
+|    | name   | title     |
+|---:|:-------|:----------|
+|  0 | sam    | physicist |
+|  1 | rob    | economist |
 
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>name</th>
-      <th>title</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>sam</td>
-      <td>physicist</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>rob</td>
-      <td>economist</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+We can also take a quick glance at its contents by using :
+- `df.head()` : To display the first 5 rows
+- `df.tail()` : To display the last 5 rows
 
 In order to read external files we use `read_csv()` function,
 ```python
@@ -900,9 +870,11 @@ df.to_csv(index=False)
 
 ### Regex
 
-Regular expressions or regex are a powerful tool to extract key pieces of data from raw text. 
+Regular expressions or regex are a powerful tool to extract key pieces of data from raw text.
 
-Try your regex here : https://pythex.org/
+You can try your regex expressions in : 
+- https://pythex.org/ for a python oriented regex editor
+- https://regexr.com/ for a more visual explanation behind the expressions (good for getting started)
 
 
 ```python
@@ -926,10 +898,7 @@ html = r'''
         </body>
         </html> 
         '''
-```
 
-
-```python
 print(html)
 ```
 
@@ -953,7 +922,7 @@ print(html)
             </body>
             </html> 
             
-    
+
 
 Now, if we are only interested in : 
 - names i.e. the data inside the `<h1></h1>` tags, and
@@ -964,7 +933,7 @@ First lets import the regex module in python called `re`
 
 
 ```python
-import re
+import re # regex package in python is named 're'
 ```
 
 Now lets define the expressions (or patterns) to capture all text between the tags as follows :
@@ -991,9 +960,9 @@ print(names, titles)
 ```
 
     ['Sam', 'Rob'] ['Physicist', 'Economist']
-    
 
 
-```python
-
-```
+### From a web scraping perspective :
+- `JSON` and `XML` are the most widely used formats to carry data all over the internet.
+- To work with `CSV`s (or `TSV`s), Pandas DataFrames are the de facto standard.
+- Regexes help us extract key pieces of information (sub-strings) from raw, messy and unstructured text (strings).

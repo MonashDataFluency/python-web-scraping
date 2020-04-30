@@ -1,6 +1,7 @@
 ## Web API based scraping
 
 ### A brief introduction to APIs
+---
 
 In this section, we will take a look at an alternative way to gather data than the previous pattern based, HTML scraping. Sometimes websites offer an API (or Application Programming Interface) as a service which provides a high level interface to directly retrieve data from their repositories or databases at the backend. 
 
@@ -35,12 +36,13 @@ Here we focus on the latter approach and will use a Python library (a wrapper) c
 One advantage of using official APIs is that they are usually compliant of the terms of service (ToS) of a particular service that researchers are looking to gather data from. However, third-party libraries or packages which claim to provide more throughput than the official APIs (rate limits, number of requests/sec) generally operate in a gray area as they tend to violate ToS.
 
 ### Wikipedia API
+---
 
 Let's say we want to gather some additional data about the Fortune 500 companies and since wikipedia is a rich source for data we decide to use the MediaWiki API to scrape this data. One very good place to start would be to look at the **infoboxes** (as wikipedia defines them) of articles corresponsing to each company on the list. They essentially contain a wealth of metadata about a particular entity the article belongs to which in our case is a company. 
 
 For e.g. consider the wikipedia article for **walmart** (https://en.wikipedia.org/wiki/Walmart) which includes the following infobox :
 
-![An infobox](infobox.png)
+![An infobox](../images/infobox.png)
 
 As we can see from above, the infoboxes could provide us with a lot of valuable information such as :
 - Year of founding 
@@ -88,7 +90,7 @@ print(wptools.__version__)           # checking the installed version
 ```
 
     0.4.17
-    
+
 
 Now let's load the data which we scrapped in the previous section as follows,
 
@@ -200,7 +202,7 @@ for i, j in enumerate(companies):   # looping through the list of 20 company
     18. General Electric
     19. Walgreens Boots Alliance
     20. JPMorgan Chase
-    
+
 
 ### Getting article names from wiki
 
@@ -301,7 +303,7 @@ for idx, company in enumerate(wiki_search):
     JPMorgan Chase, Chase Bank, 2012 JPMorgan Chase trading loss, JPMorgan Chase Tower (Houston), 2014 JPMorgan Chase data breach, JPMorgan Chase Building (San Francisco), JPMorgan Corporate Challenge, Chase Tower (Dallas), 270 Park Avenue, Chase Paymentech
     
     
-    
+
 
 
 ```python
@@ -376,7 +378,7 @@ print(companies)
 ```
 
     ['Walmart', 'ExxonMobil', 'Berkshire Hathaway', 'Apple Inc.', 'UnitedHealth Group', 'McKesson Corporation', 'CVS Health', 'Amazon (company)', 'AT&T', 'General Motors', 'Ford Motor Company', 'AmerisourceBergen', 'Chevron Corporation', 'Cardinal Health', 'Costco', 'Verizon Communications', 'Kroger', 'General Electric', 'Walgreens Boots Alliance', 'JPMorgan Chase']
-    
+
 
 > Note : Wiki data dump link (last updated 2015) : https://old.datahub.io/dataset/wikidata
 
@@ -433,7 +435,7 @@ page.get_wikidata()
       wikidata_url: https://www.wikidata.org/wiki/Q483551
       wikitext: <str(274081)> {{about|the retail chain|other uses}}{{p...
     }
-    
+
 
 
 
@@ -943,7 +945,7 @@ for company in companies:
       wikidata_url: https://www.wikidata.org/wiki/Q192314
       wikitext: <str(112397)> {{About|JPMorgan Chase & Co|its main sub...
     }
-    
+
 
 
 ```python

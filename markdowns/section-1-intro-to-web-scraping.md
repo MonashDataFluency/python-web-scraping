@@ -1,4 +1,7 @@
-## What is web scraping?
+## Introduction to Web Scraping
+
+### What is web scraping?
+---
 
 Web scraping is a technique for extracting information from websites. This can be done manually but it is usually faster, more efficient and less error-prone to automate the task.
 
@@ -11,9 +14,13 @@ It is closely related to the practice of web indexing, which is what search engi
 For example, online stores will often scour the publicly available pages of their competitors, scrape item prices, and then use this information to adjust their own prices. Another common practice is “contact scraping” in which personal information like email addresses or phone numbers is collected for marketing purposes.
 
 ### Why do we need it as a skill?
-Web scraping is increasingly being used by scholars to create data sets for text mining projects; these might be collections of journal articles or digitised texts. The practice of data journalism, in particular, relies on the ability of investigative journalists to harvest data that is not always presented or published in a form that allows analysis.
+---
+
+
+Web scraping is increasingly being used by academics and researchers to create data sets for text mining projects; these might be collections of journal articles or digitised texts. The practice of data journalism, in particular, relies on the ability of investigative journalists to harvest data that is not always presented or published in a form that allows analysis.
 
 ### When do we need scraping?
+---
 
 As useful as scraping is, there might be better options for the task. Choose the right (i.e. the easiest) tool for the job.
 
@@ -21,8 +28,8 @@ As useful as scraping is, there might be better options for the task. Choose the
 - Check if the site or service already provides an API to extract structured data. If it does, that will be a much more efficient and effective pathway. Good examples are the Facebook API, the Twitter APIs or the YouTube comments API.
 - For much larger needs, Freedom of information requests can be useful. Be specific about the formats required for the data you want.
 
-
 ### Structured vs unstructured data
+---
 
 When presented with information, human beings are good at quickly categorizing it and extracting the data that they are interested in. For example, when we look at a magazine rack, provided the titles are written in a script that we are able to read, we can rapidly figure out the titles of the magazines, the stories they contain, the language they are written in, etc. and we can probably also easily organize them by topic, recognize those that are aimed at children, or even whether they lean toward a particular end of the political spectrum. Computers have a much harder time making sense of such unstructured data unless we specifically tell them what elements data is made of, for example by adding labels such as this is the title of this magazine or this is a magazine about food. Data in which individual elements are separated and labelled is said to be structured.
 
@@ -40,28 +47,42 @@ Web scraping typically targets one web site at a time to extract unstructured in
 
 In this lesson, we will continue exploring the examples above and try different techniques to extract the information they contain. But before we launch into web scraping proper, we need to look a bit closer at how information is organized within an HTML document and how to build queries to access a specific subset of that information.
 
-Look at a basic html file in `intro_html_example.html`.
-
-![png](wrangling-and-analysis_files/intro_html_structure.png)
-
 #### What is HTML?
-HTML - HyperText Markup Language
+- HTML stands for **HyperText Markup Language**
+- It is the standard markup language for the webpages which make up the internet. 
+- HTML contains a series of elements which make up a webpage which can connect with other webpages altogether forming a website. 
+- The HTML elements are represented in tags which tell the web browser how to display the web content.
 
-HTML is the standard markup language for the webpages which make up the internet. HTML contains a series of elements which make up a webpage which can connect with other webpages altogether forming a website. The HTML elements are represented in tags which tell the web browser how to display the web content.
+A sample raw HTML file below :
 
-Every HTML element corresponds to a display content on the web browser. The following image shows the HTML code and the webpage generated.
+```html
+<!DOCTYPE html>
+<html>
 
-![image.png](attachment:image.png)
+<head>
+<title>Page Title</title>
+</head>
 
-This image has been taken from https://www.w3schools.com/html/
+<body>
+
+<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+
+</body>
+
+</html>
+```
+
+Every HTML element corresponds to a display content on the web browser. The following image shows the HTML code and the webpage generated (please refer to `intro_html_example.html).
+![intro_html_example](../images/html.png)
 
 #### What is XML?
-- XML stands for eXtensible Markup Language
+- XML stands for **eXtensible Markup Language**
 - XML is a markup language much like HTML
 - XML was designed to store and transport data
 - XML was designed to be self-descriptive
 
-```html
+```xml
 <note>
   <date>2015-09-01</date>
   <hour>08:30</hour>
@@ -72,6 +93,16 @@ This image has been taken from https://www.w3schools.com/html/
 ```
 
 
+
+### DOM (Document Object Model)
+
+#### DOM inspector : `F12` to the rescue!
+
+
 ```python
 
 ```
+
+### References
+
+- This image has been taken from https://www.w3schools.com/html/
