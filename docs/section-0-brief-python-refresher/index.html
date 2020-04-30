@@ -271,15 +271,15 @@
     Strings
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lists" class="md-nav__link">
     Lists
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#list-comprehension" class="md-nav__link">
@@ -344,15 +344,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#json" class="md-nav__link">
-    json
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    JSON
+  </a>
   
 </li>
       
@@ -366,6 +366,13 @@
         <li class="md-nav__item">
   <a href="#regex" class="md-nav__link">
     Regex
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-a-web-scraping-perspective" class="md-nav__link">
+    From a web scraping perspective :
   </a>
   
 </li>
@@ -502,15 +509,15 @@
     Strings
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lists" class="md-nav__link">
     Lists
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#list-comprehension" class="md-nav__link">
@@ -575,15 +582,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#json" class="md-nav__link">
-    json
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    JSON
+  </a>
   
 </li>
       
@@ -597,6 +604,13 @@
         <li class="md-nav__item">
   <a href="#regex" class="md-nav__link">
     Regex
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-a-web-scraping-perspective" class="md-nav__link">
+    From a web scraping perspective :
   </a>
   
 </li>
@@ -619,14 +633,15 @@
                 
                 
                 <h1 id="a-very-brief-python-refresher">A (very) brief Python refresher<a class="headerlink" href="#a-very-brief-python-refresher" title="Permanent link">&para;</a></h1>
+<p>In this section we will take a quick tour of Python basics and some of the concepts that will be used for the rest of our web scraping workshop.</p>
 <h3 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h3>
 <p>A string can be defined by enclosing it in a single quote(') or a double quote(")</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">my_str</span> <span class="o">=</span> <span class="s2">&quot;This is a string&quot;</span>
 </code></pre></div>
 </td></tr></table>
 
-<p>The characters of a string can be accessed by indices and the indices go from 0 to n-1</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">my_str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<p>The characters of a string can be accessed by indices and the indices go from <code>0</code> to <code>n-1</code></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">my_str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># [i] where i is the index of element we want access</span>
 </code></pre></div>
 </td></tr></table>
 
@@ -634,7 +649,7 @@
 </code></pre></div>
 </td></tr></table>
 
-<p>Slice notation "[a:b:c]" means "count in increments of c starting at a inclusive, up to b exclusive".</p>
+<p>Slice notation <code>[a:b:c]</code> means "count in increments of c starting at a inclusive, up to b exclusive".</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">my_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
 </code></pre></div>
 </td></tr></table>
@@ -688,7 +703,8 @@
 </code></pre></div>
 </td></tr></table>
 
-<h4 id="lists">Lists<a class="headerlink" href="#lists" title="Permanent link">&para;</a></h4>
+<h3 id="lists">Lists<a class="headerlink" href="#lists" title="Permanent link">&para;</a></h3>
+<p>Lists are one of the most useful data structure in Python. They are comparable to <em>arrays</em> from other programming languages such as Java and JavaScript.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># List can be of a mixed type</span>
 <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;item1&#39;</span><span class="p">,</span> <span class="s1">&#39;item2&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">]</span>
@@ -1410,7 +1426,7 @@ This is a main function
 
 NameError                                 Traceback (most recent call last)
 
-&lt;ipython-input-57-136638963fdb&gt; in &lt;module&gt;()
+&lt;ipython-input-67-136638963fdb&gt; in &lt;module&gt;
      14 
      15 # (Try to) access the local variable
 ---&gt; 16 print(&quot;this is the sum &quot; + str(total))
@@ -1420,7 +1436,7 @@ NameError: name &#39;total&#39; is not defined
 </code></pre></div>
 </td></tr></table>
 
-<h4 id="json">json<a class="headerlink" href="#json" title="Permanent link">&para;</a></h4>
+<h3 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h3>
 <p>JSON: JavaScript Object Notation.</p>
 <p>When exchanging data between a browser and a server, the data can only be text.</p>
 <p>Python has a built-in package called json, which can be used to work with JSON data.</p>
@@ -1492,15 +1508,7 @@ NameError: name &#39;total&#39; is not defined
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>{
-    &quot;name&quot;: &quot;John&quot;,
-    &quot;age&quot;: 30,
-    &quot;city&quot;: &quot;New York&quot;
-}
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>{&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30, &quot;city&quot;: &quot;New York&quot;}
 </code></pre></div>
 </td></tr></table>
 
@@ -1525,9 +1533,15 @@ NameError: name &#39;total&#39; is not defined
 </td></tr></table>
 
 <h3 id="dataframes">Dataframes<a class="headerlink" href="#dataframes" title="Permanent link">&para;</a></h3>
-<p>One of the most powerful data structures in Python is the Pandas <code>dataframe</code>. It allows tabular data, including <code>csv</code> (comma seperated values) and <code>tsv</code> (tab seperated values), to be processed and manipulated. People familiar with Excel will no doubt find it intuitive and easy to grasp. Since most <code>csv</code> (or <code>tsv</code>) has become the de facto standard for sharing datasets both large and small, Pandas dataframe is the way to go.</p>
+<p>One of the most powerful data structures in Python is the Pandas <code>DataFrame</code>. It allows tabular data, including <code>csv</code> (comma seperated values) and <code>tsv</code> (tab seperated values), to be processed and manipulated. People familiar with Excel will no doubt find it intuitive and easy to grasp. Since most <code>csv</code> (or <code>tsv</code>) has become the de facto standard for sharing datasets both large and small, Pandas dataframe is the way to go.</p>
 <p>For Pandas documentation : https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># importing the package and using `pd` as the alias </span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># importing the package and using `pd` as the alias </span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pandas version : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>Pandas version : 1.0.1
 </code></pre></div>
 </td></tr></table>
 
@@ -1558,47 +1572,34 @@ NameError: name &#39;total&#39; is not defined
 <p>Converting the same to a dataframe,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">df</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">())</span> <span class="c1"># converting to markdown for ease of display</span>
 </code></pre></div>
 </td></tr></table>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>name</th>
-      <th>title</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>sam</td>
-      <td>physicist</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>rob</td>
-      <td>economist</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">name</th>
+<th align="left">title</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">sam</td>
+<td align="left">physicist</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">rob</td>
+<td align="left">economist</td>
+</tr>
+</tbody>
 </table>
-</div>
-
+<p>We can also take a quick glance at its contents by using :
+- <code>df.head()</code> : To display the first 5 rows
+- <code>df.tail()</code> : To display the last 5 rows</p>
 <p>In order to read external files we use <code>read_csv()</code> function,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 </code></pre></div>
@@ -1610,8 +1611,10 @@ NameError: name &#39;total&#39; is not defined
 </td></tr></table>
 
 <h3 id="regex">Regex<a class="headerlink" href="#regex" title="Permanent link">&para;</a></h3>
-<p>Regular expressions or regex are a powerful tool to extract key pieces of data from raw text. </p>
-<p>Try your regex here : https://pythex.org/</p>
+<p>Regular expressions or regex are a powerful tool to extract key pieces of data from raw text.</p>
+<p>You can try your regex expressions in : 
+- https://pythex.org/ for a python oriented regex editor
+- https://regexr.com/ for a more visual explanation behind the expressions (good for getting started)</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1631,7 +1634,9 @@ NameError: name &#39;total&#39; is not defined
 17
 18
 19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">html</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;&#39;&#39;</span>
+20
+21
+22</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">html</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">         &lt;!DOCTYPE html&gt;</span>
 <span class="s1">        &lt;html&gt;</span>
 <span class="s1">        &lt;head&gt;</span>
@@ -1651,10 +1656,8 @@ NameError: name &#39;total&#39; is not defined
 <span class="s1">        &lt;/body&gt;</span>
 <span class="s1">        &lt;/html&gt; </span>
 <span class="s1">        &#39;&#39;&#39;</span>
-</code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
 
@@ -1701,7 +1704,7 @@ NameError: name &#39;total&#39; is not defined
 - title i.e. the data inside the <code>&lt;h2&gt;&lt;/h2&gt;</code> tags
 we can extract the same using regex.</p>
 <p>First lets import the regex module in python called <code>re</code></p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span> <span class="c1"># regex package in python is named &#39;re&#39;</span>
 </code></pre></div>
 </td></tr></table>
 
@@ -1731,9 +1734,12 @@ we can extract the same using regex.</p>
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>
-</code></pre></div>
-</td></tr></table>
+<h3 id="from-a-web-scraping-perspective">From a web scraping perspective :<a class="headerlink" href="#from-a-web-scraping-perspective" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>JSON</code> and <code>XML</code> are the most widely used formats to carry data all over the internet.</li>
+<li>To work with <code>CSV</code>s (or <code>TSV</code>s), Pandas DataFrames are the de facto standard.</li>
+<li>Regexes help us extract key pieces of information (sub-strings) from raw, messy and unstructured text (strings).</li>
+</ul>
                 
                   
                 

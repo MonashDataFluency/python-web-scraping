@@ -516,6 +516,7 @@
                 
                 <h2 id="web-api-based-scraping">Web API based scraping<a class="headerlink" href="#web-api-based-scraping" title="Permanent link">&para;</a></h2>
 <h3 id="a-brief-introduction-to-apis">A brief introduction to APIs<a class="headerlink" href="#a-brief-introduction-to-apis" title="Permanent link">&para;</a></h3>
+<hr />
 <p>In this section, we will take a look at an alternative way to gather data than the previous pattern based, HTML scraping. Sometimes websites offer an API (or Application Programming Interface) as a service which provides a high level interface to directly retrieve data from their repositories or databases at the backend. </p>
 <p>From wikipedia,</p>
 <blockquote>
@@ -539,9 +540,10 @@
 <p>Here we focus on the latter approach and will use a Python library (a wrapper) called <code>wptools</code> based around the MediaWiki API.</p>
 <p>One advantage of using official APIs is that they are usually compliant of the terms of service (ToS) of a particular service that researchers are looking to gather data from. However, third-party libraries or packages which claim to provide more throughput than the official APIs (rate limits, number of requests/sec) generally operate in a gray area as they tend to violate ToS.</p>
 <h3 id="wikipedia-api">Wikipedia API<a class="headerlink" href="#wikipedia-api" title="Permanent link">&para;</a></h3>
+<hr />
 <p>Let's say we want to gather some additional data about the Fortune 500 companies and since wikipedia is a rich source for data we decide to use the MediaWiki API to scrape this data. One very good place to start would be to look at the <strong>infoboxes</strong> (as wikipedia defines them) of articles corresponsing to each company on the list. They essentially contain a wealth of metadata about a particular entity the article belongs to which in our case is a company. </p>
 <p>For e.g. consider the wikipedia article for <strong>walmart</strong> (https://en.wikipedia.org/wiki/Walmart) which includes the following infobox :</p>
-<p><img alt="An infobox" src="infobox.png" /></p>
+<p><img alt="An infobox" src="../images/infobox.png" /></p>
 <p>As we can see from above, the infoboxes could provide us with a lot of valuable information such as :
 - Year of founding 
 - Industry
