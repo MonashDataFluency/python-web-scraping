@@ -292,6 +292,11 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#loops" class="md-nav__link">
     Loops
@@ -314,11 +319,19 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#challenge-dictionaries" class="md-nav__link">
+    Challenge - Dictionaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#functions" class="md-nav__link">
     Functions
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#keyword-arguments-with-default-values" class="md-nav__link">
@@ -517,6 +530,11 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#loops" class="md-nav__link">
     Loops
@@ -539,11 +557,19 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#challenge-dictionaries" class="md-nav__link">
+    Challenge - Dictionaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#functions" class="md-nav__link">
     Functions
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#keyword-arguments-with-default-values" class="md-nav__link">
@@ -634,6 +660,7 @@
 <hr />
 <p>In this section we will take a quick tour of Python basics and some of the concepts that will be used for the rest of our web scraping workshop.</p>
 <h3 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h3>
+<hr />
 <p>A string can be defined by enclosing it in a single quote(') or a double quote(")</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">my_str</span> <span class="o">=</span> <span class="s2">&quot;This is a string&quot;</span>
 </code></pre></div>
@@ -648,7 +675,7 @@
 </code></pre></div>
 </td></tr></table>
 
-<p>Slice notation <code>[a:b:c]</code> means "count in increments of <code>c2</code> starting at <code>a</code> inclusive, up to <code>b</code> exclusive".</p>
+<p>Slice notation <code>[a:b:c]</code> means "count in increments of <code>c</code> starting at <code>a</code> inclusive, up to <code>b</code> exclusive".</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">my_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
 </code></pre></div>
 </td></tr></table>
@@ -703,6 +730,7 @@
 </td></tr></table>
 
 <h3 id="lists">Lists<a class="headerlink" href="#lists" title="Permanent link">&para;</a></h3>
+<hr />
 <p>Lists are one of the most useful data structure in Python. They are comparable to <em>arrays</em> from other programming languages such as Java and JavaScript.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># List can be of a mixed type</span>
@@ -783,6 +811,7 @@
 </td></tr></table>
 
 <h4 id="list-comprehension">List comprehension<a class="headerlink" href="#list-comprehension" title="Permanent link">&para;</a></h4>
+<hr />
 <p>new_list = [expression(item) for item in old_list]</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">num_squares</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span> <span class="o">*</span> <span class="n">num</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">num_list</span><span class="p">]</span>
@@ -848,7 +877,8 @@ The country is Italy and the capital is Rome
 </code></pre></div>
 </td></tr></table>
 
-<h4 id="loops">Loops<a class="headerlink" href="#loops" title="Permanent link">&para;</a></h4>
+<h3 id="loops">Loops<a class="headerlink" href="#loops" title="Permanent link">&para;</a></h3>
+<hr />
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># Loops can be run over list of lists as well</span>
 <span class="n">languages</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Spanish&#39;</span><span class="p">,</span> <span class="s1">&#39;English&#39;</span><span class="p">,</span>  <span class="s1">&#39;French&#39;</span><span class="p">,</span> <span class="s1">&#39;German&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;Java&#39;</span><span class="p">,</span> <span class="s1">&#39;Javascript&#39;</span><span class="p">,</span> <span class="s1">&#39;C++&#39;</span><span class="p">]]</span>
@@ -1012,7 +1042,8 @@ End of loops
 </code></pre></div>
 </td></tr></table>
 
-<h4 id="sets">Sets<a class="headerlink" href="#sets" title="Permanent link">&para;</a></h4>
+<h3 id="sets">Sets<a class="headerlink" href="#sets" title="Permanent link">&para;</a></h3>
+<hr />
 <p>Sets is an unordered collections of unique elements. Common uses include membership testing, removing duplicates from a sequence, and computing standard math operations on sets such as intersection, union, difference, and symmetric difference.</p>
 <p>A set can be created using the <code>{}</code> brackets. </p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -1134,7 +1165,8 @@ End of loops
 </code></pre></div>
 </td></tr></table>
 
-<h4 id="dictionary">Dictionary<a class="headerlink" href="#dictionary" title="Permanent link">&para;</a></h4>
+<h3 id="dictionary">Dictionary<a class="headerlink" href="#dictionary" title="Permanent link">&para;</a></h3>
+<hr />
 <p>Dictionaries are a container that store key-value pairs. They are unordered.</p>
 <p>Other programming languages might call this a 'hash', 'hashtable' or 'hashmap'.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -1199,11 +1231,12 @@ End of loops
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>
-</code></pre></div>
-</td></tr></table>
-
-<h4 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h4>
+<h3 id="challenge-dictionaries">Challenge - Dictionaries<a class="headerlink" href="#challenge-dictionaries" title="Permanent link">&para;</a></h3>
+<p>dict = {1:'a', 2:'b', 3:'c', 4:'d', 5:'e'}</p>
+<p>Filter all the elements where the key is more than 3.</p>
+<hr />
+<h3 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h3>
+<hr />
 <p>A function is a block of organized, reusable code that is used to perform a single, related action. Functions provide better modularity for your application and a high degree of code reusing.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -1257,6 +1290,7 @@ Parameters are <code>a</code> and <code>b</code>. Arguments are <code>2</code> a
 </td></tr></table>
 
 <h4 id="keyword-arguments-with-default-values">Keyword arguments with default values<a class="headerlink" href="#keyword-arguments-with-default-values" title="Permanent link">&para;</a></h4>
+<hr />
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># Here the value of parameter `b` is 2 by default if the value is not passed. </span>
@@ -1286,6 +1320,7 @@ Parameters are <code>a</code> and <code>b</code>. Arguments are <code>2</code> a
 </td></tr></table>
 
 <h4 id="anonymous-functions-lambda">Anonymous functions: lambda<a class="headerlink" href="#anonymous-functions-lambda" title="Permanent link">&para;</a></h4>
+<hr />
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -1311,6 +1346,7 @@ Parameters are <code>a</code> and <code>b</code>. Arguments are <code>2</code> a
 </td></tr></table>
 
 <h4 id="use-of-main">Use of main()<a class="headerlink" href="#use-of-main" title="Permanent link">&para;</a></h4>
+<hr />
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1369,6 +1405,7 @@ This is a main function
 </td></tr></table>
 
 <h4 id="global-vs-local-variables">Global vs local variables<a class="headerlink" href="#global-vs-local-variables" title="Permanent link">&para;</a></h4>
+<hr />
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1435,7 +1472,9 @@ NameError: name &#39;total&#39; is not defined
 </code></pre></div>
 </td></tr></table>
 
+<p>The above program throws error because the variable <code>total</code> was defined in the function and its scope is only within the function and not outside of it</p>
 <h3 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h3>
+<hr />
 <p>JSON: JavaScript Object Notation.</p>
 <p>When exchanging data between a browser and a server, the data can only be text.</p>
 <p>Python has a built-in package called json, which can be used to work with JSON data.</p>
@@ -1532,6 +1571,7 @@ NameError: name &#39;total&#39; is not defined
 </td></tr></table>
 
 <h3 id="dataframes">Dataframes<a class="headerlink" href="#dataframes" title="Permanent link">&para;</a></h3>
+<hr />
 <p>One of the most powerful data structures in Python is the Pandas <code>DataFrame</code>. It allows tabular data, including <code>csv</code> (comma seperated values) and <code>tsv</code> (tab seperated values), to be processed and manipulated. People familiar with Excel will no doubt find it intuitive and easy to grasp. Since most <code>csv</code> (or <code>tsv</code>) has become the de facto standard for sharing datasets both large and small, Pandas dataframe is the way to go.</p>
 <p>For Pandas documentation : https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -1610,6 +1650,7 @@ NameError: name &#39;total&#39; is not defined
 </td></tr></table>
 
 <h3 id="regex">Regex<a class="headerlink" href="#regex" title="Permanent link">&para;</a></h3>
+<hr />
 <p>Regular expressions or regex are a powerful tool to extract key pieces of data from raw text.</p>
 <p>You can try your regex expressions in : 
 - https://pythex.org/ for a python oriented regex editor

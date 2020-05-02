@@ -4,6 +4,7 @@
 In this section we will take a quick tour of Python basics and some of the concepts that will be used for the rest of our web scraping workshop.
 
 ### Strings
+---
 
 A string can be defined by enclosing it in a single quote(') or a double quote(")
 
@@ -26,7 +27,7 @@ my_str[0] # [i] where i is the index of element we want access
 
 
 
-Slice notation `[a:b:c]` means "count in increments of `c2` starting at `a` inclusive, up to `b` exclusive".
+Slice notation `[a:b:c]` means "count in increments of `c` starting at `a` inclusive, up to `b` exclusive".
 
 
 ```python
@@ -89,6 +90,7 @@ my_str.strip()
 
 
 ### Lists
+---
 
 Lists are one of the most useful data structure in Python. They are comparable to *arrays* from other programming languages such as Java and JavaScript.
 
@@ -171,6 +173,7 @@ for num in num_list:
     
 
 #### List comprehension
+---
 
 new_list = [expression(item) for item in old_list]
 
@@ -234,7 +237,8 @@ my_list
 
 
 
-#### Loops
+### Loops
+---
 
 
 ```python
@@ -346,7 +350,8 @@ for i in range(10):
     9 squared is equal to 81
     
 
-#### Sets
+### Sets
+---
 
 Sets is an unordered collections of unique elements. Common uses include membership testing, removing duplicates from a sequence, and computing standard math operations on sets such as intersection, union, difference, and symmetric difference.
 
@@ -455,7 +460,8 @@ A&B # A.intersection(B)
 
 
 
-#### Dictionary
+### Dictionary
+---
 
 Dictionaries are a container that store key-value pairs. They are unordered.
 
@@ -543,12 +549,16 @@ dict1_cond
 
 
 
+### Challenge - Dictionaries
 
-```python
+dict = {1:'a', 2:'b', 3:'c', 4:'d', 5:'e'}
 
-```
+Filter all the elements where the key is more than 3.
 
-#### Functions
+---
+
+### Functions
+---
 
 A function is a block of organized, reusable code that is used to perform a single, related action. Functions provide better modularity for your application and a high degree of code reusing.
 
@@ -605,6 +615,7 @@ run()
 ```
 
 #### Keyword arguments with default values
+---
 
 
 ```python
@@ -633,6 +644,7 @@ print(plus(a=1, b=3))
     
 
 #### Anonymous functions: lambda
+---
 
 
 ```python
@@ -657,6 +669,7 @@ sum(4,5)
 
 
 #### Use of main()
+---
 
 
 ```python
@@ -697,6 +710,7 @@ if __name__ == '__main__':
     
 
 #### Global vs local variables
+---
 
 
 ```python
@@ -735,7 +749,10 @@ print("this is the sum " + str(total))
     NameError: name 'total' is not defined
 
 
+The above program throws error because the variable `total` was defined in the function and its scope is only within the function and not outside of it
+
 ### JSON
+---
 
 JSON: JavaScript Object Notation.
 
@@ -814,6 +831,7 @@ print(y)
     
 
 ### Dataframes
+---
 
 One of the most powerful data structures in Python is the Pandas `DataFrame`. It allows tabular data, including `csv` (comma seperated values) and `tsv` (tab seperated values), to be processed and manipulated. People familiar with Excel will no doubt find it intuitive and easy to grasp. Since most `csv` (or `tsv`) has become the de facto standard for sharing datasets both large and small, Pandas dataframe is the way to go.
 
@@ -870,6 +888,7 @@ df.to_csv(index=False)
 ```
 
 ### Regex
+---
 
 Regular expressions or regex are a powerful tool to extract key pieces of data from raw text.
 
