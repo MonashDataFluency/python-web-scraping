@@ -49,7 +49,7 @@ Note: run `jupyter nbconvert --output-dir='markdowns/' --to markdown notebooks/*
 ## Section 2 
 - [x] Shorten/Format the big html chunk
 - [x] Prettify the output of html
-- [ ] Put more details on get/put requests (possibly visually)
+- [x] Put more details on get/put requests (possibly visually)
 
 ## Section 3
 - [x] Add more explanations
