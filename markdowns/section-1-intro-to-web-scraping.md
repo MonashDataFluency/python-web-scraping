@@ -30,10 +30,10 @@ As useful as scraping is, there might be better options for the task. Choose the
 - Check if the site or service already provides an API to extract structured data. If it does, that will be a much more efficient and effective pathway. Good examples are the Facebook API, the Twitter APIs or the YouTube comments API.
 - For much larger needs, Freedom of information requests can be useful. Be specific about the formats required for the data you want.
 
-> #### Q. If you had to gather data from a website that provides updated data every 4 hours of an ongoing pandemic would you :
+#### Q. If you had to gather data from a website that provides updated data every 4 hours of an ongoing pandemic would you :
 - [ ] Scrape the site directly
 - [ ] Ask for permission and then scrape the site
-- [ ] 
+- [ ] Use an official API (if any) 
 
 ### Structured vs unstructured data
 ---

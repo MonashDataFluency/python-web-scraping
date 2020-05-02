@@ -475,6 +475,7 @@
                   <h1>Wrangling and Analysis</h1>
                 
                 <h2 id="wrangling-and-analysis">Wrangling and Analysis<a class="headerlink" href="#wrangling-and-analysis" title="Permanent link">&para;</a></h2>
+<hr />
 <p>For this excercise, we will primarily focus on product     industry    assets</p>
 <h3 id="what-type-of-products-are-sold-by-the-top-20-companies">What type of products are sold by the top 20 companies?<a class="headerlink" href="#what-type-of-products-are-sold-by-the-top-20-companies" title="Permanent link">&para;</a></h3>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">companies</span>
@@ -534,9 +535,9 @@
  9
 10
 11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">regex1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[\{\[]+(.*?)[\]\}]&#39;</span><span class="p">)</span>
-<span class="n">regex2</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[^a-zA-Z\- ]&#39;</span><span class="p">)</span>
-<span class="n">products</span> <span class="o">=</span> <span class="p">[]</span>
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">regex1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[\{\[]+(.*?)[\]\}]&#39;</span><span class="p">)</span> <span class="c1"># describe the expr</span>
+<span class="n">regex2</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[^a-zA-Z\- ]&#39;</span><span class="p">)</span> <span class="c1"># describe the expr</span>
+<span class="n">products</span> <span class="o">=</span> <span class="p">[]</span> 
 <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">wiki_data</span><span class="p">:</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;products&#39;</span><span class="p">]</span> <span class="c1"># get products</span>
@@ -1003,10 +1004,6 @@
 </td></tr></table>
 
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;./data/top_20_companies.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
-
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>
 </code></pre></div>
 </td></tr></table>
                 

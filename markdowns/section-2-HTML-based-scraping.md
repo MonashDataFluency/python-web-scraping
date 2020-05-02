@@ -1,4 +1,7 @@
-## URL request and response
+## HTML-based scraping
+---
+
+### URL request and response
 
 A URL is Uniform Resource Locator. It acts as a web address to different webpages. Every URL on the internet work on a request-response basis. The browser requests the server for a webpage and the response by the server would be the content of the webpage. This web content is then displayed on the browser.
 
@@ -6,7 +9,7 @@ URL Request - Requesting a web server for content to be viewed by the user. This
 
 URL Response - A response for the request irrespective of success or failure. For every request to the web server, a mandatory response is provided by the web server and most of the times this would be the respective content requested by the user.
 
-## Run a simple HTTP request and explain response headers, status codes
+### HTTP request, response, headers and status codes
 
 Instead of the browser requesting for the content of the webpage, Python can be used for the same. A HTTP request to the web server can be sent with the requests library and the response can be examined. Typically every request receives a response with response headers and status code details.
 
@@ -62,15 +65,53 @@ The response has a status code of 200. This is a successful response and hence t
 
 
 ```python
-response.content[:4000]
+response.content[:2000] # check the end index
 ```
 
+```html
+<!DOCTYPE html>\n
+<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# ">\n
 
+<head>\n
+    <meta charset="utf-8" />\n
+    <script>
+        dataLayer = [];
+        dataLayer.push({
+            "tag": "5914"
+        });
+    </script>\n
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            "drupalLanguage": "en",
+            "drupalCountry": "IN",
+            "siteName": "Zyxware Technologies",
+            "entityCreated": "1562300185",
+            "entityLangcode": "en",
+            "entityStatus": "1",
+            "entityUid": "1",
+            "entityUuid": "6fdfb477-ce5d-4081-9010-3afd9260cdf7",
+            "entityVid": "15541",
+            "entityName": "webmaster",
+            "entityType": "node",
+            "entityBundle": "story",
+            "entityId": "5914",
+            "entityTitle": "List of Fortune 500 companies and their websites (2018)",
+            "entityTaxonomy": {
+                "vocabulary_2": "Business Insight, Fortune 500, Drupal Insight, Marketing Resources"
+            },
+            "userUid": 0
+        });
+    </script>\n
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1488254-2"></script>\n
+    <script>
+        window.google_analytics_uacct = "UA-1488254-2";
+        window.dataLayer = window.dataLayer || [];
 
-
-    b'<!DOCTYPE html>\n<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# ">\n  <head>\n    <meta charset="utf-8" />\n<script>dataLayer = [];dataLayer.push({"tag": "5914"});</script>\n<script>window.dataLayer = window.dataLayer || []; window.dataLayer.push({"drupalLanguage":"en","drupalCountry":"IN","siteName":"Zyxware Technologies","entityCreated":"1562300185","entityLangcode":"en","entityStatus":"1","entityUid":"1","entityUuid":"6fdfb477-ce5d-4081-9010-3afd9260cdf7","entityVid":"15541","entityName":"webmaster","entityType":"node","entityBundle":"story","entityId":"5914","entityTitle":"List of Fortune 500 companies and their websites (2018)","entityTaxonomy":{"vocabulary_2":"Business Insight, Fortune 500, Drupal Insight, Marketing Resources"},"userUid":0});</script>\n<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1488254-2"></script>\n<script>window.google_analytics_uacct = "UA-1488254-2";window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());window[\'GoogleAnalyticsObject\'] = \'ga\';\r\n  window[\'ga\'] = window[\'ga\'] || function() {\r\n    (window[\'ga\'].q = window[\'ga\'].q || []).push(arguments)\r\n  };\r\nga("set", "dimension2", window.analytics_manager_node_age);\r\nga("set", "dimension3", window.analytics_manager_node_author);gtag("config", "UA-1488254-2", {"groups":"default","anonymize_ip":true,"page_path":location.pathname + location.search + location.hash,"link_attribution":true,"allow_ad_personalization_signals":false});</script>\n<meta name="title" content="List of Fortune 500 companies and their websites (2018) | Zyxware Technologies" />\n<link rel="canonical" href="https://www.zyxware.com/articles/5914/list-of-fortune-500-companies-and-their-websites-2018" />\n<meta name="description" content="Fortune magazine publishes a list of the largest companies in the US by revenue every year. Here is the list of fortune 500 companies for the year 2018 and their websites. Check out the current list of fortune 500 companies and their websites." />\n<meta name="Generator" content="Drupal 8 (https://www.drupal.org)" />\n<meta name="MobileOptimized" content="width" />\n<meta name="HandheldFriendly" content="true" />\n<meta name="viewport" content="width=device-width, initial-scale=1.0" />\n<style>div#sliding-popup, div#sliding-popup .eu-cookie-withdraw-banner, .eu-cookie-withdraw-tab {background: #733ec0} div#sliding-popup.eu-cookie-withdraw-wrapper { background: transparent; } #sliding-popup h1, #sliding-popup h2, #sliding-popup h3, #sliding-popup p, #sliding-popup label, #sliding-popup div, .eu-cookie-compliance-more-button, .eu-cookie-compliance-secondary-button, .eu-cookie-withdraw-tab { color: #ffffff;} .eu-cookie-withdraw-tab { border-color: #ffffff;}</style>\n<script src="https://www.google.com/recaptcha/api.js?hl=en" async defer></script>\n<link rel="shortcut icon" href="/themes/custom/zyxpro_light/favicon.ico" type="image/vnd.microsoft.icon" />\n<link rel="revision" href="https://www.zyxware.com/articles/5914/list-of-fortune-500-companies-and-their-websites-2018" />\n<script src="/sites/default/files/google_tag/google_tag.script.js?q72ub5"></script>\n<script>window.a2a_config=window.a2a_config||{};a2a_config.callbacks=[];a2a_config.overlays=[];a2a_config.templates={};</script>\n\n    <title>List of Fortune 500 companies and their websites (2018) | Zyxware Technologies</title>\n    <link rel="stylesheet" media="all" href="/sites/default/files/css/css_20KuxgA9EGPA1Yt5CdQmKTq6xZJpEUDALYwFLBKAYns.css?q72ub5" />\n<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" />\n<link rel="stylesheet" media="al'
-
-
+        function gtag() {
+            dataLayer.push(arguments)
+        };
+```
 
 ## GET and POST calls to retrieve response objects - using urllib2, requests, JSON etc
 
@@ -110,9 +151,9 @@ print('Content of the website\n', response.content[:4000])
     
     Content of the website
      b'<!DOCTYPE html>\n<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# ">\n  <head>\n    <meta charset="utf-8" />\n<script>dataLayer = [];dataLayer.push({"tag": "5914"});</script>\n<script>window.dataLayer = window.dataLayer || []; window.dataLayer.push({"drupalLanguage":"en","drupalCountry":"IN","siteName":"Zyxware Technologies","entityCreated":"1562300185","entityLangcode":"en","entityStatus":"1","entityUid":"1","entityUuid":"6fdfb477-ce5d-4081-9010-3afd9260cdf7","entityVid":"15541","entityName":"webmaster","entityType":"node","entityBundle":"story","entityId":"5914","entityTitle":"List of Fortune 500 companies and their websites (2018)","entityTaxonomy":{"vocabulary_2":"Business Insight, Fortune 500, Drupal Insight, Marketing Resources"},"userUid":0});</script>\n<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1488254-2"></script>\n<script>window.google_analytics_uacct = "UA-1488254-2";window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());window[\'GoogleAnalyticsObject\'] = \'ga\';\r\n  window[\'ga\'] = window[\'ga\'] || function() {\r\n    (window[\'ga\'].q = window[\'ga\'].q || []).push(arguments)\r\n  };\r\nga("set", "dimension2", window.analytics_manager_node_age);\r\nga("set", "dimension3", window.analytics_manager_node_author);gtag("config", "UA-1488254-2", {"groups":"default","anonymize_ip":true,"page_path":location.pathname + location.search + location.hash,"link_attribution":true,"allow_ad_personalization_signals":false});</script>\n<meta name="title" content="List of Fortune 500 companies and their websites (2018) | Zyxware Technologies" />\n<link rel="canonical" href="https://www.zyxware.com/articles/5914/list-of-fortune-500-companies-and-their-websites-2018" />\n<meta name="description" content="Fortune magazine publishes a list of the largest companies in the US by revenue every year. Here is the list of fortune 500 companies for the year 2018 and their websites. Check out the current list of fortune 500 companies and their websites." />\n<meta name="Generator" content="Drupal 8 (https://www.drupal.org)" />\n<meta name="MobileOptimized" content="width" />\n<meta name="HandheldFriendly" content="true" />\n<meta name="viewport" content="width=device-width, initial-scale=1.0" />\n<style>div#sliding-popup, div#sliding-popup .eu-cookie-withdraw-banner, .eu-cookie-withdraw-tab {background: #733ec0} div#sliding-popup.eu-cookie-withdraw-wrapper { background: transparent; } #sliding-popup h1, #sliding-popup h2, #sliding-popup h3, #sliding-popup p, #sliding-popup label, #sliding-popup div, .eu-cookie-compliance-more-button, .eu-cookie-compliance-secondary-button, .eu-cookie-withdraw-tab { color: #ffffff;} .eu-cookie-withdraw-tab { border-color: #ffffff;}</style>\n<script src="https://www.google.com/recaptcha/api.js?hl=en" async defer></script>\n<link rel="shortcut icon" href="/themes/custom/zyxpro_light/favicon.ico" type="image/vnd.microsoft.icon" />\n<link rel="revision" href="https://www.zyxware.com/articles/5914/list-of-fortune-500-companies-and-their-websites-2018" />\n<script src="/sites/default/files/google_tag/google_tag.script.js?q72ub5"></script>\n<script>window.a2a_config=window.a2a_config||{};a2a_config.callbacks=[];a2a_config.overlays=[];a2a_config.templates={};</script>\n\n    <title>List of Fortune 500 companies and their websites (2018) | Zyxware Technologies</title>\n    <link rel="stylesheet" media="all" href="/sites/default/files/css/css_20KuxgA9EGPA1Yt5CdQmKTq6xZJpEUDALYwFLBKAYns.css?q72ub5" />\n<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" />\n<link rel="stylesheet" media="al'
-    
 
-## Using bs4 (and lxml) to parse the structure and access different elements within a HTML or XML
+
+### Using bs4 (and lxml) to parse the structure and access different elements within a HTML or XML
 
 bs4 is a Python library which parses through HTML content and understands the complete structure of the content. The response content can be passed to a BeautifulSoup method to obtain a soup object which looks very structured.
 
@@ -212,7 +253,7 @@ print(all_values[2])
     <td>Exxon Mobil</td>
     <td><a href="http://www.exxonmobil.com">http://www.exxonmobil.com</a></td>
     </tr>
-    
+
 
 The first element of the list contains the column names 'Rank, Company and Website'. The next elements of the list contain soup objects which contain the company data including the rank. This data can be extracted in a loop since the structure for all the list elements is the same.
 
@@ -309,9 +350,4 @@ The dataframe can now be stored as a csv file. Pandas has a 'to_csv' method whic
 
 ```python
 fortune_500_df.to_csv('./fortune_500_companies.csv', index=False)
-```
-
-
-```python
-
 ```

@@ -301,6 +301,19 @@
     When do we need scraping?
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-if-you-had-to-gather-data-from-a-website-that-provides-updated-data-every-4-hours-of-an-ongoing-pandemic-would-you" class="md-nav__link">
+    Q. If you had to gather data from a website that provides updated data every 4 hours of an ongoing pandemic would you :
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -331,16 +344,16 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dom-document-object-model" class="md-nav__link">
-    DOM (Document Object Model)
+  <a href="#html-dom-or-document-object-model" class="md-nav__link">
+    HTML DOM (or Document Object Model)
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dom-inspector-f12-to-the-rescue" class="md-nav__link">
-    DOM inspector : F12 to the rescue!
+  <a href="#dom-inspector-and-f12-to-the-rescue" class="md-nav__link">
+    DOM inspector and F12 to the rescue!
   </a>
   
 </li>
@@ -502,6 +515,19 @@
     When do we need scraping?
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-if-you-had-to-gather-data-from-a-website-that-provides-updated-data-every-4-hours-of-an-ongoing-pandemic-would-you" class="md-nav__link">
+    Q. If you had to gather data from a website that provides updated data every 4 hours of an ongoing pandemic would you :
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -532,16 +558,16 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dom-document-object-model" class="md-nav__link">
-    DOM (Document Object Model)
+  <a href="#html-dom-or-document-object-model" class="md-nav__link">
+    HTML DOM (or Document Object Model)
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dom-inspector-f12-to-the-rescue" class="md-nav__link">
-    DOM inspector : F12 to the rescue!
+  <a href="#dom-inspector-and-f12-to-the-rescue" class="md-nav__link">
+    DOM inspector and F12 to the rescue!
   </a>
   
 </li>
@@ -583,9 +609,10 @@
                   <h1>Introduction to Web Scraping</h1>
                 
                 <h2 id="introduction-to-web-scraping">Introduction to Web Scraping<a class="headerlink" href="#introduction-to-web-scraping" title="Permanent link">&para;</a></h2>
+<p><img src="http://www.price2spy.com/blog/wp-content/uploads/2019/07/web_scraping.jpg"/></p>
 <h3 id="what-is-web-scraping">What is web scraping?<a class="headerlink" href="#what-is-web-scraping" title="Permanent link">&para;</a></h3>
 <hr />
-<p>Web scraping is a technique for extracting information from websites. This can be done manually but it is usually faster, more efficient and less error-prone to automate the task.</p>
+<p>Web scraping is a technique for extracting information from websites. This can be done <em>manually</em> but it is usually faster, more efficient and less error-prone to automate the task.</p>
 <p>Web scraping allows you to acquire non-tabular or poorly structured data from websites and convert it into a usable, structured format, such as a .csv file or spreadsheet.</p>
 <p>Scraping is about more than just acquiring data: it can also help you archive data and track changes to data online.</p>
 <p>It is closely related to the practice of web indexing, which is what search engines like Google do when mass-analysing the Web to build their indices. But contrary to web indexing, which typically parses the entire content of a web page to make it searchable, web scraping targets specific information on the pages visited.</p>
@@ -601,9 +628,16 @@
 <li>Check if the site or service already provides an API to extract structured data. If it does, that will be a much more efficient and effective pathway. Good examples are the Facebook API, the Twitter APIs or the YouTube comments API.</li>
 <li>For much larger needs, Freedom of information requests can be useful. Be specific about the formats required for the data you want.</li>
 </ul>
+<h4 id="q-if-you-had-to-gather-data-from-a-website-that-provides-updated-data-every-4-hours-of-an-ongoing-pandemic-would-you">Q. If you had to gather data from a website that provides updated data every 4 hours of an ongoing pandemic would you :<a class="headerlink" href="#q-if-you-had-to-gather-data-from-a-website-that-provides-updated-data-every-4-hours-of-an-ongoing-pandemic-would-you" title="Permanent link">&para;</a></h4>
+<ul>
+<li>[ ] Scrape the site directly</li>
+<li>[ ] Ask for permission and then scrape the site</li>
+<li>[ ] Use an official API (if any) </li>
+</ul>
 <h3 id="structured-vs-unstructured-data">Structured vs unstructured data<a class="headerlink" href="#structured-vs-unstructured-data" title="Permanent link">&para;</a></h3>
 <hr />
-<p>When presented with information, human beings are good at quickly categorizing it and extracting the data that they are interested in. For example, when we look at a magazine rack, provided the titles are written in a script that we are able to read, we can rapidly figure out the titles of the magazines, the stories they contain, the language they are written in, etc. and we can probably also easily organize them by topic, recognize those that are aimed at children, or even whether they lean toward a particular end of the political spectrum. Computers have a much harder time making sense of such unstructured data unless we specifically tell them what elements data is made of, for example by adding labels such as this is the title of this magazine or this is a magazine about food. Data in which individual elements are separated and labelled is said to be structured.</p>
+<p>When presented with information, human beings are good at quickly categorizing it and extracting the data that they are interested in. For example, when we look at a magazine rack, provided the titles are written in a script that we are able to read, we can rapidly figure out the titles of the magazines, the stories they contain, the language they are written in, etc. and we can probably also easily organize them by topic, recognize those that are aimed at children, or even whether they lean toward a particular end of the political spectrum. </p>
+<p>Computers have a much harder time making sense of such unstructured data unless we specifically tell them what elements data is made of, for example by adding labels such as this is the title of this magazine or this is a magazine about food. Data in which individual elements are separated and labelled is said to be structured.</p>
 <p>Refer to the file <code>fortune_500_basic_example.html</code>.</p>
 <p>We see that this data has been structured for displaying purposes (it is arranged in rows inside a table) but the different elements of information are not clearly labelled.</p>
 <p>What if we wanted to download this dataset and, for example, compare the revenues of these companies against each other or the industry that they work in? We could try copy-pasting the entire table into a spreadsheet or even manually copy-pasting the names and websites in another document, but this can quickly become impractical when faced with a large set of data. What if we wanted to collect this information for all the companies that are there?</p>
@@ -639,13 +673,13 @@
 <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Page Title<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>My Title<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>My First Heading<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>My first paragraph.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>A Heading<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Link text<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 
@@ -653,7 +687,7 @@
 </code></pre></div>
 </td></tr></table>
 
-<p>Every HTML element corresponds to a display content on the web browser. The following image shows the HTML code and the webpage generated (please refer to `intro_html_example.html).
+<p>A webpage is simply a document. Every HTML element within this document corresponds to display specific content on the web browser. The following image shows the HTML code and the webpage generated (please refer to <code>intro_html_example.html</code>).
 <img alt="intro_html_example" src="../images/html.png" /></p>
 <h4 id="what-is-xml">What is XML?<a class="headerlink" href="#what-is-xml" title="Permanent link">&para;</a></h4>
 <ul>
@@ -678,15 +712,41 @@
 </code></pre></div>
 </td></tr></table>
 
-<h3 id="dom-document-object-model">DOM (Document Object Model)<a class="headerlink" href="#dom-document-object-model" title="Permanent link">&para;</a></h3>
-<h4 id="dom-inspector-f12-to-the-rescue">DOM inspector : <code>F12</code> to the rescue!<a class="headerlink" href="#dom-inspector-f12-to-the-rescue" title="Permanent link">&para;</a></h4>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>
-</code></pre></div>
-</td></tr></table>
-
+<h3 id="html-dom-or-document-object-model">HTML DOM (or Document Object Model)<a class="headerlink" href="#html-dom-or-document-object-model" title="Permanent link">&para;</a></h3>
+<hr />
+<blockquote>
+<p>"<em>The W3C Document Object Model (DOM) is a platform and language-neutral interface that allows programs and scripts to dynamically access and update the content, structure, and style of a document.</em>" -- W3C</p>
+</blockquote>
+<p>Everytime a web page is loaded in the browser, it creates a <strong>D</strong>ocument <strong>O</strong>bject <strong>M</strong>odel of the page. It essentially treats the HTML (or XML) document as a tree structure and the different HTML elements are represented as nodes and objects.</p>
+<p>More broadly, it is a programming interface for HTML and XML documents and can be considered as the object-oriented representation of a web page which can be modified with a scripting language like JavaScript. </p>
+<p>It also provides us with a rich visual representation of how the different elements interact and inform us about their relative position within the tree. This helps us find and target crucial <strong>tags</strong>, <strong>id</strong> or <strong>classes</strong> within the document and extract the same. To sumarize, DOM is a standard which allows us to :
+- <strong>get</strong>
+- <strong>change</strong>
+- <strong>add</strong>, or 
+- <strong>delete</strong>  </p>
+<p>HTML elements. Here we will be primarily interested in accessing and getting the data as opposed to manipulation of the document itself.</p>
+<p>Let's look at the DOM for the HTML from our previous example below
+<img alt="intro_html_example" src="../images/dom1.png" /></p>
+<p>The next question then is : How do we access the source code or DOM of <strong>any</strong> web page on the internet?</p>
+<h4 id="dom-inspector-and-f12-to-the-rescue">DOM inspector and <code>F12</code> to the rescue!<a class="headerlink" href="#dom-inspector-and-f12-to-the-rescue" title="Permanent link">&para;</a></h4>
+<p>To inspect individual elements within a web page, we can simply use the DOM inspector (or its variants) that comes with every browser.</p>
+<ul>
+<li>Easiest way to access the source code of any web page is through the console by clicking <strong>F12</strong></li>
+<li>Alternatively, we can right-click on a specific element in the webpage and select <strong>inspect</strong> or <strong>inspect element</strong> from the dropdown. This is especially useful in cases where we want to target a specific piece of data present within some HTML element.</li>
+<li>It helps highlight different attributes, properties and styles within the HTML</li>
+<li>It is known as <strong>DOM inspector</strong> and <strong>Developers Tools</strong> in Firefox and Chrome respectively.</li>
+</ul>
+<blockquote>
+<p>Note : Some webpages prohibit right-click and in those cases we might have to resort to inspecting the source code via F12.</p>
+</blockquote>
+<p>A Google Chrome window along with the developer console accessed though <strong>F12</strong> (found under <strong>Developers Tool</strong>) below
+<img alt="intro_html_example" src="../images/f12.png" /></p>
 <h3 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h3>
 <ul>
-<li>This image has been taken from https://www.w3schools.com/html/</li>
+<li>https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction</li>
+<li>https://www.w3schools.com/html/</li>
+<li>https://www.w3schools.com/js/js_htmldom.asp</li>
+<li>https://www.price2spy.com/blog/case-study-web-scraping-data-extraction-for-ecommerce/</li>
 </ul>
                 
                   

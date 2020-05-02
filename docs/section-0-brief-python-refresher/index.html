@@ -245,8 +245,6 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
-      
-    
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         A (brief) Python refresher
@@ -260,20 +258,26 @@
 <nav class="md-nav md-nav--secondary">
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#a-very-brief-python-refresher" class="md-nav__link">
+    A (very) brief Python refresher
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#strings" class="md-nav__link">
     Strings
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#lists" class="md-nav__link">
     Lists
   </a>
@@ -348,32 +352,37 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#json" class="md-nav__link">
     JSON
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#dataframes" class="md-nav__link">
     Dataframes
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#regex" class="md-nav__link">
     Regex
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#from-a-web-scraping-perspective" class="md-nav__link">
-    From a web scraping perspective :
+    From a web scraping perspective
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -498,20 +507,26 @@
 <nav class="md-nav md-nav--secondary">
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#a-very-brief-python-refresher" class="md-nav__link">
+    A (very) brief Python refresher
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#strings" class="md-nav__link">
     Strings
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#lists" class="md-nav__link">
     Lists
   </a>
@@ -586,32 +601,37 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#json" class="md-nav__link">
     JSON
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#dataframes" class="md-nav__link">
     Dataframes
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#regex" class="md-nav__link">
     Regex
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#from-a-web-scraping-perspective" class="md-nav__link">
-    From a web scraping perspective :
+    From a web scraping perspective
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -632,7 +652,10 @@
               
                 
                 
-                <h1 id="a-very-brief-python-refresher">A (very) brief Python refresher<a class="headerlink" href="#a-very-brief-python-refresher" title="Permanent link">&para;</a></h1>
+                  <h1>A (brief) Python refresher</h1>
+                
+                <h2 id="a-very-brief-python-refresher">A (very) brief Python refresher<a class="headerlink" href="#a-very-brief-python-refresher" title="Permanent link">&para;</a></h2>
+<hr />
 <p>In this section we will take a quick tour of Python basics and some of the concepts that will be used for the rest of our web scraping workshop.</p>
 <h3 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h3>
 <p>A string can be defined by enclosing it in a single quote(') or a double quote(")</p>
@@ -649,7 +672,7 @@
 </code></pre></div>
 </td></tr></table>
 
-<p>Slice notation <code>[a:b:c]</code> means "count in increments of c starting at a inclusive, up to b exclusive".</p>
+<p>Slice notation <code>[a:b:c]</code> means "count in increments of <code>c2</code> starting at <code>a</code> inclusive, up to <code>b</code> exclusive".</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">my_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
 </code></pre></div>
 </td></tr></table>
@@ -1015,7 +1038,7 @@ End of loops
 
 <h4 id="sets">Sets<a class="headerlink" href="#sets" title="Permanent link">&para;</a></h4>
 <p>Sets is an unordered collections of unique elements. Common uses include membership testing, removing duplicates from a sequence, and computing standard math operations on sets such as intersection, union, difference, and symmetric difference.</p>
-<p>A set can be created using the '{}' brackets. </p>
+<p>A set can be created using the <code>{}</code> brackets. </p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">my_set</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">my_set</span><span class="p">)</span>
@@ -1227,7 +1250,7 @@ End of loops
 </td></tr></table>
 
 <p>Parameters vs arguments: 
-Parameters are a and b. Arguments are 2 and 5.</p>
+Parameters are <code>a</code> and <code>b</code>. Arguments are <code>2</code> and <code>5</code>.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">plus</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
@@ -1734,7 +1757,7 @@ we can extract the same using regex.</p>
 </code></pre></div>
 </td></tr></table>
 
-<h3 id="from-a-web-scraping-perspective">From a web scraping perspective :<a class="headerlink" href="#from-a-web-scraping-perspective" title="Permanent link">&para;</a></h3>
+<h3 id="from-a-web-scraping-perspective">From a web scraping perspective<a class="headerlink" href="#from-a-web-scraping-perspective" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>JSON</code> and <code>XML</code> are the most widely used formats to carry data all over the internet.</li>
 <li>To work with <code>CSV</code>s (or <code>TSV</code>s), Pandas DataFrames are the de facto standard.</li>

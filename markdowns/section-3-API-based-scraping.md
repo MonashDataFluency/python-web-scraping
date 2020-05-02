@@ -90,7 +90,7 @@ print(wptools.__version__)           # checking the installed version
 ```
 
     0.4.17
-    
+
 
 Now let's load the data which we scrapped in the previous section as follows,
 
@@ -202,7 +202,7 @@ for i, j in enumerate(companies):   # looping through the list of 20 company
     18. General Electric
     19. Walgreens Boots Alliance
     20. JPMorgan Chase
-    
+
 
 ### Getting article names from wiki
 
@@ -303,7 +303,7 @@ for idx, company in enumerate(wiki_search):
     JPMorgan Chase, Chase Bank, 2012 JPMorgan Chase trading loss, JPMorgan Chase Tower (Houston), 2014 JPMorgan Chase data breach, JPMorgan Chase Building (San Francisco), JPMorgan Corporate Challenge, Chase Tower (Dallas), 270 Park Avenue, Chase Paymentech
     
     
-    
+
 
 
 ```python
@@ -378,11 +378,13 @@ print(companies)
 ```
 
     ['Walmart', 'ExxonMobil', 'Berkshire Hathaway', 'Apple Inc.', 'UnitedHealth Group', 'McKesson Corporation', 'CVS Health', 'Amazon (company)', 'AT&T', 'General Motors', 'Ford Motor Company', 'AmerisourceBergen', 'Chevron Corporation', 'Cardinal Health', 'Costco', 'Verizon Communications', 'Kroger', 'General Electric', 'Walgreens Boots Alliance', 'JPMorgan Chase']
-    
+
 
 > Note : Wiki data dump link (last updated 2015) : https://old.datahub.io/dataset/wikidata
 
-## wptools
+### wptools
+
+
 
 - https://github.com/siznax/wptools/wiki/Data-captured
 
@@ -435,7 +437,7 @@ page.get_wikidata()
       wikidata_url: https://www.wikidata.org/wiki/Q483551
       wikitext: <str(274081)> {{about|the retail chain|other uses}}{{p...
     }
-    
+
 
 
 
@@ -945,7 +947,7 @@ for company in companies:
       wikidata_url: https://www.wikidata.org/wiki/Q192314
       wikitext: <str(112397)> {{About|JPMorgan Chase & Co|its main sub...
     }
-    
+
 
 
 ```python
@@ -1206,19 +1208,6 @@ with open('../data/infoboxes.json', 'w') as file:
     json.dump(wiki_data, file)
 ```
 
-Import :
-
-
-```python
-with open('../data/infoboxes.json', 'r') as file:
-    wiki_data = json.load(file)
-```
-
 ### References
 
 - https://phpenthusiast.com/blog/what-is-rest-api
-
-
-```python
-
-```
