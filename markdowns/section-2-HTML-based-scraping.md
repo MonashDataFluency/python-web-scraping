@@ -255,6 +255,10 @@ print(all_values[2])
     </tr>
 
 
+### Challenge
+
+ Explore the schema further, extract the column names which are located in the first row and print them
+
 The first element of the list contains the column names 'Rank, Company and Website'. The next elements of the list contain soup objects which contain the company data including the rank. This data can be extracted in a loop since the structure for all the list elements is the same.
 
 - An empty dataframe fortune_500_df is created with the column names 'rank', 'company_name' and 'company_website'
