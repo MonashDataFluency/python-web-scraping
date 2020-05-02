@@ -29,9 +29,9 @@ nav:
     - API based scraping: 'section-3-API-based-scraping.md'
     - Wrangling and Analysis: 'section-4-wrangling-and-analysis.md'
     - Legal and Ethical considerations: 'section-5-legal-and-ethical-considerations.md'
-    - Advanced topics: 'section-6-advanced-topics.md'
+#    - Advanced topics: 'section-6-advanced-topics.md'
     - References: 'section-7-references.md'
-    - Sample: 'sample.md'
+#    - Sample: 'sample.md'
     
 # Extensions
 markdown_extensions:

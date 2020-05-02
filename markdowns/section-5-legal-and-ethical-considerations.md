@@ -1,8 +1,4 @@
-# Legal and Ethical COnsiderations
-
-Now that we have seen several different ways to scrape data from websites and are ready to start working on potentially larger projects, we may ask ourselves whether there are any legal implications of writing a piece of computer code that downloads information from the Internet.
-
-In this section, we will be discussing some of the issues to be aware of when scraping websites, and we will establish a [code of conduct (below)](#web-scraping-code-of-conduct) to guide our web scraping projects.
+## Legal and Ethical Considerations
 
 > ### This section does not constitute legal advice
 > 
@@ -15,6 +11,10 @@ In this section, we will be discussing some of the issues to be aware of when sc
 > advice from a professional, preferably someone who has knowledge of the
 > intellectual property (copyright) legislation in effect in your country.
 >
+
+Now that we have seen several different ways to scrape data from websites and are ready to start working on potentially larger projects, we may ask ourselves whether there are any legal implications of writing a piece of computer code that downloads information from the Internet.
+
+In this section, we will be discussing some of the issues to be aware of when scraping websites, and we will establish a [code of conduct (below)](#web-scraping-code-of-conduct) to guide our web scraping projects.
 
 ### Don't break the web: Denial of Service attacks
 
