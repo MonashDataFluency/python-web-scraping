@@ -25,7 +25,7 @@ my_str[0] # [i] where i is the index of element we want access
 
 
 
-Slice notation `[a:b:c]` means "count in increments of c starting at a inclusive, up to b exclusive".
+Slice notation `[a:b:c]` means "count in increments of `c` starting at `a` inclusive, up to `b` exclusive".
 
 
 ```python
@@ -350,7 +350,7 @@ for i in range(10):
 Sets is an unordered collections of unique elements. Common uses include membership testing, removing duplicates from a sequence, and computing standard math operations on sets such as intersection, union, difference, and symmetric difference.
 
 
-A set can be created using the '{}' brackets. 
+A set can be created using the `{}` brackets. 
 
 
 ```python
@@ -569,7 +569,7 @@ hello()
 
 
 Parameters vs arguments: 
-Parameters are a and b. Arguments are 2 and 5.
+Parameters are `a` and `b`. Arguments are `2` and `5`.
 
 
 ```python
