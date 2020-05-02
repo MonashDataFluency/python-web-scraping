@@ -34,7 +34,7 @@ Note: run `jupyter nbconvert --output-dir='markdowns/' --to markdown notebooks/*
 ## Section 0
 - [x] Complete the DF and regex section (pythex website)
 - [x] Move the variable argument section to advanced topics
-- [ ] Add more text/explanations
+- [x] Add more text/explanations
 
 
 ## Section 1
