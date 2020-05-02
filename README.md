@@ -23,13 +23,14 @@ Note: run `jupyter nbconvert --output-dir='markdowns/' --to markdown notebooks/*
 ### TODO: 
 ## General:
 - [x] Rename the files
-- [ ] Add References
 - [x] Compile and build the website
 - [x] githook for auto compile and build
-- [ ] As many images (with brief explantions within) as possible : (LucidChart,  Google draw)
+- [x] As many images (with brief explantions within) as possible : (LucidChart,  Google draw)
 - [x] Add a Reference section
-- [ ] Archive the website 
-- [ ] Backup code/cell for requests
+- [x] Archive the website 
+- [ ] Fix the issue of broken image in site
+- [ ] Add challenges
+- [ ] Add References
 
 ## Section 0
 - [x] Complete the DF and regex section (pythex website)
@@ -39,12 +40,10 @@ Note: run `jupyter nbconvert --output-dir='markdowns/' --to markdown notebooks/*
 
 ## Section 1
 - [x] Add more about html in text and add an image
-- [ ] Give more description in the image
-- [ ] Fix the issue of broken image
+- [x] Give more description in the image
 - [x] Add json section -- added in section 0
-- [ ] DOM inspector
-- [ ] Talk a bit about RESTful WS
-- [ ] Long term: Add images/flowchart for better explanation 
+- [x] DOM inspector
+- [x] Long term: Add images/flowchart for better explanation 
  
 ## Section 2 
 - [x] Shorten/Format the big html chunk
@@ -52,13 +51,10 @@ Note: run `jupyter nbconvert --output-dir='markdowns/' --to markdown notebooks/*
 - [x] Put more details on get/put requests (possibly visually)
 
 ## Section 3
-- [x] Add more explanations
+- [ ] Add more explanations
 
 ## Section 4
-- [ ] itertools (show vanilla python way to do it)
-- [ ] explain regex in detail (breakdown)
-- [ ] matplotlib funcs
+- [ ] Add more explanations
 
 ## Section 5
 - [ ] Add MCQs - Scenario based legal/grey questions
- 
