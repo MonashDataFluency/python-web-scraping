@@ -252,8 +252,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../section-1-intro-to-web-scraping/" title="Introduction to Web Scraping" class="md-nav__link">
-      Introduction to Web Scraping
+    <a href="../section-1-intro-to-web-scraping/" title="Introduction to Web scraping" class="md-nav__link">
+      Introduction to Web scraping
     </a>
   </li>
 
@@ -329,6 +329,19 @@
     What the assets of the top 20 companies look like?
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    Challenge
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
       
@@ -403,6 +416,19 @@
     What the assets of the top 20 companies look like?
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    Challenge
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
       
@@ -434,11 +460,13 @@
  7
  8
  9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span> 
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span> 
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
 <span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span> 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
@@ -485,12 +513,15 @@
 </code></pre></div>
 </td></tr></table>
 
-<p>For this excercise, we will primarily focus on the following attributes :
- - <code>products</code> <br />
- - <code>industries</code> and   <br />
- - <code>assets</code>  </p>
+<p>For this excercise, we will primarily focus on the following attributes :</p>
+<ul>
+<li><code>products</code>   </li>
+<li><code>industries</code> and     </li>
+<li><code>assets</code>  </li>
+</ul>
 <p>and try to answer a few questions using the data.</p>
 <h3 id="what-type-of-products-are-sold-by-the-top-20-companies">What type of products are sold by the top 20 companies?<a class="headerlink" href="#what-type-of-products-are-sold-by-the-top-20-companies" title="Permanent link">&para;</a></h3>
+<hr />
 <p>Looking at a sample for <code>products</code>,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
@@ -516,10 +547,12 @@
 </code></pre></div>
 </td></tr></table>
 
-<p>We can observe that we need to :
-- Extract products from between <code>{{</code> and <code>}}</code> OR <code>[[</code> and <code>]]</code>
-- Split and seperate by the delimiter <code>|</code>
-- Only keep alphanumeric characters, <code>-</code> and preserve spaces</p>
+<p>We can observe that we need to :</p>
+<ul>
+<li>Extract products from between <code>{{</code> and <code>}}</code> OR <code>[[</code> and <code>]]</code></li>
+<li>Split and seperate by the delimiter <code>|</code></li>
+<li>Only keep alphanumeric characters, <code>-</code> and preserve spaces</li>
+</ul>
 <p>Let's define a few regular expressions to clean and extract the products from the dictionary.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">regex1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[\{\[]+(.*?)[\]\}]&#39;</span><span class="p">)</span>
 </code></pre></div>
@@ -543,7 +576,7 @@
 <ul>
 <li><code>[^a-zA-Z\- ]</code> : matches anything other than (signified by <code>^</code>) <code>a</code> to <code>z</code> OR <code>A</code> to <code>Z</code> OR <code>-</code> OR empty space. </li>
 </ul>
-<p>Patterns like these are useful for replacing or filtering everything else. Now lets clean and extract the data we need as follows,</p>
+<p>Patterns like these are useful for replacing or filtering everything else. For practicing regex, try these patterns or your own examples on https://regexr.com/. Now lets clean and extract the data we need as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -570,7 +603,7 @@
     <span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="n">regex2</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">m</span>  <span class="k">if</span> <span class="n">t</span> <span class="o">!=</span> <span class="s1">&#39;hlist&#39;</span><span class="p">]</span> <span class="c1"># remove &quot;hlist&quot; (a rogue token)</span>
     <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
                 <span class="s1">&#39;wiki_title&#39;</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;company_name&#39;</span><span class="p">],</span> 
-                <span class="s1">&#39;product&#39;</span> <span class="p">:</span> <span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+                <span class="s1">&#39;product&#39;</span> <span class="p">:</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
                 <span class="p">})</span>
     <span class="n">products</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 
@@ -630,6 +663,7 @@
 
 <p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_22_0.png" /></p>
 <h3 id="what-type-of-industries-do-the-top-20-company-belong-from">What type of industries do the top 20 company belong from?<a class="headerlink" href="#what-type-of-industries-do-the-top-20-company-belong-from" title="Permanent link">&para;</a></h3>
+<hr />
 <p>Similarly, looking at a sample for <code>industry</code>,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
@@ -679,8 +713,8 @@
     <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;industry&#39;</span><span class="p">]</span> <span class="c1"># get industries</span>
     <span class="n">z</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="c1"># extract industries</span>
     <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">z</span><span class="p">]</span> <span class="c1"># get a list</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">z</span><span class="p">))</span> <span class="c1"># flatten</span>
-    <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;industry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">z</span><span class="p">))</span> <span class="c1"># flatten list of lists</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;industry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
     <span class="n">industries</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">industries</span><span class="p">)</span>
@@ -698,6 +732,7 @@
 
 <p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_33_0.png" /></p>
 <h3 id="what-the-assets-of-the-top-20-companies-look-like">What the assets of the top 20 companies look like?<a class="headerlink" href="#what-the-assets-of-the-top-20-companies-look-like" title="Permanent link">&para;</a></h3>
+<hr />
 <p>Taking a look at a sample of <code>assets</code> below,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">wiki_data</span><span class="p">)):</span>
@@ -747,9 +782,11 @@
 </code></pre></div>
 </td></tr></table>
 
-<p>We would need to :
-- Extract both numbers and the unit i.e. <code>billion</code> or <code>trillion</code><br />
-- Keep only the monetary values (discard year)</p>
+<p>We would need to :  </p>
+<ul>
+<li>Extract both numbers and the unit i.e. <code>billion</code> or <code>trillion</code>  </li>
+<li>Keep only the monetary values (discard year)</li>
+</ul>
 <p>We can also observe that the asset value always appears first and then the year follows.</p>
 <p>Defining a simple regular expression for the same,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">regex1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;([\d\.]+)&#39;</span><span class="p">)</span>
@@ -781,7 +818,7 @@
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">wiki_data</span><span class="p">):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;assets&#39;</span><span class="p">]</span> <span class="c1"># get assets</span>
     <span class="n">z</span> <span class="o">=</span> <span class="n">regex1</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># extract assets</span>
-    <span class="n">unit</span> <span class="o">=</span> <span class="n">regex2</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># extract the magnitude</span>
+    <span class="n">unit</span> <span class="o">=</span> <span class="n">regex2</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># extract the unit</span>
     <span class="n">asset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="c1"># convert to the numeric</span>
     <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;assets&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">asset</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">unit</span>
     <span class="n">assets</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;company&#39;</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;company_name&#39;</span><span class="p">],</span> <span class="s1">&#39;value&#39;</span> <span class="p">:</span> <span class="n">asset</span><span class="p">,</span> <span class="s1">&#39;unit&#39;</span> <span class="p">:</span> <span class="n">unit</span><span class="p">})</span>
@@ -846,68 +883,142 @@
 <p>And create a new dataframe from the same,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df_assets</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">assets</span><span class="p">)</span>
-<span class="n">df_assets</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">df_assets</span>
 </code></pre></div>
 </td></tr></table>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>company</th>
-      <th>value</th>
-      <th>unit</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Walmart</td>
-      <td>219.295</td>
-      <td>billion</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>ExxonMobil</td>
-      <td>346.200</td>
-      <td>billion</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Berkshire Hathaway</td>
-      <td>707.800</td>
-      <td>billion</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Apple Inc.</td>
-      <td>338.516</td>
-      <td>billion</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>UnitedHealth Group</td>
-      <td>173.889</td>
-      <td>billion</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">company</th>
+<th align="right">value</th>
+<th align="left">unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">Walmart</td>
+<td align="right">219.295</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">ExxonMobil</td>
+<td align="right">346.2</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">Berkshire Hathaway</td>
+<td align="right">707.8</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="left">Apple Inc.</td>
+<td align="right">338.516</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="left">UnitedHealth Group</td>
+<td align="right">173.889</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td align="left">McKesson Corporation</td>
+<td align="right">60.381</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td align="left">CVS Health</td>
+<td align="right">196.456</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td align="left">Amazon (company)</td>
+<td align="right">162.648</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td align="left">AT&amp;T</td>
+<td align="right">531</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td align="left">General Motors</td>
+<td align="right">227.339</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td align="left">Ford Motor Company</td>
+<td align="right">256.54</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td align="left">AmerisourceBergen</td>
+<td align="right">37.66</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td align="left">Chevron Corporation</td>
+<td align="right">253.9</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td align="left">Cardinal Health</td>
+<td align="right">39.95</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td align="left">Costco</td>
+<td align="right">45.4</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td align="left">Verizon Communications</td>
+<td align="right">264.82</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td align="left">Kroger</td>
+<td align="right">38.11</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td align="left">General Electric</td>
+<td align="right">309.129</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td align="left">Walgreens Boots Alliance</td>
+<td align="right">67.59</td>
+<td align="left">billion</td>
+</tr>
+<tr>
+<td align="right">19</td>
+<td align="left">JPMorgan Chase</td>
+<td align="right">2687</td>
+<td align="left">billion</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p>Now finally let's create a bar plot showcasing the assets from all the companies,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -919,8 +1030,10 @@
  8
  9
 10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">ax</span> <span class="o">=</span> <span class="n">df_assets</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> 
-               <span class="n">title</span> <span class="o">=</span><span class="s2">&quot;Assets from the Top 20 Companies on Fortune 500&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span>
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">ax</span> <span class="o">=</span> <span class="n">df_assets</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> 
+               <span class="n">title</span> <span class="o">=</span><span class="s2">&quot;Assets from the Top 20 Companies on Fortune 500&quot;</span><span class="p">,</span>
+               <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span>
                <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> 
                <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
                <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span>
@@ -933,7 +1046,7 @@
 </code></pre></div>
 </td></tr></table>
 
-<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_49_0.png" /></p>
+<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_50_0.png" /></p>
 <p>Now let's create a new dataframe containing data related to <code>products</code>, <code>industry</code> and <code>assets</code> as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df_wiki</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -941,70 +1054,54 @@
 </code></pre></div>
 </td></tr></table>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>wiki_title</th>
-      <th>product</th>
-      <th>industry</th>
-      <th>assets</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Walmart</td>
-      <td>electronics|movies and music|home and furnitur...</td>
-      <td>retail</td>
-      <td>219.295 billion</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>ExxonMobil</td>
-      <td>crude oil|oil products|natural gas|petrochemic...</td>
-      <td>energy industry|energy|oil and gas industry|oi...</td>
-      <td>346.2 billion</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Berkshire Hathaway</td>
-      <td>investment|diversified investments|insurancety...</td>
-      <td>conglomerate (company)|conglomerate</td>
-      <td>707.8 billion</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Apple Inc.</td>
-      <td>macintosh|ipod|iphone|ipad|apple watch|apple t...</td>
-      <td>computer hardware|computer software|consumer e...</td>
-      <td>338.516 billion</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>UnitedHealth Group</td>
-      <td>uniprise|health care|service economics|service...</td>
-      <td>managed health care</td>
-      <td>173.889 billion</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">wiki_title</th>
+<th align="left">product</th>
+<th align="left">industry</th>
+<th align="left">assets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">Walmart</td>
+<td align="left">electronics, movies and music, home and furniture, home improvement, clothing, footwear, jewelry, toys, health and beauty, pet supplies, sporting goods and fitness, auto, photo finishing, craft supplies, party supplies, grocery</td>
+<td align="left">retail</td>
+<td align="left">219.295 billion</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">ExxonMobil</td>
+<td align="left">crude oil, oil products, natural gas, petrochemical, power generation</td>
+<td align="left">energy industry, energy, oil and gas industry, oil and gas</td>
+<td align="left">346.2 billion</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">Berkshire Hathaway</td>
+<td align="left">investment, diversified investments, insurancetypes, property  casualty insurance, public utility, utilities, restaurants, food processing, aerospace, toys, mass media, media, automotive industry, automotive, sports equipment, sporting goods, final good, consumer products, internet, real estate</td>
+<td align="left">conglomerate (company), conglomerate</td>
+<td align="left">707.8 billion</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="left">Apple Inc.</td>
+<td align="left">macintosh, ipod, iphone, ipad, apple watch, apple tv, homepod, macos, ios, ipados, watchos, tvos, ilife, iwork, final cut pro, logic pro, garageband, shazam application, shazam, siri</td>
+<td align="left">computer hardware, computer software, consumer electronics, cloud computing, digital distribution, fabless manufacturing, fabless silicon design, semiconductors, financial technology, artificial intelligence</td>
+<td align="left">338.516 billion</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="left">UnitedHealth Group</td>
+<td align="left">uniprise, health care, service economics, services, ingenix</td>
+<td align="left">managed health care</td>
+<td align="left">173.889 billion</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p>And finally let's combine the datasets from Section 2 and 3 as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -1014,242 +1111,230 @@
 </code></pre></div>
 </td></tr></table>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>rank</th>
-      <th>company_name</th>
-      <th>company_website</th>
-      <th>wiki_title</th>
-      <th>product</th>
-      <th>industry</th>
-      <th>assets</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>Walmart</td>
-      <td>http://www.stock.walmart.com</td>
-      <td>Walmart</td>
-      <td>electronics|movies and music|home and furnitur...</td>
-      <td>retail</td>
-      <td>219.295 billion</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>Exxon Mobil</td>
-      <td>http://www.exxonmobil.com</td>
-      <td>ExxonMobil</td>
-      <td>crude oil|oil products|natural gas|petrochemic...</td>
-      <td>energy industry|energy|oil and gas industry|oi...</td>
-      <td>346.2 billion</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>Berkshire Hathaway</td>
-      <td>http://www.berkshirehathaway.com</td>
-      <td>Berkshire Hathaway</td>
-      <td>investment|diversified investments|insurancety...</td>
-      <td>conglomerate (company)|conglomerate</td>
-      <td>707.8 billion</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>Apple</td>
-      <td>http://www.apple.com</td>
-      <td>Apple Inc.</td>
-      <td>macintosh|ipod|iphone|ipad|apple watch|apple t...</td>
-      <td>computer hardware|computer software|consumer e...</td>
-      <td>338.516 billion</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>UnitedHealth Group</td>
-      <td>http://www.unitedhealthgroup.com</td>
-      <td>UnitedHealth Group</td>
-      <td>uniprise|health care|service economics|service...</td>
-      <td>managed health care</td>
-      <td>173.889 billion</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>6</td>
-      <td>McKesson</td>
-      <td>http://www.mckesson.com</td>
-      <td>McKesson Corporation</td>
-      <td>pharmaceuticals|medical technology|health care...</td>
-      <td>healthcare</td>
-      <td>60.381 billion</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>7</td>
-      <td>CVS Health</td>
-      <td>http://www.cvshealth.com</td>
-      <td>CVS Health</td>
-      <td></td>
-      <td>retail|health care</td>
-      <td>196.456 billion</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>8</td>
-      <td>Amazon.com</td>
-      <td>http://www.amazon.com</td>
-      <td>Amazon (company)</td>
-      <td>amazon echo|amazon fire tablet|amazon fire|ama...</td>
-      <td>cloud computing|e-commerce|artificial intellig...</td>
-      <td>162.648 billion</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>9</td>
-      <td>AT&amp;T</td>
-      <td>http://www.att.com</td>
-      <td>AT&amp;T</td>
-      <td>satellite television|landline|fixed-line telep...</td>
-      <td>telecommunications industry|telecommunications...</td>
-      <td>531.0 billion</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>10</td>
-      <td>General Motors</td>
-      <td>http://www.gm.com</td>
-      <td>General Motors</td>
-      <td>car|automobiles|commercial vehicle</td>
-      <td>automotive industry|automotive</td>
-      <td>227.339 billion</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>11</td>
-      <td>Ford Motor</td>
-      <td>http://www.corporate.ford.com</td>
-      <td>Ford Motor Company</td>
-      <td>car|automobiles|luxury car|luxury vehicles|com...</td>
-      <td>automotive industry|automotive</td>
-      <td>256.54 billion</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>12</td>
-      <td>AmerisourceBergen</td>
-      <td>http://www.amerisourcebergen.com</td>
-      <td>AmerisourceBergen</td>
-      <td>pharmaceutical|pharmacy</td>
-      <td>pharmaceutical</td>
-      <td>37.66 billion</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>13</td>
-      <td>Chevron</td>
-      <td>http://www.chevron.com</td>
-      <td>Chevron Corporation</td>
-      <td>petroleum|natural gas|petrochemical|marketing ...</td>
-      <td>oil and gas industry|oil and gas</td>
-      <td>253.9 billion</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>14</td>
-      <td>Cardinal Health</td>
-      <td>http://www.cardinalhealth.com</td>
-      <td>Cardinal Health</td>
-      <td></td>
-      <td>pharmaceuticals</td>
-      <td>39.95 billion</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>15</td>
-      <td>Costco</td>
-      <td>http://www.costco.com</td>
-      <td>Costco</td>
-      <td></td>
-      <td>retail</td>
-      <td>45.4 billion</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>16</td>
-      <td>Verizon</td>
-      <td>http://www.verizon.com</td>
-      <td>Verizon Communications</td>
-      <td>cable television|landline|mobile phone|broadba...</td>
-      <td>telecommunications industry|telecommunications...</td>
-      <td>264.82 billion</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>17</td>
-      <td>Kroger</td>
-      <td>http://www.thekrogerco.com</td>
-      <td>Kroger</td>
-      <td>supercenter|superstore|supermarket</td>
-      <td>retail</td>
-      <td>38.11 billion</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>18</td>
-      <td>General Electric</td>
-      <td>http://www.ge.com</td>
-      <td>General Electric</td>
-      <td>aircraft engine|electric power distribution|el...</td>
-      <td>conglomerate (company)|conglomerate</td>
-      <td>309.129 billion</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>19</td>
-      <td>Walgreens Boots Alliance</td>
-      <td>http://www.walgreensbootsalliance.com</td>
-      <td>Walgreens Boots Alliance</td>
-      <td>drug store|pharmacy</td>
-      <td>pharmaceutical|retail</td>
-      <td>67.59 billion</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>20</td>
-      <td>JPMorgan Chase</td>
-      <td>http://www.jpmorganchase.com</td>
-      <td>JPMorgan Chase</td>
-      <td>alternative financial service|american deposit...</td>
-      <td>bank|financial services</td>
-      <td>2.687 trillion</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">rank</th>
+<th align="left">company_name</th>
+<th align="left">company_website</th>
+<th align="left">wiki_title</th>
+<th align="left">product</th>
+<th align="left">industry</th>
+<th align="left">assets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">Walmart</td>
+<td align="left">http://www.stock.walmart.com</td>
+<td align="left">Walmart</td>
+<td align="left">electronics, movies and music, home and furniture, home improvement, clothing, footwear, jewelry, toys, health and beauty, pet supplies, sporting goods and fitness, auto, photo finishing, craft supplies, party supplies, grocery</td>
+<td align="left">retail</td>
+<td align="left">219.295 billion</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">Exxon Mobil</td>
+<td align="left">http://www.exxonmobil.com</td>
+<td align="left">ExxonMobil</td>
+<td align="left">crude oil, oil products, natural gas, petrochemical, power generation</td>
+<td align="left">energy industry, energy, oil and gas industry, oil and gas</td>
+<td align="left">346.2 billion</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">Berkshire Hathaway</td>
+<td align="left">http://www.berkshirehathaway.com</td>
+<td align="left">Berkshire Hathaway</td>
+<td align="left">investment, diversified investments, insurancetypes, property  casualty insurance, public utility, utilities, restaurants, food processing, aerospace, toys, mass media, media, automotive industry, automotive, sports equipment, sporting goods, final good, consumer products, internet, real estate</td>
+<td align="left">conglomerate (company), conglomerate</td>
+<td align="left">707.8 billion</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">Apple</td>
+<td align="left">http://www.apple.com</td>
+<td align="left">Apple Inc.</td>
+<td align="left">macintosh, ipod, iphone, ipad, apple watch, apple tv, homepod, macos, ios, ipados, watchos, tvos, ilife, iwork, final cut pro, logic pro, garageband, shazam application, shazam, siri</td>
+<td align="left">computer hardware, computer software, consumer electronics, cloud computing, digital distribution, fabless manufacturing, fabless silicon design, semiconductors, financial technology, artificial intelligence</td>
+<td align="left">338.516 billion</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="left">UnitedHealth Group</td>
+<td align="left">http://www.unitedhealthgroup.com</td>
+<td align="left">UnitedHealth Group</td>
+<td align="left">uniprise, health care, service economics, services, ingenix</td>
+<td align="left">managed health care</td>
+<td align="left">173.889 billion</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td align="right">6</td>
+<td align="left">McKesson</td>
+<td align="left">http://www.mckesson.com</td>
+<td align="left">McKesson Corporation</td>
+<td align="left">pharmaceuticals, medical technology, health care services</td>
+<td align="left">healthcare</td>
+<td align="left">60.381 billion</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td align="right">7</td>
+<td align="left">CVS Health</td>
+<td align="left">http://www.cvshealth.com</td>
+<td align="left">CVS Health</td>
+<td align="left"></td>
+<td align="left">retail, health care</td>
+<td align="left">196.456 billion</td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td align="right">8</td>
+<td align="left">Amazon.com</td>
+<td align="left">http://www.amazon.com</td>
+<td align="left">Amazon (company)</td>
+<td align="left">amazon echo, amazon fire tablet, amazon fire, amazon fire tv, fire os, amazon fire os, amazon kindle</td>
+<td align="left">cloud computing, e-commerce, artificial intelligence, consumer electronics, digital distribution, grocery stores</td>
+<td align="left">162.648 billion</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td align="right">9</td>
+<td align="left">AT&amp;T</td>
+<td align="left">http://www.att.com</td>
+<td align="left">AT&amp;T</td>
+<td align="left">satellite television, landline, fixed-line telephones, mobile phone, mobile telephones, internet service provider, internet services, broadband, digital television, home security, iptv, over-the-top media services, ott services, network security, filmmaking, film production, television production, cable television, pay television, publishing, podcast, sports management, news agency, video game</td>
+<td align="left">telecommunications industry, telecommunications, technology company, technology, mass media, entertainment</td>
+<td align="left">531.0 billion</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td align="right">10</td>
+<td align="left">General Motors</td>
+<td align="left">http://www.gm.com</td>
+<td align="left">General Motors</td>
+<td align="left">car, automobiles, commercial vehicle</td>
+<td align="left">automotive industry, automotive</td>
+<td align="left">227.339 billion</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td align="right">11</td>
+<td align="left">Ford Motor</td>
+<td align="left">http://www.corporate.ford.com</td>
+<td align="left">Ford Motor Company</td>
+<td align="left">car, automobiles, luxury car, luxury vehicles, commercial vehicle, commercial vehicles, list of auto parts, automotive parts, pickup trucks, suvs</td>
+<td align="left">automotive industry, automotive</td>
+<td align="left">256.54 billion</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td align="right">12</td>
+<td align="left">AmerisourceBergen</td>
+<td align="left">http://www.amerisourcebergen.com</td>
+<td align="left">AmerisourceBergen</td>
+<td align="left">pharmaceutical, pharmacy</td>
+<td align="left">pharmaceutical</td>
+<td align="left">37.66 billion</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td align="right">13</td>
+<td align="left">Chevron</td>
+<td align="left">http://www.chevron.com</td>
+<td align="left">Chevron Corporation</td>
+<td align="left">petroleum, natural gas, petrochemical, marketing brands, see chevron products</td>
+<td align="left">oil and gas industry, oil and gas</td>
+<td align="left">253.9 billion</td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td align="right">14</td>
+<td align="left">Cardinal Health</td>
+<td align="left">http://www.cardinalhealth.com</td>
+<td align="left">Cardinal Health</td>
+<td align="left"></td>
+<td align="left">pharmaceuticals</td>
+<td align="left">39.95 billion</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td align="right">15</td>
+<td align="left">Costco</td>
+<td align="left">http://www.costco.com</td>
+<td align="left">Costco</td>
+<td align="left"></td>
+<td align="left">retail</td>
+<td align="left">45.4 billion</td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td align="right">16</td>
+<td align="left">Verizon</td>
+<td align="left">http://www.verizon.com</td>
+<td align="left">Verizon Communications</td>
+<td align="left">cable television, landline, mobile phone, broadband, digital television, iptv, digital media, internet of things, internet, telematics</td>
+<td align="left">telecommunications industry, telecommunications, mass media</td>
+<td align="left">264.82 billion</td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td align="right">17</td>
+<td align="left">Kroger</td>
+<td align="left">http://www.thekrogerco.com</td>
+<td align="left">Kroger</td>
+<td align="left">supercenter, superstore, supermarket</td>
+<td align="left">retail</td>
+<td align="left">38.11 billion</td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td align="right">18</td>
+<td align="left">General Electric</td>
+<td align="left">http://www.ge.com</td>
+<td align="left">General Electric</td>
+<td align="left">aircraft engine, electric power distribution, electrical distribution, electric motor, energy, finance, health care, lighting, software, wind turbine</td>
+<td align="left">conglomerate (company), conglomerate</td>
+<td align="left">309.129 billion</td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td align="right">19</td>
+<td align="left">Walgreens Boots Alliance</td>
+<td align="left">http://www.walgreensbootsalliance.com</td>
+<td align="left">Walgreens Boots Alliance</td>
+<td align="left">drug store, pharmacy</td>
+<td align="left">pharmaceutical, retail</td>
+<td align="left">67.59 billion</td>
+</tr>
+<tr>
+<td align="right">19</td>
+<td align="right">20</td>
+<td align="left">JPMorgan Chase</td>
+<td align="left">http://www.jpmorganchase.com</td>
+<td align="left">JPMorgan Chase</td>
+<td align="left">alternative financial service, american depositary receipt, asset allocation, asset management, bond finance, bond, broker, capital market, collateralized debt obligation, commercial banking, commodity market, commodities, commercial bank, credit card, credit default swap, credit derivative, currency exchange, custodian bank, debt settlement, digital banking, estate planning, exchange-traded fund, financial analysis, financial market, foreign exchange market, futures exchange, hedge fund, index fund, information processing, institutional investor, institutional investing, insurance, investment bank, financial capital, investment capital, investment management, portfolio finance, portfolios, loan servicing, merchant services, mobile banking, money market, mortgage brokers, mortgage broker, mortgage loan, mortgage-backed security, mortgagebacked securities, mutual fund, pension fund, prime brokerage, private banking, private equity, remittance, retail banking, broker, risk management, securities lending, security finance, security, stock trader, stock trading, subprime lending, treasury services, trustee, underwriting, venture capital, wealth management, wholesale funding, wholesale mortgage lenders, wholesale mortgage lending, wire transfer</td>
+<td align="left">bank, financial services</td>
+<td align="left">2.687 trillion</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p>And export them to a csv file,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../data/top_20_companies.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
+<h4 id="challenge">Challenge<a class="headerlink" href="#challenge" title="Permanent link">&para;</a></h4>
+<hr />
+<p>Create a bar chart of <code>equity</code> of all the top 20 Fortune 500 companies and find out which has the highest value.</p>
                 
                   
                 

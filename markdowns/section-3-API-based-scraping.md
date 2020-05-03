@@ -3,7 +3,7 @@
 ### A brief introduction to APIs
 ---
 
-In this section, we will take a look at an alternative way to gather data than the previous pattern based, HTML scraping. Sometimes websites offer an API (or Application Programming Interface) as a service which provides a high level interface to directly retrieve data from their repositories or databases at the backend. 
+In this section, we will take a look at an alternative way to gather data than the previous pattern based HTML scraping. Sometimes websites offer an API (or Application Programming Interface) as a service which provides a high level interface to directly retrieve data from their repositories or databases at the backend. 
 
 From Wikipedia,
 
@@ -11,25 +11,16 @@ From Wikipedia,
 
 They typically tend to be URL endpoints (to be fired as requests) that need to be modified based on our requirements (what we desire in the response body) which then returns some a payload (data) within the response, formatted as either JSON, XML or HTML. 
 
-A popular web architecture style called REST (or representational state transfer) allows users to interact with web services via `GET` and `POST` calls (two most commonly used).
+A popular web architecture style called `REST` (or representational state transfer) allows users to interact with web services via `GET` and `POST` calls (two most commonly used) which we briefly saw in the previous section.
 
-An API in the context of web scraping would be :
-- Requests (through Hypertext Transfer Protocol HTTP
-- Headers
-
-talk more here!
-
-E.g.
-
-- For example, Twitter's REST API allows developers to access core Twitter data and the Search API provides methods for developers to interact with Twitter Search and trends data.
-
-https://en.wikipedia.org/w/api.php
+For example, Twitter's REST API allows developers to access core Twitter data and the Search API provides methods for developers to interact with Twitter Search and trends data.
 
 There are primarily two ways to use APIs :
+
 - Through the command terminal using URL endpoints, or
 - Through programming language specific *wrappers*
 
-For e.g. `Tweepy` is a famous python wrapper for Twitter API whereas `twurl` is a command line interface (CLI) tool but both can achieve the same outcomes.
+For example, `Tweepy` is a famous python wrapper for Twitter API whereas `twurl` is a command line interface (CLI) tool but both can achieve the same outcomes.
 
 Here we focus on the latter approach and will use a Python library (a wrapper) called `wptools` based around the original MediaWiki API.
 
@@ -40,7 +31,7 @@ One advantage of using official APIs is that they are usually compliant of the t
 
 Let's say we want to gather some additional data about the Fortune 500 companies and since wikipedia is a rich source for data we decide to use the MediaWiki API to scrape this data. One very good place to start would be to look at the **infoboxes** (as wikipedia defines them) of articles corresponsing to each company on the list. They essentially contain a wealth of metadata about a particular entity the article belongs to which in our case is a company. 
 
-For e.g. consider the wikipedia article for **walmart** (https://en.wikipedia.org/wiki/Walmart) which includes the following infobox :
+For e.g. consider the wikipedia article for **Walmart** (https://en.wikipedia.org/wiki/Walmart) which includes the following infobox :
 
 ![An infobox](../images/infobox.png)
 
@@ -95,67 +86,13 @@ df = pd.read_csv(path/fname)        # reading the csv file as a pandas df
 df.head()                           # displaying the first 5 rows
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>rank</th>
-      <th>company_name</th>
-      <th>company_website</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>Walmart</td>
-      <td>http://www.stock.walmart.com</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>Exxon Mobil</td>
-      <td>http://www.exxonmobil.com</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>Berkshire Hathaway</td>
-      <td>http://www.berkshirehathaway.com</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>Apple</td>
-      <td>http://www.apple.com</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>UnitedHealth Group</td>
-      <td>http://www.unitedhealthgroup.com</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+|    |   rank | company_name       | company_website                  |
+|---:|-------:|:-------------------|:---------------------------------|
+|  0 |      1 | Walmart            | http://www.stock.walmart.com     |
+|  1 |      2 | Exxon Mobil        | http://www.exxonmobil.com        |
+|  2 |      3 | Berkshire Hathaway | http://www.berkshirehathaway.com |
+|  3 |      4 | Apple              | http://www.apple.com             |
+|  4 |      5 | UnitedHealth Group | http://www.unitedhealthgroup.com |
 
 
 Let's focus and select only the top 20 companies from the list as follows,
@@ -455,11 +392,13 @@ Now fetching the data for all the companies (this may take a while),
 
 ```python
 for company in companies:    
-    page = wptools.page(company) # calling 
+    page = wptools.page(company) # create a page object
     try:
-        page.get_parse()
+        page.get_parse() # call the API and parse the data
         if page.data['infobox'] != None:
+            # if infobox is present
             infobox = page.data['infobox']
+            # get data for the interested features/attributes
             data = { feature : infobox[feature] if feature in infobox else '' 
                          for feature in features }
         else:
@@ -791,3 +730,4 @@ with open('../data/infoboxes.json', 'w') as file:
 
 - https://phpenthusiast.com/blog/what-is-rest-api
 - https://github.com/siznax/wptools/wiki/Data-captured
+- https://en.wikipedia.org/w/api.php

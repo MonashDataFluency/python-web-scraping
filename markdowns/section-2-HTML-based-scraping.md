@@ -119,9 +119,9 @@ There are mainly two types of requests which can be made to the web server. A GE
 ### Scraping a webpage
 ---
 
-Let us now scrape a **list of the fotune 500 compaies for the year 2018**. The website from which the data is to be scraped is `https://www.zyxware.com/articles/5914/list-of-fortune-500-companies-and-their-websites-2018`.
+Let us now scrape a **list of the fotune 500 companies for the year 2018**. The website from which the data is to be scraped is `https://www.zyxware.com/articles/5914/list-of-fortune-500-companies-and-their-websites-2018`.
 
-![image.png](attachment:image.png)
+![fortune 500](../images/fortune_500.png)
 
 It can be seen on this website that the list contains the rank, company name and the website of the company. The whole content of this website can be received as a response when requested with the request library in Python
 
@@ -202,7 +202,7 @@ This text when formatted looks like this,
 
 > Note : It is always a good idea to "prettify" HTML, XML or JSON strings for visual clarity.
 
-### Using bs4 (and lxml) to parse the structure and access different elements within a HTML or XML
+### Parse HTML and access different elements
 ---
 
 `bs4` is a Python library which parses through HTML content and understands the complete structure of the content. The response content can be passed to a `BeautifulSoup()` method to obtain a soup object which looks very structured.
@@ -307,7 +307,7 @@ print(all_values[2])
 
 #### Challenge
 ---
- Explore the schema further, extract the column names which are located in the first row and print them
+ Explore the schema further, extract the column names which are located in the first row and print them.
 
 The first element of the list contains the column names 'Rank, Company and Website'. The next elements of the list contain soup objects which contain the company data including the rank. This data can be extracted in a loop since the structure for all the list elements is the same.
 
@@ -336,75 +336,21 @@ for row in all_values[1:]:
 fortune_500_df.head()
 ```
 
+|    |   rank | company_name       | company_website                  |
+|---:|-------:|:-------------------|:---------------------------------|
+|  0 |      1 | Walmart            | http://www.stock.walmart.com     |
+|  1 |      2 | Exxon Mobil        | http://www.exxonmobil.com        |
+|  2 |      3 | Berkshire Hathaway | http://www.berkshirehathaway.com |
+|  3 |      4 | Apple              | http://www.apple.com             |
+|  4 |      5 | UnitedHealth Group | http://www.unitedhealthgroup.com |
 
 
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>rank</th>
-      <th>company_name</th>
-      <th>company_website</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>1</td>
-      <td>Walmart</td>
-      <td>http://www.stock.walmart.com</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>2</td>
-      <td>Exxon Mobil</td>
-      <td>http://www.exxonmobil.com</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>3</td>
-      <td>Berkshire Hathaway</td>
-      <td>http://www.berkshirehathaway.com</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>4</td>
-      <td>Apple</td>
-      <td>http://www.apple.com</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>5</td>
-      <td>UnitedHealth Group</td>
-      <td>http://www.unitedhealthgroup.com</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-### Store it in the appropriate format - CSV, TSV and export the results
+### Store it in the appropriate format
 ---
 
 The dataframe can now be stored as a csv file. Pandas has a `to_csv` method which can be used to save the data into the file.
 
 
 ```python
-fortune_500_df.to_csv('./fortune_500_companies.csv', index=False)
+fortune_500_df.to_csv('../data/fortune_500_companies.csv', index=False)
 ```

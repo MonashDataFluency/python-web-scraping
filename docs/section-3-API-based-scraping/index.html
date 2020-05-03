@@ -252,8 +252,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../section-1-intro-to-web-scraping/" title="Introduction to Web Scraping" class="md-nav__link">
-      Introduction to Web Scraping
+    <a href="../section-1-intro-to-web-scraping/" title="Introduction to Web scraping" class="md-nav__link">
+      Introduction to Web scraping
     </a>
   </li>
 
@@ -455,32 +455,26 @@
                 <p><img src="../images/api.png"></p>
 <h3 id="a-brief-introduction-to-apis">A brief introduction to APIs<a class="headerlink" href="#a-brief-introduction-to-apis" title="Permanent link">&para;</a></h3>
 <hr />
-<p>In this section, we will take a look at an alternative way to gather data than the previous pattern based, HTML scraping. Sometimes websites offer an API (or Application Programming Interface) as a service which provides a high level interface to directly retrieve data from their repositories or databases at the backend. </p>
+<p>In this section, we will take a look at an alternative way to gather data than the previous pattern based HTML scraping. Sometimes websites offer an API (or Application Programming Interface) as a service which provides a high level interface to directly retrieve data from their repositories or databases at the backend. </p>
 <p>From Wikipedia,</p>
 <blockquote>
 <p>"<em>An API is typically defined as a set of specifications, such as Hypertext Transfer Protocol (HTTP) request messages, along with a definition of the structure of response messages, usually in an Extensible Markup Language (XML) or JavaScript Object Notation (JSON) format.</em>"</p>
 </blockquote>
 <p>They typically tend to be URL endpoints (to be fired as requests) that need to be modified based on our requirements (what we desire in the response body) which then returns some a payload (data) within the response, formatted as either JSON, XML or HTML. </p>
-<p>A popular web architecture style called REST (or representational state transfer) allows users to interact with web services via <code>GET</code> and <code>POST</code> calls (two most commonly used).</p>
-<p>An API in the context of web scraping would be :
-- Requests (through Hypertext Transfer Protocol HTTP
-- Headers</p>
-<p>talk more here!</p>
-<p>E.g.</p>
+<p>A popular web architecture style called <code>REST</code> (or representational state transfer) allows users to interact with web services via <code>GET</code> and <code>POST</code> calls (two most commonly used) which we briefly saw in the previous section.</p>
+<p>For example, Twitter's REST API allows developers to access core Twitter data and the Search API provides methods for developers to interact with Twitter Search and trends data.</p>
+<p>There are primarily two ways to use APIs :</p>
 <ul>
-<li>For example, Twitter's REST API allows developers to access core Twitter data and the Search API provides methods for developers to interact with Twitter Search and trends data.</li>
+<li>Through the command terminal using URL endpoints, or</li>
+<li>Through programming language specific <em>wrappers</em></li>
 </ul>
-<p>https://en.wikipedia.org/w/api.php</p>
-<p>There are primarily two ways to use APIs :
-- Through the command terminal using URL endpoints, or
-- Through programming language specific <em>wrappers</em></p>
-<p>For e.g. <code>Tweepy</code> is a famous python wrapper for Twitter API whereas <code>twurl</code> is a command line interface (CLI) tool but both can achieve the same outcomes.</p>
+<p>For example, <code>Tweepy</code> is a famous python wrapper for Twitter API whereas <code>twurl</code> is a command line interface (CLI) tool but both can achieve the same outcomes.</p>
 <p>Here we focus on the latter approach and will use a Python library (a wrapper) called <code>wptools</code> based around the original MediaWiki API.</p>
 <p>One advantage of using official APIs is that they are usually compliant of the terms of service (ToS) of a particular service that researchers are looking to gather data from. However, third-party libraries or packages which claim to provide more throughput than the official APIs (rate limits, number of requests/sec) generally operate in a gray area as they tend to violate ToS. Always be sure to read their documentation throughly.</p>
 <h3 id="wikipedia-api">Wikipedia API<a class="headerlink" href="#wikipedia-api" title="Permanent link">&para;</a></h3>
 <hr />
 <p>Let's say we want to gather some additional data about the Fortune 500 companies and since wikipedia is a rich source for data we decide to use the MediaWiki API to scrape this data. One very good place to start would be to look at the <strong>infoboxes</strong> (as wikipedia defines them) of articles corresponsing to each company on the list. They essentially contain a wealth of metadata about a particular entity the article belongs to which in our case is a company. </p>
-<p>For e.g. consider the wikipedia article for <strong>walmart</strong> (https://en.wikipedia.org/wiki/Walmart) which includes the following infobox :</p>
+<p>For e.g. consider the wikipedia article for <strong>Walmart</strong> (https://en.wikipedia.org/wiki/Walmart) which includes the following infobox :</p>
 <p><img alt="An infobox" src="../images/infobox.png" /></p>
 <p>As we can see from above, the infoboxes could provide us with a lot of valuable information such as :
 - Year of founding 
@@ -539,64 +533,48 @@
 </code></pre></div>
 </td></tr></table>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>rank</th>
-      <th>company_name</th>
-      <th>company_website</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>Walmart</td>
-      <td>http://www.stock.walmart.com</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>Exxon Mobil</td>
-      <td>http://www.exxonmobil.com</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>Berkshire Hathaway</td>
-      <td>http://www.berkshirehathaway.com</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>Apple</td>
-      <td>http://www.apple.com</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>UnitedHealth Group</td>
-      <td>http://www.unitedhealthgroup.com</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">rank</th>
+<th align="left">company_name</th>
+<th align="left">company_website</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">Walmart</td>
+<td align="left">http://www.stock.walmart.com</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">Exxon Mobil</td>
+<td align="left">http://www.exxonmobil.com</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">Berkshire Hathaway</td>
+<td align="left">http://www.berkshirehathaway.com</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">Apple</td>
+<td align="left">http://www.apple.com</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="left">UnitedHealth Group</td>
+<td align="left">http://www.unitedhealthgroup.com</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p>Let's focus and select only the top 20 companies from the list as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -1051,12 +1029,16 @@ Walmart (en) data
 13
 14
 15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">companies</span><span class="p">:</span>    
-    <span class="n">page</span> <span class="o">=</span> <span class="n">wptools</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">company</span><span class="p">)</span> <span class="c1"># calling </span>
+16
+17
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">companies</span><span class="p">:</span>    
+    <span class="n">page</span> <span class="o">=</span> <span class="n">wptools</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">company</span><span class="p">)</span> <span class="c1"># create a page object</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">page</span><span class="o">.</span><span class="n">get_parse</span><span class="p">()</span>
+        <span class="n">page</span><span class="o">.</span><span class="n">get_parse</span><span class="p">()</span> <span class="c1"># call the API and parse the data</span>
         <span class="k">if</span> <span class="n">page</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;infobox&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># if infobox is present</span>
             <span class="n">infobox</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;infobox&#39;</span><span class="p">]</span>
+            <span class="c1"># get data for the interested features/attributes</span>
             <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> <span class="n">feature</span> <span class="p">:</span> <span class="n">infobox</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="k">if</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">infobox</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span> 
                          <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span> <span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1671,6 +1653,7 @@ JPMorgan Chase (en) data
 <ul>
 <li>https://phpenthusiast.com/blog/what-is-rest-api</li>
 <li>https://github.com/siznax/wptools/wiki/Data-captured</li>
+<li>https://en.wikipedia.org/w/api.php</li>
 </ul>
                 
                   

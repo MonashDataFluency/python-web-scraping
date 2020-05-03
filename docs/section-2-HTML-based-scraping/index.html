@@ -252,8 +252,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../section-1-intro-to-web-scraping/" title="Introduction to Web Scraping" class="md-nav__link">
-      Introduction to Web Scraping
+    <a href="../section-1-intro-to-web-scraping/" title="Introduction to Web scraping" class="md-nav__link">
+      Introduction to Web scraping
     </a>
   </li>
 
@@ -315,8 +315,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-bs4-and-lxml-to-parse-the-structure-and-access-different-elements-within-a-html-or-xml" class="md-nav__link">
-    Using bs4 (and lxml) to parse the structure and access different elements within a HTML or XML
+  <a href="#parse-html-and-access-different-elements" class="md-nav__link">
+    Parse HTML and access different elements
   </a>
   
 </li>
@@ -342,8 +342,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#store-it-in-the-appropriate-format-csv-tsv-and-export-the-results" class="md-nav__link">
-    Store it in the appropriate format - CSV, TSV and export the results
+  <a href="#store-it-in-the-appropriate-format" class="md-nav__link">
+    Store it in the appropriate format
   </a>
   
 </li>
@@ -454,8 +454,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-bs4-and-lxml-to-parse-the-structure-and-access-different-elements-within-a-html-or-xml" class="md-nav__link">
-    Using bs4 (and lxml) to parse the structure and access different elements within a HTML or XML
+  <a href="#parse-html-and-access-different-elements" class="md-nav__link">
+    Parse HTML and access different elements
   </a>
   
 </li>
@@ -481,8 +481,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#store-it-in-the-appropriate-format-csv-tsv-and-export-the-results" class="md-nav__link">
-    Store it in the appropriate format - CSV, TSV and export the results
+  <a href="#store-it-in-the-appropriate-format" class="md-nav__link">
+    Store it in the appropriate format
   </a>
   
 </li>
@@ -619,8 +619,8 @@ Responses are grouped in five classes:</p>
 <p><strong>POST call</strong> - POST is used to send data in the URL request to either update details or request specific content from the web server. In a POST call, data is sent and then a response can be expected from the web server. An example would be to request content from a web server based on a particular selection from a drop-down menu. The selection option is upadted while also respective content is sent back.</p>
 <h3 id="scraping-a-webpage">Scraping a webpage<a class="headerlink" href="#scraping-a-webpage" title="Permanent link">&para;</a></h3>
 <hr />
-<p>Let us now scrape a <strong>list of the fotune 500 compaies for the year 2018</strong>. The website from which the data is to be scraped is <code>https://www.zyxware.com/articles/5914/list-of-fortune-500-companies-and-their-websites-2018</code>.</p>
-<p><img alt="image.png" src="attachment:image.png" /></p>
+<p>Let us now scrape a <strong>list of the fotune 500 companies for the year 2018</strong>. The website from which the data is to be scraped is <code>https://www.zyxware.com/articles/5914/list-of-fortune-500-companies-and-their-websites-2018</code>.</p>
+<p><img alt="fortune 500" src="../images/fortune_500.png" /></p>
 <p>It can be seen on this website that the list contains the rank, company name and the website of the company. The whole content of this website can be received as a response when requested with the request library in Python</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -760,7 +760,7 @@ Content of the website
 <blockquote>
 <p>Note : It is always a good idea to "prettify" HTML, XML or JSON strings for visual clarity.</p>
 </blockquote>
-<h3 id="using-bs4-and-lxml-to-parse-the-structure-and-access-different-elements-within-a-html-or-xml">Using bs4 (and lxml) to parse the structure and access different elements within a HTML or XML<a class="headerlink" href="#using-bs4-and-lxml-to-parse-the-structure-and-access-different-elements-within-a-html-or-xml" title="Permanent link">&para;</a></h3>
+<h3 id="parse-html-and-access-different-elements">Parse HTML and access different elements<a class="headerlink" href="#parse-html-and-access-different-elements" title="Permanent link">&para;</a></h3>
 <hr />
 <p><code>bs4</code> is a Python library which parses through HTML content and understands the complete structure of the content. The response content can be passed to a <code>BeautifulSoup()</code> method to obtain a soup object which looks very structured.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -907,7 +907,7 @@ Content of the website
 
 <h4 id="challenge">Challenge<a class="headerlink" href="#challenge" title="Permanent link">&para;</a></h4>
 <hr />
-<p>Explore the schema further, extract the column names which are located in the first row and print them</p>
+<p>Explore the schema further, extract the column names which are located in the first row and print them.</p>
 <p>The first element of the list contains the column names 'Rank, Company and Website'. The next elements of the list contain soup objects which contain the company data including the rank. This data can be extracted in a loop since the structure for all the list elements is the same.</p>
 <ul>
 <li>An empty dataframe <code>fortune_500_df</code> is created with the column names <code>rank</code>, <code>company_name</code> and <code>company_website</code></li>
@@ -948,68 +948,52 @@ Content of the website
 </code></pre></div>
 </td></tr></table>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>rank</th>
-      <th>company_name</th>
-      <th>company_website</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>1</td>
-      <td>Walmart</td>
-      <td>http://www.stock.walmart.com</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>2</td>
-      <td>Exxon Mobil</td>
-      <td>http://www.exxonmobil.com</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>3</td>
-      <td>Berkshire Hathaway</td>
-      <td>http://www.berkshirehathaway.com</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>4</td>
-      <td>Apple</td>
-      <td>http://www.apple.com</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>5</td>
-      <td>UnitedHealth Group</td>
-      <td>http://www.unitedhealthgroup.com</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">rank</th>
+<th align="left">company_name</th>
+<th align="left">company_website</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">Walmart</td>
+<td align="left">http://www.stock.walmart.com</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">Exxon Mobil</td>
+<td align="left">http://www.exxonmobil.com</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">Berkshire Hathaway</td>
+<td align="left">http://www.berkshirehathaway.com</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">Apple</td>
+<td align="left">http://www.apple.com</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="left">UnitedHealth Group</td>
+<td align="left">http://www.unitedhealthgroup.com</td>
+</tr>
+</tbody>
 </table>
-</div>
-
-<h3 id="store-it-in-the-appropriate-format-csv-tsv-and-export-the-results">Store it in the appropriate format - CSV, TSV and export the results<a class="headerlink" href="#store-it-in-the-appropriate-format-csv-tsv-and-export-the-results" title="Permanent link">&para;</a></h3>
+<h3 id="store-it-in-the-appropriate-format">Store it in the appropriate format<a class="headerlink" href="#store-it-in-the-appropriate-format" title="Permanent link">&para;</a></h3>
 <hr />
 <p>The dataframe can now be stored as a csv file. Pandas has a <code>to_csv</code> method which can be used to save the data into the file.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">fortune_500_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;./fortune_500_companies.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">fortune_500_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../data/fortune_500_companies.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
                 
@@ -1033,7 +1017,7 @@ Content of the website
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../section-1-intro-to-web-scraping/" title="Introduction to Web Scraping" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../section-1-intro-to-web-scraping/" title="Introduction to Web scraping" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1042,7 +1026,7 @@ Content of the website
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Introduction to Web Scraping
+                Introduction to Web scraping
               </span>
             </div>
           </a>

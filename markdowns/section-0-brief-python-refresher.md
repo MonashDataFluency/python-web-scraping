@@ -1,3 +1,5 @@
+<center><img src="../images/xkcd_python.png"></center>
+
 In this section we will take a quick tour of Python basics and some of the concepts that will be used for the rest of our web scraping workshop.
 
 ### Strings
@@ -546,14 +548,15 @@ dict1_cond
 
 
 
-### Challenge - Dictionaries
+#### Challenge
 ---
 
+Given,
+```python
 dict = {1:'a', 2:'b', 3:'c', 4:'d', 5:'e'}
+```
 
-Filter all the elements where the key is more than 3.
-
----
+Filter all the elements where the key is greater than 3.
 
 ### Functions
 ---
@@ -747,7 +750,7 @@ print("this is the sum " + str(total))
     NameError: name 'total' is not defined
 
 
-The above program throws error because the variable `total` was defined in the function and its scope is only within the function and not outside of it
+The above program throws error because the variable `total` was defined in the function and its scope is only within the function and not outside of it.
 
 ### JSON
 ---
@@ -833,8 +836,6 @@ print(y)
 
 One of the most powerful data structures in Python is the Pandas `DataFrame`. It allows tabular data, including `csv` (comma seperated values) and `tsv` (tab seperated values), to be processed and manipulated. People familiar with Excel will no doubt find it intuitive and easy to grasp. Since most `csv` (or `tsv`) has become the de facto standard for sharing datasets both large and small, Pandas dataframe is the way to go.
 
-For Pandas documentation : https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html
-
 
 ```python
 import pandas as pd # importing the package and using `pd` as the alias 
@@ -891,6 +892,7 @@ df.to_csv(index=False)
 Regular expressions or regex are a powerful tool to extract key pieces of data from raw text.
 
 You can try your regex expressions in : 
+
 - https://pythex.org/ for a python oriented regex editor
 - https://regexr.com/ for a more visual explanation behind the expressions (good for getting started)
 
@@ -984,3 +986,8 @@ print(names, titles)
 - `JSON` and `XML` are the most widely used formats to carry data all over the internet.
 - To work with `CSV`s (or `TSV`s), Pandas DataFrames are the de facto standard.
 - Regexes help us extract key pieces of information (sub-strings) from raw, messy and unstructured text (strings).
+
+### References
+
+- https://xkcd.com/353/
+- https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html

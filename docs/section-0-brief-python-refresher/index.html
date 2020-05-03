@@ -308,12 +308,18 @@
     Dictionary
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#challenge-dictionaries" class="md-nav__link">
-    Challenge - Dictionaries
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    Challenge
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -386,6 +392,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
       
       
       
@@ -403,8 +416,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../section-1-intro-to-web-scraping/" title="Introduction to Web Scraping" class="md-nav__link">
-      Introduction to Web Scraping
+    <a href="../section-1-intro-to-web-scraping/" title="Introduction to Web scraping" class="md-nav__link">
+      Introduction to Web scraping
     </a>
   </li>
 
@@ -533,12 +546,18 @@
     Dictionary
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#challenge-dictionaries" class="md-nav__link">
-    Challenge - Dictionaries
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    Challenge
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -611,6 +630,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
       
       
       
@@ -630,7 +656,8 @@
                 
                   <h1>A (brief) Python refresher</h1>
                 
-                <p>In this section we will take a quick tour of Python basics and some of the concepts that will be used for the rest of our web scraping workshop.</p>
+                <p><center><img src="../images/xkcd_python.png"></center></p>
+<p>In this section we will take a quick tour of Python basics and some of the concepts that will be used for the rest of our web scraping workshop.</p>
 <h3 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h3>
 <hr />
 <p>A string can be defined by enclosing it in a single quote(') or a double quote(")</p>
@@ -1203,11 +1230,14 @@ End of loops
 </code></pre></div>
 </td></tr></table>
 
-<h3 id="challenge-dictionaries">Challenge - Dictionaries<a class="headerlink" href="#challenge-dictionaries" title="Permanent link">&para;</a></h3>
+<h4 id="challenge">Challenge<a class="headerlink" href="#challenge" title="Permanent link">&para;</a></h4>
 <hr />
-<p>dict = {1:'a', 2:'b', 3:'c', 4:'d', 5:'e'}</p>
-<p>Filter all the elements where the key is more than 3.</p>
-<hr />
+<p>Given,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="s1">&#39;e&#39;</span><span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Filter all the elements where the key is greater than 3.</p>
 <h3 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h3>
 <hr />
 <p>A function is a block of organized, reusable code that is used to perform a single, related action. Functions provide better modularity for your application and a high degree of code reusing.</p>
@@ -1445,7 +1475,7 @@ NameError: name &#39;total&#39; is not defined
 </code></pre></div>
 </td></tr></table>
 
-<p>The above program throws error because the variable <code>total</code> was defined in the function and its scope is only within the function and not outside of it</p>
+<p>The above program throws error because the variable <code>total</code> was defined in the function and its scope is only within the function and not outside of it.</p>
 <h3 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h3>
 <hr />
 <p>JSON: JavaScript Object Notation.</p>
@@ -1546,7 +1576,6 @@ NameError: name &#39;total&#39; is not defined
 <h3 id="dataframes">Dataframes<a class="headerlink" href="#dataframes" title="Permanent link">&para;</a></h3>
 <hr />
 <p>One of the most powerful data structures in Python is the Pandas <code>DataFrame</code>. It allows tabular data, including <code>csv</code> (comma seperated values) and <code>tsv</code> (tab seperated values), to be processed and manipulated. People familiar with Excel will no doubt find it intuitive and easy to grasp. Since most <code>csv</code> (or <code>tsv</code>) has become the de facto standard for sharing datasets both large and small, Pandas dataframe is the way to go.</p>
-<p>For Pandas documentation : https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># importing the package and using `pd` as the alias </span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pandas version : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
@@ -1625,9 +1654,11 @@ NameError: name &#39;total&#39; is not defined
 <h3 id="regex">Regex<a class="headerlink" href="#regex" title="Permanent link">&para;</a></h3>
 <hr />
 <p>Regular expressions or regex are a powerful tool to extract key pieces of data from raw text.</p>
-<p>You can try your regex expressions in : 
-- https://pythex.org/ for a python oriented regex editor
-- https://regexr.com/ for a more visual explanation behind the expressions (good for getting started)</p>
+<p>You can try your regex expressions in : </p>
+<ul>
+<li>https://pythex.org/ for a python oriented regex editor</li>
+<li>https://regexr.com/ for a more visual explanation behind the expressions (good for getting started)</li>
+</ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1753,6 +1784,11 @@ we can extract the same using regex.</p>
 <li>To work with <code>CSV</code>s (or <code>TSV</code>s), Pandas DataFrames are the de facto standard.</li>
 <li>Regexes help us extract key pieces of information (sub-strings) from raw, messy and unstructured text (strings).</li>
 </ul>
+<h3 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h3>
+<ul>
+<li>https://xkcd.com/353/</li>
+<li>https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html</li>
+</ul>
                 
                   
                 
@@ -1789,13 +1825,13 @@ we can extract the same using regex.</p>
           </a>
         
         
-          <a href="../section-1-intro-to-web-scraping/" title="Introduction to Web Scraping" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../section-1-intro-to-web-scraping/" title="Introduction to Web scraping" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Introduction to Web Scraping
+                Introduction to Web scraping
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

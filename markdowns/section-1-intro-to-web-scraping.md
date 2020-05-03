@@ -1,4 +1,4 @@
-<img src="http://www.price2spy.com/blog/wp-content/uploads/2019/07/web_scraping.jpg"/>
+![intro_html_example](../images/xkcd.png)
 
 ### What is web scraping?
 ---
@@ -84,14 +84,6 @@ C.
 }
 ```
 
-
-- A
-- B
-- C
-- A and B
-- B and C 
-- A and C
-
 #### What is HTML?
 - HTML stands for **HyperText Markup Language**
 - It is the standard markup language for the webpages which make up the internet. 
@@ -156,7 +148,7 @@ It also provides us with a rich visual representation of how the different eleme
 HTML elements. Here we will be primarily interested in accessing and getting the data as opposed to manipulation of the document itself.
 
 Let's look at the DOM for the HTML from our previous example below
-![intro_html_example](../images/dom1.png)
+![intro_html_example](../images/dom.png)
 
 The next question then is : How do we access the source code or DOM of **any** web page on the internet?
 
@@ -176,7 +168,8 @@ A Google Chrome window along with the developer console accessed though **F12** 
 
 ### References
 
+- https://xkcd.com/2054/
 - https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction
+- https://en.wikipedia.org/wiki/Document_Object_Model
 - https://www.w3schools.com/html/
 - https://www.w3schools.com/js/js_htmldom.asp
-- https://www.price2spy.com/blog/case-study-web-scraping-data-extraction-for-ecommerce/
