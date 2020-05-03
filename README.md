@@ -19,7 +19,7 @@ mkdocs serve
 
 After modifying any notebook content, please run the `./compile.sh` script to update the website or alternatively :
 - Run `jupyter nbconvert --output-dir='markdowns/' --to markdown notebooks/*.ipynb` from the root directory to generate the markdown files from jupyter notebooks, and
-- Run `mkdocs build` to generate the build the website again. 
+- Run `mkdocs build` to build the website again. 
 
 ### Troubleshooting
 
