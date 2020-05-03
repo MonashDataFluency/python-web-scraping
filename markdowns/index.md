@@ -1,6 +1,6 @@
 # Getting Started
 
-![scraping](../images/scraping.png)
+<img src="../images/scraping.png">
 
 This is an introductory course to Web Scraping using Python.
 
