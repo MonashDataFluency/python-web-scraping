@@ -45,6 +45,7 @@ pyzmq==18.1.1
 requests==2.22.0
 six==1.14.0
 soupsieve==1.9.5
+tabulate==0.8.7
 tornado==6.0.3
 traitlets==4.3.3
 urllib3==1.25.8
