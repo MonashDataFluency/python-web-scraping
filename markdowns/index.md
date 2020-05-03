@@ -1,11 +1,12 @@
 # Getting Started
 
-## Introduction
+This is an introductory course to Web Scraping using Python.
 
-<!--* `mkdocs new [dir-name]` - Create a new project.-->
-<!--* `mkdocs serve` - Start the live-reloading docs server.-->
-<!--* `mkdocs build` - Build the documentation site.-->
-<!--* `mkdocs help` - Print this help message.-->
+## Prerequisites
 
-## Sections
+Some exposure to Python and Google Colab (or Jupyter Notebook) is assumed, for example from attending the Data Fluency "[Introduction to Python](https://monashdatafluency.github.io/python-workshop-base/fullday/)" workshop.
+
+## Setup Requirements
+
+Attendees will be required to bring a laptop with Firefox or Google Chrome installed. A Google/Monash account is required (for accessing the Colab environment).
 
