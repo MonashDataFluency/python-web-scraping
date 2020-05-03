@@ -77,7 +77,7 @@ my_str.strip()
 ```
 
      hello 
-    
+
 
 
 
@@ -167,7 +167,7 @@ for num in num_list:
     7
     8
     9
-    
+
 
 #### List comprehension
 ---
@@ -216,7 +216,7 @@ for country, capital in pairs:
     The country is France and the capital is Paris
     The country is USA and the capital is Washington DC
     The country is Italy and the capital is Rome
-    
+
 
 
 ```python
@@ -251,7 +251,7 @@ for lang in languages:
 
     ['Spanish', 'English', 'French', 'German']
     ['Python', 'Java', 'Javascript', 'C++']
-    
+
 
 As we see above, in each iteration, we get one list at a time. 
 
@@ -275,7 +275,7 @@ for lang_list in languages:
     Java
     Javascript
     C++
-    
+
 
 There are various ways to manipulate the functioning of a loop. 
 
@@ -303,7 +303,7 @@ print("End of loops")
     Javascript
     C++
     End of loops
-    
+
 
 
 ```python
@@ -324,7 +324,7 @@ print("End of loops")
     --------------
     Python
     End of loops
-    
+
 
 
 ```python
@@ -345,7 +345,7 @@ for i in range(10):
     5 squared is equal to 25
     7 squared is equal to 49
     9 squared is equal to 81
-    
+
 
 ### Sets
 ---
@@ -362,7 +362,7 @@ print(my_set)
 ```
 
     {1, 2, 3}
-    
+
 
 
 ```python
@@ -371,7 +371,7 @@ print(set(my_list))
 ```
 
     {1, 2, 3, 4}
-    
+
 
 
 ```python
@@ -381,7 +381,7 @@ print(my_set)
 ```
 
     {1.0, 'Hello', (1, 2, 3)}
-    
+
 
 
 ```python
@@ -391,7 +391,7 @@ print(my_set)
 ```
 
     {1, 2, 3, 4}
-    
+
 
 
 ```python
@@ -404,7 +404,7 @@ print(type(my_set))
 
     <class 'dict'>
     <class 'set'>
-    
+
 
 Elements can be added individualy or as a list.
 
@@ -418,7 +418,7 @@ my_set
 ```
 
     {1, 2, 3, 4}
-    
+
 
 
 
@@ -575,7 +575,7 @@ hello()
 ```
 
     Hello World
-    
+
 
 Parameters vs arguments: 
 Parameters are `a` and `b`. Arguments are `2` and `5`.
@@ -630,7 +630,7 @@ print(plus(a=1))
 ```
 
     3
-    
+
 
 
 ```python
@@ -639,7 +639,7 @@ print(plus(a=1, b=3))
 ```
 
     4
-    
+
 
 #### Anonymous functions: lambda
 ---
@@ -687,7 +687,7 @@ main()
 
     Hello World
     This is a main function
-    
+
 
 The following code needs a script mode to show the use. 
 
@@ -705,7 +705,7 @@ if __name__ == '__main__':
 
     Hello World
     This is a main function
-    
+
 
 #### Global vs local variables
 ---
@@ -731,7 +731,7 @@ print("this is the sum " + str(total))
 ```
 
     this is the initialized value 1
-    
+
 
 
     ---------------------------------------------------------------------------
@@ -778,7 +778,7 @@ print(y["age"])
 ```
 
     30
-    
+
 
 
 ```python
@@ -811,7 +811,7 @@ print(y)
 ```
 
     {"name": "John", "age": 30, "city": "New York"}
-    
+
 
 
 ```python
@@ -826,7 +826,7 @@ print(y)
         "age": 30,
         "city": "New York"
     }
-    
+
 
 ### Dataframes
 ---
@@ -842,7 +842,7 @@ print('Pandas version : {}'.format(pd.__version__))
 ```
 
     Pandas version : 1.0.1
-    
+
 
 Suppose we wanted to create a dataframe as follows,
 
@@ -940,7 +940,7 @@ print(html)
             </body>
             </html> 
             
-    
+
 
 Now, if we are only interested in : 
 - names i.e. the data inside the `<h1></h1>` tags, and
@@ -978,7 +978,7 @@ print(names, titles)
 ```
 
     ['Sam', 'Rob'] ['Physicist', 'Economist']
-    
+
 
 ### From a web scraping perspective
 - `JSON` and `XML` are the most widely used formats to carry data all over the internet.

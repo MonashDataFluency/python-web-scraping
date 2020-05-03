@@ -424,47 +424,37 @@
                 
                   <h1>Wrangling and Analysis</h1>
                 
-                <p>In this section, we will clean, join perform some basic analysis on the data to answer a few questions.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">json</span>
+                <p>In this section, we will clean, join perform some basic analysis on the data to answer a few questions. Let's import a few libraries we will require.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span> 
+<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span>
+<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span> 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
 
 <span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span> <span class="c1"># setting the style to ggplot</span>
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;fortune_500_companies.csv&#39;</span> <span class="c1"># scrapped data from previous section</span>
-<span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;../data/&#39;</span><span class="p">)</span>             <span class="c1"># path to the csv file</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="n">fname</span><span class="p">)</span>        <span class="c1"># reading the csv file as a pandas df</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>                           <span class="c1"># displaying the first 5 rows</span>
-</code></pre></div>
-</td></tr></table>
-
-<p>For this excercise, we will primarily focus on :
- - <code>products</code> <br />
- - <code>industries</code> and   <br />
- - <code>assets</code></p>
+<p>Now let's read the <code>infoboxes.json</code> file we exported from Section 3 to a dictionary as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/infoboxes.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
     <span class="n">wiki_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
 
+<p>and have a quick glance at the first element of the same,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">wiki_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 </td></tr></table>
@@ -495,30 +485,63 @@
 </code></pre></div>
 </td></tr></table>
 
-<p>We can observe that we need to :
-- Remove "[[" and "]]" 
-- Remove "{{" and "}}"
-- Split and seperate by the delimiter "|" in case of <code>products</code>
-- Only keep alphanumeric and "-" characters</p>
+<p>For this excercise, we will primarily focus on the following attributes :
+ - <code>products</code> <br />
+ - <code>industries</code> and   <br />
+ - <code>assets</code>  </p>
+<p>and try to answer a few questions using the data.</p>
 <h3 id="what-type-of-products-are-sold-by-the-top-20-companies">What type of products are sold by the top 20 companies?<a class="headerlink" href="#what-type-of-products-are-sold-by-the-top-20-companies" title="Permanent link">&para;</a></h3>
-<p>Let's define a few regular expressions to perform the above.</p>
+<p>Looking at a sample for <code>products</code>,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">wiki_data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;products&#39;</span><span class="p">])</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>{{hlist|Electronics|Movies and music|Home and furniture|Home improvement|Clothing|Footwear|Jewelry|Toys|Health and beauty|Pet supplies|Sporting goods and fitness|Auto|Photo finishing|Craft supplies|Party supplies|Grocery}}
+{{Unbulleted list
+  | [[Crude oil]]
+  | [[Oil products]]
+  | [[Natural gas]]
+  | [[Petrochemical]]s
+  | [[Power generation]]}}
+[[Investment|Diversified investments]], [[Insurance#Types|Property &amp; casualty insurance]], [[Public utility|Utilities]], [[Restaurants]], [[Food processing]], [[Aerospace]], [[Toys]], [[Mass media|Media]], [[Automotive industry|Automotive]], [[Sports equipment|Sporting goods]], [[Final good|Consumer products]], [[Internet]], [[Real estate]]
+</code></pre></div>
+</td></tr></table>
+
+<p>We can observe that we need to :
+- Extract products from between <code>{{</code> and <code>}}</code> OR <code>[[</code> and <code>]]</code>
+- Split and seperate by the delimiter <code>|</code>
+- Only keep alphanumeric characters, <code>-</code> and preserve spaces</p>
+<p>Let's define a few regular expressions to clean and extract the products from the dictionary.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">regex1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[\{\[]+(.*?)[\]\}]&#39;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
 
 <p>Regex breakdown :</p>
 <ul>
-<li><code>[\{\[]+</code> : match one or more "{" or "]" (\ are used to escape[])</li>
-<li><code>(.*?)</code> : capture anything between the previous pattern and the next</li>
-<li><code>[\]\}]</code> : match ending in either "]" or "}" </li>
+<li><code>[\{\[]+</code> : matches one or more <code>{</code> or <code>]</code></li>
+<li><code>(.*?)</code> : captures anything between the previous pattern and the next</li>
+<li><code>[\]\}]</code> : matches ending in either <code>]</code> or <code>}</code> </li>
 </ul>
+<blockquote>
+<p>Note : <code>\</code> is used to escape <code>[]</code></p>
+</blockquote>
+<p>Similarly,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">regex2</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[^a-zA-Z\- ]&#39;</span><span class="p">)</span> <span class="c1"># describe the expr</span>
 </code></pre></div>
 </td></tr></table>
 
-<p>Similarly : </p>
+<p>Regex breakdown :</p>
 <ul>
-<li><code>[^a-zA-Z\- ]</code> : match anything other than (signified by <code>^</code>) <code>a</code> to <code>z</code> OR <code>A</code> to <code>Z</code> OR <code>-</code> OR empty space. </li>
+<li><code>[^a-zA-Z\- ]</code> : matches anything other than (signified by <code>^</code>) <code>a</code> to <code>z</code> OR <code>A</code> to <code>Z</code> OR <code>-</code> OR empty space. </li>
 </ul>
 <p>Patterns like these are useful for replacing or filtering everything else. Now lets clean and extract the data we need as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -559,7 +582,7 @@
 </code></pre></div>
 </td></tr></table>
 
-<p>Now let's create a wordcloud function which will visually inform us about which products are more prominent than the others as follows,</p>
+<p>Now let's create a wordcloud function which will visually inform us about which products are more prominent than the others. The size of the word would indicate its frequency.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -575,7 +598,10 @@
 13
 14
 15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">create_wordcloud</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">stopwords</span><span class="o">=</span><span class="p">[]):</span>
+16
+17
+18
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">create_wordcloud</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">stopwords</span><span class="o">=</span><span class="p">[]):</span>
     <span class="sd">&#39;&#39;&#39;create the wordcloud object</span>
 <span class="sd">    args</span>
 <span class="sd">    items :     the items we need to display</span>
@@ -583,33 +609,72 @@
 <span class="sd">    &#39;&#39;&#39;</span> 
 
     <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
-    <span class="n">wordcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
-                          <span class="n">stopwords</span><span class="o">=</span><span class="n">stopwords</span><span class="p">)</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="c1"># max_words=20 </span>
+    <span class="n">wordcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">1600</span><span class="p">,</span> 
+                          <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> 
+                          <span class="n">margin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+                          <span class="n">stopwords</span><span class="o">=</span><span class="n">stopwords</span>
+                         <span class="p">)</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="c1"># optionally we can set max_words=20 </span>
 
-    <span class="c1"># display the generated image</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wordcloud</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;bilinear&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span> <span class="c1"># set the final figure size</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wordcloud</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;bilinear&quot;</span><span class="p">)</span> <span class="c1"># pass the image and set interpolation type</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span> <span class="c1"># turn all axes off</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># no padding</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> <span class="c1"># display plot</span>
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">create_wordcloud</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;and&#39;</span><span class="p">])</span> <span class="c1"># adding &quot;and&quot; to the stopword list </span>
+<p>Creating wordclouds for <code>products</code>,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">create_wordcloud</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;and&#39;</span><span class="p">])</span> <span class="c1"># adding &quot;and&quot; to the stopword list</span>
 </code></pre></div>
 </td></tr></table>
 
-<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_16_0.png" /></p>
+<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_22_0.png" /></p>
 <h3 id="what-type-of-industries-do-the-top-20-company-belong-from">What type of industries do the top 20 company belong from?<a class="headerlink" href="#what-type-of-industries-do-the-top-20-company-belong-from" title="Permanent link">&para;</a></h3>
+<p>Similarly, looking at a sample for <code>industry</code>,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">wiki_data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;industry&#39;</span><span class="p">])</span>
+</code></pre></div>
+</td></tr></table>
+
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[\[]+(.*?)[\]]&#39;</span><span class="p">)</span>
-<span class="n">industries</span> <span class="o">=</span> <span class="p">[]</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>[[Retail]]
+[[Energy industry|Energy]]: [[Oil and gas industry|Oil and gas]]
+[[Conglomerate (company)|Conglomerate]]
+{{Unbulleted list | [[Computer hardware]] | [[Computer software]] | [[Consumer electronics]] | [[Cloud computing]] | [[Digital distribution]] | [[Fabless manufacturing|Fabless silicon design]] | [[Semiconductors]] | [[Financial technology]] | [[Artificial intelligence]]}}
+[[Managed health care]]
+</code></pre></div>
+</td></tr></table>
+
+<p>We can observe that we need to :
+- Extract products from between <code>[[</code> and <code>]]</code>
+- Split and seperate by the delimiter <code>|</code>
+- Only keep alphanumeric characters, <code>-</code> and preserve spaces</p>
+<p>We define a new regular expression as follows,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[\[]+(.*?)[\]]&#39;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Regex breakdown :</p>
+<ul>
+<li><code>[\[]+</code> : matches one or more <code>[</code> </li>
+<li><code>(.*?)</code> : captures anything between the previous pattern and the next</li>
+<li><code>[\]]</code> : matches ending in <code>]</code> </li>
+</ul>
+<p>Using the same to clean and extract the industries,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">industries</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">wiki_data</span><span class="p">):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;industry&#39;</span><span class="p">]</span> <span class="c1"># get industries</span>
     <span class="n">z</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="c1"># extract industries</span>
@@ -617,38 +682,26 @@
     <span class="n">m</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">z</span><span class="p">))</span> <span class="c1"># flatten</span>
     <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;industry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
     <span class="n">industries</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">industries</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">create_wordcloud</span><span class="p">(</span><span class="n">industries</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;industry&#39;</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">])</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>[&#39;retail&#39;, &#39;energy industry&#39;, &#39;energy&#39;, &#39;oil and gas industry&#39;, &#39;oil and gas&#39;, &#39;conglomerate (company)&#39;, &#39;conglomerate&#39;, &#39;computer hardware&#39;, &#39;computer software&#39;, &#39;consumer electronics&#39;, &#39;cloud computing&#39;, &#39;digital distribution&#39;, &#39;fabless manufacturing&#39;, &#39;fabless silicon design&#39;, &#39;semiconductors&#39;, &#39;financial technology&#39;, &#39;artificial intelligence&#39;, &#39;managed health care&#39;, &#39;healthcare&#39;, &#39;retail&#39;, &#39;health care&#39;, &#39;cloud computing&#39;, &#39;e-commerce&#39;, &#39;artificial intelligence&#39;, &#39;consumer electronics&#39;, &#39;digital distribution&#39;, &#39;grocery stores&#39;, &#39;telecommunications industry&#39;, &#39;telecommunications&#39;, &#39;technology company&#39;, &#39;technology&#39;, &#39;mass media&#39;, &#39;entertainment&#39;, &#39;automotive industry&#39;, &#39;automotive&#39;, &#39;automotive industry&#39;, &#39;automotive&#39;, &#39;pharmaceutical&#39;, &#39;oil and gas industry&#39;, &#39;oil and gas&#39;, &#39;pharmaceuticals&#39;, &#39;retail&#39;, &#39;telecommunications industry&#39;, &#39;telecommunications&#39;, &#39;mass media&#39;, &#39;retail&#39;, &#39;conglomerate (company)&#39;, &#39;conglomerate&#39;, &#39;pharmaceutical&#39;, &#39;retail&#39;, &#39;bank&#39;, &#39;financial services&#39;]
 </code></pre></div>
 </td></tr></table>
 
-<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_19_0.png" /></p>
+<p>Just as before let's create a wordcloud for <code>industry</code>,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">create_wordcloud</span><span class="p">(</span><span class="n">industries</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;industry&#39;</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">])</span> <span class="c1"># adding &quot;industry&quot; and &quot;and&quot; to the stopword list </span>
+</code></pre></div>
+</td></tr></table>
+
+<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_33_0.png" /></p>
 <h3 id="what-the-assets-of-the-top-20-companies-look-like">What the assets of the top 20 companies look like?<a class="headerlink" href="#what-the-assets-of-the-top-20-companies-look-like" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;([\d\.]+)(?!billion|million|trillion)&#39;</span><span class="p">)</span>
-<span class="n">assets</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">wiki_data</span><span class="p">):</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;assets&#39;</span><span class="p">]</span> <span class="c1"># get assets</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="c1"># extract assets</span>
-    <span class="n">u</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;(billion|million|trillion)&#39;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># extract the unit</span>
-    <span class="n">asset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># get the numeric value</span>
-    <span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;assets&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">asset</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">unit</span>
-    <span class="n">assets</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;company_name&#39;</span><span class="p">]</span> <span class="p">:</span> <span class="p">(</span><span class="n">asset</span><span class="p">,</span> <span class="n">unit</span><span class="p">)})</span>
-</code></pre></div>
-</td></tr></table>
-
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">assets</span>
+<p>Taking a look at a sample of <code>assets</code> below,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">wiki_data</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">wiki_data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;assets&#39;</span><span class="p">])</span>
 </code></pre></div>
 </td></tr></table>
 
@@ -671,44 +724,191 @@
 17
 18
 19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>[{&#39;Walmart&#39;: (219.295, &#39;billion&#39;)},
- {&#39;ExxonMobil&#39;: (346.2, &#39;billion&#39;)},
- {&#39;Berkshire Hathaway&#39;: (707.8, &#39;billion&#39;)},
- {&#39;Apple Inc.&#39;: (338.516, &#39;billion&#39;)},
- {&#39;UnitedHealth Group&#39;: (173.889, &#39;billion&#39;)},
- {&#39;McKesson Corporation&#39;: (60.381, &#39;billion&#39;)},
- {&#39;CVS Health&#39;: (196.456, &#39;billion&#39;)},
- {&#39;Amazon (company)&#39;: (162.648, &#39;billion&#39;)},
- {&#39;AT&amp;T&#39;: (531.0, &#39;billion&#39;)},
- {&#39;General Motors&#39;: (227.339, &#39;billion&#39;)},
- {&#39;Ford Motor Company&#39;: (256.54, &#39;billion&#39;)},
- {&#39;AmerisourceBergen&#39;: (37.66, &#39;billion&#39;)},
- {&#39;Chevron Corporation&#39;: (253.9, &#39;billion&#39;)},
- {&#39;Cardinal Health&#39;: (39.95, &#39;billion&#39;)},
- {&#39;Costco&#39;: (45.4, &#39;billion&#39;)},
- {&#39;Verizon Communications&#39;: (264.82, &#39;billion&#39;)},
- {&#39;Kroger&#39;: (38.11, &#39;billion&#39;)},
- {&#39;General Electric&#39;: (309.129, &#39;billion&#39;)},
- {&#39;Walgreens Boots Alliance&#39;: (67.59, &#39;billion&#39;)},
- {&#39;JPMorgan Chase&#39;: (2.687, &#39;trillion&#39;)}]
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>{{increase}} {{US$|219.295 billion}} (2019)
+{{Nowrap|Decrease| |US$|346.2 billion|ref| name=&quot;201310K&quot;}} {{Decrease}} {{US$|346.2 billion}}
+{{increase}} US$707.8 billion (2018)
+{{Decrease}} {{US$|338.516&amp;nbsp;billion}}
+{{increase}} $173.889 billion (2019)
+{{nowrap|increase| |US$|60.381 billion| |small|(2018)|ref| name=FY}} {{increase}} {{US$|60.381 billion}} {{small|(2018)}}
+{{increase}} {{US$|196.456 billion}}
+{{decrease}} {{US$|162.648 billion}}
+{{increase}} {{US$|link|=|yes}} 531 billion     (2018)
+{{increase}} US$227.339 billion {{small|(2018)}}
+{{decrease}} {{US$|256.54 billion}} {{small|(2018)}}
+{{increase}} {{US$|37.66 billion}} (2018)
+{{decrease}} {{US$|253.9 billion}} {{small|(2018)}}
+{{increase}} US$39.95 billion {{small|(2018)}}
+{{increase}} US$45.40 billion
+{{increase}} {{US$|264.82 billion}}
+{{increase}} {{US$|38.11 billion}} (2019)
+{{nowrap|Decrease| US$ 309.129 billion |small|(2018)}} {{Decrease}} US$ 309.129 billion {{small|(2018)}}
+{{decrease}} {{US$|67.59 billion}}
+{{increase}} [[United States dollar|US$]]2.687 [[trillion]]
 </code></pre></div>
 </td></tr></table>
 
-<p>Normalize all the values/units,</p>
+<p>We would need to :
+- Extract both numbers and the unit i.e. <code>billion</code> or <code>trillion</code><br />
+- Keep only the monetary values (discard year)</p>
+<p>We can also observe that the asset value always appears first and then the year follows.</p>
+<p>Defining a simple regular expression for the same,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">regex1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;([\d\.]+)&#39;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Regex breakdown :</p>
+<ul>
+<li><code>([\d\.]+)</code> : matches and captures one or more numbers or <code>.</code> (for decimal).</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">regex2</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(billion|trillion)&#39;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Regex breakdown :</p>
+<ul>
+<li><code>(billion|trillion)</code> : matches and captures either <code>billion</code> or <code>trillion</code></li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">assets</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">wiki_data</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;assets&#39;</span><span class="p">]</span> <span class="c1"># get assets</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">regex1</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># extract assets</span>
+    <span class="n">unit</span> <span class="o">=</span> <span class="n">regex2</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># extract the magnitude</span>
+    <span class="n">asset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="c1"># convert to the numeric</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;assets&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">asset</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">unit</span>
+    <span class="n">assets</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;company&#39;</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;company_name&#39;</span><span class="p">],</span> <span class="s1">&#39;value&#39;</span> <span class="p">:</span> <span class="n">asset</span><span class="p">,</span> <span class="s1">&#39;unit&#39;</span> <span class="p">:</span> <span class="n">unit</span><span class="p">})</span>
+
+<span class="n">assets</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>[{&#39;company&#39;: &#39;Walmart&#39;, &#39;value&#39;: 219.295, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;ExxonMobil&#39;, &#39;value&#39;: 346.2, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;Berkshire Hathaway&#39;, &#39;value&#39;: 707.8, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;Apple Inc.&#39;, &#39;value&#39;: 338.516, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;UnitedHealth Group&#39;, &#39;value&#39;: 173.889, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;McKesson Corporation&#39;, &#39;value&#39;: 60.381, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;CVS Health&#39;, &#39;value&#39;: 196.456, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;Amazon (company)&#39;, &#39;value&#39;: 162.648, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;AT&amp;T&#39;, &#39;value&#39;: 531.0, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;General Motors&#39;, &#39;value&#39;: 227.339, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;Ford Motor Company&#39;, &#39;value&#39;: 256.54, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;AmerisourceBergen&#39;, &#39;value&#39;: 37.66, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;Chevron Corporation&#39;, &#39;value&#39;: 253.9, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;Cardinal Health&#39;, &#39;value&#39;: 39.95, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;Costco&#39;, &#39;value&#39;: 45.4, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;Verizon Communications&#39;, &#39;value&#39;: 264.82, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;Kroger&#39;, &#39;value&#39;: 38.11, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;General Electric&#39;, &#39;value&#39;: 309.129, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;Walgreens Boots Alliance&#39;, &#39;value&#39;: 67.59, &#39;unit&#39;: &#39;billion&#39;},
+ {&#39;company&#39;: &#39;JPMorgan Chase&#39;, &#39;value&#39;: 2.687, &#39;unit&#39;: &#39;trillion&#39;}]
+</code></pre></div>
+</td></tr></table>
+
+<p>Since we have both <code>billion</code> as well as <code>trillion</code>, let's normalize all the values,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">asset</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">assets</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">asset</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;trillion&#39;</span><span class="p">:</span>
-            <span class="n">assets</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;billion&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">asset</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;trillion&#39;</span><span class="p">:</span> <span class="c1"># if unit is in trillion</span>
+        <span class="n">assets</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">asset</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># convert to trillion to billion</span>
+        <span class="n">assets</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;unit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;billion&#39;</span>
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">assets</span>
+<p>And create a new dataframe from the same,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df_assets</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">assets</span><span class="p">)</span>
+<span class="n">df_assets</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
 
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>company</th>
+      <th>value</th>
+      <th>unit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Walmart</td>
+      <td>219.295</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ExxonMobil</td>
+      <td>346.200</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Berkshire Hathaway</td>
+      <td>707.800</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Apple Inc.</td>
+      <td>338.516</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>UnitedHealth Group</td>
+      <td>173.889</td>
+      <td>billion</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Now finally let's create a bar plot showcasing the assets from all the companies,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -719,230 +919,25 @@
  8
  9
 10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>[{&#39;Walmart&#39;: (219.295, &#39;billion&#39;)},
- {&#39;ExxonMobil&#39;: (346.2, &#39;billion&#39;)},
- {&#39;Berkshire Hathaway&#39;: (707.8, &#39;billion&#39;)},
- {&#39;Apple Inc.&#39;: (338.516, &#39;billion&#39;)},
- {&#39;UnitedHealth Group&#39;: (173.889, &#39;billion&#39;)},
- {&#39;McKesson Corporation&#39;: (60.381, &#39;billion&#39;)},
- {&#39;CVS Health&#39;: (196.456, &#39;billion&#39;)},
- {&#39;Amazon (company)&#39;: (162.648, &#39;billion&#39;)},
- {&#39;AT&amp;T&#39;: (531.0, &#39;billion&#39;)},
- {&#39;General Motors&#39;: (227.339, &#39;billion&#39;)},
- {&#39;Ford Motor Company&#39;: (256.54, &#39;billion&#39;)},
- {&#39;AmerisourceBergen&#39;: (37.66, &#39;billion&#39;)},
- {&#39;Chevron Corporation&#39;: (253.9, &#39;billion&#39;)},
- {&#39;Cardinal Health&#39;: (39.95, &#39;billion&#39;)},
- {&#39;Costco&#39;: (45.4, &#39;billion&#39;)},
- {&#39;Verizon Communications&#39;: (264.82, &#39;billion&#39;)},
- {&#39;Kroger&#39;: (38.11, &#39;billion&#39;)},
- {&#39;General Electric&#39;: (309.129, &#39;billion&#39;)},
- {&#39;Walgreens Boots Alliance&#39;: (67.59, &#39;billion&#39;)},
- {&#39;JPMorgan Chase&#39;: (2687.0, &#39;billion&#39;)}]
-</code></pre></div>
-</td></tr></table>
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">ax</span> <span class="o">=</span> <span class="n">df_assets</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> 
+               <span class="n">title</span> <span class="o">=</span><span class="s2">&quot;Assets from the Top 20 Companies on Fortune 500&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span>
+               <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> 
+               <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+               <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span>
+              <span class="p">)</span>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">assets</span><span class="p">]</span>
-<span class="n">energy</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">assets</span><span class="p">]</span>
-<span class="n">x_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">energy</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Assets (in Billions)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Company Name&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Assets from the Top 20 Companies on Fortune 500&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">df_assets</span><span class="o">.</span><span class="n">company</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Company Name&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Assets (in Billions)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
 
-<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_26_0.png" /></p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">data</span>
-</code></pre></div>
-</td></tr></table>
-
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>[{&#39;wiki_title&#39;: &#39;Walmart&#39;,
-  &#39;product&#39;: &#39;electronics|movies and music|home and furniture|home improvement|clothing|footwear|jewelry|toys|health and beauty|pet supplies|sporting goods and fitness|auto|photo finishing|craft supplies|party supplies|grocery&#39;,
-  &#39;industry&#39;: &#39;retail&#39;,
-  &#39;assets&#39;: &#39;219.295 billion&#39;},
- {&#39;wiki_title&#39;: &#39;ExxonMobil&#39;,
-  &#39;product&#39;: &#39;crude oil|oil products|natural gas|petrochemical|power generation&#39;,
-  &#39;industry&#39;: &#39;energy industry|energy|oil and gas industry|oil and gas&#39;,
-  &#39;assets&#39;: &#39;346.2 billion&#39;},
- {&#39;wiki_title&#39;: &#39;Berkshire Hathaway&#39;,
-  &#39;product&#39;: &#39;investment|diversified investments|insurancetypes|property  casualty insurance|public utility|utilities|restaurants|food processing|aerospace|toys|mass media|media|automotive industry|automotive|sports equipment|sporting goods|final good|consumer products|internet|real estate&#39;,
-  &#39;industry&#39;: &#39;conglomerate (company)|conglomerate&#39;,
-  &#39;assets&#39;: &#39;707.8 billion&#39;},
- {&#39;wiki_title&#39;: &#39;Apple Inc.&#39;,
-  &#39;product&#39;: &#39;macintosh|ipod|iphone|ipad|apple watch|apple tv|homepod|macos|ios|ipados|watchos|tvos|ilife|iwork|final cut pro|logic pro|garageband|shazam application|shazam|siri&#39;,
-  &#39;industry&#39;: &#39;computer hardware|computer software|consumer electronics|cloud computing|digital distribution|fabless manufacturing|fabless silicon design|semiconductors|financial technology|artificial intelligence&#39;,
-  &#39;assets&#39;: &#39;338.516 billion&#39;},
- {&#39;wiki_title&#39;: &#39;UnitedHealth Group&#39;,
-  &#39;product&#39;: &#39;uniprise|health care|service economics|services|ingenix&#39;,
-  &#39;industry&#39;: &#39;managed health care&#39;,
-  &#39;assets&#39;: &#39;173.889 billion&#39;},
- {&#39;wiki_title&#39;: &#39;McKesson Corporation&#39;,
-  &#39;product&#39;: &#39;pharmaceuticals|medical technology|health care services&#39;,
-  &#39;industry&#39;: &#39;healthcare&#39;,
-  &#39;assets&#39;: &#39;60.381 billion&#39;},
- {&#39;wiki_title&#39;: &#39;CVS Health&#39;,
-  &#39;product&#39;: &#39;&#39;,
-  &#39;industry&#39;: &#39;retail|health care&#39;,
-  &#39;assets&#39;: &#39;196.456 billion&#39;},
- {&#39;wiki_title&#39;: &#39;Amazon (company)&#39;,
-  &#39;product&#39;: &#39;amazon echo|amazon fire tablet|amazon fire|amazon fire tv|fire os|amazon fire os|amazon kindle&#39;,
-  &#39;industry&#39;: &#39;cloud computing|e-commerce|artificial intelligence|consumer electronics|digital distribution|grocery stores&#39;,
-  &#39;assets&#39;: &#39;162.648 billion&#39;},
- {&#39;wiki_title&#39;: &#39;AT&amp;T&#39;,
-  &#39;product&#39;: &#39;satellite television|landline|fixed-line telephones|mobile phone|mobile telephones|internet service provider|internet services|broadband|digital television|home security|iptv|over-the-top media services|ott services|network security|filmmaking|film production|television production|cable television|pay television|publishing|podcast|sports management|news agency|video game&#39;,
-  &#39;industry&#39;: &#39;telecommunications industry|telecommunications|technology company|technology|mass media|entertainment&#39;,
-  &#39;assets&#39;: &#39;531.0 billion&#39;},
- {&#39;wiki_title&#39;: &#39;General Motors&#39;,
-  &#39;product&#39;: &#39;car|automobiles|commercial vehicle&#39;,
-  &#39;industry&#39;: &#39;automotive industry|automotive&#39;,
-  &#39;assets&#39;: &#39;227.339 billion&#39;},
- {&#39;wiki_title&#39;: &#39;Ford Motor Company&#39;,
-  &#39;product&#39;: &#39;car|automobiles|luxury car|luxury vehicles|commercial vehicle|commercial vehicles|list of auto parts|automotive parts|pickup trucks|suvs&#39;,
-  &#39;industry&#39;: &#39;automotive industry|automotive&#39;,
-  &#39;assets&#39;: &#39;256.54 billion&#39;},
- {&#39;wiki_title&#39;: &#39;AmerisourceBergen&#39;,
-  &#39;product&#39;: &#39;pharmaceutical|pharmacy&#39;,
-  &#39;industry&#39;: &#39;pharmaceutical&#39;,
-  &#39;assets&#39;: &#39;37.66 billion&#39;},
- {&#39;wiki_title&#39;: &#39;Chevron Corporation&#39;,
-  &#39;product&#39;: &#39;petroleum|natural gas|petrochemical|marketing brands|see chevron products&#39;,
-  &#39;industry&#39;: &#39;oil and gas industry|oil and gas&#39;,
-  &#39;assets&#39;: &#39;253.9 billion&#39;},
- {&#39;wiki_title&#39;: &#39;Cardinal Health&#39;,
-  &#39;product&#39;: &#39;&#39;,
-  &#39;industry&#39;: &#39;pharmaceuticals&#39;,
-  &#39;assets&#39;: &#39;39.95 billion&#39;},
- {&#39;wiki_title&#39;: &#39;Costco&#39;,
-  &#39;product&#39;: &#39;&#39;,
-  &#39;industry&#39;: &#39;retail&#39;,
-  &#39;assets&#39;: &#39;45.4 billion&#39;},
- {&#39;wiki_title&#39;: &#39;Verizon Communications&#39;,
-  &#39;product&#39;: &#39;cable television|landline|mobile phone|broadband|digital television|iptv|digital media|internet of things|internet|telematics&#39;,
-  &#39;industry&#39;: &#39;telecommunications industry|telecommunications|mass media&#39;,
-  &#39;assets&#39;: &#39;264.82 billion&#39;},
- {&#39;wiki_title&#39;: &#39;Kroger&#39;,
-  &#39;product&#39;: &#39;supercenter|superstore|supermarket&#39;,
-  &#39;industry&#39;: &#39;retail&#39;,
-  &#39;assets&#39;: &#39;38.11 billion&#39;},
- {&#39;wiki_title&#39;: &#39;General Electric&#39;,
-  &#39;product&#39;: &#39;aircraft engine|electric power distribution|electrical distribution|electric motor|energy|finance|health care|lighting|software|wind turbine&#39;,
-  &#39;industry&#39;: &#39;conglomerate (company)|conglomerate&#39;,
-  &#39;assets&#39;: &#39;309.129 billion&#39;},
- {&#39;wiki_title&#39;: &#39;Walgreens Boots Alliance&#39;,
-  &#39;product&#39;: &#39;drug store|pharmacy&#39;,
-  &#39;industry&#39;: &#39;pharmaceutical|retail&#39;,
-  &#39;assets&#39;: &#39;67.59 billion&#39;},
- {&#39;wiki_title&#39;: &#39;JPMorgan Chase&#39;,
-  &#39;product&#39;: &#39;alternative financial service|american depositary receipt|asset allocation|asset management|bond finance|bond|broker|capital market|collateralized debt obligation|commercial banking|commodity market|commodities|commercial bank|credit card|credit default swap|credit derivative|currency exchange|custodian bank|debt settlement|digital banking|estate planning|exchange-traded fund|financial analysis|financial market|foreign exchange market|futures exchange|hedge fund|index fund|information processing|institutional investor|institutional investing|insurance|investment bank|financial capital|investment capital|investment management|portfolio finance|portfolios|loan servicing|merchant services|mobile banking|money market|mortgage brokers|mortgage broker|mortgage loan|mortgage-backed security|mortgagebacked securities|mutual fund|pension fund|prime brokerage|private banking|private equity|remittance|retail banking|broker|risk management|securities lending|security finance|security|stock trader|stock trading|subprime lending|treasury services|trustee|underwriting|venture capital|wealth management|wholesale funding|wholesale mortgage lenders|wholesale mortgage lending|wire transfer&#39;,
-  &#39;industry&#39;: &#39;bank|financial services&#39;,
-  &#39;assets&#39;: &#39;2.687 trillion&#39;}]
-</code></pre></div>
-</td></tr></table>
-
+<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_49_0.png" /></p>
+<p>Now let's create a new dataframe containing data related to <code>products</code>, <code>industry</code> and <code>assets</code> as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">df_new</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df_wiki</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">df_wiki</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
 
@@ -1010,11 +1005,249 @@
 </table>
 </div>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_sub</span><span class="p">,</span> <span class="n">df_new</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<p>And finally let's combine the datasets from Section 2 and 3 as follows,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/fortune_500_companies.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> <span class="c1"># reading only the first 20 rows</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">df_wiki</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># concatenating both the datasets</span>
+<span class="n">df</span>
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;./data/top_20_companies.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rank</th>
+      <th>company_name</th>
+      <th>company_website</th>
+      <th>wiki_title</th>
+      <th>product</th>
+      <th>industry</th>
+      <th>assets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Walmart</td>
+      <td>http://www.stock.walmart.com</td>
+      <td>Walmart</td>
+      <td>electronics|movies and music|home and furnitur...</td>
+      <td>retail</td>
+      <td>219.295 billion</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Exxon Mobil</td>
+      <td>http://www.exxonmobil.com</td>
+      <td>ExxonMobil</td>
+      <td>crude oil|oil products|natural gas|petrochemic...</td>
+      <td>energy industry|energy|oil and gas industry|oi...</td>
+      <td>346.2 billion</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Berkshire Hathaway</td>
+      <td>http://www.berkshirehathaway.com</td>
+      <td>Berkshire Hathaway</td>
+      <td>investment|diversified investments|insurancety...</td>
+      <td>conglomerate (company)|conglomerate</td>
+      <td>707.8 billion</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Apple</td>
+      <td>http://www.apple.com</td>
+      <td>Apple Inc.</td>
+      <td>macintosh|ipod|iphone|ipad|apple watch|apple t...</td>
+      <td>computer hardware|computer software|consumer e...</td>
+      <td>338.516 billion</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>UnitedHealth Group</td>
+      <td>http://www.unitedhealthgroup.com</td>
+      <td>UnitedHealth Group</td>
+      <td>uniprise|health care|service economics|service...</td>
+      <td>managed health care</td>
+      <td>173.889 billion</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>McKesson</td>
+      <td>http://www.mckesson.com</td>
+      <td>McKesson Corporation</td>
+      <td>pharmaceuticals|medical technology|health care...</td>
+      <td>healthcare</td>
+      <td>60.381 billion</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>CVS Health</td>
+      <td>http://www.cvshealth.com</td>
+      <td>CVS Health</td>
+      <td></td>
+      <td>retail|health care</td>
+      <td>196.456 billion</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>Amazon.com</td>
+      <td>http://www.amazon.com</td>
+      <td>Amazon (company)</td>
+      <td>amazon echo|amazon fire tablet|amazon fire|ama...</td>
+      <td>cloud computing|e-commerce|artificial intellig...</td>
+      <td>162.648 billion</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>AT&amp;T</td>
+      <td>http://www.att.com</td>
+      <td>AT&amp;T</td>
+      <td>satellite television|landline|fixed-line telep...</td>
+      <td>telecommunications industry|telecommunications...</td>
+      <td>531.0 billion</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>General Motors</td>
+      <td>http://www.gm.com</td>
+      <td>General Motors</td>
+      <td>car|automobiles|commercial vehicle</td>
+      <td>automotive industry|automotive</td>
+      <td>227.339 billion</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>Ford Motor</td>
+      <td>http://www.corporate.ford.com</td>
+      <td>Ford Motor Company</td>
+      <td>car|automobiles|luxury car|luxury vehicles|com...</td>
+      <td>automotive industry|automotive</td>
+      <td>256.54 billion</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>AmerisourceBergen</td>
+      <td>http://www.amerisourcebergen.com</td>
+      <td>AmerisourceBergen</td>
+      <td>pharmaceutical|pharmacy</td>
+      <td>pharmaceutical</td>
+      <td>37.66 billion</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>13</td>
+      <td>Chevron</td>
+      <td>http://www.chevron.com</td>
+      <td>Chevron Corporation</td>
+      <td>petroleum|natural gas|petrochemical|marketing ...</td>
+      <td>oil and gas industry|oil and gas</td>
+      <td>253.9 billion</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>14</td>
+      <td>Cardinal Health</td>
+      <td>http://www.cardinalhealth.com</td>
+      <td>Cardinal Health</td>
+      <td></td>
+      <td>pharmaceuticals</td>
+      <td>39.95 billion</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>15</td>
+      <td>Costco</td>
+      <td>http://www.costco.com</td>
+      <td>Costco</td>
+      <td></td>
+      <td>retail</td>
+      <td>45.4 billion</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>16</td>
+      <td>Verizon</td>
+      <td>http://www.verizon.com</td>
+      <td>Verizon Communications</td>
+      <td>cable television|landline|mobile phone|broadba...</td>
+      <td>telecommunications industry|telecommunications...</td>
+      <td>264.82 billion</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>17</td>
+      <td>Kroger</td>
+      <td>http://www.thekrogerco.com</td>
+      <td>Kroger</td>
+      <td>supercenter|superstore|supermarket</td>
+      <td>retail</td>
+      <td>38.11 billion</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>18</td>
+      <td>General Electric</td>
+      <td>http://www.ge.com</td>
+      <td>General Electric</td>
+      <td>aircraft engine|electric power distribution|el...</td>
+      <td>conglomerate (company)|conglomerate</td>
+      <td>309.129 billion</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>19</td>
+      <td>Walgreens Boots Alliance</td>
+      <td>http://www.walgreensbootsalliance.com</td>
+      <td>Walgreens Boots Alliance</td>
+      <td>drug store|pharmacy</td>
+      <td>pharmaceutical|retail</td>
+      <td>67.59 billion</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>20</td>
+      <td>JPMorgan Chase</td>
+      <td>http://www.jpmorganchase.com</td>
+      <td>JPMorgan Chase</td>
+      <td>alternative financial service|american deposit...</td>
+      <td>bank|financial services</td>
+      <td>2.687 trillion</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>And export them to a csv file,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../data/top_20_companies.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
                 

@@ -83,7 +83,7 @@ print('wptools version : {}'.format(wptools.__version__)) # checking the install
 ```
 
     wptools version : 0.4.17
-    
+
 
 Now let's load the data which we scrapped in the previous section as follows,
 
@@ -195,7 +195,7 @@ for i, j in enumerate(companies):   # looping through the list of 20 company
     18. General Electric
     19. Walgreens Boots Alliance
     20. JPMorgan Chase
-    
+
 
 ### Getting article names from wiki
 
@@ -298,7 +298,7 @@ for idx, company in enumerate(wiki_search):
     JPMorgan Chase, Chase Bank, 2012 JPMorgan Chase trading loss, JPMorgan Chase Tower (Houston), 2014 JPMorgan Chase data breach, JPMorgan Chase Building (San Francisco), JPMorgan Corporate Challenge, Chase Tower (Dallas), 270 Park Avenue, Chase Paymentech
     
     
-    
+
 
 Now let's get the most probable ones (the first suggestion) for each of the first 20 companies on the Fortune 500 list,
 
@@ -345,7 +345,7 @@ print(companies) # final list of wikipedia article titles
 ```
 
     ['Walmart', 'ExxonMobil', 'Berkshire Hathaway', 'Apple Inc.', 'UnitedHealth Group', 'McKesson Corporation', 'CVS Health', 'Amazon (company)', 'AT&T', 'General Motors', 'Ford Motor Company', 'AmerisourceBergen', 'Chevron Corporation', 'Cardinal Health', 'Costco', 'Verizon Communications', 'Kroger', 'General Electric', 'Walgreens Boots Alliance', 'JPMorgan Chase']
-    
+
 
 ### Retrieving the infoboxes
 
@@ -374,7 +374,7 @@ page.get_parse()    # parses the wikipedia article
       wikidata_url: https://www.wikidata.org/wiki/Q483551
       wikitext: <str(263955)> {{about|the retail chain|other uses}}{{p...
     }
-    
+
 
 
 
@@ -750,7 +750,7 @@ for company in companies:
       wikidata_url: https://www.wikidata.org/wiki/Q192314
       wikitext: <str(112397)> {{About|JPMorgan Chase & Co|its main sub...
     }
-    
+
 
 Let's take a look at `wiki_data` for the first instance i.e. **Walmart**,
 
