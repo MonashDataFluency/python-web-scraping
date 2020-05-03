@@ -1,5 +1,3 @@
-## Introduction to Web Scraping
-
 <img src="http://www.price2spy.com/blog/wp-content/uploads/2019/07/web_scraping.jpg"/>
 
 ### What is web scraping?
@@ -30,11 +28,14 @@ As useful as scraping is, there might be better options for the task. Choose the
 - Check if the site or service already provides an API to extract structured data. If it does, that will be a much more efficient and effective pathway. Good examples are the Facebook API, the Twitter APIs or the YouTube comments API.
 - For much larger needs, Freedom of information requests can be useful. Be specific about the formats required for the data you want.
 
-#### Q. If you had to gather data from a website which provides updated figures every 4 hours on an ongoing pandemic, would you :
-- [ ] Check their terms of service
-- [ ] Scrape the site directly
-- [ ] Ask for permission and then scrape the site
-- [ ] Use an official API (if it exists) that might have limitations
+#### Challenge
+---
+
+If you had to gather data from a website which provides updated figures every 4 hours on an ongoing pandemic, would you :
+- Check their terms of service
+- Scrape the site directly
+- Ask for permission and then scrape the site
+- Use an official API (if it exists) that might have limitations
 
 ### Structured vs unstructured data
 ---
@@ -55,7 +56,10 @@ Web scraping typically targets one web site at a time to extract unstructured in
 
 In this lesson, we will continue exploring the examples above and try different techniques to extract the information they contain. But before we launch into web scraping proper, we need to look a bit closer at how information is organized within an HTML document and how to build queries to access a specific subset of that information.
 
-#### Q. Which of the following would you consider to be structure and unstructured data?
+#### Challenge
+---
+
+Which of the following would you consider to be structure and unstructured data?
 
 A. 
 ```python
@@ -81,12 +85,12 @@ C.
 ```
 
 
-- [ ] A
-- [ ] B
-- [ ] C
-- [ ] A and B
-- [ ] B and C 
-- [ ] A and C
+- A
+- B
+- C
+- A and B
+- B and C 
+- A and C
 
 #### What is HTML?
 - HTML stands for **HyperText Markup Language**

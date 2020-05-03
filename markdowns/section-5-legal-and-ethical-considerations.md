@@ -1,5 +1,3 @@
-## Legal and Ethical Considerations
-
 > ### This section does not constitute legal advice
 > 
 > Please note that the information provided on this page is for information
