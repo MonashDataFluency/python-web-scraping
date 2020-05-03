@@ -1,6 +1,6 @@
 # Getting Started
 
-<img src="../images/scraping.png">
+<img src="https://monashdatafluency.github.io/python-web-scraping/images/scraping.png">
 
 This is an introductory course to Web Scraping using Python.
 
@@ -13,3 +13,8 @@ Some exposure to Python and Google Colab (or Jupyter Notebook) is assumed, for e
 Attendees will be required to bring a laptop with Firefox or Google Chrome installed. A Google/Monash account is required (for accessing the Colab environment).
 
 
+
+
+```python
+
+```
