@@ -361,8 +361,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../section-5-legal-and-ethical-considerations/" title="Legal and Ethical considerations" class="md-nav__link">
-      Legal and Ethical considerations
+    <a href="../section-5-legal-and-ethical-considerations/" title="Legal and Ethical Considerations" class="md-nav__link">
+      Legal and Ethical Considerations
     </a>
   </li>
 
@@ -451,13 +451,103 @@
                   <h1>Wrangling and Analysis</h1>
                 
                 <h2 id="wrangling-and-analysis">Wrangling and Analysis<a class="headerlink" href="#wrangling-and-analysis" title="Permanent link">&para;</a></h2>
-<hr />
-<p>For this excercise, we will primarily focus on product     industry    assets</p>
-<h3 id="what-type-of-products-are-sold-by-the-top-20-companies">What type of products are sold by the top 20 companies?<a class="headerlink" href="#what-type-of-products-are-sold-by-the-top-20-companies" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">companies</span>
+<p>In this section, we will clean, join perform some basic analysis on the data to answer a few questions.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span> <span class="c1"># setting the style to ggplot</span>
 </code></pre></div>
 </td></tr></table>
 
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;fortune_500_companies.csv&#39;</span> <span class="c1"># scrapped data from previous section</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;../data/&#39;</span><span class="p">)</span>             <span class="c1"># path to the csv file</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="n">fname</span><span class="p">)</span>        <span class="c1"># reading the csv file as a pandas df</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>                           <span class="c1"># displaying the first 5 rows</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>For this excercise, we will primarily focus on :
+ - <code>products</code> <br />
+ - <code>industries</code> and   <br />
+ - <code>assets</code></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/infoboxes.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">wiki_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">wiki_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>{&#39;founder&#39;: &#39;[[Sam Walton]]&#39;,
+ &#39;location_country&#39;: &#39;U.S.&#39;,
+ &#39;revenue&#39;: &#39;{{increase}} {{US$|514.405 billion|link|=|yes}} (2019)&#39;,
+ &#39;operating_income&#39;: &#39;{{increase}} {{US$|21.957 billion}} (2019)&#39;,
+ &#39;net_income&#39;: &#39;{{decrease}} {{US$|6.67 billion}} (2019)&#39;,
+ &#39;assets&#39;: &#39;{{increase}} {{US$|219.295 billion}} (2019)&#39;,
+ &#39;equity&#39;: &#39;{{decrease}} {{US$|79.634 billion}} (2019)&#39;,
+ &#39;type&#39;: &#39;[[Public company|Public]]&#39;,
+ &#39;industry&#39;: &#39;[[Retail]]&#39;,
+ &#39;products&#39;: &#39;{{hlist|Electronics|Movies and music|Home and furniture|Home improvement|Clothing|Footwear|Jewelry|Toys|Health and beauty|Pet supplies|Sporting goods and fitness|Auto|Photo finishing|Craft supplies|Party supplies|Grocery}}&#39;,
+ &#39;num_employees&#39;: &#39;{{plainlist|\n* 2.2|nbsp|million, Worldwide (2018)|ref| name=&quot;xbrlus_1&quot; |\n* 1.5|nbsp|million, U.S. (2017)|ref| name=&quot;Walmart&quot;|{{cite web |url = http://corporate.walmart.com/our-story/locations/united-states |title = Walmart Locations Around the World – United States |publisher = |url-status=live |archiveurl = https://web.archive.org/web/20150926012456/http://corporate.walmart.com/our-story/locations/united-states |archivedate = September 26, 2015 |df = mdy-all }}|&lt;/ref&gt;|\n* 700,000, International}} {{nbsp}} million, Worldwide (2018) * 1.5 {{nbsp}} million, U.S. (2017) * 700,000, International&#39;,
+ &#39;company_name&#39;: &#39;Walmart&#39;}
+</code></pre></div>
+</td></tr></table>
+
+<p>We can observe that we need to :
+- Remove "[[" and "]]" 
+- Remove "{{" and "}}"
+- Split and seperate by the delimiter "|" in case of <code>products</code>
+- Only keep alphanumeric and "-" characters</p>
+<h3 id="what-type-of-products-are-sold-by-the-top-20-companies">What type of products are sold by the top 20 companies?<a class="headerlink" href="#what-type-of-products-are-sold-by-the-top-20-companies" title="Permanent link">&para;</a></h3>
+<p>Let's define a few regular expressions to perform the above.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">regex1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[\{\[]+(.*?)[\]\}]&#39;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Regex breakdown :</p>
+<ul>
+<li><code>[\{\[]+</code> : match one or more "{" or "]" (\ are used to escape[])</li>
+<li><code>(.*?)</code> : capture anything between the previous pattern and the next</li>
+<li><code>[\]\}]</code> : match ending in either "]" or "}" </li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">regex2</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[^a-zA-Z\- ]&#39;</span><span class="p">)</span> <span class="c1"># describe the expr</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Similarly : </p>
+<ul>
+<li><code>[^a-zA-Z\- ]</code> : match anything other than (signified by <code>^</code>) <code>a</code> to <code>z</code> OR <code>A</code> to <code>Z</code> OR <code>-</code> OR empty space. </li>
+</ul>
+<p>Patterns like these are useful for replacing or filtering everything else. Now lets clean and extract the data we need as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -473,33 +563,30 @@
 13
 14
 15
-16
-17
-18
-19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>[&#39;Walmart&#39;,
- &#39;ExxonMobil&#39;,
- &#39;Berkshire Hathaway&#39;,
- &#39;Apple Inc.&#39;,
- &#39;UnitedHealth Group&#39;,
- &#39;McKesson Corporation&#39;,
- &#39;CVS Health&#39;,
- &#39;Amazon (company)&#39;,
- &#39;AT&amp;T&#39;,
- &#39;General Motors&#39;,
- &#39;Ford Motor Company&#39;,
- &#39;AmerisourceBergen&#39;,
- &#39;Chevron Corporation&#39;,
- &#39;Cardinal Health&#39;,
- &#39;Costco&#39;,
- &#39;Verizon Communications&#39;,
- &#39;Kroger&#39;,
- &#39;General Electric&#39;,
- &#39;Walgreens Boots Alliance&#39;,
- &#39;JPMorgan Chase&#39;]
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">products</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">wiki_data</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;products&#39;</span><span class="p">]</span> <span class="c1"># get products</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">regex1</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="c1"># extract all products</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">z</span><span class="p">]</span> <span class="c1"># get a list </span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">z</span><span class="p">))</span> <span class="c1"># flatten the list of lists using itertools</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="n">regex2</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">m</span>  <span class="k">if</span> <span class="n">t</span> <span class="o">!=</span> <span class="s1">&#39;hlist&#39;</span><span class="p">]</span> <span class="c1"># remove &quot;hlist&quot; (a rogue token)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;wiki_title&#39;</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;company_name&#39;</span><span class="p">],</span> 
+                <span class="s1">&#39;product&#39;</span> <span class="p">:</span> <span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+                <span class="p">})</span>
+    <span class="n">products</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">products</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
 
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>[&#39;electronics&#39;, &#39;movies and music&#39;, &#39;home and furniture&#39;, &#39;home improvement&#39;, &#39;clothing&#39;, &#39;footwear&#39;, &#39;jewelry&#39;, &#39;toys&#39;, &#39;health and beauty&#39;, &#39;pet supplies&#39;, &#39;sporting goods and fitness&#39;, &#39;auto&#39;, &#39;photo finishing&#39;, &#39;craft supplies&#39;, &#39;party supplies&#39;, &#39;grocery&#39;, &#39;crude oil&#39;, &#39;oil products&#39;, &#39;natural gas&#39;, &#39;petrochemical&#39;, &#39;power generation&#39;, &#39;investment&#39;, &#39;diversified investments&#39;, &#39;insurancetypes&#39;, &#39;property  casualty insurance&#39;, &#39;public utility&#39;, &#39;utilities&#39;, &#39;restaurants&#39;, &#39;food processing&#39;, &#39;aerospace&#39;, &#39;toys&#39;, &#39;mass media&#39;, &#39;media&#39;, &#39;automotive industry&#39;, &#39;automotive&#39;, &#39;sports equipment&#39;, &#39;sporting goods&#39;, &#39;final good&#39;, &#39;consumer products&#39;, &#39;internet&#39;, &#39;real estate&#39;, &#39;macintosh&#39;, &#39;ipod&#39;, &#39;iphone&#39;, &#39;ipad&#39;, &#39;apple watch&#39;, &#39;apple tv&#39;, &#39;homepod&#39;, &#39;macos&#39;, &#39;ios&#39;, &#39;ipados&#39;, &#39;watchos&#39;, &#39;tvos&#39;, &#39;ilife&#39;, &#39;iwork&#39;, &#39;final cut pro&#39;, &#39;logic pro&#39;, &#39;garageband&#39;, &#39;shazam application&#39;, &#39;shazam&#39;, &#39;siri&#39;, &#39;uniprise&#39;, &#39;health care&#39;, &#39;service economics&#39;, &#39;services&#39;, &#39;ingenix&#39;, &#39;pharmaceuticals&#39;, &#39;medical technology&#39;, &#39;health care services&#39;, &#39;amazon echo&#39;, &#39;amazon fire tablet&#39;, &#39;amazon fire&#39;, &#39;amazon fire tv&#39;, &#39;fire os&#39;, &#39;amazon fire os&#39;, &#39;amazon kindle&#39;, &#39;satellite television&#39;, &#39;landline&#39;, &#39;fixed-line telephones&#39;, &#39;mobile phone&#39;, &#39;mobile telephones&#39;, &#39;internet service provider&#39;, &#39;internet services&#39;, &#39;broadband&#39;, &#39;digital television&#39;, &#39;home security&#39;, &#39;iptv&#39;, &#39;over-the-top media services&#39;, &#39;ott services&#39;, &#39;network security&#39;, &#39;filmmaking&#39;, &#39;film production&#39;, &#39;television production&#39;, &#39;cable television&#39;, &#39;pay television&#39;, &#39;publishing&#39;, &#39;podcast&#39;, &#39;sports management&#39;, &#39;news agency&#39;, &#39;video game&#39;, &#39;car&#39;, &#39;automobiles&#39;, &#39;commercial vehicle&#39;, &#39;car&#39;, &#39;automobiles&#39;, &#39;luxury car&#39;, &#39;luxury vehicles&#39;, &#39;commercial vehicle&#39;, &#39;commercial vehicles&#39;, &#39;list of auto parts&#39;, &#39;automotive parts&#39;, &#39;pickup trucks&#39;, &#39;suvs&#39;, &#39;pharmaceutical&#39;, &#39;pharmacy&#39;, &#39;petroleum&#39;, &#39;natural gas&#39;, &#39;petrochemical&#39;, &#39;marketing brands&#39;, &#39;see chevron products&#39;, &#39;cable television&#39;, &#39;landline&#39;, &#39;mobile phone&#39;, &#39;broadband&#39;, &#39;digital television&#39;, &#39;iptv&#39;, &#39;digital media&#39;, &#39;internet of things&#39;, &#39;internet&#39;, &#39;telematics&#39;, &#39;supercenter&#39;, &#39;superstore&#39;, &#39;supermarket&#39;, &#39;aircraft engine&#39;, &#39;electric power distribution&#39;, &#39;electrical distribution&#39;, &#39;electric motor&#39;, &#39;energy&#39;, &#39;finance&#39;, &#39;health care&#39;, &#39;lighting&#39;, &#39;software&#39;, &#39;wind turbine&#39;, &#39;drug store&#39;, &#39;pharmacy&#39;, &#39;alternative financial service&#39;, &#39;american depositary receipt&#39;, &#39;asset allocation&#39;, &#39;asset management&#39;, &#39;bond finance&#39;, &#39;bond&#39;, &#39;broker&#39;, &#39;capital market&#39;, &#39;collateralized debt obligation&#39;, &#39;commercial banking&#39;, &#39;commodity market&#39;, &#39;commodities&#39;, &#39;commercial bank&#39;, &#39;credit card&#39;, &#39;credit default swap&#39;, &#39;credit derivative&#39;, &#39;currency exchange&#39;, &#39;custodian bank&#39;, &#39;debt settlement&#39;, &#39;digital banking&#39;, &#39;estate planning&#39;, &#39;exchange-traded fund&#39;, &#39;financial analysis&#39;, &#39;financial market&#39;, &#39;foreign exchange market&#39;, &#39;futures exchange&#39;, &#39;hedge fund&#39;, &#39;index fund&#39;, &#39;information processing&#39;, &#39;institutional investor&#39;, &#39;institutional investing&#39;, &#39;insurance&#39;, &#39;investment bank&#39;, &#39;financial capital&#39;, &#39;investment capital&#39;, &#39;investment management&#39;, &#39;portfolio finance&#39;, &#39;portfolios&#39;, &#39;loan servicing&#39;, &#39;merchant services&#39;, &#39;mobile banking&#39;, &#39;money market&#39;, &#39;mortgage brokers&#39;, &#39;mortgage broker&#39;, &#39;mortgage loan&#39;, &#39;mortgage-backed security&#39;, &#39;mortgagebacked securities&#39;, &#39;mutual fund&#39;, &#39;pension fund&#39;, &#39;prime brokerage&#39;, &#39;private banking&#39;, &#39;private equity&#39;, &#39;remittance&#39;, &#39;retail banking&#39;, &#39;broker&#39;, &#39;risk management&#39;, &#39;securities lending&#39;, &#39;security finance&#39;, &#39;security&#39;, &#39;stock trader&#39;, &#39;stock trading&#39;, &#39;subprime lending&#39;, &#39;treasury services&#39;, &#39;trustee&#39;, &#39;underwriting&#39;, &#39;venture capital&#39;, &#39;wealth management&#39;, &#39;wholesale funding&#39;, &#39;wholesale mortgage lenders&#39;, &#39;wholesale mortgage lending&#39;, &#39;wire transfer&#39;]
+</code></pre></div>
+</td></tr></table>
+
+<p>Now let's create a wordcloud function which will visually inform us about which products are more prominent than the others as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -511,47 +598,22 @@
  9
 10
 11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">regex1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[\{\[]+(.*?)[\]\}]&#39;</span><span class="p">)</span> <span class="c1"># describe the expr</span>
-<span class="n">regex2</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[^a-zA-Z\- ]&#39;</span><span class="p">)</span> <span class="c1"># describe the expr</span>
-<span class="n">products</span> <span class="o">=</span> <span class="p">[]</span> 
-<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">wiki_data</span><span class="p">:</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;products&#39;</span><span class="p">]</span> <span class="c1"># get products</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="n">regex1</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="c1"># extract all products</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">z</span><span class="p">]</span> <span class="c1"># get a list </span>
-    <span class="n">m</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">z</span><span class="p">))</span> <span class="c1"># flatten the list; add alternative vanilla python</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="n">regex2</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">m</span>  <span class="k">if</span> <span class="n">t</span> <span class="o">!=</span> <span class="s1">&#39;hlist&#39;</span><span class="p">]</span> <span class="c1"># remove hlist (a rogue token)</span>
-    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;wiki_title&#39;</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;company_name&#39;</span><span class="p">],</span> <span class="s1">&#39;product&#39;</span> <span class="p">:</span> <span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="p">)})</span>
-    <span class="n">products</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">create_wordcloud</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">stopwords</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="sd">&#39;&#39;&#39;create the wordcloud object</span>
+<span class="sd">    args</span>
+<span class="sd">    items :     the items we need to display</span>
+<span class="sd">    stopwords : a list of stopwords to filter out tokens</span>
+<span class="sd">    &#39;&#39;&#39;</span> 
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">products</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
-
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>[&#39;electronics&#39;, &#39;movies and music&#39;, &#39;home and furniture&#39;, &#39;home improvement&#39;, &#39;clothing&#39;, &#39;footwear&#39;, &#39;jewelry&#39;, &#39;toys&#39;, &#39;health and beauty&#39;, &#39;pet supplies&#39;, &#39;sporting goods and fitness&#39;, &#39;auto&#39;, &#39;photo finishing&#39;, &#39;craft supplies&#39;, &#39;party supplies&#39;, &#39;grocery&#39;, &#39;crude oil&#39;, &#39;oil products&#39;, &#39;natural gas&#39;, &#39;petrochemical&#39;, &#39;power generation&#39;, &#39;investment&#39;, &#39;diversified investments&#39;, &#39;insurancetypes&#39;, &#39;property  casualty insurance&#39;, &#39;public utility&#39;, &#39;utilities&#39;, &#39;restaurants&#39;, &#39;food processing&#39;, &#39;aerospace&#39;, &#39;toys&#39;, &#39;mass media&#39;, &#39;media&#39;, &#39;automotive industry&#39;, &#39;automotive&#39;, &#39;sports equipment&#39;, &#39;sporting goods&#39;, &#39;final good&#39;, &#39;consumer products&#39;, &#39;internet&#39;, &#39;real estate&#39;, &#39;macintosh&#39;, &#39;ipod&#39;, &#39;iphone&#39;, &#39;ipad&#39;, &#39;apple watch&#39;, &#39;apple tv&#39;, &#39;homepod&#39;, &#39;macos&#39;, &#39;ios&#39;, &#39;ipados&#39;, &#39;watchos&#39;, &#39;tvos&#39;, &#39;ilife&#39;, &#39;iwork&#39;, &#39;final cut pro&#39;, &#39;logic pro&#39;, &#39;garageband&#39;, &#39;shazam application&#39;, &#39;shazam&#39;, &#39;siri&#39;, &#39;uniprise&#39;, &#39;health care&#39;, &#39;service economics&#39;, &#39;services&#39;, &#39;ingenix&#39;, &#39;pharmaceuticals&#39;, &#39;medical technology&#39;, &#39;health care services&#39;, &#39;amazon echo&#39;, &#39;amazon fire tablet&#39;, &#39;amazon fire&#39;, &#39;amazon fire tv&#39;, &#39;fire os&#39;, &#39;amazon fire os&#39;, &#39;amazon kindle&#39;, &#39;satellite television&#39;, &#39;landline&#39;, &#39;fixed-line telephones&#39;, &#39;mobile phone&#39;, &#39;mobile telephones&#39;, &#39;internet service provider&#39;, &#39;internet services&#39;, &#39;broadband&#39;, &#39;digital television&#39;, &#39;home security&#39;, &#39;iptv&#39;, &#39;over-the-top media services&#39;, &#39;ott services&#39;, &#39;network security&#39;, &#39;filmmaking&#39;, &#39;film production&#39;, &#39;television production&#39;, &#39;cable television&#39;, &#39;pay television&#39;, &#39;publishing&#39;, &#39;podcast&#39;, &#39;sports management&#39;, &#39;news agency&#39;, &#39;video game&#39;, &#39;car&#39;, &#39;automobiles&#39;, &#39;commercial vehicle&#39;, &#39;car&#39;, &#39;automobiles&#39;, &#39;luxury car&#39;, &#39;luxury vehicles&#39;, &#39;commercial vehicle&#39;, &#39;commercial vehicles&#39;, &#39;list of auto parts&#39;, &#39;automotive parts&#39;, &#39;pickup trucks&#39;, &#39;suvs&#39;, &#39;pharmaceutical&#39;, &#39;pharmacy&#39;, &#39;petroleum&#39;, &#39;natural gas&#39;, &#39;petrochemical&#39;, &#39;marketing brands&#39;, &#39;see chevron products&#39;, &#39;cable television&#39;, &#39;landline&#39;, &#39;mobile phone&#39;, &#39;broadband&#39;, &#39;digital television&#39;, &#39;iptv&#39;, &#39;digital media&#39;, &#39;internet of things&#39;, &#39;internet&#39;, &#39;telematics&#39;, &#39;supercenter&#39;, &#39;superstore&#39;, &#39;supermarket&#39;, &#39;aircraft engine&#39;, &#39;electric power distribution&#39;, &#39;electrical distribution&#39;, &#39;electric motor&#39;, &#39;energy&#39;, &#39;finance&#39;, &#39;health care&#39;, &#39;lighting&#39;, &#39;software&#39;, &#39;wind turbine&#39;, &#39;drug store&#39;, &#39;pharmacy&#39;, &#39;alternative financial service&#39;, &#39;american depositary receipt&#39;, &#39;asset allocation&#39;, &#39;asset management&#39;, &#39;bond finance&#39;, &#39;bond&#39;, &#39;broker&#39;, &#39;capital market&#39;, &#39;collateralized debt obligation&#39;, &#39;commercial banking&#39;, &#39;commodity market&#39;, &#39;commodities&#39;, &#39;commercial bank&#39;, &#39;credit card&#39;, &#39;credit default swap&#39;, &#39;credit derivative&#39;, &#39;currency exchange&#39;, &#39;custodian bank&#39;, &#39;debt settlement&#39;, &#39;digital banking&#39;, &#39;estate planning&#39;, &#39;exchange-traded fund&#39;, &#39;financial analysis&#39;, &#39;financial market&#39;, &#39;foreign exchange market&#39;, &#39;futures exchange&#39;, &#39;hedge fund&#39;, &#39;index fund&#39;, &#39;information processing&#39;, &#39;institutional investor&#39;, &#39;institutional investing&#39;, &#39;insurance&#39;, &#39;investment bank&#39;, &#39;financial capital&#39;, &#39;investment capital&#39;, &#39;investment management&#39;, &#39;portfolio finance&#39;, &#39;portfolios&#39;, &#39;loan servicing&#39;, &#39;merchant services&#39;, &#39;mobile banking&#39;, &#39;money market&#39;, &#39;mortgage brokers&#39;, &#39;mortgage broker&#39;, &#39;mortgage loan&#39;, &#39;mortgage-backed security&#39;, &#39;mortgagebacked securities&#39;, &#39;mutual fund&#39;, &#39;pension fund&#39;, &#39;prime brokerage&#39;, &#39;private banking&#39;, &#39;private equity&#39;, &#39;remittance&#39;, &#39;retail banking&#39;, &#39;broker&#39;, &#39;risk management&#39;, &#39;securities lending&#39;, &#39;security finance&#39;, &#39;security&#39;, &#39;stock trader&#39;, &#39;stock trading&#39;, &#39;subprime lending&#39;, &#39;treasury services&#39;, &#39;trustee&#39;, &#39;underwriting&#39;, &#39;venture capital&#39;, &#39;wealth management&#39;, &#39;wholesale funding&#39;, &#39;wholesale mortgage lenders&#39;, &#39;wholesale mortgage lending&#39;, &#39;wire transfer&#39;]
-</code></pre></div>
-</td></tr></table>
-
-<p>To create wordclouds,</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">create_wordcloud</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">stopwords</span><span class="o">=</span><span class="p">[]):</span>
-    <span class="c1"># Create the wordcloud object</span>
     <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
     <span class="n">wordcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
-                          <span class="n">stopwords</span><span class="o">=</span><span class="n">stopwords</span><span class="p">)</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="c1">#  max_words=20 </span>
+                          <span class="n">stopwords</span><span class="o">=</span><span class="n">stopwords</span><span class="p">)</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="c1"># max_words=20 </span>
 
-    <span class="c1"># Display the generated image:</span>
+    <span class="c1"># display the generated image</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wordcloud</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;bilinear&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -559,11 +621,11 @@
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">create_wordcloud</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;and&#39;</span><span class="p">])</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">create_wordcloud</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;and&#39;</span><span class="p">])</span> <span class="c1"># adding &quot;and&quot; to the stopword list </span>
 </code></pre></div>
 </td></tr></table>
 
-<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_8_0.png" /></p>
+<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_17_0.png" /></p>
 <h3 id="what-type-of-industries-do-the-top-20-company-belong-from">What type of industries do the top 20 company belong from?<a class="headerlink" href="#what-type-of-industries-do-the-top-20-company-belong-from" title="Permanent link">&para;</a></h3>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -589,7 +651,7 @@
 </code></pre></div>
 </td></tr></table>
 
-<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_11_0.png" /></p>
+<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_20_0.png" /></p>
 <h3 id="what-the-assets-of-the-top-20-companies-look-like">What the assets of the top 20 companies look like?<a class="headerlink" href="#what-the-assets-of-the-top-20-companies-look-like" title="Permanent link">&para;</a></h3>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -738,7 +800,7 @@
 </code></pre></div>
 </td></tr></table>
 
-<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_18_0.png" /></p>
+<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_27_0.png" /></p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">data</span>
 </code></pre></div>
 </td></tr></table>
@@ -1018,13 +1080,13 @@
           </a>
         
         
-          <a href="../section-5-legal-and-ethical-considerations/" title="Legal and Ethical considerations" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../section-5-legal-and-ethical-considerations/" title="Legal and Ethical Considerations" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Legal and Ethical considerations
+                Legal and Ethical Considerations
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

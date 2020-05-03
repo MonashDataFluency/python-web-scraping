@@ -1,13 +1,15 @@
 ## Web API based scraping
 
+<img src="../images/api.png">
+
 ### A brief introduction to APIs
 ---
 
 In this section, we will take a look at an alternative way to gather data than the previous pattern based, HTML scraping. Sometimes websites offer an API (or Application Programming Interface) as a service which provides a high level interface to directly retrieve data from their repositories or databases at the backend. 
 
-From wikipedia,
+From Wikipedia,
 
-> An API is typically defined as a set of specifications, such as Hypertext Transfer Protocol (HTTP) request messages, along with a definition of the structure of response messages, usually in an Extensible Markup Language (XML) or JavaScript Object Notation (JSON) format.
+> "*An API is typically defined as a set of specifications, such as Hypertext Transfer Protocol (HTTP) request messages, along with a definition of the structure of response messages, usually in an Extensible Markup Language (XML) or JavaScript Object Notation (JSON) format.*"
 
 They typically tend to be URL endpoints (to be fired as requests) that need to be modified based on our requirements (what we desire in the response body) which then returns some a payload (data) within the response, formatted as either JSON, XML or HTML. 
 
@@ -31,9 +33,9 @@ There are primarily two ways to use APIs :
 
 For e.g. `Tweepy` is a famous python wrapper for Twitter API whereas `twurl` is a command line interface (CLI) tool but both can achieve the same outcomes.
 
-Here we focus on the latter approach and will use a Python library (a wrapper) called `wptools` based around the MediaWiki API.
+Here we focus on the latter approach and will use a Python library (a wrapper) called `wptools` based around the original MediaWiki API.
 
-One advantage of using official APIs is that they are usually compliant of the terms of service (ToS) of a particular service that researchers are looking to gather data from. However, third-party libraries or packages which claim to provide more throughput than the official APIs (rate limits, number of requests/sec) generally operate in a gray area as they tend to violate ToS.
+One advantage of using official APIs is that they are usually compliant of the terms of service (ToS) of a particular service that researchers are looking to gather data from. However, third-party libraries or packages which claim to provide more throughput than the official APIs (rate limits, number of requests/sec) generally operate in a gray area as they tend to violate ToS. Always be sure to read their documentation throughly.
 
 ### Wikipedia API
 ---
@@ -75,28 +77,21 @@ Importing the same,
 ```python
 import json
 import wptools
-import itertools
 import wikipedia
 import pandas as pd
 from pathlib import Path
-from wordcloud import WordCloud
-import matplotlib.pyplot as plt
-from IPython.display import Image
 
-%matplotlib inline
-plt.style.use('ggplot')              # setting the style to ggplot
-
-print(wptools.__version__)           # checking the installed version
+print('wptools version : {}'.format(wptools.__version__)) # checking the installed version
 ```
 
-    0.4.17
-    
+    wptools version : 0.4.17
+
 
 Now let's load the data which we scrapped in the previous section as follows,
 
 
 ```python
-fname = 'fortune_500_companies.csv' # filename
+fname = 'fortune_500_companies.csv' # scrapped data from previous section
 path = Path('../data/')             # path to the csv file
 df = pd.read_csv(path/fname)        # reading the csv file as a pandas df
 df.head()                           # displaying the first 5 rows
@@ -174,7 +169,7 @@ df_sub = df.iloc[:no_of_companies, :].copy() # only selecting the top 20 compani
 companies = df_sub['company_name'].tolist()  # converting the column to a list
 ```
 
-Now let's take a brief look as follows,
+Taking a brief look at the same,
 
 
 ```python
@@ -202,18 +197,20 @@ for i, j in enumerate(companies):   # looping through the list of 20 company
     18. General Electric
     19. Walgreens Boots Alliance
     20. JPMorgan Chase
-    
+
 
 ### Getting article names from wiki
 
-Right off the bat, as you might have guessed, a tricky issue with matching the top 20 Fortune 500 companies to their wikipedia article names is that both of them would not be exactly the same i.e. they match character for character.
+Right off the bat, as you might have guessed, one issue with matching the top 20 Fortune 500 companies to their wikipedia article names is that both of them would not be exactly the same i.e. they match character for character. There will be slight variation in their names.
 
-To overcome this problem and ensure that we have all the company names and its corresponding wikipedia article, we will use (https://wikipedia.readthedocs.io/en/latest/code.html) to get suggestions for the company names and their equivalent in wikipedia.
+To overcome this problem and ensure that we have all the company names and its corresponding wikipedia article, we will use the `wikipedia` package (https://wikipedia.readthedocs.io/en/latest/code.html) to get suggestions for the company names and their equivalent in wikipedia.
 
 
 ```python
 wiki_search = [{company : wikipedia.search(company)} for company in companies]
 ```
+
+Inspecting the same,
 
 
 ```python
@@ -303,12 +300,16 @@ for idx, company in enumerate(wiki_search):
     JPMorgan Chase, Chase Bank, 2012 JPMorgan Chase trading loss, JPMorgan Chase Tower (Houston), 2014 JPMorgan Chase data breach, JPMorgan Chase Building (San Francisco), JPMorgan Corporate Challenge, Chase Tower (Dallas), 270 Park Avenue, Chase Paymentech
     
     
-    
+
+
+Now let's get the most probable ones (the first suggestion) for each of the first 20 companies on the Fortune 500 list,
 
 
 ```python
 most_probable = [(company, wiki_search[i][company][0]) for i, company in enumerate(companies)]
-most_probable
+companies = [x[1] for x in most_probable]
+
+print(most_probable)
 ```
 
 
@@ -337,62 +338,27 @@ most_probable
 
 
 
-
-```python
-companies = [x[1] for x in most_probable]
-companies
-```
-
-
-
-
-    ['Walmart',
-     'ExxonMobil',
-     'Berkshire Hathaway',
-     'Apple',
-     'UnitedHealth Group',
-     'McKesson Corporation',
-     'CVS Health',
-     'Amazon (company)',
-     'AT&T',
-     'General Motors',
-     'Ford Motor Company',
-     'AmerisourceBergen',
-     'Chevron Corporation',
-     'Cardinal Health',
-     'Costco',
-     'Verizon Communications',
-     'Kroger',
-     'General Electric',
-     'Walgreens Boots Alliance',
-     'JPMorgan Chase']
-
-
-
-For **Apple**, lets manually replace it with **Apple Inc.** as follows,
+We can notice that most of the wiki article titles make sense. However, **Apple** is quite ambiguous in this regard as it can indicate the fruit as well as the company. However we can see that the second suggestion returned by was **Apple Inc.**. Hence, we can manually replace it with **Apple Inc.** as follows,
 
 
 ```python
-companies[companies.index('Apple')] = 'Apple Inc.'
-print(companies)
+companies[companies.index('Apple')] = 'Apple Inc.' # replacing "Apple"
+print(companies) # final list of wikipedia article titles
 ```
 
     ['Walmart', 'ExxonMobil', 'Berkshire Hathaway', 'Apple Inc.', 'UnitedHealth Group', 'McKesson Corporation', 'CVS Health', 'Amazon (company)', 'AT&T', 'General Motors', 'Ford Motor Company', 'AmerisourceBergen', 'Chevron Corporation', 'Cardinal Health', 'Costco', 'Verizon Communications', 'Kroger', 'General Electric', 'Walgreens Boots Alliance', 'JPMorgan Chase']
-    
-
-> Note : Wiki data dump link (last updated 2015) : https://old.datahub.io/dataset/wikidata
-
-### wptools
 
 
+### Retrieving the infoboxes
 
-- https://github.com/siznax/wptools/wiki/Data-captured
+Now that we have mapped the names of the companies to their corresponding wikipedia article let's retrieve the infobox data from those pages. 
+
+`wptools` provides easy to use methods to directly call the MediaWiki API on our behalf and get us all the wikipedia data. Let's try retrieving data for **Walmart** as follows,
 
 
 ```python
 page = wptools.page('Walmart')
-page.get_parse()
-page.get_wikidata()
+page.get_parse()    # parses the wikipedia article
 ```
 
     en.wikipedia.org (parse) Walmart
@@ -403,48 +369,23 @@ page.get_wikidata()
       infobox: <dict(30)> name, logo, logo_caption, image, image_size,...
       iwlinks: <list(2)> https://commons.wikimedia.org/wiki/Category:W...
       pageid: 33589
-      parsetree: <str(346504)> <root><template><title>about</title><pa...
+      parsetree: <str(330390)> <root><template><title>about</title><pa...
       requests: <list(2)> parse, imageinfo
       title: Walmart
       wikibase: Q483551
       wikidata_url: https://www.wikidata.org/wiki/Q483551
-      wikitext: <str(274081)> {{about|the retail chain|other uses}}{{p...
+      wikitext: <str(263955)> {{about|the retail chain|other uses}}{{p...
     }
-    www.wikidata.org (wikidata) Q483551
-    www.wikidata.org (labels) Q180816|Q219635|P18|Q478758|Q10382887|Q...
-    www.wikidata.org (labels) P740|Q54862513|P966|P3500|Q6383259|Q694...
-    www.wikidata.org (labels) Q818364|P6160|P1278|P3347|Q17343056|P37...
-    en.wikipedia.org (imageinfo) File:Walmart Home Office.jpg
-    Walmart (en) data
-    {
-      aliases: <list(5)> Wal-Mart, Wal Mart, Wal-Mart Stores, Inc., Wa...
-      claims: <dict(63)> P112, P946, P373, P31, P856, P910, P159, P414...
-      description: U.S. discount retailer based in Arkansas
-      image: <list(2)> {'kind': 'parse-image', 'file': 'File:Walmart s...
-      infobox: <dict(30)> name, logo, logo_caption, image, image_size,...
-      iwlinks: <list(2)> https://commons.wikimedia.org/wiki/Category:W...
-      label: Walmart
-      labels: <dict(116)> Q180816, Q219635, P18, Q478758, Q10382887, Q...
-      modified: <dict(1)> wikidata
-      pageid: 33589
-      parsetree: <str(346504)> <root><template><title>about</title><pa...
-      requests: <list(7)> parse, imageinfo, wikidata, labels, labels, ...
-      title: Walmart
-      what: retail chain
-      wikibase: Q483551
-      wikidata: <dict(63)> founded by (P112), ISIN (P946), Commons cat...
-      wikidata_pageid: 455133
-      wikidata_url: https://www.wikidata.org/wiki/Q483551
-      wikitext: <str(274081)> {{about|the retail chain|other uses}}{{p...
-    }
-    
 
 
 
 
-    <wptools.page.WPToolsPage at 0x7f1fc48660f0>
+
+    <wptools.page.WPToolsPage at 0x7f37cc054518>
 
 
+
+As we can see from the output above, `wptools` successfully retrieved the wikipedia and wikidata corresponding to the query **Walmart**. Now inspecting the fetched attributes,
 
 
 ```python
@@ -454,190 +395,54 @@ page.data.keys()
 
 
 
-    dict_keys(['requests', 'iwlinks', 'pageid', 'wikitext', 'parsetree', 'infobox', 'title', 'wikibase', 'wikidata_url', 'image', 'labels', 'wikidata', 'wikidata_pageid', 'aliases', 'modified', 'description', 'label', 'claims', 'what'])
+    dict_keys(['requests', 'iwlinks', 'pageid', 'wikitext', 'parsetree', 'infobox', 'title', 'wikibase', 'wikidata_url', 'image'])
 
 
 
-Alternatively,
+The attribute **infobox** contains the data we require,
 
 
 ```python
-page.data['wikidata']
+page.data['infobox']
 ```
 
 
 
 
-    {'founded by (P112)': 'Sam Walton (Q497827)',
-     'ISIN (P946)': 'US9311421039',
-     'Commons category (P373)': 'Walmart',
-     'instance of (P31)': ['retail chain (Q507619)', 'enterprise (Q6881511)'],
-     'official website (P856)': 'https://www.walmart.com',
-     "topic's main category (P910)": 'Category:Walmart (Q6383259)',
-     'headquarters location (P159)': ['Bentonville (Q818364)', 'Arkansas (Q1612)'],
-     'stock exchange (P414)': 'New York Stock Exchange (Q13677)',
-     'subsidiary (P355)': ["Sam's Club (Q1972120)",
-      'Massmart (Q3297791)',
-      'Walmart Canada (Q1645718)',
-      'Walmart Chile (Q5283104)',
-      'Walmart de México y Centroamérica (Q1064887)',
-      'Seiyu Group (Q3108542)',
-      'Asda (Q297410)',
-      'Walmart Labs (Q3816562)',
-      'Walmart (Q30338489)',
-      'Más Club (Q6949810)',
-      'Líder (Q6711261)',
-      'Hypermart USA (Q16845747)',
-      'Amigo Supermarkets (Q4746234)',
-      'Walmart Neighborhood Market (Q7963529)',
-      'Asda Mobile (Q4804093)',
-      'Marketside (Q6770960)',
-      'Vudu (Q5371838)',
-      'Walmart Nicaragua (Q22121904)'],
-     'owned by (P127)': ['Walton Enterprises (Q17343056)',
-      'State Street Corporation (Q2037125)',
-      'The Vanguard Group (Q849363)',
-      'BlackRock (Q219635)'],
-     'VIAF ID (P214)': '128951275',
-     'Freebase ID (P646)': '/m/0841v',
-     'inception (P571)': '+1962-07-02T00:00:00Z',
-     'industry (P452)': ['retail (Q126793)',
-      'retail chain (Q507619)',
-      'discount store (Q261428)'],
-     'chairperson (P488)': ['Doug McMillon (Q16196595)',
-      'Greg Penner (Q20177269)'],
-     'motto text (P1451)': 'Save money. Live better.',
-     'Facebook ID (P2013)': 'walmart',
-     'Twitter username (P2002)': 'Walmart',
-     'part of (P361)': ['S&P 500 (Q242345)',
-      'Dow Jones Industrial Average (Q180816)'],
-     'image (P18)': 'Walmart Home Office.jpg',
-     'location of formation (P740)': 'Rogers (Q79497)',
-     'country (P17)': 'United States of America (Q30)',
-     'legal form (P1454)': 'public company (Q891723)',
-     'named after (P138)': 'Sam Walton (Q497827)',
-     'total revenue (P2139)': [{'amount': '+482130000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917',
-       'upperBound': '+482130500000',
-       'lowerBound': '+482129500000'},
-      {'amount': '+485651000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917',
-       'upperBound': '+485651500000',
-       'lowerBound': '+485650500000'},
-      {'amount': '+476294000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917',
-       'upperBound': '+476294500000',
-       'lowerBound': '+476293500000'},
-      {'amount': '+468651000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917',
-       'upperBound': '+468651500000',
-       'lowerBound': '+468650500000'},
-      {'amount': '+446509000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917',
-       'upperBound': '+446509500000',
-       'lowerBound': '+446508500000'},
-      {'amount': '+485873000000', 'unit': 'http://www.wikidata.org/entity/Q4917'}],
-     'net profit (P2295)': [{'amount': '+14694000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917',
-       'upperBound': '+14694500000',
-       'lowerBound': '+14693500000'},
-      {'amount': '+16182000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917',
-       'upperBound': '+16182500000',
-       'lowerBound': '+16181500000'},
-      {'amount': '+15918000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917',
-       'upperBound': '+15918500000',
-       'lowerBound': '+15917500000'},
-      {'amount': '+16963000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917',
-       'upperBound': '+16963500000',
-       'lowerBound': '+16962500000'},
-      {'amount': '+15734000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917',
-       'upperBound': '+15734500000',
-       'lowerBound': '+15733500000'},
-      {'amount': '+13643000000', 'unit': 'http://www.wikidata.org/entity/Q4917'}],
-     'total assets (P2403)': [{'amount': '+199581000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917',
-       'upperBound': '+199581500000',
-       'lowerBound': '+199580500000'},
-      {'amount': '+203490000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917',
-       'upperBound': '+203490500000',
-       'lowerBound': '+203489500000'},
-      {'amount': '+204541000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917',
-       'upperBound': '+204541500000',
-       'lowerBound': '+204540500000'},
-      {'amount': '+202910000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917',
-       'upperBound': '+202910500000',
-       'lowerBound': '+202909500000'},
-      {'amount': '+193120000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917',
-       'upperBound': '+193120500000',
-       'lowerBound': '+193119500000'},
-      {'amount': '+198825000000', 'unit': 'http://www.wikidata.org/entity/Q4917'}],
-     'employees (P1128)': {'amount': '+2300000', 'unit': '1'},
-     'Legal Entity Identifier (P1278)': 'Y87794H0US1R65VBXU25',
-     'Instagram username (P2003)': 'walmart',
-     'Google+ ID (P2847)': '111852759168797891317',
-     'chief executive officer (P169)': ['Doug McMillon (Q16196595)',
-      'Mike Duke (Q1933118)',
-      'Lee Scott (Q478758)',
-      'David Glass (Q5234167)',
-      'Sam Walton (Q497827)'],
-     'Quora topic ID (P3417)': 'Walmart-company',
-     'Justia Patents company ID (P3875)': 'wal-mart',
-     'logo image (P154)': 'Walmart logo.svg',
-     'IPv4 routing prefix (P3761)': '156.94.0.0/16',
-     'ISNI (P213)': '0000 0004 0616 1876',
-     'operating income (P3362)': [{'amount': '+22764000000',
-       'unit': 'http://www.wikidata.org/entity/Q4917'},
-      {'amount': '+24105000000', 'unit': 'http://www.wikidata.org/entity/Q4917'},
-      {'amount': '+27147000000', 'unit': 'http://www.wikidata.org/entity/Q4917'}],
-     'website account on (P553)': 'WeChat (Q283233)',
-     'PermID (P3347)': '4295905298',
-     'Encyclopædia Britannica Online ID (P1417)': 'topic/Wal-Mart',
-     'GRID ID (P2427)': 'grid.480455.8',
-     'award received (P166)': 'Public Eye Labour Law Award (Q54862513)',
-     'Central Index Key (P5531)': '0000104169',
-     'IdRef ID (P269)': '050771116',
-     'owner of (P1830)': ['Asda (Q297410)',
-      "Sam's Club (Q1972120)",
-      'Seiyu Group (Q3108542)',
-      'Bodega Aurrerá (Q3365858)',
-      'Asda Mobile (Q4804093)',
-      'Bompreço (Q4940907)',
-      'Hayneedle (Q5687056)',
-      'Mercadorama (Q10328812)',
-      None,
-      'Jet.com (Q22079907)',
-      '.george (Q26911051)',
-      '.samsclub (Q26972795)',
-      'Shoes.com (Q46438789)'],
-     'NKCR AUT ID (P691)': 'osa2010597558',
-     'Microsoft Academic ID (P6366)': '1330693074',
-     'market capitalization (P2226)': {'amount': '+239000000000',
-      'unit': 'http://www.wikidata.org/entity/Q4917'},
-     'member of (P463)': 'Linux Foundation (Q858851)',
-     'Library of Congress authority ID (P244)': 'n90648829',
-     'MusicBrainz label ID (P966)': 'b3a104e8-eed0-4a3e-aae8-676c6e7ab016',
-     'ROR ID (P6782)': '04j0gge90',
-     'Ringgold ID (P3500)': '48990',
-     'BoardGameGeek game publisher ID (P6160)': '29995',
-     'total equity (P2137)': {'amount': '+80535000000',
-      'unit': 'http://www.wikidata.org/entity/Q4917'},
-     'DR topic ID (P6849)': 'walmart',
-     'BBC News topic ID (P6200)': 'ce1qrvlex0et',
-     'Gran Enciclopèdia Catalana ID (P1296)': '0256072',
-     'Downdetector ID (P7306)': 'wal-mart',
-     'LittleSis organisation ID (P3393)': '1-Walmart',
-     'WeChat ID (P7650)': 'Walmart_Hyper',
-     'Pinterest username (P3836)': 'walmart'}
+    {'name': 'Walmart Inc.',
+     'logo': 'Walmart logo.svg',
+     'logo_caption': "Walmart's current logo since 2008",
+     'image': 'Walmart store exterior 5266815680.jpg',
+     'image_size': '270px',
+     'image_caption': 'Exterior of a Walmart store',
+     'former_name': "{{Unbulleted list|Walton's (1950–1969)|Wal-Mart, Inc. (1969–1970)|Wal-Mart Stores, Inc. (1970–2018)}}",
+     'type': '[[Public company|Public]]',
+     'ISIN': 'US9311421039',
+     'industry': '[[Retail]]',
+     'traded_as': '{{Unbulleted list|NYSE|WMT|[[DJIA]] component|[[S&P 100]] component|[[S&P 500]] component}} {{NYSE|WMT}}',
+     'foundation': '{{Start date and age|1962|7|2}} (in [[Rogers, Arkansas]])',
+     'founder': '[[Sam Walton]]',
+     'location_city': '[[Bentonville, Arkansas]]',
+     'location_country': 'U.S.',
+     'locations': '{{increase}} 11,503 stores worldwide (January 31, 2020)',
+     'area_served': 'Worldwide',
+     'key_people': '{{plainlist|\n* [[Greg Penner]] ([[Chairman]])\n* [[Doug McMillon]] ([[President (corporate title)|President]], [[CEO]])}}',
+     'products': '{{hlist|Electronics|Movies and music|Home and furniture|Home improvement|Clothing|Footwear|Jewelry|Toys|Health and beauty|Pet supplies|Sporting goods and fitness|Auto|Photo finishing|Craft supplies|Party supplies|Grocery}}',
+     'services': '{{hlist|[[Ria Money Transfer|Walmart-2-Walmart]]|Walmart MoneyCard|Pickup Today|Walmart.com|Financial Services| Walmart Pay}}',
+     'revenue': '{{increase}} {{US$|523.964 billion|link|=|yes}} {{small|([[Fiscal Year|FY]] 2020)}}',
+     'operating_income': '{{decrease}} {{US$|20.568 billion}} {{small|(FY 2020)}}',
+     'net_income': '{{increase}} {{US$|14.881 billion}} {{small|(FY 2020)}}',
+     'assets': '{{increase}} {{US$|236.495 billion}} {{small|(FY 2020)}}',
+     'equity': '{{increase}} {{US$|74.669 billion}} {{small|(FY 2020)}}',
+     'owner': '[[Walton family]] (51%)',
+     'num_employees': '{{plainlist|\n* 2.2|nbsp|million, Worldwide (2018)|ref| name="xbrlus_1" |\n* 1.5|nbsp|million, U.S. (2017)|ref| name="Walmart"|{{cite web |url = http://corporate.walmart.com/our-story/locations/united-states |title = Walmart Locations Around the World – United States |publisher = |url-status=live |archiveurl = https://web.archive.org/web/20150926012456/http://corporate.walmart.com/our-story/locations/united-states |archivedate = September 26, 2015 |df = mdy-all }}|</ref>|\n* 700,000, International}} {{nbsp}} million, Worldwide (2018) * 1.5 {{nbsp}} million, U.S. (2017) * 700,000, International',
+     'divisions': "{{Unbulleted list|Walmart U.S.|Walmart International|[[Sam's Club]]|Global eCommerce}}",
+     'subsid': '[[List of assets owned by Walmart|List of subsidiaries]]',
+     'homepage': '{{URL|walmart.com}}'}
 
 
+
+Let's define a list of features that we want from the infoboxes as follows,
 
 
 ```python
@@ -647,12 +452,12 @@ features = ['founder', 'location_country', 'revenue', 'operating_income', 'net_i
         'equity', 'type', 'industry', 'products', 'num_employees']
 ```
 
-Now lets fetch results for all the companies as follows,
+Now fetching the data for all the companies (this may take a while),
 
 
 ```python
 for company in companies:    
-    page = wptools.page(company)
+    page = wptools.page(company) # calling 
     try:
         page.get_parse()
         if page.data['infobox'] != None:
@@ -947,258 +752,34 @@ for company in companies:
       wikidata_url: https://www.wikidata.org/wiki/Q192314
       wikitext: <str(112397)> {{About|JPMorgan Chase & Co|its main sub...
     }
-    
+
+
+Let's take a look at `wiki_data` for the first instance i.e. **Walmart**,
 
 
 ```python
-wiki_data
+wiki_data[0]
 ```
 
 
 
 
-    [{'founder': '[[Sam Walton]]',
-      'location_country': 'U.S.',
-      'revenue': '{{increase}} {{US$|514.405 billion|link|=|yes}} (2019)',
-      'operating_income': '{{increase}} {{US$|21.957 billion}} (2019)',
-      'net_income': '{{decrease}} {{US$|6.67 billion}} (2019)',
-      'assets': '{{increase}} {{US$|219.295 billion}} (2019)',
-      'equity': '{{decrease}} {{US$|79.634 billion}} (2019)',
-      'type': '[[Public company|Public]]',
-      'industry': '[[Retail]]',
-      'products': '{{hlist|Electronics|Movies and music|Home and furniture|Home improvement|Clothing|Footwear|Jewelry|Toys|Health and beauty|Pet supplies|Sporting goods and fitness|Auto|Photo finishing|Craft supplies|Party supplies|Grocery}}',
-      'num_employees': '{{plainlist|\n* 2.2|nbsp|million, Worldwide (2018)|ref| name="xbrlus_1" |\n* 1.5|nbsp|million, U.S. (2017)|ref| name="Walmart"|{{cite web |url = http://corporate.walmart.com/our-story/locations/united-states |title = Walmart Locations Around the World – United States |publisher = |url-status=live |archiveurl = https://web.archive.org/web/20150926012456/http://corporate.walmart.com/our-story/locations/united-states |archivedate = September 26, 2015 |df = mdy-all }}|</ref>|\n* 700,000, International}} {{nbsp}} million, Worldwide (2018) * 1.5 {{nbsp}} million, U.S. (2017) * 700,000, International',
-      'company_name': 'Walmart'},
-     {'founder': '',
-      'location_country': '',
-      'revenue': '{{Nowrap|Increase| |US$|279.3 billion|link|=|yes|ref| name="201310K"|[https://corporate.exxonmobil.com/-/media/global/files/annual-report/2018-financial-and-operating-review.pdf EXXON MOBIL CORPORATION Form 10-K] {{Webarchive|url=https://web.archive.org/web/20190404044022/https://corporate.exxonmobil.com/-/media/global/files/annual-report/2018-financial-and-operating-review.pdf |date=April 4, 2019 }}, \'\'Google Finance\'\', March 21, 2019|</ref>}} {{Increase}} {{US$|279.3 billion|link|=|yes}}',
-      'operating_income': '{{Nowrap|Increase| |US$|21.53 billion|ref| name="201310K"}} {{Increase}} {{US$|21.53 billion}}',
-      'net_income': '{{Nowrap|Increase| |US$|20.84 billion|ref| name="201310K"}} {{Increase}} {{US$|20.84 billion}}',
-      'assets': '{{Nowrap|Decrease| |US$|346.2 billion|ref| name="201310K"}} {{Decrease}} {{US$|346.2 billion}}',
-      'equity': '{{Nowrap|Increase| |US$|191.8 billion|ref| name="201310K"}} {{Increase}} {{US$|191.8 billion}}',
-      'type': '[[Public company|Public]]',
-      'industry': '[[Energy industry|Energy]]: [[Oil and gas industry|Oil and gas]]',
-      'products': '{{Unbulleted list\n  | [[Crude oil]]\n  | [[Oil products]]\n  | [[Natural gas]]\n  | [[Petrochemical]]s\n  | [[Power generation]]}}',
-      'num_employees': '71,000',
-      'company_name': 'ExxonMobil'},
-     {'founder': '[[Oliver Chace]]<br>[[Warren Buffett]] (Modern era)',
-      'location_country': '',
-      'revenue': '{{increase}} US$247.5 billion (2018)',
-      'operating_income': '{{Decrease}} US$10.02 billion (2018)',
-      'net_income': '{{Decrease}} US$4.02 billion (2018)',
-      'assets': '{{increase}} US$707.8 billion (2018)',
-      'equity': '{{increase}} US$348.7 billion (2018)',
-      'type': '[[Public company|Public]]',
-      'industry': '[[Conglomerate (company)|Conglomerate]]',
-      'products': '[[Investment|Diversified investments]], [[Insurance#Types|Property & casualty insurance]], [[Public utility|Utilities]], [[Restaurants]], [[Food processing]], [[Aerospace]], [[Toys]], [[Mass media|Media]], [[Automotive industry|Automotive]], [[Sports equipment|Sporting goods]], [[Final good|Consumer products]], [[Internet]], [[Real estate]]',
-      'num_employees': '{{nowrap|389,373 (2018)}}',
-      'company_name': 'Berkshire Hathaway'},
-     {'founder': '',
-      'location_country': '',
-      'revenue': '{{Decrease}} {{US$|260.174&nbsp;billion|link|=|yes}}',
-      'operating_income': '{{Decrease}} {{US$|63.930&nbsp;billion}}',
-      'net_income': '{{Decrease}} {{US$|55.256&nbsp;billion}}',
-      'assets': '{{Decrease}} {{US$|338.516&nbsp;billion}}',
-      'equity': '{{Decrease}} {{US$|90.488&nbsp;billion}}',
-      'type': '[[Public company|Public]]',
-      'industry': '{{Unbulleted list | [[Computer hardware]] | [[Computer software]] | [[Consumer electronics]] | [[Cloud computing]] | [[Digital distribution]] | [[Fabless manufacturing|Fabless silicon design]] | [[Semiconductors]] | [[Financial technology]] | [[Artificial intelligence]]}}',
-      'products': '{{Flatlist|\n* [[Macintosh]]\n* [[iPod]]\n* [[iPhone]]\n* [[iPad]]\n* [[Apple Watch]]\n* [[Apple TV]]\n* [[HomePod]]\n* [[macOS]]\n* [[iOS]]\n* [[iPadOS]]\n* [[watchOS]]\n* [[tvOS]]\n* [[iLife]]\n* [[iWork]]\n* [[Final Cut Pro]]\n* [[Logic Pro]]\n* [[GarageBand]]\n* [[Shazam (application)|Shazam]]\n* [[Siri]]}}',
-      'num_employees': '137,000',
-      'company_name': 'Apple Inc.'},
-     {'founder': 'Richard T. Burke',
-      'location_country': '',
-      'revenue': '{{increase}} $242.155 billion (2019)',
-      'operating_income': '{{increase}} $17.981 billion (2019)',
-      'net_income': '{{increase}} $14.239 billion (2019)',
-      'assets': '{{increase}} $173.889 billion (2019)',
-      'equity': '{{increase}} $60.436 billion (2019)',
-      'type': '[[Public company]]',
-      'industry': '[[Managed health care]]',
-      'products': '[[Uniprise]], [[Health Care]] [[Service (economics)|Services]], Specialized Care Services, and [[Ingenix]]',
-      'num_employees': '300,000 (2019)',
-      'company_name': 'UnitedHealth Group'},
-     {'founder': 'John McKesson<br>Charles Olcott',
-      'location_country': '',
-      'revenue': '{{increase}} {{US$|208.4 billion}} {{small|(2018)}}',
-      'operating_income': '{{increase}} {{US$|2.921 billion}} {{small|(2018)}}',
-      'net_income': '{{increase}} {{US$|67 million}} {{small|(2018)}}',
-      'assets': '{{nowrap|increase| |US$|60.381 billion| |small|(2018)|ref| name=FY}} {{increase}} {{US$|60.381 billion}} {{small|(2018)}}',
-      'equity': '{{decrease}} {{US$|10.057 billion}} {{small|(2018)}}',
-      'type': '[[Public company|Public]]',
-      'industry': '[[Healthcare]]',
-      'products': '[[Pharmaceuticals]]<br>[[Medical technology]]<br>[[Health care services]]',
-      'num_employees': '~78,000 {{small|(2018)}}',
-      'company_name': 'McKesson Corporation'},
-     {'founder': '',
-      'location_country': '',
-      'revenue': '{{ublist|class|=|nowrap|increase| |US$|194.579 billion| (2018)|US$|184.786 billion| (2017)}} {{increase}} {{US$|194.579 billion}} (2018) {{US$|184.786 billion}} (2017)',
-      'operating_income': '{{ublist|class|=|nowrap|decrease| |US$|4.021 billion| (2018)|US$|9.538 billion| (2017)}} {{decrease}} {{US$|4.021 billion}} (2018) {{US$|9.538 billion}} (2017)',
-      'net_income': '{{ublist|class|=|nowrap|decrease| |US$|-596 million| (2018)|US$|6.623 billion| (2017)}} {{decrease}} {{US$|-596 million}} (2018) {{US$|6.623 billion}} (2017)',
-      'assets': '{{increase}} {{US$|196.456 billion}}',
-      'equity': '{{increase}} {{US$|58.225 billion}}',
-      'type': '[[Public company|Public]]',
-      'industry': '{{flat list|\n* [[Retail]]\n* [[health care]]}}',
-      'products': '',
-      'num_employees': '295,000',
-      'company_name': 'CVS Health'},
-     {'founder': '[[Jeff Bezos]]',
-      'location_country': '',
-      'revenue': '{{increase}} {{US$|232.887 billion|link|=|yes}}',
-      'operating_income': '{{increase}} {{US$|12.421 billion}}',
-      'net_income': '{{increase}} {{US$|10.073 billion}}',
-      'assets': '{{decrease}} {{US$|162.648 billion}}',
-      'equity': '{{decrease}} {{US$|43.549 billion}}',
-      'type': '[[Public company|Public]]',
-      'industry': '{{plainlist|\n* [[Cloud computing]]\n* [[E-commerce]]\n* [[Artificial intelligence]]\n* [[Consumer electronics]]\n* [[Digital distribution]]\n* [[Grocery stores]]}}',
-      'products': '{{Hlist|[[Amazon Echo]]|[[Amazon Fire tablet|Amazon Fire]]|[[Amazon Fire TV]]|[[Fire OS|Amazon Fire OS]]|[[Amazon Kindle]]}}',
-      'num_employees': '{{increase}} 750,000 (2019)',
-      'company_name': 'Amazon (company)'},
-     {'founder': '',
-      'location_country': '',
-      'revenue': '{{increase}} {{US$|link|=|yes}} 170.756 billion (2018)',
-      'operating_income': '{{increase}} {{US$|link|=|yes}} 26.096 billion  (2018)',
-      'net_income': '{{increase}} {{US$|link|=|yes}} 19.953 billion  (2018)',
-      'assets': '{{increase}} {{US$|link|=|yes}} 531 billion     (2018)',
-      'equity': '{{increase}} {{US$|link|=|yes}} 193.884 billion (2018)',
-      'type': '[[Public company|Public]]',
-      'industry': '{{Unbulleted list|[[Telecommunications industry|Telecommunications]]|[[Technology company|Technology]]|[[Mass media]]|[[Entertainment]]}}',
-      'products': '{{Hlist|[[Satellite television]]|[[Landline|Fixed-line telephones]]|[[Mobile phone|Mobile telephones]]|[[Internet service provider|Internet services]]|[[Broadband]]|[[Digital television]]|[[Home security]]|[[IPTV]]|[[Over-the-top media services|OTT services]]|[[Network security]]|[[Filmmaking|Film production]]|[[Television production]]|[[Cable television]]|[[Pay television]]|[[Publishing]]|[[Podcast]]s|[[Sports management]]|[[News agency]]|[[Video game]]s}}',
-      'num_employees': '251,840 (2019)',
-      'company_name': 'AT&T'},
-     {'founder': '[[William C. Durant]]',
-      'location_country': 'US',
-      'revenue': '{{decrease}} [[United States dollar|US$]]147.049 billion {{small|(2018)}}',
-      'operating_income': '{{decrease}} US$11.783 billion {{small|(2018)}}',
-      'net_income': '{{increase}} US$8.014 billion {{small|(2018)}}',
-      'assets': '{{increase}} US$227.339 billion {{small|(2018)}}',
-      'equity': '{{increase}} US$42.777 billion {{small|(2018)}}',
-      'type': '[[Public company|Public]]',
-      'industry': '[[Automotive industry|Automotive]]',
-      'products': '[[Car|Automobiles]]<br />Automobile parts<br />[[Commercial vehicle]]s',
-      'num_employees': '170,483 {{small|(December 2018)}}',
-      'company_name': 'General Motors'},
-     {'founder': '[[Henry Ford]]',
-      'location_country': 'U.S.',
-      'revenue': '{{increase}} {{US$|160.33 billion|link|=|yes}} {{small|(2018)}}',
-      'operating_income': '{{decrease}} {{US$|3.27 billion}} {{small|(2018)}}',
-      'net_income': '{{decrease}} {{US$|3.67 billion}} {{small|(2018)}}',
-      'assets': '{{decrease}} {{US$|256.54 billion}} {{small|(2018)}}',
-      'equity': '{{decrease}} {{US$|35.93 billion}} {{small|(2018)}}',
-      'type': '[[Public company|Public]]',
-      'industry': '[[Automotive industry|Automotive]]',
-      'products': '{{unbulleted list\n  | [[Car|Automobiles]]\n  | [[Luxury Car|Luxury Vehicles]]\n  | [[Commercial vehicle|Commercial Vehicles]]\n  | [[List of auto parts|Automotive parts]]\n  | [[Pickup trucks]]\n  | [[SUVs]]}}',
-      'num_employees': '199,000 {{small|(December 2018)}}',
-      'company_name': 'Ford Motor Company'},
-     {'founder': '',
-      'location_country': '',
-      'revenue': '{{increase}} {{US$|167.93 billion|link|=|yes}} (2018)',
-      'operating_income': '{{increase}} {{US$|1.44 billion}} (2018)',
-      'net_income': '{{increase}} {{US$|1.65 billion}} (2018)',
-      'assets': '{{increase}} {{US$|37.66 billion}} (2018)',
-      'equity': '{{increase}} {{US$|2.93 billion}} (2018)',
-      'type': '[[Public company|Public]]',
-      'industry': '[[Pharmaceutical]]',
-      'products': '[[Pharmaceutical]]s and [[pharmacy]] services',
-      'num_employees': '20,000 (2018)',
-      'company_name': 'AmerisourceBergen'},
-     {'founder': '',
-      'location_country': '',
-      'revenue': '{{increase}} {{US$|158.9 billion|link|=|yes}} {{small|(2018)}}',
-      'operating_income': '{{increase}} {{US$|15.45 billion}} {{small|(2018)}}',
-      'net_income': '{{increase}} {{US$|14.82 billion}} {{small|(2018)}}',
-      'assets': '{{decrease}} {{US$|253.9 billion}} {{small|(2018)}}',
-      'equity': '{{increase}} {{US$|154.5 billion}} {{small|(2018)}}',
-      'type': '[[Public company|Public]]',
-      'industry': '[[Oil and gas industry|Oil and gas]]',
-      'products': "[[Petroleum]], [[natural gas]] and other [[petrochemical]]s, ''[[#Marketing brands|See Chevron products]]''",
-      'num_employees': '~51,900 {{small|(December 2018)}}',
-      'company_name': 'Chevron Corporation'},
-     {'founder': '',
-      'location_country': '',
-      'revenue': '{{increase}} [[US$]]136.80 billion {{small|(2018)}}',
-      'operating_income': '{{decrease}} US$126 million {{small|(2018)}}',
-      'net_income': '{{decrease}} US$256 million {{small|(2018)}}',
-      'assets': '{{increase}} US$39.95 billion {{small|(2018)}}',
-      'equity': '{{increase}} US$6.05 billion {{small|(2018)}}',
-      'type': '[[Public company|Public]]',
-      'industry': '[[Pharmaceuticals]]',
-      'products': 'Medical and pharmaceutical products and services',
-      'num_employees': '~50,000 {{small|(2018)}}',
-      'company_name': 'Cardinal Health'},
-     {'founder': '',
-      'location_country': 'United States',
-      'revenue': '{{increase}} {{US$|152.7 billion}}',
-      'operating_income': '{{increase}} US$4.74 billion (2018)',
-      'net_income': '{{increase}} US$3.66 billion',
-      'assets': '{{increase}} US$45.40 billion',
-      'equity': '{{increase}} US$15.24 billion',
-      'type': '[[Public company|Public]]',
-      'industry': '[[Retail]]',
-      'products': '',
-      'num_employees': '{{increase}} 254,000',
-      'company_name': 'Costco'},
-     {'founder': '',
-      'location_country': '',
-      'revenue': '{{increase}} {{US$|130.86 [[1,000,000,000|billion]]|link|=|yes}}',
-      'operating_income': '{{decrease}} {{US$|22.27 billion}}',
-      'net_income': '{{decrease}} {{US$|15.52 billion}}',
-      'assets': '{{increase}} {{US$|264.82 billion}}',
-      'equity': '{{increase}} {{US$|53.14 billion}}',
-      'type': '[[Public company|Public]]',
-      'industry': '{{Plainlist|\n*[[Telecommunications industry|Telecommunications]]\n*[[Mass media]]}}',
-      'products': '{{Plainlist|\n*[[Cable television]]\n*[[Landline]]\n*[[Mobile phone]]\n*[[Broadband]]\n*[[Digital television]]\n*[[IPTV]]\n*[[Digital Media]]\n*[[Internet of things|Internet]]\n*[[Telematics]]}}',
-      'num_employees': '135,400 (2020)',
-      'company_name': 'Verizon Communications'},
-     {'founder': '[[Bernard Kroger]]',
-      'location_country': 'U.S.',
-      'revenue': '{{increase}} {{US$|121.16 billion|link|=|yes}} (2019)',
-      'operating_income': '{{increase}} {{US$|2.67 billion}} (2019)',
-      'net_income': '{{increase}} {{US$|3.11 billion}} (2019)',
-      'assets': '{{increase}} {{US$|38.11 billion}} (2019)',
-      'equity': '{{increase}} {{US$|7.88 billion}} (2019)',
-      'type': '[[Public company|Public]]',
-      'industry': '[[Retail]]',
-      'products': '[[Supercenter]]/[[superstore]],<br>Other specialty, [[supermarket]]',
-      'num_employees': '453,000 (2019)',
-      'company_name': 'Kroger'},
-     {'founder': '',
-      'location_country': '',
-      'revenue': '{{nowrap|Increase| [[US$]] 121.615 billion |small|(2018)}} {{Increase}} [[US$]] 121.615 billion {{small|(2018)}}',
-      'operating_income': '{{nowrap|Decrease| US$ |color|red|&minus;20.717| billion |small|(2018)}} {{Decrease}} US$ {{color|red|&minus;20.717}} billion {{small|(2018)}}',
-      'net_income': '{{nowrap|Decrease| US$ |color|red|&minus;22.355| billion |small|(2018)}} {{Decrease}} US$ {{color|red|&minus;22.355}} billion {{small|(2018)}}',
-      'assets': '{{nowrap|Decrease| US$ 309.129 billion |small|(2018)}} {{Decrease}} US$ 309.129 billion {{small|(2018)}}',
-      'equity': '{{nowrap|Decrease| US$ 30.981 billion |small|(2018)}} {{Decrease}} US$ 30.981 billion {{small|(2018)}}',
-      'type': '[[Public company|Public]]',
-      'industry': '[[Conglomerate (company)|Conglomerate]]',
-      'products': '{{hlist|[[Aircraft engine]]s|[[Electric power distribution|Electrical distribution]]|[[Electric motor]]s|[[Energy]]|[[Finance]]|[[Health care]]|[[Lighting]]|[[Software]]|[[Wind turbine]]s}}',
-      'num_employees': '283,000 {{small|(2018)}}',
-      'company_name': 'General Electric'},
-     {'founder': '',
-      'location_country': '',
-      'revenue': "{{nowrap|increase| |US$|136.9 billion|link|=|yes|ref| name='10-K'|{{cite web|url=https://sec.report/Document/0001618921-19-000069/ |title=Walgreens Boots Alliance Annual Report (Form 10-K) |publisher=[[U.S. Securities and Exchange Commission]]}}|</ref>}} {{increase}} {{US$|136.9 billion|link|=|yes}}",
-      'operating_income': '{{decrease}} {{US$|4.9 billion}}',
-      'net_income': '{{decrease}} {{US$|3.9 billion}}',
-      'assets': '{{decrease}} {{US$|67.59 billion}}',
-      'equity': '{{decrease}} {{US$|24.15 billion}}',
-      'type': '[[Public company|Public]]',
-      'industry': '[[Pharmaceutical]]<br>[[Retail]]',
-      'products': '[[Drug store]]<br>[[Pharmacy]]',
-      'num_employees': '440,000',
-      'company_name': 'Walgreens Boots Alliance'},
-     {'founder': '[[Aaron Burr]] (Bank of the Manhattan Company)<br>[[J. P. Morgan|John Pierpont Morgan]]',
-      'location_country': '',
-      'revenue': '{{increase}} [[United States dollar|US$]]115.627 [[Billion (short scale)|billion]]',
-      'operating_income': '{{increase}} [[United States dollar|US$]]44.545 billion',
-      'net_income': '{{increase}} [[United States dollar|US$]]36.431 billion',
-      'assets': '{{increase}} [[United States dollar|US$]]2.687 [[trillion]]',
-      'equity': '{{increase}} [[United States dollar|US$]]261.330 billion',
-      'type': '[[Public company|Public]]',
-      'industry': '[[Bank]]ing<br>[[Financial services]]',
-      'products': '[[Alternative financial service]]s, [[American depositary receipt]]s, [[asset allocation]], [[asset management]], [[Bond (finance)|bond]] trading, [[broker]] services, [[capital market]] services, [[collateralized debt obligation]]s, [[commercial banking]], [[commodity market|commodities]] trading, [[commercial bank]]ing, [[credit card]]s, [[credit default swap]], [[credit derivative]] trading, [[currency exchange]], [[custodian bank]]ing, [[debt settlement]], [[digital banking]], [[estate planning]], [[exchange-traded fund]]s, [[financial analysis]], [[financial market]]s, [[foreign exchange market]], [[futures exchange]], [[hedge fund]]s, [[index fund]]s, [[information processing]], [[institutional investor|institutional investing]], [[insurance]], [[investment bank]]ing, [[Financial capital|investment capital]], [[investment management]], investment [[Portfolio (finance)|portfolios]], [[loan servicing]], [[merchant services]], [[mobile banking]], [[money market]] trading,  [[mortgage brokers|mortgage broker]]ing, [[mortgage loan]]s, [[Mortgage-backed security|mortgage–backed securities]], [[mutual fund]]s, [[pension fund]]s, [[prime brokerage]], [[private banking]], [[private equity]], [[remittance]], [[retail banking]], retail [[broker]]age, [[risk management]], [[securities lending]], [[Security (finance)|security]] services, [[stock trader|stock trading]], [[subprime lending]], [[treasury services]], [[trustee]] services, [[underwriting]], [[venture capital]], [[wealth management]], [[wholesale funding]], [[Wholesale mortgage lenders|wholesale mortgage lending]], [[wire transfer]]s',
-      'num_employees': '{{increase}} 256,981',
-      'company_name': 'JPMorgan Chase'}]
+    {'founder': '[[Sam Walton]]',
+     'location_country': 'U.S.',
+     'revenue': '{{increase}} {{US$|514.405 billion|link|=|yes}} (2019)',
+     'operating_income': '{{increase}} {{US$|21.957 billion}} (2019)',
+     'net_income': '{{decrease}} {{US$|6.67 billion}} (2019)',
+     'assets': '{{increase}} {{US$|219.295 billion}} (2019)',
+     'equity': '{{decrease}} {{US$|79.634 billion}} (2019)',
+     'type': '[[Public company|Public]]',
+     'industry': '[[Retail]]',
+     'products': '{{hlist|Electronics|Movies and music|Home and furniture|Home improvement|Clothing|Footwear|Jewelry|Toys|Health and beauty|Pet supplies|Sporting goods and fitness|Auto|Photo finishing|Craft supplies|Party supplies|Grocery}}',
+     'num_employees': '{{plainlist|\n* 2.2|nbsp|million, Worldwide (2018)|ref| name="xbrlus_1" |\n* 1.5|nbsp|million, U.S. (2017)|ref| name="Walmart"|{{cite web |url = http://corporate.walmart.com/our-story/locations/united-states |title = Walmart Locations Around the World – United States |publisher = |url-status=live |archiveurl = https://web.archive.org/web/20150926012456/http://corporate.walmart.com/our-story/locations/united-states |archivedate = September 26, 2015 |df = mdy-all }}|</ref>|\n* 700,000, International}} {{nbsp}} million, Worldwide (2018) * 1.5 {{nbsp}} million, U.S. (2017) * 700,000, International',
+     'company_name': 'Walmart'}
 
 
+
+So, we have successfully retrived all the infobox data for the companies. Also we can notice that some additional wrangling and cleaning is required which we will perform in the next section. 
 
 Finally, let's export all the scapped infoboxes as a single JSON file to a convenient location as follows,
 
@@ -1211,3 +792,4 @@ with open('../data/infoboxes.json', 'w') as file:
 ### References
 
 - https://phpenthusiast.com/blog/what-is-rest-api
+- https://github.com/siznax/wptools/wiki/Data-captured

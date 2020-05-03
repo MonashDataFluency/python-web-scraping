@@ -1,77 +1,135 @@
 ## Wrangling and Analysis
----
-
- For this excercise, we will primarily focus on product 	industry 	assets
 
 
-### What type of products are sold by the top 20 companies?
+In this section, we will clean, join perform some basic analysis on the data to answer a few questions.
 
 
 ```python
-companies
+import re, json
+import itertools
+from pathlib import Path
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+from IPython.display import Image
+
+%matplotlib inline
+plt.style.use('ggplot') # setting the style to ggplot
+```
+
+
+```python
+fname = 'fortune_500_companies.csv' # scrapped data from previous section
+path = Path('../data/')             # path to the csv file
+df = pd.read_csv(path/fname)        # reading the csv file as a pandas df
+df.head()                           # displaying the first 5 rows
+```
+
+ For this excercise, we will primarily focus on :
+ - `products` 	
+ - `industries` and 	
+ - `assets`
+
+
+```python
+with open('../data/infoboxes.json', 'r') as file:
+    wiki_data = json.load(file)
+```
+
+
+```python
+wiki_data[0]
 ```
 
 
 
 
-    ['Walmart',
-     'ExxonMobil',
-     'Berkshire Hathaway',
-     'Apple Inc.',
-     'UnitedHealth Group',
-     'McKesson Corporation',
-     'CVS Health',
-     'Amazon (company)',
-     'AT&T',
-     'General Motors',
-     'Ford Motor Company',
-     'AmerisourceBergen',
-     'Chevron Corporation',
-     'Cardinal Health',
-     'Costco',
-     'Verizon Communications',
-     'Kroger',
-     'General Electric',
-     'Walgreens Boots Alliance',
-     'JPMorgan Chase']
+    {'founder': '[[Sam Walton]]',
+     'location_country': 'U.S.',
+     'revenue': '{{increase}} {{US$|514.405 billion|link|=|yes}} (2019)',
+     'operating_income': '{{increase}} {{US$|21.957 billion}} (2019)',
+     'net_income': '{{decrease}} {{US$|6.67 billion}} (2019)',
+     'assets': '{{increase}} {{US$|219.295 billion}} (2019)',
+     'equity': '{{decrease}} {{US$|79.634 billion}} (2019)',
+     'type': '[[Public company|Public]]',
+     'industry': '[[Retail]]',
+     'products': '{{hlist|Electronics|Movies and music|Home and furniture|Home improvement|Clothing|Footwear|Jewelry|Toys|Health and beauty|Pet supplies|Sporting goods and fitness|Auto|Photo finishing|Craft supplies|Party supplies|Grocery}}',
+     'num_employees': '{{plainlist|\n* 2.2|nbsp|million, Worldwide (2018)|ref| name="xbrlus_1" |\n* 1.5|nbsp|million, U.S. (2017)|ref| name="Walmart"|{{cite web |url = http://corporate.walmart.com/our-story/locations/united-states |title = Walmart Locations Around the World – United States |publisher = |url-status=live |archiveurl = https://web.archive.org/web/20150926012456/http://corporate.walmart.com/our-story/locations/united-states |archivedate = September 26, 2015 |df = mdy-all }}|</ref>|\n* 700,000, International}} {{nbsp}} million, Worldwide (2018) * 1.5 {{nbsp}} million, U.S. (2017) * 700,000, International',
+     'company_name': 'Walmart'}
 
+
+
+We can observe that we need to :
+- Remove "[[" and "]]" 
+- Remove "{{" and "}}"
+- Split and seperate by the delimiter "|" in case of `products`
+- Only keep alphanumeric and "-" characters
+
+### What type of products are sold by the top 20 companies?
+
+Let's define a few regular expressions to perform the above.
+
+
+```python
+regex1 = re.compile('[\{\[]+(.*?)[\]\}]')
+```
+
+Regex breakdown :
+
+- `[\{\[]+` : match one or more "{" or "]" (\ are used to escape[])
+- `(.*?)` : capture anything between the previous pattern and the next
+- `[\]\}]` : match ending in either "]" or "}" 
 
 
 
 ```python
-regex1 = re.compile('[\{\[]+(.*?)[\]\}]') # describe the expr
 regex2 = re.compile('[^a-zA-Z\- ]') # describe the expr
-products = [] 
+```
+
+Similarly : 
+
+- `[^a-zA-Z\- ]` : match anything other than (signified by `^`) `a` to `z` OR `A` to `Z` OR `-` OR empty space. 
+
+Patterns like these are useful for replacing or filtering everything else. Now lets clean and extract the data we need as follows,
+
+
+```python
+products = []
 data = []
+
 for x in wiki_data:
     y = x['products'] # get products
     z = regex1.findall(y) # extract all products
     z = [d.lower().split('|') for d in z] # get a list 
-    m = list(itertools.chain(*z)) # flatten the list; add alternative vanilla python
-    m = [regex2.sub('', t) for t in m  if t != 'hlist'] # remove hlist (a rogue token)
-    data.append({'wiki_title' : x['company_name'], 'product' : '|'.join(m)})
+    m = list(itertools.chain(*z)) # flatten the list of lists using itertools
+    m = [regex2.sub('', t) for t in m  if t != 'hlist'] # remove "hlist" (a rogue token)
+    data.append({
+                'wiki_title' : x['company_name'], 
+                'product' : '|'.join(m)
+                })
     products.extend(m)
-```
-
-
-```python
+    
 print(products)
 ```
 
     ['electronics', 'movies and music', 'home and furniture', 'home improvement', 'clothing', 'footwear', 'jewelry', 'toys', 'health and beauty', 'pet supplies', 'sporting goods and fitness', 'auto', 'photo finishing', 'craft supplies', 'party supplies', 'grocery', 'crude oil', 'oil products', 'natural gas', 'petrochemical', 'power generation', 'investment', 'diversified investments', 'insurancetypes', 'property  casualty insurance', 'public utility', 'utilities', 'restaurants', 'food processing', 'aerospace', 'toys', 'mass media', 'media', 'automotive industry', 'automotive', 'sports equipment', 'sporting goods', 'final good', 'consumer products', 'internet', 'real estate', 'macintosh', 'ipod', 'iphone', 'ipad', 'apple watch', 'apple tv', 'homepod', 'macos', 'ios', 'ipados', 'watchos', 'tvos', 'ilife', 'iwork', 'final cut pro', 'logic pro', 'garageband', 'shazam application', 'shazam', 'siri', 'uniprise', 'health care', 'service economics', 'services', 'ingenix', 'pharmaceuticals', 'medical technology', 'health care services', 'amazon echo', 'amazon fire tablet', 'amazon fire', 'amazon fire tv', 'fire os', 'amazon fire os', 'amazon kindle', 'satellite television', 'landline', 'fixed-line telephones', 'mobile phone', 'mobile telephones', 'internet service provider', 'internet services', 'broadband', 'digital television', 'home security', 'iptv', 'over-the-top media services', 'ott services', 'network security', 'filmmaking', 'film production', 'television production', 'cable television', 'pay television', 'publishing', 'podcast', 'sports management', 'news agency', 'video game', 'car', 'automobiles', 'commercial vehicle', 'car', 'automobiles', 'luxury car', 'luxury vehicles', 'commercial vehicle', 'commercial vehicles', 'list of auto parts', 'automotive parts', 'pickup trucks', 'suvs', 'pharmaceutical', 'pharmacy', 'petroleum', 'natural gas', 'petrochemical', 'marketing brands', 'see chevron products', 'cable television', 'landline', 'mobile phone', 'broadband', 'digital television', 'iptv', 'digital media', 'internet of things', 'internet', 'telematics', 'supercenter', 'superstore', 'supermarket', 'aircraft engine', 'electric power distribution', 'electrical distribution', 'electric motor', 'energy', 'finance', 'health care', 'lighting', 'software', 'wind turbine', 'drug store', 'pharmacy', 'alternative financial service', 'american depositary receipt', 'asset allocation', 'asset management', 'bond finance', 'bond', 'broker', 'capital market', 'collateralized debt obligation', 'commercial banking', 'commodity market', 'commodities', 'commercial bank', 'credit card', 'credit default swap', 'credit derivative', 'currency exchange', 'custodian bank', 'debt settlement', 'digital banking', 'estate planning', 'exchange-traded fund', 'financial analysis', 'financial market', 'foreign exchange market', 'futures exchange', 'hedge fund', 'index fund', 'information processing', 'institutional investor', 'institutional investing', 'insurance', 'investment bank', 'financial capital', 'investment capital', 'investment management', 'portfolio finance', 'portfolios', 'loan servicing', 'merchant services', 'mobile banking', 'money market', 'mortgage brokers', 'mortgage broker', 'mortgage loan', 'mortgage-backed security', 'mortgagebacked securities', 'mutual fund', 'pension fund', 'prime brokerage', 'private banking', 'private equity', 'remittance', 'retail banking', 'broker', 'risk management', 'securities lending', 'security finance', 'security', 'stock trader', 'stock trading', 'subprime lending', 'treasury services', 'trustee', 'underwriting', 'venture capital', 'wealth management', 'wholesale funding', 'wholesale mortgage lenders', 'wholesale mortgage lending', 'wire transfer']
-    
 
-To create wordclouds,
+
+Now let's create a wordcloud function which will visually inform us about which products are more prominent than the others as follows,
 
 
 ```python
 def create_wordcloud(items, stopwords=[]):
-    # Create the wordcloud object
+    '''create the wordcloud object
+    args
+    items :     the items we need to display
+    stopwords : a list of stopwords to filter out tokens
+    ''' 
+    
     text = ' '.join(items)
     wordcloud = WordCloud(width=1000, height=800, margin=0, 
-                          stopwords=stopwords).generate(text) #  max_words=20 
+                          stopwords=stopwords).generate(text) # max_words=20 
 
-    # Display the generated image:
+    # display the generated image
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
     plt.margins(x=0, y=0)
@@ -80,11 +138,11 @@ def create_wordcloud(items, stopwords=[]):
 
 
 ```python
-create_wordcloud(products, ['and'])
+create_wordcloud(products, ['and']) # adding "and" to the stopword list 
 ```
 
 
-![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_8_0.png)
+![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_17_0.png)
 
 
 ### What type of industries do the top 20 company belong from?
@@ -108,7 +166,7 @@ create_wordcloud(industries, ['industry', 'and'])
 ```
 
 
-![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_11_0.png)
+![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_20_0.png)
 
 
 ### What the assets of the top 20 companies look like?
@@ -214,7 +272,7 @@ plt.show()
 ```
 
 
-![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_18_0.png)
+![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_27_0.png)
 
 
 

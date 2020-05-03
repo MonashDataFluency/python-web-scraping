@@ -305,8 +305,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#q-if-you-had-to-gather-data-from-a-website-that-provides-updated-data-every-4-hours-of-an-ongoing-pandemic-would-you" class="md-nav__link">
-    Q. If you had to gather data from a website that provides updated data every 4 hours of an ongoing pandemic would you :
+  <a href="#q-if-you-had-to-gather-data-from-a-website-which-provides-updated-figures-every-4-hours-on-an-ongoing-pandemic-would-you" class="md-nav__link">
+    Q. If you had to gather data from a website which provides updated figures every 4 hours on an ongoing pandemic, would you :
   </a>
   
 </li>
@@ -323,6 +323,13 @@
   
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-which-of-the-following-would-you-consider-to-be-structure-and-unstructured-data" class="md-nav__link">
+    Q. Which of the following would you consider to be structure and unstructured data?
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#what-is-html" class="md-nav__link">
@@ -428,8 +435,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../section-5-legal-and-ethical-considerations/" title="Legal and Ethical considerations" class="md-nav__link">
-      Legal and Ethical considerations
+    <a href="../section-5-legal-and-ethical-considerations/" title="Legal and Ethical Considerations" class="md-nav__link">
+      Legal and Ethical Considerations
     </a>
   </li>
 
@@ -495,8 +502,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#q-if-you-had-to-gather-data-from-a-website-that-provides-updated-data-every-4-hours-of-an-ongoing-pandemic-would-you" class="md-nav__link">
-    Q. If you had to gather data from a website that provides updated data every 4 hours of an ongoing pandemic would you :
+  <a href="#q-if-you-had-to-gather-data-from-a-website-which-provides-updated-figures-every-4-hours-on-an-ongoing-pandemic-would-you" class="md-nav__link">
+    Q. If you had to gather data from a website which provides updated figures every 4 hours on an ongoing pandemic, would you :
   </a>
   
 </li>
@@ -513,6 +520,13 @@
   
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-which-of-the-following-would-you-consider-to-be-structure-and-unstructured-data" class="md-nav__link">
+    Q. Which of the following would you consider to be structure and unstructured data?
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#what-is-html" class="md-nav__link">
@@ -604,25 +618,65 @@
 <li>Check if the site or service already provides an API to extract structured data. If it does, that will be a much more efficient and effective pathway. Good examples are the Facebook API, the Twitter APIs or the YouTube comments API.</li>
 <li>For much larger needs, Freedom of information requests can be useful. Be specific about the formats required for the data you want.</li>
 </ul>
-<h4 id="q-if-you-had-to-gather-data-from-a-website-that-provides-updated-data-every-4-hours-of-an-ongoing-pandemic-would-you">Q. If you had to gather data from a website that provides updated data every 4 hours of an ongoing pandemic would you :<a class="headerlink" href="#q-if-you-had-to-gather-data-from-a-website-that-provides-updated-data-every-4-hours-of-an-ongoing-pandemic-would-you" title="Permanent link">&para;</a></h4>
+<h4 id="q-if-you-had-to-gather-data-from-a-website-which-provides-updated-figures-every-4-hours-on-an-ongoing-pandemic-would-you">Q. If you had to gather data from a website which provides updated figures every 4 hours on an ongoing pandemic, would you :<a class="headerlink" href="#q-if-you-had-to-gather-data-from-a-website-which-provides-updated-figures-every-4-hours-on-an-ongoing-pandemic-would-you" title="Permanent link">&para;</a></h4>
 <ul>
+<li>[ ] Check their terms of service</li>
 <li>[ ] Scrape the site directly</li>
 <li>[ ] Ask for permission and then scrape the site</li>
-<li>[ ] Use an official API (if any) </li>
+<li>[ ] Use an official API (if it exists) that might have limitations</li>
 </ul>
 <h3 id="structured-vs-unstructured-data">Structured vs unstructured data<a class="headerlink" href="#structured-vs-unstructured-data" title="Permanent link">&para;</a></h3>
 <hr />
 <p>When presented with information, human beings are good at quickly categorizing it and extracting the data that they are interested in. For example, when we look at a magazine rack, provided the titles are written in a script that we are able to read, we can rapidly figure out the titles of the magazines, the stories they contain, the language they are written in, etc. and we can probably also easily organize them by topic, recognize those that are aimed at children, or even whether they lean toward a particular end of the political spectrum. </p>
 <p>Computers have a much harder time making sense of such unstructured data unless we specifically tell them what elements data is made of, for example by adding labels such as this is the title of this magazine or this is a magazine about food. Data in which individual elements are separated and labelled is said to be structured.</p>
-<p>Refer to the file <code>fortune_500_basic_example.html</code>.</p>
 <p>We see that this data has been structured for displaying purposes (it is arranged in rows inside a table) but the different elements of information are not clearly labelled.</p>
 <p>What if we wanted to download this dataset and, for example, compare the revenues of these companies against each other or the industry that they work in? We could try copy-pasting the entire table into a spreadsheet or even manually copy-pasting the names and websites in another document, but this can quickly become impractical when faced with a large set of data. What if we wanted to collect this information for all the companies that are there?</p>
-<p>Fortunately, there are tools to automate at least part of the process. This technique is called web scraping.</p>
+<p>Fortunately, there are tools to automate at least part of the process. This technique is called web scraping. From Wikipedia,</p>
 <blockquote>
-<p>Web scraping (web harvesting or web data extraction) is a computer software technique of extracting information from websites.(Source: Wikipedia)</p>
+<p>"<em>Web scraping (web harvesting or web data extraction) is a computer software technique of extracting information from websites.</em>"</p>
 </blockquote>
 <p>Web scraping typically targets one web site at a time to extract unstructured information and put it in a structured form for reuse.</p>
 <p>In this lesson, we will continue exploring the examples above and try different techniques to extract the information they contain. But before we launch into web scraping proper, we need to look a bit closer at how information is organized within an HTML document and how to build queries to access a specific subset of that information.</p>
+<h4 id="q-which-of-the-following-would-you-consider-to-be-structure-and-unstructured-data">Q. Which of the following would you consider to be structure and unstructured data?<a class="headerlink" href="#q-which-of-the-following-would-you-consider-to-be-structure-and-unstructured-data" title="Permanent link">&para;</a></h4>
+<p>A. </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="s2">&quot;The latest figures showed that webscraper INC saw a 120</span><span class="si">% i</span><span class="s2">ncrease in their revenue bringing their market cap to 2 Billion Dollars. This could be attributed to their new policies.&quot;</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>B. </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">company</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">name</span><span class="p">&gt;</span> webscraper INC<span class="p">&lt;/</span><span class="nt">name</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">revenue</span><span class="p">&gt;</span> 120% <span class="p">&lt;/</span><span class="nt">revenue</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">marketcap</span><span class="p">&gt;</span>2  billion <span class="p">&lt;/</span><span class="nt">marketcap</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">company</span><span class="p">&gt;</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>C.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span> 
+    <span class="s1">&#39;company_name&#39;</span> <span class="p">:</span> <span class="s1">&#39;webscraper INC&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;revenue_in_%)&#39;</span> <span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
+    <span class="s1">&#39;market_cap&#39;</span> <span class="p">:</span> <span class="s1">&#39;2 billion USD&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<ul>
+<li>[ ] A</li>
+<li>[ ] B</li>
+<li>[ ] C</li>
+<li>[ ] A and B</li>
+<li>[ ] B and C </li>
+<li>[ ] A and C</li>
+</ul>
 <h4 id="what-is-html">What is HTML?<a class="headerlink" href="#what-is-html" title="Permanent link">&para;</a></h4>
 <ul>
 <li>HTML stands for <strong>HyperText Markup Language</strong></li>
@@ -690,8 +744,9 @@
 
 <h3 id="html-dom-or-document-object-model">HTML DOM (or Document Object Model)<a class="headerlink" href="#html-dom-or-document-object-model" title="Permanent link">&para;</a></h3>
 <hr />
+<p>From the World Wide Web Consortium (W3C),</p>
 <blockquote>
-<p>"<em>The W3C Document Object Model (DOM) is a platform and language-neutral interface that allows programs and scripts to dynamically access and update the content, structure, and style of a document.</em>" -- W3C</p>
+<p>"<em>The W3C Document Object Model (DOM) is a platform and language-neutral interface that allows programs and scripts to dynamically access and update the content, structure, and style of a document.</em>"</p>
 </blockquote>
 <p>Everytime a web page is loaded in the browser, it creates a <strong>D</strong>ocument <strong>O</strong>bject <strong>M</strong>odel of the page. It essentially treats the HTML (or XML) document as a tree structure and the different HTML elements are represented as nodes and objects.</p>
 <p>More broadly, it is a programming interface for HTML and XML documents and can be considered as the object-oriented representation of a web page which can be modified with a scripting language like JavaScript. </p>

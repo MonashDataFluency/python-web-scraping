@@ -30,10 +30,11 @@ As useful as scraping is, there might be better options for the task. Choose the
 - Check if the site or service already provides an API to extract structured data. If it does, that will be a much more efficient and effective pathway. Good examples are the Facebook API, the Twitter APIs or the YouTube comments API.
 - For much larger needs, Freedom of information requests can be useful. Be specific about the formats required for the data you want.
 
-#### Q. If you had to gather data from a website that provides updated data every 4 hours of an ongoing pandemic would you :
+#### Q. If you had to gather data from a website which provides updated figures every 4 hours on an ongoing pandemic, would you :
+- [ ] Check their terms of service
 - [ ] Scrape the site directly
 - [ ] Ask for permission and then scrape the site
-- [ ] Use an official API (if any) 
+- [ ] Use an official API (if it exists) that might have limitations
 
 ### Structured vs unstructured data
 ---
@@ -42,19 +43,50 @@ When presented with information, human beings are good at quickly categorizing i
 
 Computers have a much harder time making sense of such unstructured data unless we specifically tell them what elements data is made of, for example by adding labels such as this is the title of this magazine or this is a magazine about food. Data in which individual elements are separated and labelled is said to be structured.
 
-Refer to the file `fortune_500_basic_example.html`.
-
 We see that this data has been structured for displaying purposes (it is arranged in rows inside a table) but the different elements of information are not clearly labelled.
 
 What if we wanted to download this dataset and, for example, compare the revenues of these companies against each other or the industry that they work in? We could try copy-pasting the entire table into a spreadsheet or even manually copy-pasting the names and websites in another document, but this can quickly become impractical when faced with a large set of data. What if we wanted to collect this information for all the companies that are there?
 
-Fortunately, there are tools to automate at least part of the process. This technique is called web scraping.
+Fortunately, there are tools to automate at least part of the process. This technique is called web scraping. From Wikipedia,
 
-> Web scraping (web harvesting or web data extraction) is a computer software technique of extracting information from websites.(Source: Wikipedia)
+> "*Web scraping (web harvesting or web data extraction) is a computer software technique of extracting information from websites.*"
 
 Web scraping typically targets one web site at a time to extract unstructured information and put it in a structured form for reuse.
 
 In this lesson, we will continue exploring the examples above and try different techniques to extract the information they contain. But before we launch into web scraping proper, we need to look a bit closer at how information is organized within an HTML document and how to build queries to access a specific subset of that information.
+
+#### Q. Which of the following would you consider to be structure and unstructured data?
+
+A. 
+```python
+"The latest figures showed that webscraper INC saw a 120% increase in their revenue bringing their market cap to 2 Billion Dollars. This could be attributed to their new policies."
+```
+
+B. 
+```html
+<company>
+    <name> webscraper INC</name>
+    <revenue> 120% </revenue>
+    <marketcap>2  billion </marketcap>
+</company>
+```
+
+C.
+```python
+{ 
+    'company_name' : 'webscraper INC',
+    'revenue_in_%)' : 120,
+    'market_cap' : '2 billion USD'
+}
+```
+
+
+- [ ] A
+- [ ] B
+- [ ] C
+- [ ] A and B
+- [ ] B and C 
+- [ ] A and C
 
 #### What is HTML?
 - HTML stands for **HyperText Markup Language**
@@ -104,7 +136,8 @@ A webpage is simply a document. Every HTML element within this document correspo
 ### HTML DOM (or Document Object Model)
 ---
 
-> "*The W3C Document Object Model (DOM) is a platform and language-neutral interface that allows programs and scripts to dynamically access and update the content, structure, and style of a document.*" -- W3C
+From the World Wide Web Consortium (W3C),
+> "*The W3C Document Object Model (DOM) is a platform and language-neutral interface that allows programs and scripts to dynamically access and update the content, structure, and style of a document.*"
 
 Everytime a web page is loaded in the browser, it creates a **D**ocument **O**bject **M**odel of the page. It essentially treats the HTML (or XML) document as a tree structure and the different HTML elements are represented as nodes and objects.
 
