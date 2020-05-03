@@ -4,7 +4,7 @@ Hands-on workshop material on Web scraping using Python 🛠️⚙️
 
 ### To build and run site locally :
 
-Execute the following commands sequentially
+Execute the following commands
 
 ```bash
 git clone https://github.com/MonashDataFluency/python-web-scraping.git
@@ -23,4 +23,4 @@ After modifying any notebook content, please run the `./compile.sh` script to up
 ```bash
 sudo apt install libcurl4-openssl-dev libssl-dev  
 ```
-and then proceed to install `wptools` (included in step 5 above)
+and then proceed to install `wptools` though `pip install -r requirements.txt` as above.
