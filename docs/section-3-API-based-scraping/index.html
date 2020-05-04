@@ -476,17 +476,19 @@
 <p>Let's say we want to gather some additional data about the Fortune 500 companies and since wikipedia is a rich source for data we decide to use the MediaWiki API to scrape this data. One very good place to start would be to look at the <strong>infoboxes</strong> (as wikipedia defines them) of articles corresponsing to each company on the list. They essentially contain a wealth of metadata about a particular entity the article belongs to which in our case is a company. </p>
 <p>For e.g. consider the wikipedia article for <strong>Walmart</strong> (https://en.wikipedia.org/wiki/Walmart) which includes the following infobox :</p>
 <p><img alt="An infobox" src="../images/infobox.png" /></p>
-<p>As we can see from above, the infoboxes could provide us with a lot of valuable information such as :
-- Year of founding 
-- Industry
-- Founder(s)
-- Products<br />
-- Services<br />
-- Operating income
-- Net income
-- Total assets
-- Total equity
-- Number of employees etc</p>
+<p>As we can see from above, the infoboxes could provide us with a lot of valuable information such as :</p>
+<ul>
+<li>Year of founding </li>
+<li>Industry</li>
+<li>Founder(s)</li>
+<li>Products  </li>
+<li>Services  </li>
+<li>Operating income</li>
+<li>Net income</li>
+<li>Total assets</li>
+<li>Total equity</li>
+<li>Number of employees etc</li>
+</ul>
 <p>Although we expect this data to be fairly organized, it would require some post-processing which we will tackle in our next section. We pick a subset of our data and focus only on the top <strong>20</strong> of the Fortune 500 from the full list. </p>
 <p>Let's begin by installing some of libraries we will use for this excercise as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -635,7 +637,7 @@
 
 <h3 id="getting-article-names-from-wiki">Getting article names from wiki<a class="headerlink" href="#getting-article-names-from-wiki" title="Permanent link">&para;</a></h3>
 <p>Right off the bat, as you might have guessed, one issue with matching the top 20 Fortune 500 companies to their wikipedia article names is that both of them would not be exactly the same i.e. they match character for character. There will be slight variation in their names.</p>
-<p>To overcome this problem and ensure that we have all the company names and its corresponding wikipedia article, we will use the <code>wikipedia</code> package (https://wikipedia.readthedocs.io/en/latest/code.html) to get suggestions for the company names and their equivalent in wikipedia.</p>
+<p>To overcome this problem and ensure that we have all the company names and its corresponding wikipedia article, we will use the <code>wikipedia</code> package to get suggestions for the company names and their equivalent in wikipedia.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">wiki_search</span> <span class="o">=</span> <span class="p">[{</span><span class="n">company</span> <span class="p">:</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">company</span><span class="p">)}</span> <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">companies</span><span class="p">]</span>
 </code></pre></div>
 </td></tr></table>
@@ -1641,8 +1643,8 @@ JPMorgan Chase (en) data
 </code></pre></div>
 </td></tr></table>
 
-<p>So, we have successfully retrived all the infobox data for the companies. Also we can notice that some additional wrangling and cleaning is required which we will perform in the next section. </p>
-<p>Finally, let's export all the scapped infoboxes as a single JSON file to a convenient location as follows,</p>
+<p>So, we have successfully retrieved all the infobox data for the companies. Also we can notice that some additional wrangling and cleaning is required which we will perform in the next section. </p>
+<p>Finally, let's export the scraped infoboxes as a single JSON file to a convenient location as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/infoboxes.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
     <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">wiki_data</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
@@ -1654,6 +1656,7 @@ JPMorgan Chase (en) data
 <li>https://phpenthusiast.com/blog/what-is-rest-api</li>
 <li>https://github.com/siznax/wptools/wiki/Data-captured</li>
 <li>https://en.wikipedia.org/w/api.php</li>
+<li>https://wikipedia.readthedocs.io/en/latest/code.html</li>
 </ul>
                 
                   

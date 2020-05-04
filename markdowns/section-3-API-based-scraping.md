@@ -36,6 +36,7 @@ For e.g. consider the wikipedia article for **Walmart** (https://en.wikipedia.or
 ![An infobox](../images/infobox.png)
 
 As we can see from above, the infoboxes could provide us with a lot of valuable information such as :
+
 - Year of founding 
 - Industry
 - Founder(s)
@@ -138,7 +139,7 @@ for i, j in enumerate(companies):   # looping through the list of 20 company
 
 Right off the bat, as you might have guessed, one issue with matching the top 20 Fortune 500 companies to their wikipedia article names is that both of them would not be exactly the same i.e. they match character for character. There will be slight variation in their names.
 
-To overcome this problem and ensure that we have all the company names and its corresponding wikipedia article, we will use the `wikipedia` package (https://wikipedia.readthedocs.io/en/latest/code.html) to get suggestions for the company names and their equivalent in wikipedia.
+To overcome this problem and ensure that we have all the company names and its corresponding wikipedia article, we will use the `wikipedia` package to get suggestions for the company names and their equivalent in wikipedia.
 
 
 ```python
@@ -716,9 +717,9 @@ wiki_data[0]
 
 
 
-So, we have successfully retrived all the infobox data for the companies. Also we can notice that some additional wrangling and cleaning is required which we will perform in the next section. 
+So, we have successfully retrieved all the infobox data for the companies. Also we can notice that some additional wrangling and cleaning is required which we will perform in the next section. 
 
-Finally, let's export all the scapped infoboxes as a single JSON file to a convenient location as follows,
+Finally, let's export the scraped infoboxes as a single JSON file to a convenient location as follows,
 
 
 ```python
@@ -731,3 +732,4 @@ with open('../data/infoboxes.json', 'w') as file:
 - https://phpenthusiast.com/blog/what-is-rest-api
 - https://github.com/siznax/wptools/wiki/Data-captured
 - https://en.wikipedia.org/w/api.php
+- https://wikipedia.readthedocs.io/en/latest/code.html
