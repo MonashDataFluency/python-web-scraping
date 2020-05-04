@@ -140,6 +140,7 @@ Everytime a web page is loaded in the browser, it creates a **D**ocument **O**bj
 More broadly, it is a programming interface for HTML and XML documents and can be considered as the object-oriented representation of a web page which can be modified with a scripting language like JavaScript. 
 
 It also provides us with a rich visual representation of how the different elements interact and inform us about their relative position within the tree. This helps us find and target crucial **tags**, **id** or **classes** within the document and extract the same. To sumarize, DOM is a standard which allows us to :
+
 - **get**
 - **change**
 - **add**, or 
