@@ -32,13 +32,18 @@ As useful as scraping is, there might be better options for the task. Choose the
 ---
 
 If you had to gather data from a website which provides updated figures every 4 hours on an ongoing pandemic, would you :
+
 - Check their terms of service
+
 - Scrape the site directly
+
 - Ask for permission and then scrape the site
+
 - Use an official API (if it exists) that might have limitations
 
 ### Structured vs unstructured data
 ---
+
 
 When presented with information, human beings are good at quickly categorizing it and extracting the data that they are interested in. For example, when we look at a magazine rack, provided the titles are written in a script that we are able to read, we can rapidly figure out the titles of the magazines, the stories they contain, the language they are written in, etc. and we can probably also easily organize them by topic, recognize those that are aimed at children, or even whether they lean toward a particular end of the political spectrum. 
 
