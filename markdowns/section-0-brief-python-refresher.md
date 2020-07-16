@@ -1,756 +1,789 @@
 <center><img src="../images/xkcd_python.png"></center>
 
-In this section we will take a quick tour of Python basics and some of the concepts that will be used for the rest of our web scraping workshop.
-
-### Strings
+### Jupyter-style notebooks on Google Colaboratory - A quick tour
 ---
 
-A string can be defined by enclosing it in a single quote(') or a double quote(")
+Go to https://colab.research.google.com and login with your Google account.
+
+Select **NEW NOTEBOOK** - a new Python3 notebook will be created.
+
+Type some Python code in the top cell, eg:
 
 
 ```python
-my_str = "This is a string"
+print("Hello world!!")
 ```
 
-The characters of a string can be accessed by indices and the indices go from `0` to `n-1`
-
-
-```python
-my_str[0] # [i] where i is the index of element we want access
-```
-
-
-
-
-    'T'
-
-
-
-Slice notation `[a:b:c]` means "count in increments of `c` starting at `a` inclusive, up to `b` exclusive".
-
-
-```python
-my_str[0:4]
-```
-
-
-
-
-    'This'
-
-
-
-A string can be reversed using the following way. The first index corresponds to the start, second to the end and the last one indicates the increment that needs to be done. 
-
-
-```python
-my_str[::-1]
-```
-
-
-
-
-    'gnirts a si sihT'
-
-
-
-A string can be splitted as well based on a delimmitter. A list is returned after splitting
-
-
-```python
-my_str = "one,two,three,four,five"
-my_str.split(',')
-```
-
-
-
-
-    ['one', 'two', 'three', 'four', 'five']
-
-
-
-A string can be stripped as well of extra spaces at the ends. 
-
-
-```python
-my_str = " hello "
-print(my_str)
-my_str.strip()
-```
-
-     hello 
+    Hello world!!
     
 
+**Shift-Enter** to run the contents of the cell
+
+In this section we will take a quick tour of some of the concepts that will be used for the rest of our web scraping workshop.
 
 
-
-    'hello'
-
-
-
-### Lists
+### Dataframes
 ---
 
-Lists are one of the most useful data structure in Python. They are comparable to *arrays* from other programming languages such as Java and JavaScript.
+One of the most powerful data structures in Python is the Pandas `DataFrame`. It allows tabular data, including `csv` (comma seperated values) and `tsv` (tab seperated values), to be processed and manipulated. People familiar with Excel will no doubt find it intuitive and easy to grasp. Since most `csv` (or `tsv`) has become the de facto standard for sharing datasets both large and small, Pandas dataframe is the way to go.
 
 
 ```python
-# List can be of a mixed type
-my_list = ['item1', 'item2', 100, 3.14]
+import pandas as pd # importing the package and using `pd` as the alias 
+print('Pandas version : {}'.format(pd.__version__))
 ```
 
-
-```python
-# List elements can be accessed by the indices starting from 0 to n-1
-my_list[2]
-```
-
-
-
-
-    100
-
-
-
-
-```python
-# Function to find the length of the list
-len(my_list)
-```
-
-
-
-
-    4
-
-
-
-
-```python
-# range function to generate a range object
-num_list = range(0,10)
-num_list
-```
-
-
-
-
-    range(0, 10)
-
-
-
-
-```python
-# use list() to get a list out of the range object
-list(range(0,10))
-```
-
-
-
-
-    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-
-
-
-```python
-# Iterate over a list using for loop
-for num in num_list:
-    print(num)
-```
-
-    0
-    1
-    2
-    3
-    4
-    5
-    6
-    7
-    8
-    9
+    Pandas version : 1.0.5
     
 
-#### List comprehension
----
+Suppose we wanted to create a dataframe as follows,
 
-new_list = [expression(item) for item in old_list]
+| name | title     |
+|------|-----------|
+| sam  | physicist |
+| rob  | economist |
+
+Let's create a dictionary with the headers as keys and their corresponding values as a list as follows,
 
 
 ```python
-num_squares = [num * num for num in num_list]
-num_squares
+data = {'name': ['sam', 'rob'], 'title': ['physicist', 'economist']}
+```
+
+Converting the same to a dataframe,
+
+
+```python
+df = pd.DataFrame(data)
+# print(df.to_markdown()) # converting to markdown for ease of display
+df
 ```
 
 
 
 
-    [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sam</td>
+      <td>physicist</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>rob</td>
+      <td>economist</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
+
+Now lets create a bigger dataframe and learn some useful functions that can be performed on them.
 
 
 ```python
-# The list can be filtered based on a condition
-num_evens = [num for num in num_list if num %2 == 0]
-num_evens
+data = {'Name': ['Sam', 'Rob', 'Jack', 'Jill', 'Dave', 'Alex', 'Steve'],\
+        'Title': ['Physicist', 'Economist', 'Statistician', 'Data Scientist', 'Designer', 'Architect', 'Doctor'], \
+        'Age': [59, 66, 42, 28, 24, 39, 52],\
+        'City': ['Melbourne', 'Melbourne', 'Sydney', 'Sydney', 'Melbourne', 'Perth', 'Brisbane'],\
+        'University': ['Monash', 'Monash', 'UNSW', 'UTS', 'Uni Mel', 'UWA', 'UQ']}
+```
+
+
+```python
+df = pd.DataFrame(data)
+df
 ```
 
 
 
 
-    [0, 2, 4, 6, 8]
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Age</th>
+      <th>City</th>
+      <th>University</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sam</td>
+      <td>Physicist</td>
+      <td>59</td>
+      <td>Melbourne</td>
+      <td>Monash</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Rob</td>
+      <td>Economist</td>
+      <td>66</td>
+      <td>Melbourne</td>
+      <td>Monash</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jack</td>
+      <td>Statistician</td>
+      <td>42</td>
+      <td>Sydney</td>
+      <td>UNSW</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Jill</td>
+      <td>Data Scientist</td>
+      <td>28</td>
+      <td>Sydney</td>
+      <td>UTS</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Dave</td>
+      <td>Designer</td>
+      <td>24</td>
+      <td>Melbourne</td>
+      <td>Uni Mel</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Alex</td>
+      <td>Architect</td>
+      <td>39</td>
+      <td>Perth</td>
+      <td>UWA</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Steve</td>
+      <td>Doctor</td>
+      <td>52</td>
+      <td>Brisbane</td>
+      <td>UQ</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
+We can also take a quick glance at its contents by using :
 
-```python
-# zip() function to combine 2 lists
+- `df.head()` : To display the first 5 rows
 
-country_list = ["Australia", "France", "USA", "Italy"]
-capital_list = ["Canberra", "Paris", "Washington DC", "Rome"]
-pairs = zip(country_list, capital_list)
-for country, capital in pairs:
-    print("The country is {0} and the capital is {1}".format(country, capital))
-```
-
-    The country is Australia and the capital is Canberra
-    The country is France and the capital is Paris
-    The country is USA and the capital is Washington DC
-    The country is Italy and the capital is Rome
-    
-
-
-```python
-# sort() function to sort a list. It stores the sorted list in the original list itself.
-
-my_list = [954, 341, 100, 3.14]
-my_list.sort()
-my_list
-```
-
-
-
-
-    [3.14, 100, 341, 954]
-
-
-
-### Loops
----
-
-
-```python
-# Loops can be run over list of lists as well
-languages = [['Spanish', 'English',  'French', 'German'], ['Python', 'Java', 'Javascript', 'C++']]
-```
-
-
-```python
-for lang in languages:
-    print(lang)
-```
-
-    ['Spanish', 'English', 'French', 'German']
-    ['Python', 'Java', 'Javascript', 'C++']
-    
-
-As we see above, in each iteration, we get one list at a time. 
-
-If each element of the nested list is needed, then a nested loop should be written as below:
-
-
-```python
-for lang_list in languages:
-    print("--------------")
-    for lang in lang_list:
-        print(lang)
-```
-
-    --------------
-    Spanish
-    English
-    French
-    German
-    --------------
-    Python
-    Java
-    Javascript
-    C++
-    
-
-There are various ways to manipulate the functioning of a loop. 
-
-* continue: This will skip the rest of the statements of that iteration and continue with the next iteration.
-* break: This will break the entire loop and go to the next statement after the loop.
-
-
-```python
-for lang_list in languages:
-    print("--------------")
-    for lang in lang_list:
-        if lang == "German":
-            continue
-        print(lang)
-print("End of loops")
-```
-
-    --------------
-    Spanish
-    English
-    French
-    --------------
-    Python
-    Java
-    Javascript
-    C++
-    End of loops
-    
+- `df.tail()` : To display the last 5 rows
 
 
 ```python
-for lang_list in languages:
-    print("--------------")
-    for lang in lang_list:
-        if lang == "Java":
-            break
-        print(lang)
-print("End of loops")
-```
-
-    --------------
-    Spanish
-    English
-    French
-    German
-    --------------
-    Python
-    End of loops
-    
-
-
-```python
-# another example of continue
-from math import sqrt
-number = 0
-
-for i in range(10):
-    number = i ** 2
-    if i % 2 == 0:
-        continue    # continue here
-    
-    print(str(round(sqrt(number))) + ' squared is equal to ' + str(number))
-```
-
-    1 squared is equal to 1
-    3 squared is equal to 9
-    5 squared is equal to 25
-    7 squared is equal to 49
-    9 squared is equal to 81
-    
-
-### Sets
----
-
-Sets is an unordered collections of unique elements. Common uses include membership testing, removing duplicates from a sequence, and computing standard math operations on sets such as intersection, union, difference, and symmetric difference.
-
-
-A set can be created using the `{}` brackets. 
-
-
-```python
-my_set = {1, 2, 3}
-print(my_set)
-```
-
-    {1, 2, 3}
-    
-
-
-```python
-my_list = [1,2,3,4,2,3]
-print(set(my_list))
-```
-
-    {1, 2, 3, 4}
-    
-
-
-```python
-# A set can be made of mixed types as well. 
-my_set = {1.0, "Hello", (1, 2, 3)}
-print(my_set)
-```
-
-    {1.0, 'Hello', (1, 2, 3)}
-    
-
-
-```python
-# Even if duplicate elements are added while initialising, they get remived. 
-my_set = {1,2,3,4,3,2}
-print(my_set)
-```
-
-    {1, 2, 3, 4}
-    
-
-
-```python
-#Creating an empty set is a bit tricky.
-my_set = {}
-print(type(my_set))
-my_set = set()
-print(type(my_set))
-```
-
-    <class 'dict'>
-    <class 'set'>
-    
-
-Elements can be added individualy or as a list.
-
-
-```python
-my_set = {1, 2, 3}
-my_set.add(4)
-print(my_set)
-my_set.update([6, 7, 8])
-my_set
-```
-
-    {1, 2, 3, 4}
-    
-
-
-
-
-    {1, 2, 3, 4, 6, 7, 8}
-
-
-
-
-```python
-# Union
-A = {1, 2, 3, 4, 5}
-B = {4, 5, 6, 7, 8}
-A|B  # or A.union(B)
+df.head()
 ```
 
 
 
 
-    {1, 2, 3, 4, 5, 6, 7, 8}
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Age</th>
+      <th>City</th>
+      <th>University</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sam</td>
+      <td>Physicist</td>
+      <td>59</td>
+      <td>Melbourne</td>
+      <td>Monash</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Rob</td>
+      <td>Economist</td>
+      <td>66</td>
+      <td>Melbourne</td>
+      <td>Monash</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jack</td>
+      <td>Statistician</td>
+      <td>42</td>
+      <td>Sydney</td>
+      <td>UNSW</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Jill</td>
+      <td>Data Scientist</td>
+      <td>28</td>
+      <td>Sydney</td>
+      <td>UTS</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Dave</td>
+      <td>Designer</td>
+      <td>24</td>
+      <td>Melbourne</td>
+      <td>Uni Mel</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
 
 ```python
-# Intersection
-A = {1, 2, 3, 4, 5}
-B = {4, 5, 6, 7, 8}
-A&B # A.intersection(B)
+df.tail()
 ```
 
 
 
 
-    {4, 5}
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Age</th>
+      <th>City</th>
+      <th>University</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>Jack</td>
+      <td>Statistician</td>
+      <td>42</td>
+      <td>Sydney</td>
+      <td>UNSW</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Jill</td>
+      <td>Data Scientist</td>
+      <td>28</td>
+      <td>Sydney</td>
+      <td>UTS</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Dave</td>
+      <td>Designer</td>
+      <td>24</td>
+      <td>Melbourne</td>
+      <td>Uni Mel</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Alex</td>
+      <td>Architect</td>
+      <td>39</td>
+      <td>Perth</td>
+      <td>UWA</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Steve</td>
+      <td>Doctor</td>
+      <td>52</td>
+      <td>Brisbane</td>
+      <td>UQ</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
-### Dictionary
----
-
-Dictionaries are a container that store key-value pairs. They are unordered.
-
-Other programming languages might call this a 'hash', 'hashtable' or 'hashmap'.
+Lets say we want to fiter out all the people from `Sydney`.
 
 
 ```python
-dict1 = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
-dict1
+df[df['City'] == 'Sydney']
 ```
 
 
 
 
-    {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Age</th>
+      <th>City</th>
+      <th>University</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>Jack</td>
+      <td>Statistician</td>
+      <td>42</td>
+      <td>Sydney</td>
+      <td>UNSW</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Jill</td>
+      <td>Data Scientist</td>
+      <td>28</td>
+      <td>Sydney</td>
+      <td>UTS</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
+
+Now, lets say we want to look at all the people in `Melbourne` and in `Monash`. Notice the usage of `()` and `&`.
 
 
 ```python
-# Adding a key to the dictionary
-dict1['e'] = 5
-dict1
+df[(df['City'] == 'Melbourne') & (df['University'] == 'Monash')]
 ```
 
 
 
 
-    {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-
-keys() method returns the keys in the dictionary. 
-
-
-```python
-dict1.keys()
-```
-
-
-
-
-    dict_keys(['a', 'b', 'c', 'd', 'e'])
-
-
-
-
-```python
-# items() method can be used to get all the pairs of the dictionary.
-dict1.items()
-```
-
-
-
-
-    dict_items([('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5)])
-
-
-
-Dictionary comprehension can be used to manipulate the elements of a dictionary. 
-
-
-```python
-double_dict1 = {k:v*2 for (k,v) in dict1.items()}
-double_dict1
-```
-
-
-
-
-    {'a': 2, 'b': 4, 'c': 6, 'd': 8, 'e': 10}
-
-
-
-
-```python
-dict1_cond = {k:v for (k,v) in dict1.items() if v>2}
-dict1_cond
-```
-
-
-
-
-    {'c': 3, 'd': 4, 'e': 5}
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Age</th>
+      <th>City</th>
+      <th>University</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sam</td>
+      <td>Physicist</td>
+      <td>59</td>
+      <td>Melbourne</td>
+      <td>Monash</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Rob</td>
+      <td>Economist</td>
+      <td>66</td>
+      <td>Melbourne</td>
+      <td>Monash</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
 #### Challenge
 ---
 
-Given,
+How can we filter people from `Melbourne` and above the Age of `50`?
+
+
+
 ```python
-dict = {1:'a', 2:'b', 3:'c', 4:'d', 5:'e'}
+# Experiment here
 ```
 
-Filter all the elements where the key is greater than 3.
-
-### Functions
----
-
-A function is a block of organized, reusable code that is used to perform a single, related action. Functions provide better modularity for your application and a high degree of code reusing.
+We can also fetch specific rows based on their indexes as well.
 
 
 ```python
-# Function definition
-def hello():
-    print("Hello World") 
-    return
-```
-
-
-```python
-# Function calling
-hello()
-```
-
-    Hello World
-    
-
-Parameters vs arguments: 
-Parameters are `a` and `b`. Arguments are `2` and `5`.
-
-
-```python
-def plus(a,b):
-    return a + b
-plus(2, 5)
-
+df.iloc[1:3]
 ```
 
 
 
 
-    7
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Age</th>
+      <th>City</th>
+      <th>University</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Rob</td>
+      <td>Economist</td>
+      <td>66</td>
+      <td>Melbourne</td>
+      <td>Monash</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jack</td>
+      <td>Statistician</td>
+      <td>42</td>
+      <td>Sydney</td>
+      <td>UNSW</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
-A function can return nothing (null/None) as well. 
-
-
-```python
-def run():
-    for x in range(10):
-        if x == 2:
-            return
-    print("Run!")
-    
-```
-
-
-```python
-run()
-```
-
-#### Keyword arguments with default values
----
-
-
-```python
-# Here the value of parameter `b` is 2 by default if the value is not passed. 
-def plus(a,b = 2):
-    return a + b
-  
-```
-
-
-```python
-# Call `plus()` with only `a` parameter
-print(plus(a=1))
-```
-
-    3
-    
-
-
-```python
-# Call `plus()` with `a` and `b` parameters
-print(plus(a=1, b=3))
-```
-
-    4
-    
-
-#### Anonymous functions: lambda
----
+Lets try changing Jack's age to 43, because today is his Birthday and he has now turned 43.
 
 
 ```python
-
-# `sum()` lambda function
-sum = lambda x, y: x + y;
-
-# Call the `sum()` anonymous function
-sum(4,5)
-
-# "Translate" to a UDF
-# def sum(x, y):
-#     return x+y
-
+df.loc[2, 'Age'] = 43
 ```
 
+The above is just one way to do this. Some of the other ways are as follows:
+- df.at[2, 'Age'] = 43
+- df.loc[df[df['Name'] == 'Jack'].index, 'Age'] = 43
 
-
-
-    9
-
-
-
-#### Use of main()
----
+Lets look at the updated data frame.
 
 
 ```python
-def hello():
-    print("Hello World") 
-    return
-
-# Define `main()` function
-def main():
-    hello()
-    print("This is a main function")
-
-main()
-
-# As is, if the script is imported, it will execute the main function.
+df
 ```
 
-    Hello World
-    This is a main function
-    
 
-The following code needs a script mode to show the use. 
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Age</th>
+      <th>City</th>
+      <th>University</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sam</td>
+      <td>Physicist</td>
+      <td>59</td>
+      <td>Melbourne</td>
+      <td>Monash</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Rob</td>
+      <td>Economist</td>
+      <td>66</td>
+      <td>Melbourne</td>
+      <td>Monash</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jack</td>
+      <td>Statistician</td>
+      <td>43</td>
+      <td>Sydney</td>
+      <td>UNSW</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Jill</td>
+      <td>Data Scientist</td>
+      <td>28</td>
+      <td>Sydney</td>
+      <td>UTS</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Dave</td>
+      <td>Designer</td>
+      <td>24</td>
+      <td>Melbourne</td>
+      <td>Uni Mel</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Alex</td>
+      <td>Architect</td>
+      <td>39</td>
+      <td>Perth</td>
+      <td>UWA</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Steve</td>
+      <td>Doctor</td>
+      <td>52</td>
+      <td>Brisbane</td>
+      <td>UQ</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+For exporting a Pandas dataframe to a `csv` file, we can use `to_csv()` as follows
+```python
+df.to_csv(filename, index=False)
+```
+
+Lets try writing our data frame to a file.
 
 
 ```python
-# Define `main()` function
-def main():
-    hello()
-    print("This is a main function")
-    
-# Execute `main()` function 
-if __name__ == '__main__':
-    main()
+df.to_csv('researchers.csv', index=False)
 ```
 
-    Hello World
-    This is a main function
-    
+In order to read external files we use `read_csv()` function,
+```python
+pd.read_csv(filename, sep=',')
+```
 
-#### Global vs local variables
----
+We can read back the file that we just created.
 
 
 ```python
-# Global variable `init`
-init = 1
-
-# Define `plus()` function to accept a variable number of arguments
-def plus(*args):
-    # Local variable `sum()`
-    total = 0
-    for i in args:
-        total += i
-    return total
-  
-# Access the global variable
-print("this is the initialized value " + str(init))
-
-# (Try to) access the local variable
-print("this is the sum " + str(total))
+df_res = pd.read_csv('researchers.csv', sep=',')
+df_res
 ```
 
-    this is the initialized value 1
-    
 
 
-    ---------------------------------------------------------------------------
 
-    NameError                                 Traceback (most recent call last)
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-    <ipython-input-67-136638963fdb> in <module>
-         14 
-         15 # (Try to) access the local variable
-    ---> 16 print("this is the sum " + str(total))
-    
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-    NameError: name 'total' is not defined
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Age</th>
+      <th>City</th>
+      <th>University</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sam</td>
+      <td>Physicist</td>
+      <td>59</td>
+      <td>Melbourne</td>
+      <td>Monash</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Rob</td>
+      <td>Economist</td>
+      <td>66</td>
+      <td>Melbourne</td>
+      <td>Monash</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jack</td>
+      <td>Statistician</td>
+      <td>43</td>
+      <td>Sydney</td>
+      <td>UNSW</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Jill</td>
+      <td>Data Scientist</td>
+      <td>28</td>
+      <td>Sydney</td>
+      <td>UTS</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Dave</td>
+      <td>Designer</td>
+      <td>24</td>
+      <td>Melbourne</td>
+      <td>Uni Mel</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Alex</td>
+      <td>Architect</td>
+      <td>39</td>
+      <td>Perth</td>
+      <td>UWA</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Steve</td>
+      <td>Doctor</td>
+      <td>52</td>
+      <td>Brisbane</td>
+      <td>UQ</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
-The above program throws error because the variable `total` was defined in the function and its scope is only within the function and not outside of it.
 
 ### JSON
 ---
@@ -831,61 +864,6 @@ print(y)
     }
     
 
-### Dataframes
----
-
-One of the most powerful data structures in Python is the Pandas `DataFrame`. It allows tabular data, including `csv` (comma seperated values) and `tsv` (tab seperated values), to be processed and manipulated. People familiar with Excel will no doubt find it intuitive and easy to grasp. Since most `csv` (or `tsv`) has become the de facto standard for sharing datasets both large and small, Pandas dataframe is the way to go.
-
-
-```python
-import pandas as pd # importing the package and using `pd` as the alias 
-print('Pandas version : {}'.format(pd.__version__))
-```
-
-    Pandas version : 1.0.1
-    
-
-Suppose we wanted to create a dataframe as follows,
-
-| name | title     |
-|------|-----------|
-| sam  | physicist |
-| rob  | economist |
-
-Let's create a dictionary with the headers as keys and their corresponding values as a list as follows,
-
-
-```python
-data = {'name': ['sam', 'rob'], 'title': ['physicist', 'economist']}
-```
-
-Converting the same to a dataframe,
-
-
-```python
-df = pd.DataFrame(data)
-print(df.to_markdown()) # converting to markdown for ease of display
-```
-
-|    | name   | title     |
-|---:|:-------|:----------|
-|  0 | sam    | physicist |
-|  1 | rob    | economist |
-
-We can also take a quick glance at its contents by using :
-- `df.head()` : To display the first 5 rows
-- `df.tail()` : To display the last 5 rows
-
-In order to read external files we use `read_csv()` function,
-```python
-pd.read_csv(filename, sep=',')
-```
-
-Similarly, for exporting a Pandas dataframe to a `csv` file, we can use `to_csv()` as follows
-```python
-df.to_csv(index=False)
-```
-
 ### Regex
 ---
 
@@ -895,6 +873,187 @@ You can try your regex expressions in :
 
 - https://pythex.org/ for a python oriented regex editor
 - https://regexr.com/ for a more visual explanation behind the expressions (good for getting started)
+
+
+```python
+import re # regex package in python is named 're'
+```
+
+
+```python
+my_str = 'python123good'
+re.search('123', my_str)
+```
+
+
+
+
+    <_sre.SRE_Match object; span=(6, 9), match='123'>
+
+
+
+
+```python
+if re.search('123', my_str):
+    print("Found")
+else:
+    print("Not found")
+```
+
+    Found
+    
+
+We can use `[0-9]` in the regular expression to identify any one number in the string.
+
+
+```python
+my_str = 'python123good'
+re.search('[0-9]', my_str)
+```
+
+
+
+
+    <_sre.SRE_Match object; span=(6, 7), match='1'>
+
+
+
+Notice that it matches the first occurance only.
+
+Now, the above regex can be modified to match any three numbers in a string.
+
+
+```python
+my_str = 'python123good'
+re.search('[0-9][0-9][0-9]', my_str)
+```
+
+
+
+
+    <_sre.SRE_Match object; span=(6, 9), match='123'>
+
+
+
+
+```python
+print(re.search('[0-9][0-9][0-9]','hello123')) # matches 123
+print(re.search('[0-9][0-9][0-9]','great678python')) # matches 678
+print(re.search('[0-9][0-9][0-9]','01234webscraing')) # matches 012
+print(re.search('[0-9][0-9][0-9]','01web5678scraing')) # matches 567
+print(re.search('[0-9][0-9][0-9]','hello world')) # matches nothing
+```
+
+    <_sre.SRE_Match object; span=(5, 8), match='123'>
+    <_sre.SRE_Match object; span=(5, 8), match='678'>
+    <_sre.SRE_Match object; span=(0, 3), match='012'>
+    <_sre.SRE_Match object; span=(5, 8), match='567'>
+    None
+    
+
+As seen above, it matches the first occurance of three digits occuring together.
+
+The above example can be extended to match any number of numbers using the wild character `*` which matches `zero or more repetitions`.
+
+
+```python
+print(re.search('[a-z]*[0-9]*','hello123@@')) # matches hello123
+```
+
+    <_sre.SRE_Match object; span=(0, 8), match='hello123'>
+    
+
+What if we just want to capture only the numbers? `Capture group` is the answer.
+
+
+```python
+num_regex = re.compile('[a-z]*([0-9]*)[a-z]*')
+my_str = 'python123good'
+num_regex.findall(my_str)
+```
+
+
+
+
+    ['123', '']
+
+
+
+We see that it matchs an empty string as well because `*` matches zero or more occurances. 
+
+To avoid this, we can use `+` which matches one or more occurances.
+
+
+```python
+num_regex = re.compile('[a-z]*([0-9]+)[a-z]*')
+my_str = 'python123good'
+num_regex.findall(my_str)
+```
+
+
+
+
+    ['123']
+
+
+
+We can use `^` and `$` to match at the beginning and end of string.
+
+As shown in the below 2 examples, we use `^` to get the numbers by which the string is starting.
+
+
+```python
+num_regex = re.compile('^([0-9]+)[a-z]*')
+my_str = '123good'
+num_regex.findall(my_str)
+```
+
+
+
+
+    ['123']
+
+
+
+
+```python
+my_str = 'hello123good'
+num_regex.findall(my_str)
+```
+
+
+
+
+    []
+
+
+
+#### Challenge
+---
+
+What regular expression can be used to match the numbers **only** at the end of the string:
+
+- '[a-z]*([0-9]+)[a-z]+'
+- '[a-z]*([0-9]+)\$'
+- $[a-z]*([0-9]+)
+- '([0-9]+)'
+
+
+```python
+# Experiment for the above challenge here
+num_regex = re.compile('([0-9]+)')
+my_str = 'good123'
+num_regex.findall(my_str)
+```
+
+
+
+
+    ['123']
+
+
+
+Now, having learnt the regular expressions on basic strings, the same concept can be applied to an html as well as shown below:
 
 
 ```python
@@ -949,14 +1108,8 @@ Now, if we are only interested in :
 - title i.e. the data inside the `<h2></h2>` tags
 we can extract the same using regex.
 
-First lets import the regex module in python called `re`
 
-
-```python
-import re # regex package in python is named 're'
-```
-
-Now lets define the expressions (or patterns) to capture all text between the tags as follows :
+Lets define the expressions (or patterns) to capture all text between the tags as follows :
 
 - `<h1>(.*?)</h1>` : capture all text contained within `<h1></h1>` tags
 - `<h2>(.*?)</h2>` : capture all text contained within `<h2></h2>` tags
@@ -991,3 +1144,4 @@ print(names, titles)
 
 - https://xkcd.com/353/
 - https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html
+- https://realpython.com/regex-python/
