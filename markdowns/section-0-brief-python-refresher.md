@@ -1,4 +1,5 @@
 <center><img src="../images/xkcd_python.png"></center>
+<center>https://xkcd.com/license.html (CC BY-NC 2.5)</center>
 
 ### Jupyter-style notebooks on Google Colaboratory - A quick tour
 ---

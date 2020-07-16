@@ -1,4 +1,5 @@
 ![intro_html_example](../images/xkcd.png)
+<center>https://xkcd.com/license.html (CC BY-NC 2.5)</center>
 
 ### What is web scraping?
 ---
