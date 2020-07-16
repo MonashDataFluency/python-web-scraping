@@ -28,3 +28,11 @@ In case `wptools` throws an error during installation please install the followi
 sudo apt install libcurl4-openssl-dev libssl-dev  
 ```
 and then proceed to install `wptools` though `pip install -r requirements.txt` as above.
+
+### License
+
+This workshop material is made available under a 
+[Creative Commons Attribution license (CC-BY 4.0)](https://creativecommons.org/licenses/by/4.0/legalcode)
+
+Code is made available under the 
+[MIT License](http://opensource.org/licenses/mit-license.html).
