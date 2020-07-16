@@ -19,7 +19,22 @@ Now let's read the `infoboxes.json` file we exported from Section 3 to a diction
 
 
 ```python
-with open('../data/infoboxes.json', 'r') as file:
+# If you dont have the file, you can use the below code to fetch it:
+import urllib.request
+url = 'https://raw.githubusercontent.com/MonashDataFluency/python-web-scraping/master/data/infoboxes.json'
+urllib.request.urlretrieve(url, 'infoboxes.json')
+```
+
+
+
+
+    ('infoboxes.json', <http.client.HTTPMessage at 0x2cf46e4a080>)
+
+
+
+
+```python
+with open('infoboxes.json', 'r') as file:
     wiki_data = json.load(file)
 ```
 
@@ -167,7 +182,7 @@ create_wordcloud(products, ['and']) # adding "and" to the stopword list
 ```
 
 
-![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_22_0.png)
+![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_23_0.png)
 
 
 ### What type of industries do the top 20 company belong from?
@@ -234,7 +249,7 @@ create_wordcloud(industries, ['industry', 'and']) # adding "industry" and "and" 
 ```
 
 
-![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_33_0.png)
+![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_34_0.png)
 
 
 ### What the assets of the top 20 companies look like?
@@ -355,6 +370,159 @@ df_assets = pd.DataFrame(assets)
 df_assets
 ```
 
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>company</th>
+      <th>value</th>
+      <th>unit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Walmart</td>
+      <td>219.295</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ExxonMobil</td>
+      <td>346.200</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Berkshire Hathaway</td>
+      <td>707.800</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Apple Inc.</td>
+      <td>338.516</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>UnitedHealth Group</td>
+      <td>173.889</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>McKesson Corporation</td>
+      <td>60.381</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>CVS Health</td>
+      <td>196.456</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Amazon (company)</td>
+      <td>162.648</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>AT&amp;T</td>
+      <td>531.000</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>General Motors</td>
+      <td>227.339</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Ford Motor Company</td>
+      <td>256.540</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>AmerisourceBergen</td>
+      <td>37.660</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Chevron Corporation</td>
+      <td>253.900</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Cardinal Health</td>
+      <td>39.950</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Costco</td>
+      <td>45.400</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Verizon Communications</td>
+      <td>264.820</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Kroger</td>
+      <td>38.110</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>General Electric</td>
+      <td>309.129</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Walgreens Boots Alliance</td>
+      <td>67.590</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>JPMorgan Chase</td>
+      <td>2687.000</td>
+      <td>billion</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
 |    | company                  |    value | unit    |
 |---:|:-------------------------|---------:|:--------|
 |  0 | Walmart                  |  219.295 | billion |
@@ -398,7 +566,7 @@ plt.show()
 ```
 
 
-![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_50_0.png)
+![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_51_0.png)
 
 
 Now let's create a new dataframe containing data related to `products`, `industry` and `assets` as follows,
@@ -408,6 +576,75 @@ Now let's create a new dataframe containing data related to `products`, `industr
 df_wiki = pd.DataFrame(data)
 df_wiki.head()
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>wiki_title</th>
+      <th>product</th>
+      <th>industry</th>
+      <th>assets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Walmart</td>
+      <td>electronics, movies and music, home and furnit...</td>
+      <td>retail</td>
+      <td>219.295 billion</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ExxonMobil</td>
+      <td>crude oil, oil products, natural gas, petroche...</td>
+      <td>energy industry, energy, oil and gas industry,...</td>
+      <td>346.2 billion</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Berkshire Hathaway</td>
+      <td>investment, diversified investments, insurance...</td>
+      <td>conglomerate (company), conglomerate</td>
+      <td>707.8 billion</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Apple Inc.</td>
+      <td>macintosh, ipod, iphone, ipad, apple watch, ap...</td>
+      <td>computer hardware, computer software, consumer...</td>
+      <td>338.516 billion</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>UnitedHealth Group</td>
+      <td>uniprise, health care, service economics, serv...</td>
+      <td>managed health care</td>
+      <td>173.889 billion</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 |    | wiki_title         | product                                                                                                                                                                                                                                                                                                 | industry                                                                                                                                                                                                        | assets          |
 |---:|:-------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------|
@@ -421,10 +658,262 @@ And finally let's combine the datasets from Section 2 and 3 as follows,
 
 
 ```python
-df = pd.read_csv('../data/fortune_500_companies.csv', nrows=20) # reading only the first 20 rows
+# If you dont have the file, you can use the below code to fetch it:
+import urllib.request
+url = 'https://raw.githubusercontent.com/MonashDataFluency/python-web-scraping/master/data/fortune_500_companies.csv'
+urllib.request.urlretrieve(url, 'fortune_500_companies.csv')
+```
+
+
+
+
+    ('fortune_500_companies.csv', <http.client.HTTPMessage at 0x2cf4823f978>)
+
+
+
+
+```python
+df = pd.read_csv('fortune_500_companies.csv', nrows=20) # reading only the first 20 rows
 df = pd.concat([df, df_wiki], axis=1) # concatenating both the datasets
 df
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rank</th>
+      <th>company_name</th>
+      <th>company_website</th>
+      <th>wiki_title</th>
+      <th>product</th>
+      <th>industry</th>
+      <th>assets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Walmart</td>
+      <td>http://www.stock.walmart.com</td>
+      <td>Walmart</td>
+      <td>electronics, movies and music, home and furnit...</td>
+      <td>retail</td>
+      <td>219.295 billion</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Exxon Mobil</td>
+      <td>http://www.exxonmobil.com</td>
+      <td>ExxonMobil</td>
+      <td>crude oil, oil products, natural gas, petroche...</td>
+      <td>energy industry, energy, oil and gas industry,...</td>
+      <td>346.2 billion</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Berkshire Hathaway</td>
+      <td>http://www.berkshirehathaway.com</td>
+      <td>Berkshire Hathaway</td>
+      <td>investment, diversified investments, insurance...</td>
+      <td>conglomerate (company), conglomerate</td>
+      <td>707.8 billion</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Apple</td>
+      <td>http://www.apple.com</td>
+      <td>Apple Inc.</td>
+      <td>macintosh, ipod, iphone, ipad, apple watch, ap...</td>
+      <td>computer hardware, computer software, consumer...</td>
+      <td>338.516 billion</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>UnitedHealth Group</td>
+      <td>http://www.unitedhealthgroup.com</td>
+      <td>UnitedHealth Group</td>
+      <td>uniprise, health care, service economics, serv...</td>
+      <td>managed health care</td>
+      <td>173.889 billion</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>McKesson</td>
+      <td>http://www.mckesson.com</td>
+      <td>McKesson Corporation</td>
+      <td>pharmaceuticals, medical technology, health ca...</td>
+      <td>healthcare</td>
+      <td>60.381 billion</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>CVS Health</td>
+      <td>http://www.cvshealth.com</td>
+      <td>CVS Health</td>
+      <td></td>
+      <td>retail, health care</td>
+      <td>196.456 billion</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>Amazon.com</td>
+      <td>http://www.amazon.com</td>
+      <td>Amazon (company)</td>
+      <td>amazon echo, amazon fire tablet, amazon fire, ...</td>
+      <td>cloud computing, e-commerce, artificial intell...</td>
+      <td>162.648 billion</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>AT&amp;T</td>
+      <td>http://www.att.com</td>
+      <td>AT&amp;T</td>
+      <td>satellite television, landline, fixed-line tel...</td>
+      <td>telecommunications industry, telecommunication...</td>
+      <td>531.0 billion</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>General Motors</td>
+      <td>http://www.gm.com</td>
+      <td>General Motors</td>
+      <td>car, automobiles, commercial vehicle</td>
+      <td>automotive industry, automotive</td>
+      <td>227.339 billion</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>Ford Motor</td>
+      <td>http://www.corporate.ford.com</td>
+      <td>Ford Motor Company</td>
+      <td>car, automobiles, luxury car, luxury vehicles,...</td>
+      <td>automotive industry, automotive</td>
+      <td>256.54 billion</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>AmerisourceBergen</td>
+      <td>http://www.amerisourcebergen.com</td>
+      <td>AmerisourceBergen</td>
+      <td>pharmaceutical, pharmacy</td>
+      <td>pharmaceutical</td>
+      <td>37.66 billion</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>13</td>
+      <td>Chevron</td>
+      <td>http://www.chevron.com</td>
+      <td>Chevron Corporation</td>
+      <td>petroleum, natural gas, petrochemical, marketi...</td>
+      <td>oil and gas industry, oil and gas</td>
+      <td>253.9 billion</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>14</td>
+      <td>Cardinal Health</td>
+      <td>http://www.cardinalhealth.com</td>
+      <td>Cardinal Health</td>
+      <td></td>
+      <td>pharmaceuticals</td>
+      <td>39.95 billion</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>15</td>
+      <td>Costco</td>
+      <td>http://www.costco.com</td>
+      <td>Costco</td>
+      <td></td>
+      <td>retail</td>
+      <td>45.4 billion</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>16</td>
+      <td>Verizon</td>
+      <td>http://www.verizon.com</td>
+      <td>Verizon Communications</td>
+      <td>cable television, landline, mobile phone, broa...</td>
+      <td>telecommunications industry, telecommunication...</td>
+      <td>264.82 billion</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>17</td>
+      <td>Kroger</td>
+      <td>http://www.thekrogerco.com</td>
+      <td>Kroger</td>
+      <td>supercenter, superstore, supermarket</td>
+      <td>retail</td>
+      <td>38.11 billion</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>18</td>
+      <td>General Electric</td>
+      <td>http://www.ge.com</td>
+      <td>General Electric</td>
+      <td>aircraft engine, electric power distribution, ...</td>
+      <td>conglomerate (company), conglomerate</td>
+      <td>309.129 billion</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>19</td>
+      <td>Walgreens Boots Alliance</td>
+      <td>http://www.walgreensbootsalliance.com</td>
+      <td>Walgreens Boots Alliance</td>
+      <td>drug store, pharmacy</td>
+      <td>pharmaceutical, retail</td>
+      <td>67.59 billion</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>20</td>
+      <td>JPMorgan Chase</td>
+      <td>http://www.jpmorganchase.com</td>
+      <td>JPMorgan Chase</td>
+      <td>alternative financial service, american deposi...</td>
+      <td>bank, financial services</td>
+      <td>2.687 trillion</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 |    |   rank | company_name             | company_website                       | wiki_title               | product                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | industry                                                                                                                                                                                                        | assets          |
 |---:|-------:|:-------------------------|:--------------------------------------|:-------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------|
@@ -454,7 +943,7 @@ And export them to a csv file,
 
 
 ```python
-df.to_csv('../data/top_20_companies.csv', index=False)
+df.to_csv('top_20_companies.csv', index=False)
 ```
 
 #### Challenge

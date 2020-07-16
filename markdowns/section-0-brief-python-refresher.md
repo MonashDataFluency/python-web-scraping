@@ -497,11 +497,6 @@ df[(df['City'] == 'Melbourne') & (df['University'] == 'Monash')]
 How can we filter people from `Melbourne` and above the Age of `50`?
 
 
-
-```python
-# Experiment here
-```
-
 We can also fetch specific rows based on their indexes as well.
 
 
@@ -1037,21 +1032,6 @@ What regular expression can be used to match the numbers **only** at the end of 
 - '[a-z]*([0-9]+)\$'
 - $[a-z]*([0-9]+)
 - '([0-9]+)'
-
-
-```python
-# Experiment for the above challenge here
-num_regex = re.compile('([0-9]+)')
-my_str = 'good123'
-num_regex.findall(my_str)
-```
-
-
-
-
-    ['123']
-
-
 
 Now, having learnt the regular expressions on basic strings, the same concept can be applied to an html as well as shown below:
 

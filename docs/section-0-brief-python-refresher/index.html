@@ -984,10 +984,6 @@
 <h4 id="challenge">Challenge<a class="headerlink" href="#challenge" title="Permanent link">&para;</a></h4>
 <hr />
 <p>How can we filter people from <code>Melbourne</code> and above the Age of <code>50</code>?</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># Experiment here</span>
-</code></pre></div>
-</td></tr></table>
-
 <p>We can also fetch specific rows based on their indexes as well.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 </code></pre></div>
@@ -1496,20 +1492,6 @@ None
 <li>$[a-z]*([0-9]+)</li>
 <li>'([0-9]+)'</li>
 </ul>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># Experiment for the above challenge here</span>
-<span class="n">num_regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;([0-9]+)&#39;</span><span class="p">)</span>
-<span class="n">my_str</span> <span class="o">=</span> <span class="s1">&#39;good123&#39;</span>
-<span class="n">num_regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">my_str</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
-
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>[&#39;123&#39;]
-</code></pre></div>
-</td></tr></table>
-
 <p>Now, having learnt the regular expressions on basic strings, the same concept can be applied to an html as well as shown below:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2

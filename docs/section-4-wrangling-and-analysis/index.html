@@ -477,7 +477,21 @@
 
 <p>Now let's read the <code>infoboxes.json</code> file we exported from Section 3 to a dictionary as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/infoboxes.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># If you dont have the file, you can use the below code to fetch it:</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/MonashDataFluency/python-web-scraping/master/data/infoboxes.json&#39;</span>
+<span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;infoboxes.json&#39;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>(&#39;infoboxes.json&#39;, &lt;http.client.HTTPMessage at 0x2cf46e4a080&gt;)
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;infoboxes.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
     <span class="n">wiki_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
@@ -661,7 +675,7 @@
 </code></pre></div>
 </td></tr></table>
 
-<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_22_0.png" /></p>
+<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_23_0.png" /></p>
 <h3 id="what-type-of-industries-do-the-top-20-company-belong-from">What type of industries do the top 20 company belong from?<a class="headerlink" href="#what-type-of-industries-do-the-top-20-company-belong-from" title="Permanent link">&para;</a></h3>
 <hr />
 <p>Similarly, looking at a sample for <code>industry</code>,</p>
@@ -730,7 +744,7 @@
 </code></pre></div>
 </td></tr></table>
 
-<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_33_0.png" /></p>
+<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_34_0.png" /></p>
 <h3 id="what-the-assets-of-the-top-20-companies-look-like">What the assets of the top 20 companies look like?<a class="headerlink" href="#what-the-assets-of-the-top-20-companies-look-like" title="Permanent link">&para;</a></h3>
 <hr />
 <p>Taking a look at a sample of <code>assets</code> below,</p>
@@ -886,6 +900,154 @@
 <span class="n">df_assets</span>
 </code></pre></div>
 </td></tr></table>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>company</th>
+      <th>value</th>
+      <th>unit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Walmart</td>
+      <td>219.295</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ExxonMobil</td>
+      <td>346.200</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Berkshire Hathaway</td>
+      <td>707.800</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Apple Inc.</td>
+      <td>338.516</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>UnitedHealth Group</td>
+      <td>173.889</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>McKesson Corporation</td>
+      <td>60.381</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>CVS Health</td>
+      <td>196.456</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Amazon (company)</td>
+      <td>162.648</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>AT&amp;T</td>
+      <td>531.000</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>General Motors</td>
+      <td>227.339</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Ford Motor Company</td>
+      <td>256.540</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>AmerisourceBergen</td>
+      <td>37.660</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Chevron Corporation</td>
+      <td>253.900</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Cardinal Health</td>
+      <td>39.950</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Costco</td>
+      <td>45.400</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Verizon Communications</td>
+      <td>264.820</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Kroger</td>
+      <td>38.110</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>General Electric</td>
+      <td>309.129</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Walgreens Boots Alliance</td>
+      <td>67.590</td>
+      <td>billion</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>JPMorgan Chase</td>
+      <td>2687.000</td>
+      <td>billion</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <table>
 <thead>
@@ -1046,13 +1208,77 @@
 </code></pre></div>
 </td></tr></table>
 
-<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_50_0.png" /></p>
+<p><img alt="png" src="../section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_51_0.png" /></p>
 <p>Now let's create a new dataframe containing data related to <code>products</code>, <code>industry</code> and <code>assets</code> as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df_wiki</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">df_wiki</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>wiki_title</th>
+      <th>product</th>
+      <th>industry</th>
+      <th>assets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Walmart</td>
+      <td>electronics, movies and music, home and furnit...</td>
+      <td>retail</td>
+      <td>219.295 billion</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ExxonMobil</td>
+      <td>crude oil, oil products, natural gas, petroche...</td>
+      <td>energy industry, energy, oil and gas industry,...</td>
+      <td>346.2 billion</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Berkshire Hathaway</td>
+      <td>investment, diversified investments, insurance...</td>
+      <td>conglomerate (company), conglomerate</td>
+      <td>707.8 billion</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Apple Inc.</td>
+      <td>macintosh, ipod, iphone, ipad, apple watch, ap...</td>
+      <td>computer hardware, computer software, consumer...</td>
+      <td>338.516 billion</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>UnitedHealth Group</td>
+      <td>uniprise, health care, service economics, serv...</td>
+      <td>managed health care</td>
+      <td>173.889 billion</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <table>
 <thead>
@@ -1105,11 +1331,257 @@
 <p>And finally let's combine the datasets from Section 2 and 3 as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/fortune_500_companies.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> <span class="c1"># reading only the first 20 rows</span>
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># If you dont have the file, you can use the below code to fetch it:</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/MonashDataFluency/python-web-scraping/master/data/fortune_500_companies.csv&#39;</span>
+<span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;fortune_500_companies.csv&#39;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>(&#39;fortune_500_companies.csv&#39;, &lt;http.client.HTTPMessage at 0x2cf4823f978&gt;)
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;fortune_500_companies.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> <span class="c1"># reading only the first 20 rows</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">df_wiki</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># concatenating both the datasets</span>
 <span class="n">df</span>
 </code></pre></div>
 </td></tr></table>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rank</th>
+      <th>company_name</th>
+      <th>company_website</th>
+      <th>wiki_title</th>
+      <th>product</th>
+      <th>industry</th>
+      <th>assets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Walmart</td>
+      <td>http://www.stock.walmart.com</td>
+      <td>Walmart</td>
+      <td>electronics, movies and music, home and furnit...</td>
+      <td>retail</td>
+      <td>219.295 billion</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Exxon Mobil</td>
+      <td>http://www.exxonmobil.com</td>
+      <td>ExxonMobil</td>
+      <td>crude oil, oil products, natural gas, petroche...</td>
+      <td>energy industry, energy, oil and gas industry,...</td>
+      <td>346.2 billion</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Berkshire Hathaway</td>
+      <td>http://www.berkshirehathaway.com</td>
+      <td>Berkshire Hathaway</td>
+      <td>investment, diversified investments, insurance...</td>
+      <td>conglomerate (company), conglomerate</td>
+      <td>707.8 billion</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Apple</td>
+      <td>http://www.apple.com</td>
+      <td>Apple Inc.</td>
+      <td>macintosh, ipod, iphone, ipad, apple watch, ap...</td>
+      <td>computer hardware, computer software, consumer...</td>
+      <td>338.516 billion</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>UnitedHealth Group</td>
+      <td>http://www.unitedhealthgroup.com</td>
+      <td>UnitedHealth Group</td>
+      <td>uniprise, health care, service economics, serv...</td>
+      <td>managed health care</td>
+      <td>173.889 billion</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>McKesson</td>
+      <td>http://www.mckesson.com</td>
+      <td>McKesson Corporation</td>
+      <td>pharmaceuticals, medical technology, health ca...</td>
+      <td>healthcare</td>
+      <td>60.381 billion</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>CVS Health</td>
+      <td>http://www.cvshealth.com</td>
+      <td>CVS Health</td>
+      <td></td>
+      <td>retail, health care</td>
+      <td>196.456 billion</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>Amazon.com</td>
+      <td>http://www.amazon.com</td>
+      <td>Amazon (company)</td>
+      <td>amazon echo, amazon fire tablet, amazon fire, ...</td>
+      <td>cloud computing, e-commerce, artificial intell...</td>
+      <td>162.648 billion</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>AT&amp;T</td>
+      <td>http://www.att.com</td>
+      <td>AT&amp;T</td>
+      <td>satellite television, landline, fixed-line tel...</td>
+      <td>telecommunications industry, telecommunication...</td>
+      <td>531.0 billion</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>General Motors</td>
+      <td>http://www.gm.com</td>
+      <td>General Motors</td>
+      <td>car, automobiles, commercial vehicle</td>
+      <td>automotive industry, automotive</td>
+      <td>227.339 billion</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>Ford Motor</td>
+      <td>http://www.corporate.ford.com</td>
+      <td>Ford Motor Company</td>
+      <td>car, automobiles, luxury car, luxury vehicles,...</td>
+      <td>automotive industry, automotive</td>
+      <td>256.54 billion</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>AmerisourceBergen</td>
+      <td>http://www.amerisourcebergen.com</td>
+      <td>AmerisourceBergen</td>
+      <td>pharmaceutical, pharmacy</td>
+      <td>pharmaceutical</td>
+      <td>37.66 billion</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>13</td>
+      <td>Chevron</td>
+      <td>http://www.chevron.com</td>
+      <td>Chevron Corporation</td>
+      <td>petroleum, natural gas, petrochemical, marketi...</td>
+      <td>oil and gas industry, oil and gas</td>
+      <td>253.9 billion</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>14</td>
+      <td>Cardinal Health</td>
+      <td>http://www.cardinalhealth.com</td>
+      <td>Cardinal Health</td>
+      <td></td>
+      <td>pharmaceuticals</td>
+      <td>39.95 billion</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>15</td>
+      <td>Costco</td>
+      <td>http://www.costco.com</td>
+      <td>Costco</td>
+      <td></td>
+      <td>retail</td>
+      <td>45.4 billion</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>16</td>
+      <td>Verizon</td>
+      <td>http://www.verizon.com</td>
+      <td>Verizon Communications</td>
+      <td>cable television, landline, mobile phone, broa...</td>
+      <td>telecommunications industry, telecommunication...</td>
+      <td>264.82 billion</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>17</td>
+      <td>Kroger</td>
+      <td>http://www.thekrogerco.com</td>
+      <td>Kroger</td>
+      <td>supercenter, superstore, supermarket</td>
+      <td>retail</td>
+      <td>38.11 billion</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>18</td>
+      <td>General Electric</td>
+      <td>http://www.ge.com</td>
+      <td>General Electric</td>
+      <td>aircraft engine, electric power distribution, ...</td>
+      <td>conglomerate (company), conglomerate</td>
+      <td>309.129 billion</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>19</td>
+      <td>Walgreens Boots Alliance</td>
+      <td>http://www.walgreensbootsalliance.com</td>
+      <td>Walgreens Boots Alliance</td>
+      <td>drug store, pharmacy</td>
+      <td>pharmaceutical, retail</td>
+      <td>67.59 billion</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>20</td>
+      <td>JPMorgan Chase</td>
+      <td>http://www.jpmorganchase.com</td>
+      <td>JPMorgan Chase</td>
+      <td>alternative financial service, american deposi...</td>
+      <td>bank, financial services</td>
+      <td>2.687 trillion</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <table>
 <thead>
@@ -1328,7 +1800,7 @@
 </tbody>
 </table>
 <p>And export them to a csv file,</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../data/top_20_companies.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;top_20_companies.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
 
