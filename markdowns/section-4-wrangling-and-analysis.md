@@ -1,3 +1,5 @@
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MonashDataFluency/python-web-scraping/blob/master/notebooks/section-4-wrangling-and-analysis.ipynb)
+
 In this section, we will clean, join perform some basic analysis on the data to answer a few questions. Let's import a few libraries we will require.
 
 
@@ -182,7 +184,7 @@ create_wordcloud(products, ['and']) # adding "and" to the stopword list
 ```
 
 
-![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_23_0.png)
+![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_24_0.png)
 
 
 ### What type of industries do the top 20 company belong from?
@@ -249,7 +251,7 @@ create_wordcloud(industries, ['industry', 'and']) # adding "industry" and "and" 
 ```
 
 
-![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_34_0.png)
+![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_35_0.png)
 
 
 ### What the assets of the top 20 companies look like?
@@ -566,7 +568,7 @@ plt.show()
 ```
 
 
-![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_51_0.png)
+![png](section-4-wrangling-and-analysis_files/section-4-wrangling-and-analysis_52_0.png)
 
 
 Now let's create a new dataframe containing data related to `products`, `industry` and `assets` as follows,

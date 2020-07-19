@@ -1,3 +1,5 @@
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MonashDataFluency/python-web-scraping/blob/master/notebooks/section-0-brief-python-refresher.ipynb)
+
 <center><img src="../images/xkcd_python.png"></center>
 <center>https://xkcd.com/license.html (CC BY-NC 2.5)</center>
 

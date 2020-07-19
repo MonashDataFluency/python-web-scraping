@@ -1,3 +1,5 @@
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MonashDataFluency/python-web-scraping/blob/master/notebooks/section-2-HTML-based-scraping.ipynb)
+
 <img src="../images/request.png">
 
 In this section we will look at a few HTML fundamentals to understand how web scraping works and scrape a website for structured data

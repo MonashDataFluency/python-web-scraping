@@ -1,3 +1,5 @@
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MonashDataFluency/python-web-scraping/blob/master/notebooks/section-3-API-based-scraping.ipynb)
+
 <img src="../images/api.png">
 
 ### A brief introduction to APIs
