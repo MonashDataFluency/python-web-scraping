@@ -89,6 +89,7 @@ C.
     'market_cap' : '2 billion USD'
 }
 ```
+---
 
 #### What is HTML?
 - HTML stands for **HyperText Markup Language**

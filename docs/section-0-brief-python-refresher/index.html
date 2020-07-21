@@ -523,9 +523,11 @@
 <center>https://xkcd.com/license.html (CC BY-NC 2.5)</center></p>
 <h3 id="jupyter-style-notebooks-on-google-colaboratory-a-quick-tour">Jupyter-style notebooks on Google Colaboratory - A quick tour<a class="headerlink" href="#jupyter-style-notebooks-on-google-colaboratory-a-quick-tour" title="Permanent link">&para;</a></h3>
 <hr />
-<p>Go to https://colab.research.google.com and login with your Google account.</p>
-<p>Select <strong>NEW NOTEBOOK</strong> - a new Python3 notebook will be created.</p>
-<p>Type some Python code in the top cell, eg:</p>
+<ol>
+<li>Go to <a href="https://colab.research.google.com">this</a> link  and login with your Google account.</li>
+<li>Select <strong>NEW NOTEBOOK</strong> - a new Python3 notebook will be created.</li>
+<li>Type some Python code in the top cell, eg:</li>
+</ol>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world!!&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
@@ -534,18 +536,21 @@
 </code></pre></div>
 </td></tr></table>
 
-<p><strong>Shift-Enter</strong> to run the contents of the cell</p>
+<ol>
+<li><strong>Shift-Enter</strong> to run the contents of the cell.</li>
+</ol>
 <p>In this section we will take a quick tour of some of the concepts that will be used for the rest of our web scraping workshop.</p>
 <h3 id="dataframes">Dataframes<a class="headerlink" href="#dataframes" title="Permanent link">&para;</a></h3>
 <hr />
-<p>One of the most powerful data structures in Python is the Pandas <code>DataFrame</code>. It allows tabular data, including <code>csv</code> (comma seperated values) and <code>tsv</code> (tab seperated values), to be processed and manipulated. People familiar with Excel will no doubt find it intuitive and easy to grasp. Since most <code>csv</code> (or <code>tsv</code>) has become the de facto standard for sharing datasets both large and small, Pandas dataframe is the way to go.</p>
+<p>One of the most powerful data structures in Python is the Pandas <code>DataFrame</code>. It allows tabular data, including <code>csv</code> (comma seperated values) and <code>tsv</code> (tab seperated values), to be processed and manipulated.  </p>
+<p>People familiar with Excel will no doubt find it intuitive and easy to grasp. Since most <code>csv</code> (or <code>tsv</code>) has become the de facto standard for sharing datasets both large and small, Pandas dataframe is the way to go.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># importing the package and using `pd` as the alias </span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pandas version : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>Pandas version : 1.0.5
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>Pandas version : 1.0.1
 </code></pre></div>
 </td></tr></table>
 
@@ -576,49 +581,35 @@
 <p>Converting the same to a dataframe,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="c1"># print(df.to_markdown()) # converting to markdown for ease of display</span>
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="c1"># Note: converting to markdown for ease of display on site</span>
+<span class="c1"># print(df.to_markdown()) </span>
 <span class="n">df</span>
 </code></pre></div>
 </td></tr></table>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>name</th>
-      <th>title</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>sam</td>
-      <td>physicist</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>rob</td>
-      <td>economist</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">name</th>
+<th align="left">title</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">sam</td>
+<td align="left">physicist</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">rob</td>
+<td align="left">economist</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p>Now lets create a bigger dataframe and learn some useful functions that can be performed on them.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -638,92 +629,76 @@
 </code></pre></div>
 </td></tr></table>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Sam</td>
-      <td>Physicist</td>
-      <td>59</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Rob</td>
-      <td>Economist</td>
-      <td>66</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Jack</td>
-      <td>Statistician</td>
-      <td>42</td>
-      <td>Sydney</td>
-      <td>UNSW</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Jill</td>
-      <td>Data Scientist</td>
-      <td>28</td>
-      <td>Sydney</td>
-      <td>UTS</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Dave</td>
-      <td>Designer</td>
-      <td>24</td>
-      <td>Melbourne</td>
-      <td>Uni Mel</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Alex</td>
-      <td>Architect</td>
-      <td>39</td>
-      <td>Perth</td>
-      <td>UWA</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Steve</td>
-      <td>Doctor</td>
-      <td>52</td>
-      <td>Brisbane</td>
-      <td>UQ</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Name</th>
+<th align="left">Title</th>
+<th align="right">Age</th>
+<th align="left">City</th>
+<th align="left">University</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">Sam</td>
+<td align="left">Physicist</td>
+<td align="right">59</td>
+<td align="left">Melbourne</td>
+<td align="left">Monash</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">Rob</td>
+<td align="left">Economist</td>
+<td align="right">66</td>
+<td align="left">Melbourne</td>
+<td align="left">Monash</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">Jack</td>
+<td align="left">Statistician</td>
+<td align="right">42</td>
+<td align="left">Sydney</td>
+<td align="left">UNSW</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="left">Jill</td>
+<td align="left">Data Scientist</td>
+<td align="right">28</td>
+<td align="left">Sydney</td>
+<td align="left">UTS</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="left">Dave</td>
+<td align="left">Designer</td>
+<td align="right">24</td>
+<td align="left">Melbourne</td>
+<td align="left">Uni Mel</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td align="left">Alex</td>
+<td align="left">Architect</td>
+<td align="right">39</td>
+<td align="left">Perth</td>
+<td align="left">UWA</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td align="left">Steve</td>
+<td align="left">Doctor</td>
+<td align="right">52</td>
+<td align="left">Brisbane</td>
+<td align="left">UQ</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p>We can also take a quick glance at its contents by using :</p>
 <ul>
 <li>
@@ -737,252 +712,188 @@
 </code></pre></div>
 </td></tr></table>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Sam</td>
-      <td>Physicist</td>
-      <td>59</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Rob</td>
-      <td>Economist</td>
-      <td>66</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Jack</td>
-      <td>Statistician</td>
-      <td>42</td>
-      <td>Sydney</td>
-      <td>UNSW</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Jill</td>
-      <td>Data Scientist</td>
-      <td>28</td>
-      <td>Sydney</td>
-      <td>UTS</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Dave</td>
-      <td>Designer</td>
-      <td>24</td>
-      <td>Melbourne</td>
-      <td>Uni Mel</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Name</th>
+<th align="left">Title</th>
+<th align="right">Age</th>
+<th align="left">City</th>
+<th align="left">University</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">Sam</td>
+<td align="left">Physicist</td>
+<td align="right">59</td>
+<td align="left">Melbourne</td>
+<td align="left">Monash</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">Rob</td>
+<td align="left">Economist</td>
+<td align="right">66</td>
+<td align="left">Melbourne</td>
+<td align="left">Monash</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">Jack</td>
+<td align="left">Statistician</td>
+<td align="right">42</td>
+<td align="left">Sydney</td>
+<td align="left">UNSW</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="left">Jill</td>
+<td align="left">Data Scientist</td>
+<td align="right">28</td>
+<td align="left">Sydney</td>
+<td align="left">UTS</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="left">Dave</td>
+<td align="left">Designer</td>
+<td align="right">24</td>
+<td align="left">Melbourne</td>
+<td align="left">Uni Mel</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2</th>
-      <td>Jack</td>
-      <td>Statistician</td>
-      <td>42</td>
-      <td>Sydney</td>
-      <td>UNSW</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Jill</td>
-      <td>Data Scientist</td>
-      <td>28</td>
-      <td>Sydney</td>
-      <td>UTS</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Dave</td>
-      <td>Designer</td>
-      <td>24</td>
-      <td>Melbourne</td>
-      <td>Uni Mel</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Alex</td>
-      <td>Architect</td>
-      <td>39</td>
-      <td>Perth</td>
-      <td>UWA</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Steve</td>
-      <td>Doctor</td>
-      <td>52</td>
-      <td>Brisbane</td>
-      <td>UQ</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Name</th>
+<th align="left">Title</th>
+<th align="right">Age</th>
+<th align="left">City</th>
+<th align="left">University</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">2</td>
+<td align="left">Jack</td>
+<td align="left">Statistician</td>
+<td align="right">42</td>
+<td align="left">Sydney</td>
+<td align="left">UNSW</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="left">Jill</td>
+<td align="left">Data Scientist</td>
+<td align="right">28</td>
+<td align="left">Sydney</td>
+<td align="left">UTS</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="left">Dave</td>
+<td align="left">Designer</td>
+<td align="right">24</td>
+<td align="left">Melbourne</td>
+<td align="left">Uni Mel</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td align="left">Alex</td>
+<td align="left">Architect</td>
+<td align="right">39</td>
+<td align="left">Perth</td>
+<td align="left">UWA</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td align="left">Steve</td>
+<td align="left">Doctor</td>
+<td align="right">52</td>
+<td align="left">Brisbane</td>
+<td align="left">UQ</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p>Lets say we want to fiter out all the people from <code>Sydney</code>.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;City&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Sydney&#39;</span><span class="p">]</span>
 </code></pre></div>
 </td></tr></table>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2</th>
-      <td>Jack</td>
-      <td>Statistician</td>
-      <td>42</td>
-      <td>Sydney</td>
-      <td>UNSW</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Jill</td>
-      <td>Data Scientist</td>
-      <td>28</td>
-      <td>Sydney</td>
-      <td>UTS</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Name</th>
+<th align="left">Title</th>
+<th align="right">Age</th>
+<th align="left">City</th>
+<th align="left">University</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">2</td>
+<td align="left">Jack</td>
+<td align="left">Statistician</td>
+<td align="right">42</td>
+<td align="left">Sydney</td>
+<td align="left">UNSW</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="left">Jill</td>
+<td align="left">Data Scientist</td>
+<td align="right">28</td>
+<td align="left">Sydney</td>
+<td align="left">UTS</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p>Now, lets say we want to look at all the people in <code>Melbourne</code> and in <code>Monash</code>. Notice the usage of <code>()</code> and <code>&amp;</code>.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;City&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Melbourne&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;University&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Monash&#39;</span><span class="p">)]</span>
 </code></pre></div>
 </td></tr></table>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Sam</td>
-      <td>Physicist</td>
-      <td>59</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Rob</td>
-      <td>Economist</td>
-      <td>66</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Name</th>
+<th align="left">Title</th>
+<th align="right">Age</th>
+<th align="left">City</th>
+<th align="left">University</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">Sam</td>
+<td align="left">Physicist</td>
+<td align="right">59</td>
+<td align="left">Melbourne</td>
+<td align="left">Monash</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">Rob</td>
+<td align="left">Economist</td>
+<td align="right">66</td>
+<td align="left">Melbourne</td>
+<td align="left">Monash</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <h4 id="challenge">Challenge<a class="headerlink" href="#challenge" title="Permanent link">&para;</a></h4>
 <hr />
 <p>How can we filter people from <code>Melbourne</code> and above the Age of <code>50</code>?</p>
@@ -991,151 +902,119 @@
 </code></pre></div>
 </td></tr></table>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>Rob</td>
-      <td>Economist</td>
-      <td>66</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Jack</td>
-      <td>Statistician</td>
-      <td>42</td>
-      <td>Sydney</td>
-      <td>UNSW</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Name</th>
+<th align="left">Title</th>
+<th align="right">Age</th>
+<th align="left">City</th>
+<th align="left">University</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">1</td>
+<td align="left">Rob</td>
+<td align="left">Economist</td>
+<td align="right">66</td>
+<td align="left">Melbourne</td>
+<td align="left">Monash</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">Jack</td>
+<td align="left">Statistician</td>
+<td align="right">42</td>
+<td align="left">Sydney</td>
+<td align="left">UNSW</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p>Lets try changing Jack's age to 43, because today is his Birthday and he has now turned 43.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">43</span>
 </code></pre></div>
 </td></tr></table>
 
-<p>The above is just one way to do this. Some of the other ways are as follows:
-- df.at[2, 'Age'] = 43
-- df.loc[df[df['Name'] == 'Jack'].index, 'Age'] = 43</p>
+<p>The above is just one way to do this. Some of the other ways are as follows:<br />
+- <code>df.at[2, 'Age'] = 43</code>
+- <code>df.loc[df[df['Name'] == 'Jack'].index, 'Age'] = 43</code></p>
 <p>Lets look at the updated data frame.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span>
 </code></pre></div>
 </td></tr></table>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Sam</td>
-      <td>Physicist</td>
-      <td>59</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Rob</td>
-      <td>Economist</td>
-      <td>66</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Jack</td>
-      <td>Statistician</td>
-      <td>43</td>
-      <td>Sydney</td>
-      <td>UNSW</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Jill</td>
-      <td>Data Scientist</td>
-      <td>28</td>
-      <td>Sydney</td>
-      <td>UTS</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Dave</td>
-      <td>Designer</td>
-      <td>24</td>
-      <td>Melbourne</td>
-      <td>Uni Mel</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Alex</td>
-      <td>Architect</td>
-      <td>39</td>
-      <td>Perth</td>
-      <td>UWA</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Steve</td>
-      <td>Doctor</td>
-      <td>52</td>
-      <td>Brisbane</td>
-      <td>UQ</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Name</th>
+<th align="left">Title</th>
+<th align="right">Age</th>
+<th align="left">City</th>
+<th align="left">University</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">Sam</td>
+<td align="left">Physicist</td>
+<td align="right">59</td>
+<td align="left">Melbourne</td>
+<td align="left">Monash</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">Rob</td>
+<td align="left">Economist</td>
+<td align="right">66</td>
+<td align="left">Melbourne</td>
+<td align="left">Monash</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">Jack</td>
+<td align="left">Statistician</td>
+<td align="right">43</td>
+<td align="left">Sydney</td>
+<td align="left">UNSW</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="left">Jill</td>
+<td align="left">Data Scientist</td>
+<td align="right">28</td>
+<td align="left">Sydney</td>
+<td align="left">UTS</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="left">Dave</td>
+<td align="left">Designer</td>
+<td align="right">24</td>
+<td align="left">Melbourne</td>
+<td align="left">Uni Mel</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td align="left">Alex</td>
+<td align="left">Architect</td>
+<td align="right">39</td>
+<td align="left">Perth</td>
+<td align="left">UWA</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td align="left">Steve</td>
+<td align="left">Doctor</td>
+<td align="right">52</td>
+<td align="left">Brisbane</td>
+<td align="left">UQ</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p>For exporting a Pandas dataframe to a <code>csv</code> file, we can use <code>to_csv()</code> as follows</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
@@ -1158,101 +1037,86 @@
 </code></pre></div>
 </td></tr></table>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Sam</td>
-      <td>Physicist</td>
-      <td>59</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Rob</td>
-      <td>Economist</td>
-      <td>66</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Jack</td>
-      <td>Statistician</td>
-      <td>43</td>
-      <td>Sydney</td>
-      <td>UNSW</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Jill</td>
-      <td>Data Scientist</td>
-      <td>28</td>
-      <td>Sydney</td>
-      <td>UTS</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Dave</td>
-      <td>Designer</td>
-      <td>24</td>
-      <td>Melbourne</td>
-      <td>Uni Mel</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Alex</td>
-      <td>Architect</td>
-      <td>39</td>
-      <td>Perth</td>
-      <td>UWA</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Steve</td>
-      <td>Doctor</td>
-      <td>52</td>
-      <td>Brisbane</td>
-      <td>UQ</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Name</th>
+<th align="left">Title</th>
+<th align="right">Age</th>
+<th align="left">City</th>
+<th align="left">University</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">Sam</td>
+<td align="left">Physicist</td>
+<td align="right">59</td>
+<td align="left">Melbourne</td>
+<td align="left">Monash</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">Rob</td>
+<td align="left">Economist</td>
+<td align="right">66</td>
+<td align="left">Melbourne</td>
+<td align="left">Monash</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">Jack</td>
+<td align="left">Statistician</td>
+<td align="right">43</td>
+<td align="left">Sydney</td>
+<td align="left">UNSW</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="left">Jill</td>
+<td align="left">Data Scientist</td>
+<td align="right">28</td>
+<td align="left">Sydney</td>
+<td align="left">UTS</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="left">Dave</td>
+<td align="left">Designer</td>
+<td align="right">24</td>
+<td align="left">Melbourne</td>
+<td align="left">Uni Mel</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td align="left">Alex</td>
+<td align="left">Architect</td>
+<td align="right">39</td>
+<td align="left">Perth</td>
+<td align="left">UWA</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td align="left">Steve</td>
+<td align="left">Doctor</td>
+<td align="right">52</td>
+<td align="left">Brisbane</td>
+<td align="left">UQ</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <h3 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h3>
 <hr />
-<p>JSON: JavaScript Object Notation.</p>
+<p>JSON stands for <em>JavaScript Object Notation</em>.</p>
 <p>When exchanging data between a browser and a server, the data can only be text.</p>
-<p>Python has a built-in package called json, which can be used to work with JSON data.</p>
+<p>Python has a built-in package called <code>json</code>, which can be used to work with JSON data.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
 </code></pre></div>
 </td></tr></table>
 
+<p>Once we imported the library, now lets look at how we can obtain a JSON object from a string (or more accurately a JSON string). This process is also know as deserialization where we convert a string to an object.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1279,14 +1143,24 @@
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">y</span>
+<p>Lets take a look at <code>y</code> as follows,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>{&#39;name&#39;: &#39;John&#39;, &#39;age&#39;: 30, &#39;city&#39;: &#39;New York&#39;}
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>{
+    &quot;name&quot;: &quot;John&quot;,
+    &quot;age&quot;: 30,
+    &quot;city&quot;: &quot;New York&quot;
+}
 </code></pre></div>
 </td></tr></table>
 
+<p>We can obtain the exact same JSON string we defined earlier from a Python dictionary as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1321,6 +1195,7 @@
 </code></pre></div>
 </td></tr></table>
 
+<p>For better formatting we can indent the same as,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># Indentation</span>
@@ -1346,8 +1221,8 @@
 <p>Regular expressions or regex are a powerful tool to extract key pieces of data from raw text.</p>
 <p>You can try your regex expressions in : </p>
 <ul>
-<li>https://pythex.org/ for a python oriented regex editor</li>
-<li>https://regexr.com/ for a more visual explanation behind the expressions (good for getting started)</li>
+<li><a href="https://pythex.org/">pythex</a> for a python oriented regex editor</li>
+<li><a href="https://regexr.com/">regexr</a> for a more visual explanation behind the expressions (good for getting started)</li>
 </ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span> <span class="c1"># regex package in python is named &#39;re&#39;</span>
 </code></pre></div>
@@ -1359,7 +1234,7 @@
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>&lt;_sre.SRE_Match object; span=(6, 9), match=&#39;123&#39;&gt;
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>&lt;re.Match object; span=(6, 9), match=&#39;123&#39;&gt;
 </code></pre></div>
 </td></tr></table>
 
@@ -1384,7 +1259,7 @@
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>&lt;_sre.SRE_Match object; span=(6, 7), match=&#39;1&#39;&gt;
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>&lt;re.Match object; span=(6, 7), match=&#39;1&#39;&gt;
 </code></pre></div>
 </td></tr></table>
 
@@ -1396,7 +1271,7 @@
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>&lt;_sre.SRE_Match object; span=(6, 9), match=&#39;123&#39;&gt;
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>&lt;re.Match object; span=(6, 9), match=&#39;123&#39;&gt;
 </code></pre></div>
 </td></tr></table>
 
@@ -1416,10 +1291,10 @@
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>&lt;_sre.SRE_Match object; span=(5, 8), match=&#39;123&#39;&gt;
-&lt;_sre.SRE_Match object; span=(5, 8), match=&#39;678&#39;&gt;
-&lt;_sre.SRE_Match object; span=(0, 3), match=&#39;012&#39;&gt;
-&lt;_sre.SRE_Match object; span=(5, 8), match=&#39;567&#39;&gt;
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>&lt;re.Match object; span=(5, 8), match=&#39;123&#39;&gt;
+&lt;re.Match object; span=(5, 8), match=&#39;678&#39;&gt;
+&lt;re.Match object; span=(0, 3), match=&#39;012&#39;&gt;
+&lt;re.Match object; span=(5, 8), match=&#39;567&#39;&gt;
 None
 </code></pre></div>
 </td></tr></table>
@@ -1430,7 +1305,7 @@ None
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>&lt;_sre.SRE_Match object; span=(0, 8), match=&#39;hello123&#39;&gt;
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>&lt;re.Match object; span=(0, 8), match=&#39;hello123&#39;&gt;
 </code></pre></div>
 </td></tr></table>
 
@@ -1489,11 +1364,12 @@ None
 <hr />
 <p>What regular expression can be used to match the numbers <strong>only</strong> at the end of the string:</p>
 <ul>
-<li>'[a-z]*([0-9]+)[a-z]+'</li>
-<li>'[a-z]*([0-9]+)\$'</li>
-<li>$[a-z]*([0-9]+)</li>
-<li>'([0-9]+)'</li>
+<li><code>'[a-z]*([0-9]+)[a-z]+'</code></li>
+<li><code>'[a-z]*([0-9]+)\$'</code></li>
+<li><code>$[a-z]*([0-9]+)</code></li>
+<li><code>'([0-9]+)'</code></li>
 </ul>
+<hr />
 <p>Now, having learnt the regular expressions on basic strings, the same concept can be applied to an html as well as shown below:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2

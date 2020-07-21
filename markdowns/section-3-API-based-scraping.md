@@ -59,7 +59,6 @@ Let's begin by installing some of libraries we will use for this excercise as fo
 # sudo apt install libcurl4-openssl-dev libssl-dev
 !pip install wptools
 !pip install wikipedia
-# pip install pandas
 !pip install wordcloud
 ```
 
@@ -77,7 +76,7 @@ print('wptools version : {}'.format(wptools.__version__)) # checking the install
 ```
 
     wptools version : 0.4.17
-    
+
 
 Now let's load the data which we scrapped in the previous section as follows,
 
@@ -102,69 +101,6 @@ fname = 'fortune_500_companies.csv' # scrapped data from previous section
 df = pd.read_csv(fname)             # reading the csv file as a pandas df
 df.head()                           # displaying the first 5 rows
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>rank</th>
-      <th>company_name</th>
-      <th>company_website</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>Walmart</td>
-      <td>http://www.stock.walmart.com</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>Exxon Mobil</td>
-      <td>http://www.exxonmobil.com</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>Berkshire Hathaway</td>
-      <td>http://www.berkshirehathaway.com</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>Apple</td>
-      <td>http://www.apple.com</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>UnitedHealth Group</td>
-      <td>http://www.unitedhealthgroup.com</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 |    |   rank | company_name       | company_website                  |
 |---:|-------:|:-------------------|:---------------------------------|
@@ -212,7 +148,7 @@ for i, j in enumerate(companies):   # looping through the list of 20 company
     18. General Electric
     19. Walgreens Boots Alliance
     20. JPMorgan Chase
-    
+
 
 ### Getting article names from wiki
 
@@ -315,7 +251,7 @@ for idx, company in enumerate(wiki_search):
     JPMorgan Chase, Chase Bank, 2012 JPMorgan Chase trading loss, JPMorgan Chase Tower (Houston), 270 Park Avenue, Chase Paymentech, 2014 JPMorgan Chase data breach, Bear Stearns, Jamie Dimon, JPMorgan Chase Building (Houston)
     
     
-    
+
 
 Now let's get the most probable ones (the first suggestion) for each of the first 20 companies on the Fortune 500 list,
 
@@ -328,7 +264,7 @@ print(most_probable)
 ```
 
     [('Walmart', 'Walmart'), ('Exxon Mobil', 'ExxonMobil'), ('Berkshire Hathaway', 'Berkshire Hathaway'), ('Apple', 'Apple'), ('UnitedHealth Group', 'UnitedHealth Group'), ('McKesson', 'McKesson Corporation'), ('CVS Health', 'CVS Health'), ('Amazon.com', 'Amazon (company)'), ('AT&T', 'AT&T'), ('General Motors', 'General Motors'), ('Ford Motor', 'Ford Motor Company'), ('AmerisourceBergen', 'AmerisourceBergen'), ('Chevron', 'Chevron Corporation'), ('Cardinal Health', 'Cardinal Health'), ('Costco', 'Costco'), ('Verizon', 'Verizon Communications'), ('Kroger', 'Kroger'), ('General Electric', 'General Electric'), ('Walgreens Boots Alliance', 'Walgreens Boots Alliance'), ('JPMorgan Chase', 'JPMorgan Chase')]
-    
+
 
 We can notice that most of the wiki article titles make sense. However, **Apple** is quite ambiguous in this regard as it can indicate the fruit as well as the company. However we can see that the second suggestion returned by was **Apple Inc.**. Hence, we can manually replace it with **Apple Inc.** as follows,
 
@@ -339,7 +275,7 @@ print(companies) # final list of wikipedia article titles
 ```
 
     ['Walmart', 'ExxonMobil', 'Berkshire Hathaway', 'Apple Inc.', 'UnitedHealth Group', 'McKesson Corporation', 'CVS Health', 'Amazon (company)', 'AT&T', 'General Motors', 'Ford Motor Company', 'AmerisourceBergen', 'Chevron Corporation', 'Cardinal Health', 'Costco', 'Verizon Communications', 'Kroger', 'General Electric', 'Walgreens Boots Alliance', 'JPMorgan Chase']
-    
+
 
 ### Retrieving the infoboxes
 
@@ -368,7 +304,7 @@ page.get_parse()    # parses the wikipedia article
       wikidata_url: https://www.wikidata.org/wiki/Q483551
       wikitext: <str(277438)> {{about|the retail chain|other uses}}{{p...
     }
-    
+
 
 
 
@@ -746,9 +682,9 @@ for company in companies:
       wikidata_url: https://www.wikidata.org/wiki/Q192314
       wikitext: <str(117507)> {{About|JPMorgan Chase & Co|its main sub...
     }
-    
 
-Let's take a look at `wiki_data` for the first instance i.e. **Walmart**,
+
+Let's take a look at the first instance in `wiki_data` i.e. **Walmart**,
 
 
 ```python

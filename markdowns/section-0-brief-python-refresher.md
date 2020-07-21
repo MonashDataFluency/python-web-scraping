@@ -6,11 +6,9 @@
 ### Jupyter-style notebooks on Google Colaboratory - A quick tour
 ---
 
-Go to https://colab.research.google.com and login with your Google account.
-
-Select **NEW NOTEBOOK** - a new Python3 notebook will be created.
-
-Type some Python code in the top cell, eg:
+1. Go to [this](https://colab.research.google.com) link  and login with your Google account.
+2. Select **NEW NOTEBOOK** - a new Python3 notebook will be created.
+3. Type some Python code in the top cell, eg:
 
 
 ```python
@@ -18,9 +16,9 @@ print("Hello world!!")
 ```
 
     Hello world!!
-    
 
-**Shift-Enter** to run the contents of the cell
+
+4. **Shift-Enter** to run the contents of the cell.
 
 In this section we will take a quick tour of some of the concepts that will be used for the rest of our web scraping workshop.
 
@@ -28,7 +26,9 @@ In this section we will take a quick tour of some of the concepts that will be u
 ### Dataframes
 ---
 
-One of the most powerful data structures in Python is the Pandas `DataFrame`. It allows tabular data, including `csv` (comma seperated values) and `tsv` (tab seperated values), to be processed and manipulated. People familiar with Excel will no doubt find it intuitive and easy to grasp. Since most `csv` (or `tsv`) has become the de facto standard for sharing datasets both large and small, Pandas dataframe is the way to go.
+One of the most powerful data structures in Python is the Pandas `DataFrame`. It allows tabular data, including `csv` (comma seperated values) and `tsv` (tab seperated values), to be processed and manipulated.  
+
+People familiar with Excel will no doubt find it intuitive and easy to grasp. Since most `csv` (or `tsv`) has become the de facto standard for sharing datasets both large and small, Pandas dataframe is the way to go.
 
 
 ```python
@@ -36,8 +36,8 @@ import pandas as pd # importing the package and using `pd` as the alias
 print('Pandas version : {}'.format(pd.__version__))
 ```
 
-    Pandas version : 1.0.5
-    
+    Pandas version : 1.0.1
+
 
 Suppose we wanted to create a dataframe as follows,
 
@@ -58,50 +58,15 @@ Converting the same to a dataframe,
 
 ```python
 df = pd.DataFrame(data)
-# print(df.to_markdown()) # converting to markdown for ease of display
+# Note: converting to markdown for ease of display on site
+# print(df.to_markdown()) 
 df
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>name</th>
-      <th>title</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>sam</td>
-      <td>physicist</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>rob</td>
-      <td>economist</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+|    | name   | title     |
+|---:|:-------|:----------|
+|  0 | sam    | physicist |
+|  1 | rob    | economist |
 
 
 Now lets create a bigger dataframe and learn some useful functions that can be performed on them.
@@ -121,95 +86,15 @@ df = pd.DataFrame(data)
 df
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Sam</td>
-      <td>Physicist</td>
-      <td>59</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Rob</td>
-      <td>Economist</td>
-      <td>66</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Jack</td>
-      <td>Statistician</td>
-      <td>42</td>
-      <td>Sydney</td>
-      <td>UNSW</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Jill</td>
-      <td>Data Scientist</td>
-      <td>28</td>
-      <td>Sydney</td>
-      <td>UTS</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Dave</td>
-      <td>Designer</td>
-      <td>24</td>
-      <td>Melbourne</td>
-      <td>Uni Mel</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Alex</td>
-      <td>Architect</td>
-      <td>39</td>
-      <td>Perth</td>
-      <td>UWA</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Steve</td>
-      <td>Doctor</td>
-      <td>52</td>
-      <td>Brisbane</td>
-      <td>UQ</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+|    | Name   | Title          |   Age | City      | University   |
+|---:|:-------|:---------------|------:|:----------|:-------------|
+|  0 | Sam    | Physicist      |    59 | Melbourne | Monash       |
+|  1 | Rob    | Economist      |    66 | Melbourne | Monash       |
+|  2 | Jack   | Statistician   |    42 | Sydney    | UNSW         |
+|  3 | Jill   | Data Scientist |    28 | Sydney    | UTS          |
+|  4 | Dave   | Designer       |    24 | Melbourne | Uni Mel      |
+|  5 | Alex   | Architect      |    39 | Perth     | UWA          |
+|  6 | Steve  | Doctor         |    52 | Brisbane  | UQ           |
 
 
 We can also take a quick glance at its contents by using :
@@ -223,160 +108,26 @@ We can also take a quick glance at its contents by using :
 df.head()
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Sam</td>
-      <td>Physicist</td>
-      <td>59</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Rob</td>
-      <td>Economist</td>
-      <td>66</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Jack</td>
-      <td>Statistician</td>
-      <td>42</td>
-      <td>Sydney</td>
-      <td>UNSW</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Jill</td>
-      <td>Data Scientist</td>
-      <td>28</td>
-      <td>Sydney</td>
-      <td>UTS</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Dave</td>
-      <td>Designer</td>
-      <td>24</td>
-      <td>Melbourne</td>
-      <td>Uni Mel</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+|    | Name   | Title          |   Age | City      | University   |
+|---:|:-------|:---------------|------:|:----------|:-------------|
+|  0 | Sam    | Physicist      |    59 | Melbourne | Monash       |
+|  1 | Rob    | Economist      |    66 | Melbourne | Monash       |
+|  2 | Jack   | Statistician   |    42 | Sydney    | UNSW         |
+|  3 | Jill   | Data Scientist |    28 | Sydney    | UTS          |
+|  4 | Dave   | Designer       |    24 | Melbourne | Uni Mel      |
 
 
 ```python
 df.tail()
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2</th>
-      <td>Jack</td>
-      <td>Statistician</td>
-      <td>42</td>
-      <td>Sydney</td>
-      <td>UNSW</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Jill</td>
-      <td>Data Scientist</td>
-      <td>28</td>
-      <td>Sydney</td>
-      <td>UTS</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Dave</td>
-      <td>Designer</td>
-      <td>24</td>
-      <td>Melbourne</td>
-      <td>Uni Mel</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Alex</td>
-      <td>Architect</td>
-      <td>39</td>
-      <td>Perth</td>
-      <td>UWA</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Steve</td>
-      <td>Doctor</td>
-      <td>52</td>
-      <td>Brisbane</td>
-      <td>UQ</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+|    | Name   | Title          |   Age | City      | University   |
+|---:|:-------|:---------------|------:|:----------|:-------------|
+|  2 | Jack   | Statistician   |    42 | Sydney    | UNSW         |
+|  3 | Jill   | Data Scientist |    28 | Sydney    | UTS          |
+|  4 | Dave   | Designer       |    24 | Melbourne | Uni Mel      |
+|  5 | Alex   | Architect      |    39 | Perth     | UWA          |
+|  6 | Steve  | Doctor         |    52 | Brisbane  | UQ           |
 
 Lets say we want to fiter out all the people from `Sydney`.
 
@@ -385,55 +136,10 @@ Lets say we want to fiter out all the people from `Sydney`.
 df[df['City'] == 'Sydney']
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2</th>
-      <td>Jack</td>
-      <td>Statistician</td>
-      <td>42</td>
-      <td>Sydney</td>
-      <td>UNSW</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Jill</td>
-      <td>Data Scientist</td>
-      <td>28</td>
-      <td>Sydney</td>
-      <td>UTS</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+|    | Name   | Title          |   Age | City   | University   |
+|---:|:-------|:---------------|------:|:-------|:-------------|
+|  2 | Jack   | Statistician   |    42 | Sydney | UNSW         |
+|  3 | Jill   | Data Scientist |    28 | Sydney | UTS          |
 
 
 Now, lets say we want to look at all the people in `Melbourne` and in `Monash`. Notice the usage of `()` and `&`.
@@ -443,55 +149,10 @@ Now, lets say we want to look at all the people in `Melbourne` and in `Monash`. 
 df[(df['City'] == 'Melbourne') & (df['University'] == 'Monash')]
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Sam</td>
-      <td>Physicist</td>
-      <td>59</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Rob</td>
-      <td>Economist</td>
-      <td>66</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+|    | Name   | Title     |   Age | City      | University   |
+|---:|:-------|:----------|------:|:----------|:-------------|
+|  0 | Sam    | Physicist |    59 | Melbourne | Monash       |
+|  1 | Rob    | Economist |    66 | Melbourne | Monash       |
 
 
 #### Challenge
@@ -507,55 +168,10 @@ We can also fetch specific rows based on their indexes as well.
 df.iloc[1:3]
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>Rob</td>
-      <td>Economist</td>
-      <td>66</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Jack</td>
-      <td>Statistician</td>
-      <td>42</td>
-      <td>Sydney</td>
-      <td>UNSW</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+|    | Name   | Title        |   Age | City      | University   |
+|---:|:-------|:-------------|------:|:----------|:-------------|
+|  1 | Rob    | Economist    |    66 | Melbourne | Monash       |
+|  2 | Jack   | Statistician |    42 | Sydney    | UNSW         |
 
 
 Lets try changing Jack's age to 43, because today is his Birthday and he has now turned 43.
@@ -565,9 +181,9 @@ Lets try changing Jack's age to 43, because today is his Birthday and he has now
 df.loc[2, 'Age'] = 43
 ```
 
-The above is just one way to do this. Some of the other ways are as follows:
-- df.at[2, 'Age'] = 43
-- df.loc[df[df['Name'] == 'Jack'].index, 'Age'] = 43
+The above is just one way to do this. Some of the other ways are as follows:  
+- `df.at[2, 'Age'] = 43`
+- `df.loc[df[df['Name'] == 'Jack'].index, 'Age'] = 43`
 
 Lets look at the updated data frame.
 
@@ -576,96 +192,15 @@ Lets look at the updated data frame.
 df
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Sam</td>
-      <td>Physicist</td>
-      <td>59</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Rob</td>
-      <td>Economist</td>
-      <td>66</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Jack</td>
-      <td>Statistician</td>
-      <td>43</td>
-      <td>Sydney</td>
-      <td>UNSW</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Jill</td>
-      <td>Data Scientist</td>
-      <td>28</td>
-      <td>Sydney</td>
-      <td>UTS</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Dave</td>
-      <td>Designer</td>
-      <td>24</td>
-      <td>Melbourne</td>
-      <td>Uni Mel</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Alex</td>
-      <td>Architect</td>
-      <td>39</td>
-      <td>Perth</td>
-      <td>UWA</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Steve</td>
-      <td>Doctor</td>
-      <td>52</td>
-      <td>Brisbane</td>
-      <td>UQ</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+|    | Name   | Title          |   Age | City      | University   |
+|---:|:-------|:---------------|------:|:----------|:-------------|
+|  0 | Sam    | Physicist      |    59 | Melbourne | Monash       |
+|  1 | Rob    | Economist      |    66 | Melbourne | Monash       |
+|  2 | Jack   | Statistician   |    43 | Sydney    | UNSW         |
+|  3 | Jill   | Data Scientist |    28 | Sydney    | UTS          |
+|  4 | Dave   | Designer       |    24 | Melbourne | Uni Mel      |
+|  5 | Alex   | Architect      |    39 | Perth     | UWA          |
+|  6 | Steve  | Doctor         |    52 | Brisbane  | UQ           |
 
 For exporting a Pandas dataframe to a `csv` file, we can use `to_csv()` as follows
 ```python
@@ -692,110 +227,32 @@ df_res = pd.read_csv('researchers.csv', sep=',')
 df_res
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Age</th>
-      <th>City</th>
-      <th>University</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Sam</td>
-      <td>Physicist</td>
-      <td>59</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Rob</td>
-      <td>Economist</td>
-      <td>66</td>
-      <td>Melbourne</td>
-      <td>Monash</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Jack</td>
-      <td>Statistician</td>
-      <td>43</td>
-      <td>Sydney</td>
-      <td>UNSW</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Jill</td>
-      <td>Data Scientist</td>
-      <td>28</td>
-      <td>Sydney</td>
-      <td>UTS</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Dave</td>
-      <td>Designer</td>
-      <td>24</td>
-      <td>Melbourne</td>
-      <td>Uni Mel</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Alex</td>
-      <td>Architect</td>
-      <td>39</td>
-      <td>Perth</td>
-      <td>UWA</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Steve</td>
-      <td>Doctor</td>
-      <td>52</td>
-      <td>Brisbane</td>
-      <td>UQ</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+|    | Name   | Title          |   Age | City      | University   |
+|---:|:-------|:---------------|------:|:----------|:-------------|
+|  0 | Sam    | Physicist      |    59 | Melbourne | Monash       |
+|  1 | Rob    | Economist      |    66 | Melbourne | Monash       |
+|  2 | Jack   | Statistician   |    43 | Sydney    | UNSW         |
+|  3 | Jill   | Data Scientist |    28 | Sydney    | UTS          |
+|  4 | Dave   | Designer       |    24 | Melbourne | Uni Mel      |
+|  5 | Alex   | Architect      |    39 | Perth     | UWA          |
+|  6 | Steve  | Doctor         |    52 | Brisbane  | UQ           |
 
 
 ### JSON
 ---
 
-JSON: JavaScript Object Notation.
+JSON stands for *JavaScript Object Notation*.
 
 When exchanging data between a browser and a server, the data can only be text.
 
-Python has a built-in package called json, which can be used to work with JSON data.
+Python has a built-in package called `json`, which can be used to work with JSON data.
 
 
 ```python
 import json
 ```
+
+Once we imported the library, now lets look at how we can obtain a JSON object from a string (or more accurately a JSON string). This process is also know as deserialization where we convert a string to an object.
 
 
 ```python
@@ -812,19 +269,23 @@ print(y["age"])
 ```
 
     30
-    
+
+
+Lets take a look at `y` as follows,
 
 
 ```python
-y
+print(y)
 ```
 
+    {
+        "name": "John",
+        "age": 30,
+        "city": "New York"
+    }
 
 
-
-    {'name': 'John', 'age': 30, 'city': 'New York'}
-
-
+We can obtain the exact same JSON string we defined earlier from a Python dictionary as follows,
 
 
 ```python
@@ -845,7 +306,9 @@ print(y)
 ```
 
     {"name": "John", "age": 30, "city": "New York"}
-    
+
+
+For better formatting we can indent the same as,
 
 
 ```python
@@ -860,7 +323,7 @@ print(y)
         "age": 30,
         "city": "New York"
     }
-    
+
 
 ### Regex
 ---
@@ -869,8 +332,8 @@ Regular expressions or regex are a powerful tool to extract key pieces of data f
 
 You can try your regex expressions in : 
 
-- https://pythex.org/ for a python oriented regex editor
-- https://regexr.com/ for a more visual explanation behind the expressions (good for getting started)
+- [pythex](https://pythex.org/) for a python oriented regex editor
+- [regexr](https://regexr.com/) for a more visual explanation behind the expressions (good for getting started)
 
 
 ```python
@@ -886,7 +349,7 @@ re.search('123', my_str)
 
 
 
-    <_sre.SRE_Match object; span=(6, 9), match='123'>
+    <re.Match object; span=(6, 9), match='123'>
 
 
 
@@ -899,7 +362,7 @@ else:
 ```
 
     Found
-    
+
 
 We can use `[0-9]` in the regular expression to identify any one number in the string.
 
@@ -912,7 +375,7 @@ re.search('[0-9]', my_str)
 
 
 
-    <_sre.SRE_Match object; span=(6, 7), match='1'>
+    <re.Match object; span=(6, 7), match='1'>
 
 
 
@@ -929,7 +392,7 @@ re.search('[0-9][0-9][0-9]', my_str)
 
 
 
-    <_sre.SRE_Match object; span=(6, 9), match='123'>
+    <re.Match object; span=(6, 9), match='123'>
 
 
 
@@ -942,12 +405,12 @@ print(re.search('[0-9][0-9][0-9]','01web5678scraing')) # matches 567
 print(re.search('[0-9][0-9][0-9]','hello world')) # matches nothing
 ```
 
-    <_sre.SRE_Match object; span=(5, 8), match='123'>
-    <_sre.SRE_Match object; span=(5, 8), match='678'>
-    <_sre.SRE_Match object; span=(0, 3), match='012'>
-    <_sre.SRE_Match object; span=(5, 8), match='567'>
+    <re.Match object; span=(5, 8), match='123'>
+    <re.Match object; span=(5, 8), match='678'>
+    <re.Match object; span=(0, 3), match='012'>
+    <re.Match object; span=(5, 8), match='567'>
     None
-    
+
 
 As seen above, it matches the first occurance of three digits occuring together.
 
@@ -958,8 +421,8 @@ The above example can be extended to match any number of numbers using the wild 
 print(re.search('[a-z]*[0-9]*','hello123@@')) # matches hello123
 ```
 
-    <_sre.SRE_Match object; span=(0, 8), match='hello123'>
-    
+    <re.Match object; span=(0, 8), match='hello123'>
+
 
 What if we just want to capture only the numbers? `Capture group` is the answer.
 
@@ -1031,10 +494,12 @@ num_regex.findall(my_str)
 
 What regular expression can be used to match the numbers **only** at the end of the string:
 
-- '[a-z]*([0-9]+)[a-z]+'
-- '[a-z]*([0-9]+)\$'
-- $[a-z]*([0-9]+)
-- '([0-9]+)'
+- `'[a-z]*([0-9]+)[a-z]+'`
+- `'[a-z]*([0-9]+)\$'`
+- `$[a-z]*([0-9]+)`
+- `'([0-9]+)'`
+
+---
 
 Now, having learnt the regular expressions on basic strings, the same concept can be applied to an html as well as shown below:
 
@@ -1084,7 +549,7 @@ print(html)
             </body>
             </html> 
             
-    
+
 
 Now, if we are only interested in : 
 - names i.e. the data inside the `<h1></h1>` tags, and
@@ -1116,7 +581,7 @@ print(names, titles)
 ```
 
     ['Sam', 'Rob'] ['Physicist', 'Economist']
-    
+
 
 ### From a web scraping perspective
 - `JSON` and `XML` are the most widely used formats to carry data all over the internet.

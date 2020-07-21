@@ -315,15 +315,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#parse-html-and-access-different-elements" class="md-nav__link">
-    Parse HTML and access different elements
+  <a href="#parsing-html-and-accessing-different-elements" class="md-nav__link">
+    Parsing HTML and accessing different elements
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#manipulate-it-into-a-tabular-structure-explore-the-schema" class="md-nav__link">
-    Manipulate it into a tabular structure - explore the schema
+  <a href="#explore-the-schema-manipulating-it-into-a-tabular-structure" class="md-nav__link">
+    Explore the schema: Manipulating it into a tabular structure
   </a>
   
     <nav class="md-nav">
@@ -454,15 +454,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#parse-html-and-access-different-elements" class="md-nav__link">
-    Parse HTML and access different elements
+  <a href="#parsing-html-and-accessing-different-elements" class="md-nav__link">
+    Parsing HTML and accessing different elements
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#manipulate-it-into-a-tabular-structure-explore-the-schema" class="md-nav__link">
-    Manipulate it into a tabular structure - explore the schema
+  <a href="#explore-the-schema-manipulating-it-into-a-tabular-structure" class="md-nav__link">
+    Explore the schema: Manipulating it into a tabular structure
   </a>
   
     <nav class="md-nav">
@@ -708,7 +708,8 @@ Content of the website
 44
 45
 46
-47</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>\n
+47
+48</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>\n
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span> <span class="na">dir</span><span class="o">=</span><span class="s">&quot;ltr&quot;</span> <span class="na">prefix</span><span class="o">=</span><span class="s">&quot;content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# &quot;</span><span class="p">&gt;</span>\n
 
 <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>\n
@@ -753,15 +754,16 @@ Content of the website
         <span class="nx">gtag</span><span class="p">(</span><span class="s2">&quot;js&quot;</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
         <span class="nb">window</span><span class="p">[</span><span class="err">\</span><span class="s1">&#39;GoogleAnalyticsObject\&#39;] = \&#39;ga\&#39;;\r\n  window[\&#39;ga\&#39;] = window[\&#39;ga\&#39;] || function() {\r\n    (window[\&#39;ga\&#39;].q = window[\&#39;ga\&#39;</span><span class="p">].</span><span class="nx">q</span> <span class="o">||</span> <span class="p">[]).</span><span class="nx">push</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)</span><span class="err">\</span><span class="nx">r</span><span class="err">\</span><span class="nx">n</span>  <span class="p">};</span><span class="err">\</span><span class="nx">r</span><span class="err">\</span><span class="nx">nga</span><span class="p">(</span><span class="s2">&quot;set&quot;</span><span class="p">,</span> <span class="s2">&quot;dimension2&quot;</span><span class="p">,</span> <span class="nb">window</span><span class="p">.</span><span class="nx">analytics_manager_node_age</span><span class="p">);</span><span class="err">\</span><span class="nx">r</span><span class="err">\</span><span class="nx">nga</span><span class="p">(</span><span class="s2">&quot;set&quot;</span><span class="p">,</span> <span class="s2">&quot;dimension3&quot;</span><span class="p">,</span> <span class="nb">window</span><span class="p">.</span><span class="nx">analytics_manager_node_author</span><span class="p">);</span><span class="nx">gtag</span><span class="p">(</span><span class="s2">&quot;config&quot;</span><span class="p">,</span> <span class="s2">&quot;UA-1488254-2&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;groups&quot;</span><span class="o">:</span><span class="s2">&quot;default&quot;</span><span class="p">,</span><span class="s2">&quot;anonymize_ip&quot;</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span><span class="s2">&quot;page_path&quot;</span><span class="o">:</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span> <span class="o">+</span> <span class="nx">location</span><span class="p">.</span><span class="nx">search</span> <span class="o">+</span> <span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">,</span><span class="s2">&quot;link_attribution&quot;</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span><span class="s2">&quot;allow_ad_personalization_signals&quot;</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
     <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>\n
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;title&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;List of Fortune 500 companies and their websites (2018) | Zyxware Technologies&quot;</span> <span class="p">/&gt;</span>\n
-    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;canonical&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;title&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;List of Fortune 500 companies and their websites (2018) | Zyxware Technologies&quot;</span> <span class="p">/&gt;</span>
+
+    .. and so on
 </code></pre></div>
 </td></tr></table>
 
 <blockquote>
 <p>Note : It is always a good idea to "prettify" HTML, XML or JSON strings for visual clarity.</p>
 </blockquote>
-<h3 id="parse-html-and-access-different-elements">Parse HTML and access different elements<a class="headerlink" href="#parse-html-and-access-different-elements" title="Permanent link">&para;</a></h3>
+<h3 id="parsing-html-and-accessing-different-elements">Parsing HTML and accessing different elements<a class="headerlink" href="#parsing-html-and-accessing-different-elements" title="Permanent link">&para;</a></h3>
 <hr />
 <p><code>bs4</code> is a Python library which parses through HTML content and understands the complete structure of the content. The response content can be passed to a <code>BeautifulSoup()</code> method to obtain a soup object which looks very structured.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -774,31 +776,7 @@ Content of the website
 </code></pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>C:\Users\Naveen Kaushik\Anaconda2\envs\py36\lib\site-packages\bs4\__init__.py:181: UserWarning: No parser was explicitly specified, so I&#39;m using the best available HTML parser for this system (&quot;lxml&quot;). This usually isn&#39;t a problem, but if you run this code on another system, or in a different virtual environment, it may use a different parser and behave differently.
-
-The code that caused this warning is on line 193 of the file C:\Users\Naveen Kaushik\Anaconda2\envs\py36\lib\runpy.py. To get rid of this warning, change code that looks like this:
-
- BeautifulSoup(YOUR_MARKUP})
-
-to this:
-
- BeautifulSoup(YOUR_MARKUP, &quot;lxml&quot;)
-
-  markup_type=markup_type))
-</code></pre></div>
-</td></tr></table>
-
-<h3 id="manipulate-it-into-a-tabular-structure-explore-the-schema">Manipulate it into a tabular structure - explore the schema<a class="headerlink" href="#manipulate-it-into-a-tabular-structure-explore-the-schema" title="Permanent link">&para;</a></h3>
+<h3 id="explore-the-schema-manipulating-it-into-a-tabular-structure">Explore the schema: Manipulating it into a tabular structure<a class="headerlink" href="#explore-the-schema-manipulating-it-into-a-tabular-structure" title="Permanent link">&para;</a></h3>
 <hr />
 <p>To be able to accurately extract relevant data from the webpage, it is important to explore the schema and understand the structure of the webpage. A good way to do this is to inspect the webpage directly on a web browser.
 <br></p>
@@ -933,6 +911,7 @@ to this:
 <h4 id="challenge">Challenge<a class="headerlink" href="#challenge" title="Permanent link">&para;</a></h4>
 <hr />
 <p>Explore the schema further, extract the column names which are located in the first row and print them.</p>
+<hr />
 <p>The first element of the list contains the column names 'Rank, Company and Website'. The next elements of the list contain soup objects which contain the company data including the rank. This data can be extracted in a loop since the structure for all the list elements is the same.</p>
 <ul>
 <li>An empty dataframe <code>fortune_500_df</code> is created with the column names <code>rank</code>, <code>company_name</code> and <code>company_website</code></li>
@@ -972,64 +951,6 @@ to this:
 <span class="n">fortune_500_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>rank</th>
-      <th>company_name</th>
-      <th>company_website</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>Walmart</td>
-      <td>http://www.stock.walmart.com</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>Exxon Mobil</td>
-      <td>http://www.exxonmobil.com</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>Berkshire Hathaway</td>
-      <td>http://www.berkshirehathaway.com</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>Apple</td>
-      <td>http://www.apple.com</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>UnitedHealth Group</td>
-      <td>http://www.unitedhealthgroup.com</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 
 <table>
 <thead>
