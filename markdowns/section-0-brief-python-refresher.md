@@ -1,4 +1,4 @@
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MonashDataFluency/python-web-scraping/blob/master/notebooks/section-0-brief-python-refresher.ipynb)
+[![Open In Colab](../images/colab-badge.svg)](https://colab.research.google.com/github/MonashDataFluency/python-web-scraping/blob/master/notebooks/section-0-brief-python-refresher.ipynb)
 
 <center><img src="../images/xkcd_python.png"></center>
 <center>https://xkcd.com/license.html (CC BY-NC 2.5)</center>
@@ -16,7 +16,7 @@ print("Hello world!!")
 ```
 
     Hello world!!
-
+    
 
 4. **Shift-Enter** to run the contents of the cell.
 
@@ -37,7 +37,7 @@ print('Pandas version : {}'.format(pd.__version__))
 ```
 
     Pandas version : 1.0.1
-
+    
 
 Suppose we wanted to create a dataframe as follows,
 
@@ -254,6 +254,8 @@ import json
 
 Once we imported the library, now lets look at how we can obtain a JSON object from a string (or more accurately a JSON string). This process is also know as deserialization where we convert a string to an object.
 
+JSON is a string that can be turned into ('deserialized') a Python dictionary containing just primitive types (floats, strings, bools, lists, dicts and None).
+
 
 ```python
 # Convert from JSON to Python:
@@ -269,7 +271,7 @@ print(y["age"])
 ```
 
     30
-
+    
 
 Lets take a look at `y` as follows,
 
@@ -283,7 +285,7 @@ print(y)
         "age": 30,
         "city": "New York"
     }
-
+    
 
 We can obtain the exact same JSON string we defined earlier from a Python dictionary as follows,
 
@@ -306,7 +308,7 @@ print(y)
 ```
 
     {"name": "John", "age": 30, "city": "New York"}
-
+    
 
 For better formatting we can indent the same as,
 
@@ -323,12 +325,14 @@ print(y)
         "age": 30,
         "city": "New York"
     }
-
+    
 
 ### Regex
 ---
 
 Regular expressions or regex are a powerful tool to extract key pieces of data from raw text.
+
+This is a whirlwind tour of regular expressions so you have some familiarity, but becoming proficient will require further study and practise. Regex is deep enough to have a whole workshop of it's own
 
 You can try your regex expressions in : 
 
@@ -362,7 +366,7 @@ else:
 ```
 
     Found
-
+    
 
 We can use `[0-9]` in the regular expression to identify any one number in the string.
 
@@ -410,7 +414,7 @@ print(re.search('[0-9][0-9][0-9]','hello world')) # matches nothing
     <re.Match object; span=(0, 3), match='012'>
     <re.Match object; span=(5, 8), match='567'>
     None
-
+    
 
 As seen above, it matches the first occurance of three digits occuring together.
 
@@ -422,7 +426,7 @@ print(re.search('[a-z]*[0-9]*','hello123@@')) # matches hello123
 ```
 
     <re.Match object; span=(0, 8), match='hello123'>
-
+    
 
 What if we just want to capture only the numbers? `Capture group` is the answer.
 
@@ -549,7 +553,7 @@ print(html)
             </body>
             </html> 
             
-
+    
 
 Now, if we are only interested in : 
 - names i.e. the data inside the `<h1></h1>` tags, and
@@ -581,7 +585,7 @@ print(names, titles)
 ```
 
     ['Sam', 'Rob'] ['Physicist', 'Economist']
-
+    
 
 ### From a web scraping perspective
 - `JSON` and `XML` are the most widely used formats to carry data all over the internet.
