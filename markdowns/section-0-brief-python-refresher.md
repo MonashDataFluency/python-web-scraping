@@ -16,7 +16,7 @@ print("Hello world!!")
 ```
 
     Hello world!!
-
+    
 
 4. **Shift-Enter** to run the contents of the cell.
 
@@ -37,7 +37,7 @@ print('Pandas version : {}'.format(pd.__version__))
 ```
 
     Pandas version : 1.0.1
-
+    
 
 Suppose we wanted to create a dataframe as follows,
 
@@ -160,6 +160,7 @@ df[(df['City'] == 'Melbourne') & (df['University'] == 'Monash')]
 
 How can we filter people from `Melbourne` and above the Age of `50`?
 
+---
 
 We can also fetch specific rows based on their indexes as well.
 
@@ -182,7 +183,9 @@ df.loc[2, 'Age'] = 43
 ```
 
 The above is just one way to do this. Some of the other ways are as follows:  
+
 - `df.at[2, 'Age'] = 43`
+
 - `df.loc[df[df['Name'] == 'Jack'].index, 'Age'] = 43`
 
 Lets look at the updated data frame.
@@ -271,7 +274,7 @@ print(y["age"])
 ```
 
     30
-
+    
 
 Lets take a look at `y` as follows,
 
@@ -285,7 +288,7 @@ print(y)
         "age": 30,
         "city": "New York"
     }
-
+    
 
 We can obtain the exact same JSON string we defined earlier from a Python dictionary as follows,
 
@@ -308,7 +311,7 @@ print(y)
 ```
 
     {"name": "John", "age": 30, "city": "New York"}
-
+    
 
 For better formatting we can indent the same as,
 
@@ -325,7 +328,7 @@ print(y)
         "age": 30,
         "city": "New York"
     }
-
+    
 
 ### Regex
 ---
@@ -366,7 +369,7 @@ else:
 ```
 
     Found
-
+    
 
 We can use `[0-9]` in the regular expression to identify any one number in the string.
 
@@ -414,7 +417,7 @@ print(re.search('[0-9][0-9][0-9]','hello world')) # matches nothing
     <re.Match object; span=(0, 3), match='012'>
     <re.Match object; span=(5, 8), match='567'>
     None
-
+    
 
 As seen above, it matches the first occurance of three digits occuring together.
 
@@ -426,7 +429,7 @@ print(re.search('[a-z]*[0-9]*','hello123@@')) # matches hello123
 ```
 
     <re.Match object; span=(0, 8), match='hello123'>
-
+    
 
 What if we just want to capture only the numbers? `Capture group` is the answer.
 
@@ -553,7 +556,7 @@ print(html)
             </body>
             </html> 
             
-
+    
 
 Now, if we are only interested in : 
 - names i.e. the data inside the `<h1></h1>` tags, and
@@ -585,7 +588,7 @@ print(names, titles)
 ```
 
     ['Sam', 'Rob'] ['Physicist', 'Economist']
-
+    
 
 ### From a web scraping perspective
 - `JSON` and `XML` are the most widely used formats to carry data all over the internet.

@@ -897,6 +897,7 @@
 <h4 id="challenge">Challenge<a class="headerlink" href="#challenge" title="Permanent link">&para;</a></h4>
 <hr />
 <p>How can we filter people from <code>Melbourne</code> and above the Age of <code>50</code>?</p>
+<hr />
 <p>We can also fetch specific rows based on their indexes as well.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 </code></pre></div>
@@ -937,9 +938,15 @@
 </code></pre></div>
 </td></tr></table>
 
-<p>The above is just one way to do this. Some of the other ways are as follows:<br />
-- <code>df.at[2, 'Age'] = 43</code>
-- <code>df.loc[df[df['Name'] == 'Jack'].index, 'Age'] = 43</code></p>
+<p>The above is just one way to do this. Some of the other ways are as follows:  </p>
+<ul>
+<li>
+<p><code>df.at[2, 'Age'] = 43</code></p>
+</li>
+<li>
+<p><code>df.loc[df[df['Name'] == 'Jack'].index, 'Age'] = 43</code></p>
+</li>
+</ul>
 <p>Lets look at the updated data frame.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">df</span>
 </code></pre></div>

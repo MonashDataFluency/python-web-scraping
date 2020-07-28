@@ -96,7 +96,7 @@ for i in range(0,3):
     [[Investment|Diversified investments]], [[Insurance#Types|Property & casualty insurance]], [[Public utility|Utilities]], [[Restaurants]], [[Food processing]], [[Aerospace]], [[Toys]], [[Mass media|Media]], [[Automotive industry|Automotive]], [[Sports equipment|Sporting goods]], [[Final good|Consumer products]], [[Internet]], [[Real estate]]
     
     
-
+    
 
 We can observe that we need to :
 
@@ -155,7 +155,7 @@ print(products)
 ```
 
     ['beauty', 'footwear', 'furniture', 'party supplies', 'auto', 'fitness', 'pet supplies', 'movies', 'electronics', 'jewelry', 'craft supplies', 'clothing', 'grocery', 'music', 'photo finishing', 'home improvement', 'home', 'toys', 'sporting goods', 'health', 'oil products', 'petrochemicals', 'crude oil', 'power generation', 'natural gas', 'diversified investments', 'mass media', 'automotive industry', 'media', 'final good', 'internet', 'food processing', 'public utility', 'sports equipment', 'insurance', 'investment', 'restaurants', 'casualty insurance', 'real estate', 'types', 'aerospace', 'automotive', 'consumer products', 'property', 'utilities', 'toys', 'sporting goods', 'ipad', 'apple tv', 'ilife', 'application', 'ipados', 'siri', 'ios', 'shazam', 'iwork', 'ipod', 'homepod', 'macintosh', 'tvos', 'logic pro', 'garageband', 'watchos', 'apple watch', 'macos', 'iphone', 'final cut pro', 'ingenix', 'service', 'specialized care services', 'uniprise', 'health care', 'economics', 'services', 'pharmaceuticals', 'medical technology', 'health care services', 'amazon fire os', 'fire os', 'amazon fire tablet', 'amazon kindle', 'amazon fire tv', 'amazon fire', 'amazon echo', 'film production', 'sports management', 'video games', 'landline', 'podcasts', 'publishing', 'pay television', 'satellite television', 'television production', 'internet service provider', 'network security', 'iptv', 'cable television', 'fixed-line telephones', 'ott services', 'mobile telephones', 'internet services', 'digital television', 'mobile phone', 'news agency', 'home security', 'over-the-top media services', 'broadband', 'filmmaking', 'automobiles', 'car', 'automobile parts', 'commercial vehicles', 'automobiles', 'automotive parts', 'pickup trucks', 'car', 'luxury car', 'commercial vehicles', 'list of auto parts', 'suvs', 'luxury vehicles', 'commercial vehicle', 'pharmacy services', 'pharmaceuticals', 'other', 'see chevron products', 'petrochemicals', 'marketing brands', 'petroleum', 'natural gas', 'pharmaceutical products', 'medical', 'services', 'mobile phone', 'iptv', 'telematics', 'internet', 'cable television', 'broadband', 'internet of things', 'landline', 'digital media', 'digital television', 'superstore', 'other specialty', 'supermarket', 'supercenter', 'lighting', 'finance', 'wind turbines', 'electrical distribution', 'software', 'aircraft engines', 'energy', 'health care', 'electric power distribution', 'electric motors', 'drug store', 'pharmacy', 'broker services', 'finance', 'institutional investing', 'trustee services', 'currency exchange', 'debt settlement', 'financial markets', 'venture capital', 'foreign exchange market', 'loan servicing', 'mortgage brokers', 'index funds', 'investment banking', 'hedge funds', 'exchange-traded funds', 'mortgage-backed security', 'mortgage', 'mutual funds', 'underwriting', 'stock trading', 'security', 'investment management', 'prime brokerage', 'mortgage brokering', 'retail banking', 'backed securities', 'mortgage loans', 'bond', 'digital banking', 'merchant services', 'money market trading', 'american depositary receipts', 'financial analysis', 'credit cards', 'institutional investor', 'private equity', 'commodity market', 'insurance', 'capital market services', 'investment', 'retail', 'mobile banking', 'treasury services', 'alternative financial services', 'futures exchange', 'private banking', 'portfolios', 'subprime lending', 'bond trading', 'financial capital', 'custodian banking', 'commodities trading', 'risk management', 'pension funds', 'estate planning', 'brokerage', 'collateralized debt obligations', 'portfolio', 'asset management', 'securities lending', 'wholesale mortgage lenders', 'credit default swap', 'wealth management', 'remittance', 'wholesale mortgage lending', 'wire transfers', 'investment capital', 'credit derivative trading', 'information processing', 'security services', 'stock trader', 'asset allocation', 'wholesale funding', 'commercial banking']
-
+    
 
 Now let's create a wordcloud function which will visually inform us about which products are more prominent than the others. The size of the word would indicate its frequency.
 
@@ -209,7 +209,7 @@ for i in range(0,5):
     [[Conglomerate (company)|Conglomerate]]
     {{Unbulleted list | [[Computer hardware]] | [[Computer software]] | [[Consumer electronics]] | [[Cloud computing]] | [[Digital distribution]] | [[Fabless manufacturing|Fabless silicon design]] | [[Semiconductors]] | [[Financial technology]] | [[Artificial intelligence]]}}
     [[Managed health care]]
-
+    
 
 We can observe that we need to :
 - Extract products from between `[[` and `]]`
@@ -240,7 +240,7 @@ print(industries)
 ```
 
     ['retail', 'gas industry', 'gas', 'energy', 'energy industry', 'oil', 'conglomerate', 'company', 'artificial intelligence', 'cloud computing', 'digital distribution', 'computer software', 'financial technology', 'computer hardware', 'semiconductors', 'consumer electronics', 'fabless manufacturing', 'fabless silicon design', 'managed health care', 'healthcare', 'health care', 'retail', 'artificial intelligence', 'e-commerce', 'cloud computing', 'digital distribution', 'consumer electronics', 'grocery stores', 'technology', 'entertainment', 'mass media', 'technology company', 'telecommunications industry', 'telecommunications', 'automotive', 'automotive industry', 'automotive', 'automotive industry', 'pharmaceutical', 'gas', 'gas industry', 'oil', 'pharmaceuticals', 'retail', 'telecommunications industry', 'telecommunications', 'mass media', 'retail', 'conglomerate', 'company', 'pharmaceutical', 'retail', 'financial services', 'banking']
-
+    
 
 Just as before let's create a wordcloud for `industry`,
 
@@ -284,7 +284,7 @@ for i in range(0,len(wiki_data)):
     {{nowrap|Decrease| US$ 309.129 billion |small|(2018)}} {{Decrease}} US$ 309.129 billion {{small|(2018)}}
     {{decrease}} {{US$|67.59 billion}}
     {{increase}} [[United States dollar|US$]]2.687 [[trillion]]
-
+    
 
 We would need to :  
 
