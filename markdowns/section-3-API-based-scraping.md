@@ -75,7 +75,7 @@ print('wptools version : {}'.format(wptools.__version__)) # checking the install
 ```
 
     wptools version : 0.4.17
-    
+
 
 Now let's load the data which we scrapped in the previous section as follows,
 
@@ -147,7 +147,7 @@ for i, j in enumerate(companies):   # looping through the list of 20 company
     18. General Electric
     19. Walgreens Boots Alliance
     20. JPMorgan Chase
-    
+
 
 ### Getting article names from wiki
 
@@ -250,7 +250,7 @@ for idx, company in enumerate(wiki_search):
     JPMorgan Chase, Chase Bank, 2012 JPMorgan Chase trading loss, JPMorgan Chase Tower (Houston), 270 Park Avenue, Chase Paymentech, 2014 JPMorgan Chase data breach, Bear Stearns, Jamie Dimon, JPMorgan Chase Building (Houston)
     
     
-    
+
 
 Now let's get the most probable ones (the first suggestion) for each of the first 20 companies on the Fortune 500 list,
 
@@ -263,7 +263,7 @@ print(most_probable)
 ```
 
     [('Walmart', 'Walmart'), ('Exxon Mobil', 'ExxonMobil'), ('Berkshire Hathaway', 'Berkshire Hathaway'), ('Apple', 'Apple'), ('UnitedHealth Group', 'UnitedHealth Group'), ('McKesson', 'McKesson Corporation'), ('CVS Health', 'CVS Health'), ('Amazon.com', 'Amazon (company)'), ('AT&T', 'AT&T'), ('General Motors', 'General Motors'), ('Ford Motor', 'Ford Motor Company'), ('AmerisourceBergen', 'AmerisourceBergen'), ('Chevron', 'Chevron Corporation'), ('Cardinal Health', 'Cardinal Health'), ('Costco', 'Costco'), ('Verizon', 'Verizon Communications'), ('Kroger', 'Kroger'), ('General Electric', 'General Electric'), ('Walgreens Boots Alliance', 'Walgreens Boots Alliance'), ('JPMorgan Chase', 'JPMorgan Chase')]
-    
+
 
 We can notice that most of the wiki article titles make sense. However, **Apple** is quite ambiguous in this regard as it can indicate the fruit as well as the company. However we can see that the second suggestion returned by was **Apple Inc.**. Hence, we can manually replace it with **Apple Inc.** as follows,
 
@@ -274,7 +274,7 @@ print(companies) # final list of wikipedia article titles
 ```
 
     ['Walmart', 'ExxonMobil', 'Berkshire Hathaway', 'Apple Inc.', 'UnitedHealth Group', 'McKesson Corporation', 'CVS Health', 'Amazon (company)', 'AT&T', 'General Motors', 'Ford Motor Company', 'AmerisourceBergen', 'Chevron Corporation', 'Cardinal Health', 'Costco', 'Verizon Communications', 'Kroger', 'General Electric', 'Walgreens Boots Alliance', 'JPMorgan Chase']
-    
+
 
 ### Retrieving the infoboxes
 
@@ -303,7 +303,7 @@ page.get_parse()    # parses the wikipedia article
       wikidata_url: https://www.wikidata.org/wiki/Q483551
       wikitext: <str(277438)> {{about|the retail chain|other uses}}{{p...
     }
-    
+
 
 
 
@@ -681,7 +681,7 @@ for company in companies:
       wikidata_url: https://www.wikidata.org/wiki/Q192314
       wikitext: <str(117507)> {{About|JPMorgan Chase & Co|its main sub...
     }
-    
+
 
 Let's take a look at the first instance in `wiki_data` i.e. **Walmart**,
 
