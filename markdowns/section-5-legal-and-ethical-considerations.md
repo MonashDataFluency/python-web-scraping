@@ -63,7 +63,7 @@ This all being said, if you adhere to the following simple rules, you will proba
 
 2. __Don't download copies of documents that are clearly not public.__ For example, academic journal publishers often have very strict rules about what you can and what you cannot do with their databases. Mass downloading article PDFs is probably prohibited and can put you (or at the very least your friendly university librarian) in trouble. If your project requires local copies of documents (e.g. for text mining projects), special agreements can be reached with the publisher. The library is a good place to start investigating something like that.
 
-3. __Check your local legislation.__ For example, certain countries have laws protecting personal information such as email addresses and phone numbers. Scraping such information, even from publicly avaialable web sites, can be illegal (e.g. in Australia).
+3. __Check your local legislation.__ For example, certain countries have laws protecting personal information such as email addresses and phone numbers. Scraping such information, even from publicly available web sites, can be illegal (e.g. in Australia).
 
 4. __Don't share downloaded content illegally.__ Scraping for personal purposes is usually OK, even if it is copyrighted information, as it could fall under the fair use provision of the intellectual property legislation. However, sharing data for which you don’t hold the right to share is illegal.
 
@@ -78,7 +78,7 @@ Happy scraping!
 
 ### References
 * The [Web scraping Wikipedia page](https://en.wikipedia.org/wiki/Web_scraping) has a concise definition of many concepts discussed here.
-* [This case study](http://naelshiab.com/members-parliament-web-scraping/) is a great example of what can be done using web scraping and how to achieve it.
+* [This case study](https://www.analyticsvidhya.com/blog/2017/07/web-scraping-in-python-using-scrapy/) is a great example of what can be done using web scraping and a stepping stone to a more advanced python library `scrapy`.
 * [This recent case](https://www.eff.org/deeplinks/2019/09/victory-ruling-hiq-v-linkedin-protects-scraping-public-data) about Linkedin data is a good read.
 * Commencing 25 May 2018, Monash University will also become subject to the European Union’s General Data Protection Regulation ([GDPR](https://en.wikipedia.org/wiki/General_Data_Protection_Regulation)).
 * [Software Carpentry](https://software-carpentry.org/) is a non-profit organisation that runs learn-to-code workshops worldwide. All lessons are publicly available and can be followed indepentently. This lesson is heavily inspired by Software Carpentry.
