@@ -73,7 +73,7 @@ This all being said, if you adhere to the following simple rules, you will proba
 
 7. __Publish your own data in a reusable way.__ Don’t force others to write their own scrapers to get at your data. Use open and software-agnostic formats (e.g. JSON, XML), provide metadata (data about your data: where it came from, what it represents, how to use it, etc.) and make sure it can be indexed by search engines so that people can find it.
 
-8. __View `robots.txt` file__. Robots.txt is a file used by websites to let ‘bots’ know if or how the site should be crawled and indexed. When you are trying to extract data from the web, it is critical to understand what robots.txt is and how to respect it to avoid legal ramifications. This file can be accessed for any domain by accessing <domain_url>/robots.txt. For eg: [`monash.edu/robots.txt`](https://www.monash.edu/robots.txt), [`facebook.com/robots.txt`](https://www.facebook.com/robots.txt), [`linkedin.com/robots.txt`](https://www.linkedin.com/robots.txt).
+8. __View `robots.txt` file__. Robots.txt is a file used by websites to let 'bots' know if or how the site should be crawled and indexed. When you are trying to extract data from the web, it is critical to understand what robots.txt is and how to respect it to avoid legal ramifications. This file can be accessed for any domain by accessing `<domain_url>/robots.txt`. For eg: [`monash.edu/robots.txt`](https://www.monash.edu/robots.txt), [`facebook.com/robots.txt`](https://www.facebook.com/robots.txt), [`linkedin.com/robots.txt`](https://www.linkedin.com/robots.txt).
 
 Happy scraping!
 
