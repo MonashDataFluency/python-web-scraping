@@ -73,6 +73,7 @@ This all being said, if you adhere to the following simple rules, you will proba
 
 7. __Publish your own data in a reusable way.__ Don’t force others to write their own scrapers to get at your data. Use open and software-agnostic formats (e.g. JSON, XML), provide metadata (data about your data: where it came from, what it represents, how to use it, etc.) and make sure it can be indexed by search engines so that people can find it.
 
+8. __View `robots.txt` file__. Robots.txt is a file used by websites to let ‘bots’ know if or how the site should be crawled and indexed. When you are trying to extract data from the web, it is critical to understand what robots.txt is and how to respect it to avoid legal ramifications. This file can be accessed for any domain by accessing <domain_url>/robots.txt. For eg: [`monash.edu/robots.txt`](https://www.monash.edu/robots.txt), [`facebook.com/robots.txt`](https://www.facebook.com/robots.txt), [`linkedin.com/robots.txt`](https://www.linkedin.com/robots.txt).
 
 Happy scraping!
 
@@ -80,6 +81,7 @@ Happy scraping!
 * The [Web scraping Wikipedia page](https://en.wikipedia.org/wiki/Web_scraping) has a concise definition of many concepts discussed here.
 * [This case study](https://www.analyticsvidhya.com/blog/2017/07/web-scraping-in-python-using-scrapy/) is a great example of what can be done using web scraping and a stepping stone to a more advanced python library `scrapy`.
 * [This recent case](https://www.eff.org/deeplinks/2019/09/victory-ruling-hiq-v-linkedin-protects-scraping-public-data) about Linkedin data is a good read.
+* A crisp and simple explanation  to `robots.txt` can be found [here](https://www.promptcloud.com/blog/how-to-read-and-respect-robots-file/). 
 * Commencing 25 May 2018, Monash University will also become subject to the European Union’s General Data Protection Regulation ([GDPR](https://en.wikipedia.org/wiki/General_Data_Protection_Regulation)).
 * [Software Carpentry](https://software-carpentry.org/) is a non-profit organisation that runs learn-to-code workshops worldwide. All lessons are publicly available and can be followed indepentently. This lesson is heavily inspired by Software Carpentry.
 * [Data Carpentry](http://www.datacarpentry.org/) is a sister organisation of Software Carpentry focused on the fundamental data management skills required to conduct research.
