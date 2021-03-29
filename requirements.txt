@@ -35,7 +35,7 @@ Pillow>=7.1.0
 prompt-toolkit==3.0.3
 ptyprocess==0.6.0
 pycurl==7.43.0.5
-Pygments==2.5.2
+Pygments==2.7.4
 pymdown-extensions==6.3
 pyparsing==2.4.6
 python-dateutil==2.8.1
