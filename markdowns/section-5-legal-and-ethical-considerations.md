@@ -37,7 +37,7 @@ In a sense, web scraping is no different than using a web browser to visit a web
 
 In general, if data is publicly available (the content that is being scraped is not behind a password-protected authentication system), then it may be OK to scrape it, provided we don’t break the web site doing so. What is potentially problematic is if the scraped data will be shared further. For example, downloading content off one website and posting it on another website (as our own), unless explicitly permitted, may constitute a violation of copyright law.
 
-Copyright law in some countries recognises "fair use" (USA) or "fair dealing" (Australia) which may, under very specific circumstances, allow reusing some copyrighted material. However the scope of these exceptions is narrow and you should not assume they apply to your case.
+Copyright law in some countries recognises "fair use" (USA, Israel, Singapore and South Korea) or "fair dealing" (Australia) which may, under very specific circumstances, allow reusing some copyrighted material. However the scope of these exceptions is narrow, and moreso for "fair dealing" under Australian law; you should not assume they apply to your case.
 
 For an interesting (Australian) copyright case involving web scraping, see [IceTV vs Channel Nine](https://www.claytonutz.com/knowledge/2009/april/copyright-in-compilations-under-the-spotlight-in-high-court).
 
