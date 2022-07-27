@@ -27,17 +27,19 @@ Since DoS attacks are unfortunately a common occurence on the Internet, modern w
 A web scraper, even one with legitimate purposes and no intent to bring a website down, can exhibit similar behaviour and, if we are not careful, result in our computer being banned from accessing a website.
 
 
-### Don't steal: Copyright and fair use
+### Copyright: respecting other's intellectual property
 
-It is important to recognize that in certain circumstances web scraping can be illegal. If the terms and conditions of the web site we are scraping specifically prohibit downloading and copying its content, then we could be in trouble for scraping it.
+It is important to recognize that in certain circumstances web scraping can be illegal, and this **differs from country to country**.
 
-In practice, however, web scraping is a tolerated practice, provided reasonable care is taken not to disrupt the “regular” use of a web site, as we have seen above.
+If the terms and conditions of the web site we are scraping specifically prohibit downloading and copying its content, then we could be in trouble for scraping it. In practice, however, web scraping is a tolerated practice, provided reasonable care is taken not to disrupt the “regular” use of a web site, as we have seen above. However you must be aware that without permisson from the copyright owner you _may_ be in breach of copyright law.
 
-In a sense, web scraping is no different than using a web browser to visit a web page, in that it amounts to using computer software (a browser vs a scraper) to acccess data that is publicly available on the web.
+In a sense, web scraping is no different than using a web browser to visit a web page, in that it amounts to using computer software (a browser vs a scraper) to acccess data that is publicly available on the web. However, researchers should be aware of the risk since the law views web browsing differently to automated web scraping.
 
-In general, if data is publicly available (the content that is being scraped is not behind a password-protected authentication system), then it is OK to scrape it, provided we don’t break the web site doing so. What is potentially problematic is if the scraped data will be shared further. For example, downloading content off one website and posting it on another website (as our own), unless explicitely permitted, would constitute copyright violation and be illegal.
+In general, if data is publicly available (the content that is being scraped is not behind a password-protected authentication system), then it may be OK to scrape it, provided we don’t break the web site doing so. What is potentially problematic is if the scraped data will be shared further. For example, downloading content off one website and posting it on another website (as our own), unless explicitly permitted, may constitute a violation of copyright law.
 
-However, most copyright legislations recognize cases in which reusing some, possibly copyrighted, information in an aggregate or derivative format is considered “fair use”. In general, unless the intent is to pass off data as our own, copy it word for word or trying to make money out of it, reusing publicly available content scraped off the internet is OK.
+Copyright law in some countries recognises "fair use" (USA) or "fair dealing" (Australia) which may, under very specific circumstances, allow reusing some copyrighted material. However the scope of these exceptions is narrow and you should not assume they apply to your case.
+
+For an interesting (Australian) copyright case involving web scraping, see [IceTV vs Channel Nine](https://www.claytonutz.com/knowledge/2009/april/copyright-in-compilations-under-the-spotlight-in-high-court).
 
 
 ### Better be safe than sorry
@@ -46,7 +48,11 @@ Be aware that copyright and data privacy legislation typically differs from coun
 
 If you are looking to scrape data for your own personal use, then the above guidelines should probably be all that you need to worry about. However, if you plan to start harvesting a large amount of data for research or commercial purposes, you should probably seek legal advice first.
 
-If you work in a university, chances are it has a copyright office that will help you sort out the legal aspects of your project. The university library is often the best place to start looking for help on copyright.
+If you work in a university, chances are it has a copyright office that will help you sort out the legal aspects of your project. The university library is often the best place to start looking for help on copyright related queries.
+
+#### Challenge
+
+- What are the contact details for the copyright office (or similar) at your organisation ?
 
 ### Be nice: ask and share
 
