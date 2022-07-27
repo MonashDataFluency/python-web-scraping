@@ -40,7 +40,7 @@ pymdown-extensions==6.3
 pyparsing==2.4.6
 python-dateutil==2.8.1
 pytz==2019.3
-PyYAML==5.3
+PyYAML==5.4
 pyzmq==18.1.1
 requests==2.22.0
 setuptools==57.5.0
